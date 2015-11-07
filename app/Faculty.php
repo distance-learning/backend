@@ -8,6 +8,17 @@ class Faculty extends Model
 {
     public $timestamps = false;
 
+    public $fillable = [
+        'name',
+        'description',
+        'avatar'
+    ];
+
+    public static $rules = [
+        'name' => 'required',
+        'description' => 'required'
+    ];
+
     public function faculty_administrator()
     {
         return $this->morphTo(\App\User::class, 'structure');
