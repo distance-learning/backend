@@ -33,6 +33,8 @@ class CreateUsersTable extends Migration
             ;
 
             $table->string('role');
+            $table->integer('structure_id');
+            $table->string('structure_type');
             $table->string('email')->unique();
             $table->string('password', 60);
             $table->softDeletes();
