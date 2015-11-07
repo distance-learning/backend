@@ -18,6 +18,8 @@ class CreateCoursesTable extends Migration
             $table->integer('teacher_id');
             $table->integer('group_id');
 
+            $table->string('slug');
+
             $table
                 ->foreign('subject_id')
                 ->references('id')
