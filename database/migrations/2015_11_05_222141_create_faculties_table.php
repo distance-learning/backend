@@ -24,7 +24,10 @@ class CreateFacultiesTable extends Migration
                 ->nullable()
             ;
 
-            $table->string('slug');
+            $table
+                ->string('slug')
+                ->unique()
+            ;
 
             $table->softDeletes();
         });

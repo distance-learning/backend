@@ -32,10 +32,30 @@ class CreateUsersTable extends Migration
                 ->nullable()
             ;
 
+            $table
+                ->string('slug')
+                ->unique()
+            ;
+
             $table->string('role');
             $table->integer('structure_id');
             $table->string('structure_type');
-            $table->string('email')->unique();
+
+            $table
+                ->string('email')
+                ->unique()
+            ;
+
+            $table
+                ->string('token')
+                ->nullable()
+            ;
+
+            $table
+                ->boolean('status')
+                ->default(false)
+            ;
+
             $table->string('password', 60);
             $table->softDeletes();
             $table->rememberToken();

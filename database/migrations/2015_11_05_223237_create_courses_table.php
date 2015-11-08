@@ -18,7 +18,10 @@ class CreateCoursesTable extends Migration
             $table->integer('teacher_id');
             $table->integer('group_id');
 
-            $table->string('slug');
+            $table
+                ->string('slug')
+                ->unique()
+            ;
 
             $table
                 ->foreign('subject_id')
