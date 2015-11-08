@@ -3,15 +3,22 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Faculty extends Model
 {
+    use SoftDeletes;
+
     public $timestamps = false;
 
     public $fillable = [
         'name',
         'description',
         'avatar'
+    ];
+
+    protected $dates = [
+        'deleted_at'
     ];
 
     public static $rules = [
@@ -27,5 +34,10 @@ class Faculty extends Model
     public function departments()
     {
         return $this->hasMany(\App\Department::class);
+    }
+
+    public function scopeFindBySlug($query, $slug)
+    {
+        return $query->where('slug', $slug)->first();
     }
 }
