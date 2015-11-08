@@ -38,8 +38,14 @@ class CreateUsersTable extends Migration
             ;
 
             $table->string('role');
-            $table->integer('structure_id');
-            $table->string('structure_type');
+            $table
+                ->integer('structure_id')
+                ->nullable()
+            ;
+            $table
+                ->string('structure_type')
+                ->nullable()
+            ;
 
             $table
                 ->string('email')

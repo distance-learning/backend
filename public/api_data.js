@@ -15,6 +15,19 @@ define({ "api": [
         "name": "administrator, university_administrator"
       }
     ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorize",
+            "description": "<p>Authorize user header</p> "
+          }
+        ]
+      }
+    },
     "parameter": {
       "fields": {
         "Parameter": [
@@ -71,7 +84,7 @@ define({ "api": [
     "title": "Get faculties",
     "sampleRequest": [
       {
-        "url": "/api/faculties"
+        "url": "/api/faculties?count=:count&page=:page"
       }
     ],
     "description": "<p>Get some faculties</p> ",
@@ -85,6 +98,13 @@ define({ "api": [
             "optional": false,
             "field": "count",
             "description": "<p>Count faculties by page</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "page",
+            "description": "<p>Faculty page</p> "
           }
         ]
       }
@@ -94,30 +114,86 @@ define({ "api": [
         "Success 200": [
           {
             "group": "Success 200",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "total",
+            "description": "<p>Total faculties</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "per_page",
+            "description": "<p>Count faculties per page</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "current_page",
+            "description": "<p>Number of current page</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "last_page",
+            "description": "<p>Number of last page</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "next_page_url",
+            "description": "<p>Next page url</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "prev_page_url",
+            "description": "<p>Prev page url</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "from",
+            "description": "<p>Start faculty id</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "to",
+            "description": "<p>End faculty id</p> "
+          },
+          {
+            "group": "Success 200",
             "type": "<p>Object[]</p> ",
             "optional": false,
-            "field": "faculties",
+            "field": "data",
             "description": "<p>Array of faculties</p> "
           },
           {
             "group": "Success 200",
             "type": "<p>String</p> ",
             "optional": false,
-            "field": "faculties.name",
+            "field": "data.name",
             "description": "<p>Faculty name</p> "
           },
           {
             "group": "Success 200",
             "type": "<p>String</p> ",
             "optional": false,
-            "field": "faculties.description",
+            "field": "data.description",
             "description": ""
           },
           {
             "group": "Success 200",
             "type": "<p>String</p> ",
             "optional": false,
-            "field": "faculties.avatar",
+            "field": "data.avatar",
             "description": ""
           }
         ]
@@ -218,6 +294,19 @@ define({ "api": [
         "name": "administrator, university_administrator"
       }
     ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorize",
+            "description": "<p>Authorize user header</p> "
+          }
+        ]
+      }
+    },
     "parameter": {
       "fields": {
         "Parameter": [
@@ -313,6 +402,19 @@ define({ "api": [
         "name": "administrator, university_administrator"
       }
     ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorize",
+            "description": "<p>Authorize user header</p> "
+          }
+        ]
+      }
+    },
     "parameter": {
       "fields": {
         "Parameter": [
@@ -406,5 +508,341 @@ define({ "api": [
     "filename": "app/Http/Controllers/FacultiesController.php",
     "groupTitle": "Faculties",
     "name": "PutApiFacultiesSlug"
+  },
+  {
+    "type": "get",
+    "url": "/api/users/",
+    "title": "Get n users",
+    "sampleRequest": [
+      {
+        "url": "/api/users?count=:count&page=:page"
+      }
+    ],
+    "description": "<p>Get n users</p> ",
+    "group": "Users",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "count",
+            "description": "<p>Count users on page</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "page",
+            "description": "<p>Users page</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "total",
+            "description": "<p>Total users</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "per_page",
+            "description": "<p>Count users per page</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "current_page",
+            "description": "<p>Number of current page</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "last_page",
+            "description": "<p>Number of last page</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "next_page_url",
+            "description": "<p>Next page url</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "prev_page_url",
+            "description": "<p>Prev page url</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "from",
+            "description": "<p>Start user id</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "to",
+            "description": "<p>End user id</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>Object</p> ",
+            "optional": false,
+            "field": "data",
+            "description": "<p>User object</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "data.id",
+            "description": "<p>User id</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "data.name",
+            "description": "<p>User name</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "data.surname",
+            "description": "<p>User surname</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "data.avatar",
+            "description": "<p>User avatar</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "data.birthday",
+            "description": "<p>User birthday</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "data.phone",
+            "description": "<p>User phone number</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "data.slug",
+            "description": ""
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "data.role",
+            "description": ""
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "data.email",
+            "description": "<p>,</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "data.status",
+            "description": ""
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "data.deleted_at",
+            "description": ""
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "data.created_at",
+            "description": ""
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "data.updated_at",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/UsersController.php",
+    "groupTitle": "Users",
+    "name": "GetApiUsers"
+  },
+  {
+    "type": "post",
+    "url": "/api/users/authenticate",
+    "title": "Authenticate user",
+    "sampleRequest": [
+      {
+        "url": "/api/users/authenticate"
+      }
+    ],
+    "description": "<p>Authenticate user</p> ",
+    "group": "Users",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "email",
+            "description": "<p>User email</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "password",
+            "description": "<p>User password</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>Object</p> ",
+            "optional": false,
+            "field": "user",
+            "description": "<p>User object</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "user.name",
+            "description": "<p>User name</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "user.surname",
+            "description": ""
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "user.avatar",
+            "description": ""
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "user.birthday",
+            "description": ""
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "user.phone",
+            "description": ""
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "user.slug",
+            "description": ""
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "user.role",
+            "description": ""
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "user.email",
+            "description": ""
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "token",
+            "description": "<p>User authenticate token</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "400": [
+          {
+            "group": "400",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if credentials not correct</p> "
+          }
+        ],
+        "401": [
+          {
+            "group": "401",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if user not active</p> "
+          }
+        ],
+        "500": [
+          {
+            "group": "500",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if error on serve</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/UsersController.php",
+    "groupTitle": "Users",
+    "name": "PostApiUsersAuthenticate"
   }
 ] });
