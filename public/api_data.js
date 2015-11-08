@@ -10,6 +10,11 @@ define({ "api": [
     ],
     "description": "<p>Delete faculty by slug</p> ",
     "group": "Faculties",
+    "permission": [
+      {
+        "name": "administrator, university_administrator"
+      }
+    ],
     "parameter": {
       "fields": {
         "Parameter": [
@@ -208,6 +213,11 @@ define({ "api": [
       }
     ],
     "group": "Faculties",
+    "permission": [
+      {
+        "name": "administrator, university_administrator"
+      }
+    ],
     "parameter": {
       "fields": {
         "Parameter": [
@@ -298,6 +308,11 @@ define({ "api": [
     ],
     "description": "<p>Update faculty by slug</p> ",
     "group": "Faculties",
+    "permission": [
+      {
+        "name": "administrator, university_administrator"
+      }
+    ],
     "parameter": {
       "fields": {
         "Parameter": [

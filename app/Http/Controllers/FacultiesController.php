@@ -43,6 +43,7 @@ class FacultiesController extends Controller
      * @apiSampleRequest /api/faculties
      * @apiDescriptions Create new faculties
      * @apiGroup Faculties
+     * @apiPermission administrator, university_administrator
      *
      * @apiParam {String} name Faculty name
      * @apiParam {String} description Faculty description
@@ -115,6 +116,7 @@ class FacultiesController extends Controller
      * @apiSampleRequest /api/faculties/:slug
      * @apiDescription Update faculty by slug
      * @apiGroup Faculties
+     * @apiPermission administrator, university_administrator
      *
      * @apiParam {String} slug Unique faculty identificator
      * @apiParam {String} name Faculty name
@@ -166,6 +168,7 @@ class FacultiesController extends Controller
      * @apiSampleRequest /api/faculties/:slug
      * @apiDescription Delete faculty by slug
      * @apiGroup Faculties
+     * @apiPermission administrator, university_administrator
      *
      * @apiParam {String} slug Unique faculty identificator
      *
