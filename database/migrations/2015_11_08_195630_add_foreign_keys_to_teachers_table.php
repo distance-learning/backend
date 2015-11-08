@@ -12,25 +12,25 @@ class AddForeignKeysToTeachersTable extends Migration
      */
     public function up()
     {
-        Schema::table('teachers', function (Blueprint $table) {
-            $table
-                ->foreign('teacher_id')
-                ->references('id')
-                ->on('users')
-            ;
-
-            $table
-                ->foreign('subject_id')
-                ->references('id')
-                ->on('subjects')
-            ;
-
-            $table
-                ->foreign('department_id')
-                ->references('id')
-                ->on('departments')
-            ;
-        });
+//        Schema::table('teachers', function (Blueprint $table) {
+//            $table
+//                ->foreign('teacher_id')
+//                ->references('id')
+//                ->on('users')
+//            ;
+//
+//            $table
+//                ->foreign('subject_id')
+//                ->references('id')
+//                ->on('subjects')
+//            ;
+//
+//            $table
+//                ->foreign('department_id')
+//                ->references('id')
+//                ->on('departments')
+//            ;
+//        });
     }
 
     /**
