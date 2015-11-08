@@ -51,8 +51,21 @@ class User extends Model implements AuthenticatableContract,
         'structure_type'
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
+     */
     public function structure()
     {
         return $this->morphTo();
+    }
+
+    /**
+     * @param $query
+     * @param $slug
+     * @return mixed
+     */
+    public function scopeFindBySlug($query, $slug)
+    {
+        return $query->where('slug', $slug)->first();
     }
 }

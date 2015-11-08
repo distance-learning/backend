@@ -22,8 +22,8 @@
             "group": "Header",
             "type": "String",
             "optional": false,
-            "field": "authorize",
-            "description": "<p>Authorize user header</p> "
+            "field": "authorization",
+            "description": ""
           }
         ]
       }
@@ -301,8 +301,8 @@
             "group": "Header",
             "type": "String",
             "optional": false,
-            "field": "authorize",
-            "description": "<p>Authorize user header</p> "
+            "field": "Authorization",
+            "description": ""
           }
         ]
       }
@@ -409,8 +409,8 @@
             "group": "Header",
             "type": "String",
             "optional": false,
-            "field": "authorize",
-            "description": "<p>Authorize user header</p> "
+            "field": "authorization",
+            "description": ""
           }
         ]
       }
@@ -704,6 +704,139 @@
     "filename": "app/Http/Controllers/UsersController.php",
     "groupTitle": "Users",
     "name": "GetApiUsers"
+  },
+  {
+    "type": "get",
+    "url": "/api/users/:slug",
+    "title": "Get user by slug",
+    "sampleRequest": [
+      {
+        "url": "/api/users/:slug"
+      }
+    ],
+    "description": "<p>Get user by slug</p> ",
+    "group": "Users",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "slug",
+            "description": "<p>Unique user slug</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>Object</p> ",
+            "optional": false,
+            "field": "data",
+            "description": "<p>User object</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "data.id",
+            "description": "<p>User id</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "data.name",
+            "description": "<p>User name</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "data.surname",
+            "description": "<p>User surname</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "data.avatar",
+            "description": "<p>User avatar</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "data.birthday",
+            "description": "<p>User birthday</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "data.phone",
+            "description": "<p>User phone number</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "data.slug",
+            "description": ""
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "data.role",
+            "description": ""
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "data.email",
+            "description": "<p>,</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "data.status",
+            "description": ""
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "data.deleted_at",
+            "description": ""
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "data.created_at",
+            "description": ""
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "data.updated_at",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/UsersController.php",
+    "groupTitle": "Users",
+    "name": "GetApiUsersSlug"
   },
   {
     "type": "post",

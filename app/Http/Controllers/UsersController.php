@@ -14,7 +14,7 @@ class UsersController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('jwt.auth', ['except' => ['authenticateUserAction', 'getUsersAction']]);
+        $this->middleware('jwt.auth', ['except' => ['authenticateUserAction', 'getUsersAction', 'getUserAction']]);
     }
 
     /**
@@ -112,5 +112,45 @@ class UsersController extends Controller
         $users = User::paginate($request->query->get('count'));
 
         return response()->json($users);
+    }
+
+    /**
+     * Get user by slug
+     *
+     * @api {get} /api/users/:slug Get user by slug
+     * @apiSampleRequest /api/users/:slug
+     * @apiDescription Get user by slug
+     * @apiGroup Users
+     *
+     * @apiParam {String} slug Unique user slug
+     *
+     * @apiSuccess {Object} data User object
+     * @apiSuccess {Number} data.id User id
+     * @apiSuccess {String} data.name User name
+     * @apiSuccess {String} data.surname User surname
+     * @apiSuccess {String} data.avatar User avatar
+     * @apiSuccess {String} data.birthday User birthday
+     * @apiSuccess {String} data.phone User phone number
+     * @apiSuccess {String} data.slug
+     * @apiSuccess {String} data.role
+     * @apiSuccess {String} data.email,
+     * @apiSuccess {Number} data.status
+     * @apiSuccess {String} data.deleted_at
+     * @apiSuccess {String} data.created_at
+     * @apiSuccess {String} data.updated_at
+     *
+     * @param Request $request
+     * @param $slug
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getUserAction(Request $request, $slug)
+    {
+        $user = User::findBySlug($slug);
+
+        if (!$user) {
+            return response()->json(null, 404);
+        }
+
+        return response()->json($user);
     }
 }

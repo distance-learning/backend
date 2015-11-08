@@ -17,7 +17,7 @@ class FacultiesController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('jwt.auth', ['only' => ['store', 'update', 'destroy']]);
+        $this->middleware('jwt.auth', ['only' => ['postFacultyAction', 'putFacultyAction', 'deleteFacultyAction ']]);
     }
 
     /**
@@ -62,7 +62,7 @@ class FacultiesController extends Controller
      * @apiGroup Faculties
      * @apiPermission administrator, university_administrator
      *
-     * @apiHeader {String} authorize Authorize user header
+     * @apiHeader {String} Authorization
      *
      * @apiParam {String} name Faculty name
      * @apiParam {String} description Faculty description
@@ -78,8 +78,10 @@ class FacultiesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function postFacultiesAction(Request $request)
+    public function postFacultyAction(Request $request)
     {
+        $user = $request->user();
+
         if (Gate::denies('createOrUpdateOrDeleteFaculty')) {
             return response()->json(null, 403);
         }
@@ -137,7 +139,7 @@ class FacultiesController extends Controller
      * @apiGroup Faculties
      * @apiPermission administrator, university_administrator
      *
-     * @apiHeader {String} authorize Authorize user header
+     * @apiHeader {String} authorization
      *
      * @apiParam {String} slug Unique faculty identificator
      * @apiParam {String} name Faculty name
@@ -191,7 +193,7 @@ class FacultiesController extends Controller
      * @apiGroup Faculties
      * @apiPermission administrator, university_administrator
      *
-     * @apiHeader {String} authorize Authorize user header
+     * @apiHeader {String} authorization
      *
      * @apiParam {String} slug Unique faculty identificator
      *

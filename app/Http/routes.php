@@ -17,6 +17,7 @@ Route::group(['prefix' => 'api'], function () {
     Route::group(['prefix' => 'users'], function () {
         Route::get('/', 'UsersController@getUsersAction');
         Route::post('/authenticate', 'UsersController@authenticateUserAction');
+        Route::get('/{slug}', 'UsersController@getUserAction');
     });
 });
 
