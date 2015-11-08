@@ -13,25 +13,42 @@ use Illuminate\Support\Facades\Validator;
 class FacultiesController extends Controller
 {
     /**
+     *
+     */
+    public function __construct()
+    {
+        $this->middleware('jwt.auth', ['only' => ['store', 'update', 'destroy']]);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @api {get} /api/faculties Get faculties
-     * @apiSampleRequest /api/faculties
+     * @apiSampleRequest /api/faculties?count=:count&page=:page
      * @apiDescription Get some faculties
      * @apiGroup Faculties
      *
      * @apiParam {Number} count Count faculties by page
+     * @apiParam {Number} page Faculty page
      *
-     * @apiSuccess {Object[]} faculties Array of faculties
-     * @apiSuccess {String} faculties.name Faculty name
-     * @apiSuccess {String} faculties.description
-     * @apiSuccess {String} faculties.avatar
+     * @apiSuccess {Number} total Total faculties
+     * @apiSuccess {Number} per_page Count faculties per page
+     * @apiSuccess {Number} current_page Number of current page
+     * @apiSuccess {Number} last_page Number of last page
+     * @apiSuccess {String} next_page_url Next page url
+     * @apiSuccess {String} prev_page_url Prev page url
+     * @apiSuccess {Number} from Start faculty id
+     * @apiSuccess {Number} to End faculty id
+     * @apiSuccess {Object[]} data Array of faculties
+     * @apiSuccess {String} data.name Faculty name
+     * @apiSuccess {String} data.description
+     * @apiSuccess {String} data.avatar
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function getFacultiesAction(Request $request)
     {
-        $faculties = Faculty::paginate($request->get('count'));
+        $faculties = Faculty::paginate($request->query->get('count'));
 
         return response()->json($faculties);
     }
@@ -44,6 +61,8 @@ class FacultiesController extends Controller
      * @apiDescriptions Create new faculties
      * @apiGroup Faculties
      * @apiPermission administrator, university_administrator
+     *
+     * @apiHeader {String} authorize Authorize user header
      *
      * @apiParam {String} name Faculty name
      * @apiParam {String} description Faculty description
@@ -59,7 +78,7 @@ class FacultiesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function postFacultiesAction(Request $request)
     {
         if (Gate::denies('createOrUpdateOrDeleteFaculty')) {
             return response()->json(null, 403);
@@ -73,8 +92,8 @@ class FacultiesController extends Controller
 
         //TODO Make upload faculty avatar
         $faculty = new Faculty([
-            'name' => $request->get('name'),
-            'description' => $request->get('description')
+            'name' => $request->request->get('name'),
+            'description' => $request->request->get('description')
         ]);
 
         return response()->json($faculty, 200);
@@ -98,7 +117,7 @@ class FacultiesController extends Controller
      * @param $slug
      * @return \Illuminate\Http\JsonResponse
      */
-    public function show($slug)
+    public function getFacultyAction($slug)
     {
         $faculty = Faculty::findBySlug($slug);
 
@@ -118,6 +137,8 @@ class FacultiesController extends Controller
      * @apiGroup Faculties
      * @apiPermission administrator, university_administrator
      *
+     * @apiHeader {String} authorize Authorize user header
+     *
      * @apiParam {String} slug Unique faculty identificator
      * @apiParam {String} name Faculty name
      * @apiParam {String} description Faculty description
@@ -135,7 +156,7 @@ class FacultiesController extends Controller
      * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $slug)
+    public function putFacultyAction(Request $request, $slug)
     {
         if (Gate::denies('createOrUpdateOrDeleteFaculty')) {
             return response()->json(null, 403);
@@ -154,8 +175,8 @@ class FacultiesController extends Controller
         }
 
         $faculty->update([
-            'name' => $request->get('name'),
-            'description' => $request->get('description'),
+            'name' => $request->request->get('name'),
+            'description' => $request->request->get('description'),
         ]);
 
         return response()->json($faculty, 200);
@@ -170,6 +191,8 @@ class FacultiesController extends Controller
      * @apiGroup Faculties
      * @apiPermission administrator, university_administrator
      *
+     * @apiHeader {String} authorize Authorize user header
+     *
      * @apiParam {String} slug Unique faculty identificator
      *
      * @apiSuccess (204) success Returned if faculty successful delete
@@ -180,7 +203,7 @@ class FacultiesController extends Controller
      * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function destroy($slug)
+    public function deleteFacultyAction($slug)
     {
         if (Gate::denies('createOrUpdateOrDeleteFaculty')) {
             return response()->json(null, 403);
