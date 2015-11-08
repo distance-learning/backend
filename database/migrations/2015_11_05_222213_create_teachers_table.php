@@ -17,24 +17,6 @@ class CreateTeachersTable extends Migration
             $table->integer('teacher_id');
             $table->integer('subject_id');
             $table->integer('department_id');
-
-            $table
-                ->foreign('teacher_id')
-                ->references('id')
-                ->on('users')
-            ;
-
-            $table
-                ->foreign('subject_id')
-                ->references('id')
-                ->on('subjects')
-            ;
-
-            $table
-                ->foreign('department_id')
-                ->references('id')
-                ->on('departments')
-            ;
         });
     }
 
