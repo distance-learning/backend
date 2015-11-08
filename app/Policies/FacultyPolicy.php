@@ -24,7 +24,7 @@ class FacultyPolicy
      * @param $user
      * @return bool
      */
-    public function createFaculty($user)
+    public function createOrUpdateOrDeleteFaculty($user)
     {
         return ($user->role == "administrator") || ($user->role == "university_administrator");
     }

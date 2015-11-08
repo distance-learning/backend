@@ -60,14 +60,14 @@ class FacultiesController extends Controller
      */
     public function store(Request $request)
     {
-        if (Gate::denies('createFaculty')) {
+        if (Gate::denies('createOrUpdateOrDeleteFaculty')) {
             return response()->json(null, 403);
         }
 
         $validator = Validator::make($request->all(), Faculty::$rules);
 
         if ($validator->fails()) {
-            return response()->json(null, 400);
+            return response()->json($validator->errors(), 400);
         }
 
         //TODO Make upload faculty avatar
@@ -80,47 +80,117 @@ class FacultiesController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * @api {get} /api/faculties/:slug Get faculty by slug
+     * @apiSampleRequest /api/faculties/:slug
+     * @apiDescription Get faculty by slug
+     * @apiGroup Faculties
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-
-    }
-
-    /**
-     * Show the form for editing the specified resource.
+     * @apiParam {String} slug Faculty unique name
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @apiSuccess {Object} faculty Faculty object
+     * @apiSuccess {String} faculty.name Faculty name
+     * @apiSuccess {String} faculty.description
+     * @apiSuccess {String} faculty.avatar
+     *
+     * @apiError error Returned if faculty by slug not found
+     *
+     * @param $slug
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function edit($id)
+    public function show($slug)
     {
-        //
+        $faculty = Faculty::findBySlug($slug);
+
+        if (!$faculty) {
+            return response()->json(null, 400);
+        }
+
+        return response()->json($faculty, 200);
     }
 
     /**
      * Update the specified resource in storage.
      *
+     * @api {put} /api/faculties/:slug Update faculty by slug
+     * @apiSampleRequest /api/faculties/:slug
+     * @apiDescription Update faculty by slug
+     * @apiGroup Faculties
+     *
+     * @apiParam {String} slug Unique faculty identificator
+     * @apiParam {String} name Faculty name
+     * @apiParam {String} description Faculty description
+     *
+     * @apiSuccess {Object} faculty Faculty object
+     * @apiSuccess {String} faculty.name Faculty name
+     * @apiSuccess {String} faculty.description
+     * @apiSuccess {String} faculty.avatar
+     *
+     * @apiError (400) error Returned if validation error
+     * @apiError (403) error Returned if user not has access for update
+     * @apiError (404) error Returned if faculty by slug not found
+     *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug)
     {
-        //
+        if (Gate::denies('createOrUpdateOrDeleteFaculty')) {
+            return response()->json(null, 403);
+        }
+
+        $validator = Validator::make($request->all(), Faculty::$rules);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 400);
+        }
+
+        $faculty = Faculty::findBySlug($slug);
+
+        if (!$faculty) {
+            return response()->json(null, 404);
+        }
+
+        $faculty->update([
+            'name' => $request->get('name'),
+            'description' => $request->get('description'),
+        ]);
+
+        return response()->json($faculty, 200);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @api {delete} /api/faculties/:slug Delete faculty by slug
+     * @apiSampleRequest /api/faculties/:slug
+     * @apiDescription Delete faculty by slug
+     * @apiGroup Faculties
+     *
+     * @apiParam {String} slug Unique faculty identificator
+     *
+     * @apiSuccess (204) success Returned if faculty successful delete
+     *
+     * @apiError (403) error Returned if user has not access for delete faculty
+     * @apiError (404) error Returned if faculty by slug not found
+     *
+     * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($slug)
     {
-        //
+        if (Gate::denies('createOrUpdateOrDeleteFaculty')) {
+            return response()->json(null, 403);
+        }
+
+        $faculty = Faculty::findBySlug($slug);
+
+        if (!$faculty) {
+            return response()->json(null, 404);
+        }
+
+        $faculty->delete();
+
+        return response()->json(null, 204);
     }
 }
