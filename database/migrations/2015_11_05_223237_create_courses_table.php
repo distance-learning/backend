@@ -23,24 +23,6 @@ class CreateCoursesTable extends Migration
                 ->unique()
             ;
 
-            $table
-                ->foreign('subject_id')
-                ->references('id')
-                ->on('subjects')
-            ;
-
-            $table
-                ->foreign('teacher_id')
-                ->references('id')
-                ->on('teachers')
-            ;
-
-            $table
-                ->foreign('group_id')
-                ->references('id')
-                ->on('groups')
-            ;
-
             $table->softDeletes();
         });
     }
