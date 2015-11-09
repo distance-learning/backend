@@ -1,1 +1,1 @@
-{{ file_get_contents(public_path() . "/index.html") }}
+{!! file_get_contents(public_path() . "/index.html") !!}
