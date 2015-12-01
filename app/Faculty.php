@@ -2,12 +2,14 @@
 
 namespace App;
 
+use Cviebrock\EloquentSluggable\SluggableInterface;
+use Cviebrock\EloquentSluggable\SluggableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Faculty extends Model
+class Faculty extends Model implements SluggableInterface
 {
-    use SoftDeletes;
+    use SluggableTrait, SoftDeletes;
 
     public $timestamps = false;
 
@@ -15,6 +17,11 @@ class Faculty extends Model
         'name',
         'description',
         'avatar'
+    ];
+
+    protected $sluggable = [
+        'build_from' => 'name',
+        'save_to'    => 'slug',
     ];
 
     protected $dates = [

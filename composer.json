@@ -7,7 +7,8 @@
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.1.*",
-        "tymon/jwt-auth": "^0.5.5"
+        "tymon/jwt-auth": "^0.5.5",
+        "cviebrock/eloquent-sluggable": "^3.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -31,7 +32,8 @@
     "scripts": {
         "post-install-cmd": [
             "php artisan clear-compiled",
-            "php artisan optimize"
+            "php artisan optimize",
+            "cp .env.example_dev .env"
         ],
         "pre-update-cmd": [
             "php artisan clear-compiled"
