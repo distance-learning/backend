@@ -18,11 +18,11 @@ Route::group(['prefix' => 'api'], function () {
 
     Route::group(['prefix' => 'admin'], function () {
         Route::group(['prefix' => 'faculties'], function () {
-            Route::get('/', 'FacultiesController@getFacultiesAction');
-            Route::post('/', 'FacultiesController@postFacultyAction');
-            Route::get('/{slug}', 'FacultiesController@getFacultyAction');
-            Route::put('/{slug}', 'FacultiesController@putFacultyAction');
-            Route::delete('/{slug}', 'FacultiesController@deleteFacultyAction');
+            Route::get('/', 'Admin\FacultiesController@getFacultiesAction');
+            Route::post('/', 'Admin\FacultiesController@postFacultyAction');
+            Route::get('/{slug}', 'Admin\FacultiesController@getFacultyAction');
+            Route::put('/{slug}', 'Admin\FacultiesController@putFacultyAction');
+            Route::delete('/{slug}', 'Admin\FacultiesController@deleteFacultyAction');
         });
     });
 });
