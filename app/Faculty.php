@@ -40,4 +40,12 @@ class Faculty extends Model
     {
         return $query->where('slug', $slug)->first();
     }
+
+    public function scopeRandom($query, $count)
+    {
+        $totalRows = static::count() - 1;
+        $skip = $totalRows > 0 ? mt_rand(0, $totalRows) : 0;
+
+        return  $query->skip($skip)->take($count);
+    }
 }

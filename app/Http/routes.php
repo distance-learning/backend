@@ -7,6 +7,7 @@ Route::group(['prefix' => 'api'], function () {
 //    });
 
     Route::group(['prefix' => 'faculties'], function () {
+        Route::get('/random', 'FacultiesController@randomFacultiesAction');
         Route::get('/', 'FacultiesController@getFacultiesAction');
         Route::post('/', 'FacultiesController@postFacultyAction');
         Route::get('/{slug}', 'FacultiesController@getFacultyAction');

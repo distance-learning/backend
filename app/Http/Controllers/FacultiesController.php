@@ -221,4 +221,28 @@ class FacultiesController extends Controller
 
         return response()->json(null, 204);
     }
+
+    /**
+     * @api {get} /api/faculties/random Get random faculties
+     * @apiSampleRequest /api/faculties/random
+     * @apiDescription Get random faculties
+     * @apiGroup Faculties
+     * @apiPermission administrator, university_administrator
+     *
+     * @apiHeader {String} authorization
+     *
+     * @apiSuccess (204) success Returned if faculties array
+     *
+     * @apiError (403) error Returned if user has not access for delete faculty
+     * @apiError (404) error Returned if faculty by slug not found
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function randomFacultiesAction(Request $request)
+    {
+        $faculties = Faculty::random($request->request->get('code', 4));
+
+        return response()->json($faculties);
+    }
 }

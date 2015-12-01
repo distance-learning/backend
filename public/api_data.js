@@ -206,6 +206,72 @@ define({ "api": [
   },
   {
     "type": "get",
+    "url": "/api/faculties/random",
+    "title": "Get random faculties",
+    "sampleRequest": [
+      {
+        "url": "/api/faculties/random"
+      }
+    ],
+    "description": "<p>Get random faculties</p> ",
+    "group": "Faculties",
+    "permission": [
+      {
+        "name": "administrator, university_administrator"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "204": [
+          {
+            "group": "204",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Returned if faculties array</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "403": [
+          {
+            "group": "403",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if user has not access for delete faculty</p> "
+          }
+        ],
+        "404": [
+          {
+            "group": "404",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if faculty by slug not found</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/FacultiesController.php",
+    "groupTitle": "Faculties",
+    "name": "GetApiFacultiesRandom"
+  },
+  {
+    "type": "get",
     "url": "/api/faculties/:slug",
     "title": "Get faculty by slug",
     "sampleRequest": [
