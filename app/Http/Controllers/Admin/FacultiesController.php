@@ -26,7 +26,7 @@ class FacultiesController extends Controller
      * @api {get} /api/admin/faculties Get faculties
      * @apiSampleRequest /api/admin/faculties?count=:count&page=:page
      * @apiDescription Get some faculties
-     * @apiGroup Faculties
+     * @apiGroup Admin|Faculties
      *
      * @apiParam {Number} count Count faculties by page
      * @apiParam {Number} page Faculty page
@@ -59,7 +59,7 @@ class FacultiesController extends Controller
      * @api {post} /api/admin/faculties Create faculties
      * @apiSampleRequest /api/admin/faculties
      * @apiDescriptions Create new faculties
-     * @apiGroup Faculties
+     * @apiGroup Admin|Faculties
      * @apiPermission administrator, university_administrator
      *
      * @apiHeader {String} Authorization
@@ -105,7 +105,7 @@ class FacultiesController extends Controller
      * @api {get} /api/admin/faculties/:slug Get faculty by slug
      * @apiSampleRequest /api/admin/faculties/:slug
      * @apiDescription Get faculty by slug
-     * @apiGroup Faculties
+     * @apiGroup Admin|Faculties
      *
      * @apiParam {String} slug Faculty unique name
      *
@@ -136,7 +136,7 @@ class FacultiesController extends Controller
      * @api {put} /api/admin/faculties/:slug Update faculty by slug
      * @apiSampleRequest /api/admin/faculties/:slug
      * @apiDescription Update faculty by slug
-     * @apiGroup Faculties
+     * @apiGroup Admin|Faculties
      * @apiPermission administrator, university_administrator
      *
      * @apiHeader {String} authorization
@@ -190,7 +190,7 @@ class FacultiesController extends Controller
      * @api {delete} /api/admin/faculties/:slug Delete faculty by slug
      * @apiSampleRequest /api/admin/faculties/:slug
      * @apiDescription Delete faculty by slug
-     * @apiGroup Faculties
+     * @apiGroup Admin|Faculties
      * @apiPermission administrator, university_administrator
      *
      * @apiHeader {String} authorization
