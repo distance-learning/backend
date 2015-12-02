@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['prefix' => 'api'], function () {
+Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
 //    Route::group(['prefix' => 'users'], function () {
 //        Route::post('/login', '');
 //        Route::post('');

@@ -145,8 +145,8 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        Cviebrock\EloquentSluggable\SluggableServiceProvider::class
-
+        Cviebrock\EloquentSluggable\SluggableServiceProvider::class,
+        Barryvdh\Cors\ServiceProvider::class,
     ],
 
     /*
