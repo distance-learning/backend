@@ -9,7 +9,7 @@
       }
     ],
     "description": "<p>Delete faculty by slug</p> ",
-    "group": "Faculties",
+    "group": "Admin_Faculties",
     "permission": [
       {
         "name": "administrator, university_administrator"
@@ -75,7 +75,7 @@
     },
     "version": "0.0.0",
     "filename": "app/Http/Controllers/Admin/FacultiesController.php",
-    "groupTitle": "Faculties",
+    "groupTitle": "Admin_Faculties",
     "name": "DeleteApiAdminFacultiesSlug"
   },
   {
@@ -88,7 +88,7 @@
       }
     ],
     "description": "<p>Get some faculties</p> ",
-    "group": "Faculties",
+    "group": "Admin_Faculties",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -201,7 +201,7 @@
     },
     "version": "0.0.0",
     "filename": "app/Http/Controllers/Admin/FacultiesController.php",
-    "groupTitle": "Faculties",
+    "groupTitle": "Admin_Faculties",
     "name": "GetApiAdminFaculties"
   },
   {
@@ -214,7 +214,7 @@
       }
     ],
     "description": "<p>Get faculty by slug</p> ",
-    "group": "Faculties",
+    "group": "Admin_Faculties",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -276,36 +276,8 @@
     },
     "version": "0.0.0",
     "filename": "app/Http/Controllers/Admin/FacultiesController.php",
-    "groupTitle": "Faculties",
+    "groupTitle": "Admin_Faculties",
     "name": "GetApiAdminFacultiesSlug"
-  },
-  {
-    "type": "get",
-    "url": "/api/faculties/random",
-    "title": "Get random faculties",
-    "sampleRequest": [
-      {
-        "url": "/api/faculties/random"
-      }
-    ],
-    "description": "<p>Get random faculties</p> ",
-    "group": "Faculties",
-    "success": {
-      "fields": {
-        "200": [
-          {
-            "group": "200",
-            "optional": false,
-            "field": "success",
-            "description": "<p>Returned if faculties array</p> "
-          }
-        ]
-      }
-    },
-    "version": "0.0.0",
-    "filename": "app/Http/Controllers/FacultiesController.php",
-    "groupTitle": "Faculties",
-    "name": "GetApiFacultiesRandom"
   },
   {
     "type": "post",
@@ -316,7 +288,7 @@
         "url": "/api/admin/faculties"
       }
     ],
-    "group": "Faculties",
+    "group": "Admin_Faculties",
     "permission": [
       {
         "name": "administrator, university_administrator"
@@ -411,7 +383,7 @@
     },
     "version": "0.0.0",
     "filename": "app/Http/Controllers/Admin/FacultiesController.php",
-    "groupTitle": "Faculties",
+    "groupTitle": "Admin_Faculties",
     "name": "PostApiAdminFaculties"
   },
   {
@@ -424,7 +396,7 @@
       }
     ],
     "description": "<p>Update faculty by slug</p> ",
-    "group": "Faculties",
+    "group": "Admin_Faculties",
     "permission": [
       {
         "name": "administrator, university_administrator"
@@ -534,8 +506,64 @@
     },
     "version": "0.0.0",
     "filename": "app/Http/Controllers/Admin/FacultiesController.php",
-    "groupTitle": "Faculties",
+    "groupTitle": "Admin_Faculties",
     "name": "PutApiAdminFacultiesSlug"
+  },
+  {
+    "type": "get",
+    "url": "/api/faculties/random",
+    "title": "Get random faculties",
+    "sampleRequest": [
+      {
+        "url": "/api/faculties/random"
+      }
+    ],
+    "description": "<p>Get random faculties</p> ",
+    "group": "Faculties",
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Returned if faculties array</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/FacultiesController.php",
+    "groupTitle": "Faculties",
+    "name": "GetApiFacultiesRandom"
+  },
+  {
+    "type": "get",
+    "url": "/api/teachers/random",
+    "title": "Get random teachers",
+    "sampleRequest": [
+      {
+        "url": "/api/teachers/random"
+      }
+    ],
+    "description": "<p>Get random teachers</p> ",
+    "group": "Teachers",
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Returned if teachers array</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/TeachersController.php",
+    "groupTitle": "Teachers",
+    "name": "GetApiTeachersRandom"
   },
   {
     "type": "get",

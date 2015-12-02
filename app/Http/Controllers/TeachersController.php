@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Teacher;
+use App\User;
 
 class TeachersController extends Controller
 {
@@ -19,7 +20,7 @@ class TeachersController extends Controller
      */
     public function getRandomTeachersAction()
     {
-        $teachers = Teacher::with('subjects')
+        $teachers = User::with('subjects')
             ->where('role', 'teacher')
             ->get()
         ;
