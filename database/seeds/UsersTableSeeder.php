@@ -24,13 +24,14 @@ class UsersTableSeeder extends Seeder
                 'status' => 1
             ],
             [
-                'name' => 'Програмування',
-                'surname' => 'Викладач',
+                'name' => 'Вася',
+                'surname' => 'Пупкин',
                 'birthday' => '10.11.2015',
                 'phone' => '+380931111111',
                 'role' => 'teacher',
                 'email' => 'teacher7@admin.com',
                 'password' => '111111',
+                'description' => 'Опис викладача',
                 'status' => 1,
                 'subjects' => [
                     1,
@@ -38,39 +39,42 @@ class UsersTableSeeder extends Seeder
                 ]
             ],
             [
-                'name' => 'Програмування2',
-                'surname' => 'Викладач',
+                'name' => 'Вася',
+                'surname' => 'Муткин',
                 'birthday' => '10.11.2015',
                 'phone' => '+380931111111',
                 'role' => 'teacher',
                 'email' => 'teacher1@admin.com',
                 'password' => '111111',
                 'status' => 1,
+                'description' => 'Опис викладача Васи Пупкин',
                 'subjects' => [
                     1
                 ]
             ],
             [
-                'name' => 'Англійського',
-                'surname' => 'Викладач',
+                'name' => 'Витя',
+                'surname' => 'Гудкин',
                 'birthday' => '10.11.2015',
                 'phone' => '+380931111111',
                 'role' => 'teacher',
                 'email' => 'teacher5@admin.com',
                 'password' => '111111',
+                'description' => 'Опис викладача',
                 'status' => 1,
                 'subjects' => [
                     3
                 ]
             ],
             [
-                'name' => 'Іноземного',
-                'surname' => 'Викладач',
+                'name' => 'Миня',
+                'surname' => 'Витькин',
                 'birthday' => '10.11.2015',
                 'phone' => '+380931111111',
                 'role' => 'teacher',
                 'email' => 'teacher4@admin.com',
                 'password' => '111111',
+                'description' => 'Опис викл',
                 'status' => 1,
                 'subjects' => [
                     3,
@@ -78,31 +82,48 @@ class UsersTableSeeder extends Seeder
                 ]
             ],
             [
-                'name' => 'Історії',
-                'surname' => 'Викладач',
+                'name' => 'Лися',
+                'surname' => 'Вудкин',
                 'birthday' => '10.11.2015',
                 'phone' => '+380931111111',
                 'role' => 'teacher',
                 'email' => 'teacher2@admin.com',
                 'password' => '111111',
                 'status' => 1,
+                'description' => 'Опис виклл',
                 'subjects' => [
                     5,
                     6
                 ]
             ],
             [
-                'name' => 'Історії2',
-                'surname' => 'Викладач',
+                'name' => 'Вася',
+                'surname' => 'Курткин',
                 'birthday' => '10.11.2015',
                 'phone' => '+380931111111',
                 'role' => 'teacher',
                 'email' => 'teacher3@admin.com',
                 'password' => '111111',
                 'status' => 1,
+                'description' => 'Опис васи курткина',
                 'subjects' => [
                     6,
                     5
+                ]
+            ],
+            [
+                'name' => 'Вася',
+                'surname' => 'Куcткин',
+                'birthday' => '10.11.2015',
+                'phone' => '+380931111111',
+                'role' => 'teacher',
+                'email' => 'teacher10@admin.com',
+                'password' => '111111',
+                'status' => 1,
+                'description' => 'Опис васи куcткина',
+                'subjects' => [
+                    6,
+                    2
                 ]
             ],
         ];
@@ -116,7 +137,8 @@ class UsersTableSeeder extends Seeder
                 'role' => $user['role'],
                 'email' => $user['email'],
                 'password' => Hash::make($user['password']),
-                'status' => $user['status']
+                'status' => $user['status'],
+                'description' => $user['description']
             ]);
 
             if ($user['role'] == 'teacher') {
