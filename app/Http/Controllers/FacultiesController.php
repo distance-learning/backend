@@ -25,7 +25,7 @@ class FacultiesController extends Controller
      */
     public function randomFacultiesAction(Request $request)
     {
-        $faculties = Faculty::all();
+        $faculties = Faculty::with('subjects')->all();
 
         $faculties = $faculties->random(4);
 

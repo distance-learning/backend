@@ -43,6 +43,11 @@ class Faculty extends Model implements SluggableInterface
         return $this->hasMany(\App\Department::class);
     }
 
+    public function subjects()
+    {
+        return $this->hasManyThrough(\App\Subject::class, \App\Department::class);
+    }
+
     public function scopeFindBySlug($query, $slug)
     {
         return $query->where('slug', $slug)->first();
