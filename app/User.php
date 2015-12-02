@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Cviebrock\EloquentSluggable\SluggableInterface;
+use Cviebrock\EloquentSluggable\SluggableTrait;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -12,9 +14,10 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
 class User extends Model implements AuthenticatableContract,
                                     AuthorizableContract,
-                                    CanResetPasswordContract
+                                    CanResetPasswordContract,
+                                    SluggableInterface
 {
-    use Authenticatable, Authorizable, CanResetPassword;
+    use Authenticatable, Authorizable, CanResetPassword, SluggableTrait;
 
     /**
      * The database table used by the model.
@@ -51,6 +54,11 @@ class User extends Model implements AuthenticatableContract,
         'structure_type'
     ];
 
+    protected $sluggable = [
+        'build_from' => 'fullname',
+        'save_to'    => 'slug',
+    ];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphTo
      */
@@ -67,5 +75,15 @@ class User extends Model implements AuthenticatableContract,
     public function scopeFindBySlug($query, $slug)
     {
         return $query->where('slug', $slug)->first();
+    }
+
+    public function subjects()
+    {
+        return $this->belongsToMany(\App\Subject::class, 'teacher_subject', 'user_id', 'subject_id');
+    }
+
+    public function getFullnameAttribute()
+    {
+        return $this->surname . " " . $this->name;
     }
 }

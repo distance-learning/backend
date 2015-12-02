@@ -23,10 +23,11 @@ class FacultiesController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function randomFacultiesAction(Request $request)
+    public function getRandomFacultiesAction(Request $request)
     {
         $faculties = Faculty::with('subjects')->get();
 
+        //TODO Need refactoring
         $faculties = $faculties->random(4);
 
         return response()->json($faculties);
