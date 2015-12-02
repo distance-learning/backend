@@ -16,6 +16,17 @@ class CreateSubjectsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->text('description');
+
+            $table
+                ->integer('department_id')
+            ;
+
+            $table
+                ->foreign('department_id')
+                ->references('id')
+                ->on('departments')
+            ;
+
             $table->softDeletes();
         });
     }
