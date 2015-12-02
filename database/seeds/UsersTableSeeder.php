@@ -20,6 +20,7 @@ class UsersTableSeeder extends Seeder
                 'phone' => '+380931111111',
                 'role' => 'administrator',
                 'email' => 'admin@admin.com',
+                'description' => 'Admin',
                 'password' => '111111',
                 'status' => 1
             ],
