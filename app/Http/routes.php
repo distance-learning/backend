@@ -7,7 +7,9 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
 //    });
 
     Route::group(['prefix' => 'faculties'], function () {
+        Route::get('/', 'FacultiesController@getPaginatedFacultiesAction');
         Route::get('/random', 'FacultiesController@getRandomFacultiesAction');
+        Route::get('/{slug}', 'FacultiesController@getFacultyBySlugAction');
     });
 
     Route::group(['prefix' => 'teachers'], function () {

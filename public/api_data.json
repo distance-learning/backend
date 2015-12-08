@@ -511,6 +511,54 @@
   },
   {
     "type": "get",
+    "url": "/api/faculties",
+    "title": "Get paginated faculties",
+    "sampleRequest": [
+      {
+        "url": "/api/faculties"
+      }
+    ],
+    "description": "<p>Get paginated faculties</p> ",
+    "group": "Faculties",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "count",
+            "description": "<p>Count faculties by page</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "page",
+            "description": "<p>Number of current page</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "optional": false,
+            "field": "success",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/FacultiesController.php",
+    "groupTitle": "Faculties",
+    "name": "GetApiFaculties"
+  },
+  {
+    "type": "get",
     "url": "/api/faculties/random",
     "title": "Get random faculties",
     "sampleRequest": [
@@ -536,6 +584,47 @@
     "filename": "app/Http/Controllers/FacultiesController.php",
     "groupTitle": "Faculties",
     "name": "GetApiFacultiesRandom"
+  },
+  {
+    "type": "get",
+    "url": "/api/faculties/:slug",
+    "title": "Get faculty by unique slug",
+    "sampleRequest": [
+      {
+        "url": "/api/faculties/:slug"
+      }
+    ],
+    "description": "<p>Get faculty by unique slug</p> ",
+    "group": "Faculties",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "slug",
+            "description": "<p>Unique identificator</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Returned if faculty isset</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/FacultiesController.php",
+    "groupTitle": "Faculties",
+    "name": "GetApiFacultiesSlug"
   },
   {
     "type": "get",
