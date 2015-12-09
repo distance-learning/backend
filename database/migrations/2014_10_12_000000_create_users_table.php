@@ -62,7 +62,10 @@ class CreateUsersTable extends Migration
                 ->default(false)
             ;
 
-            $table->string('description');
+            $table
+                ->string('description')
+                ->nullable()
+            ;
 
             $table->string('password', 60);
             $table->softDeletes();

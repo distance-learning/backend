@@ -38,6 +38,9 @@ class FacultiesTest extends TestCase
         $this->assertEquals(5, $response['last_page']);
     }
 
+    /**
+     *
+     */
     public function testGetFaculty()
     {
         $json = $this->call('GET', '/api/faculties/fotius');
@@ -56,5 +59,23 @@ class FacultiesTest extends TestCase
         ]);
 
         $this->assertEquals($response, $faculty);
+    }
+
+    /**
+     *
+     */
+    public function testGetRandomFaculty()
+    {
+        $json = $this->call('GET', '/api/faculties/random');
+        $response = (array) json_decode($json->content());
+
+        $this->assertEquals(0, count($response));
+
+        factory(App\Faculty::class, 10)->create();
+
+        $json = $this->call('GET', '/api/faculties/random');
+        $response = (array) json_decode($json->content());
+
+        $this->assertEquals(4, count($response));
     }
 }
