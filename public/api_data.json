@@ -628,6 +628,34 @@
   },
   {
     "type": "get",
+    "url": "/api/teachers",
+    "title": "Get teachers",
+    "sampleRequest": [
+      {
+        "url": "/api/teachers"
+      }
+    ],
+    "description": "<p>Get teachers</p> ",
+    "group": "Teachers",
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Returned if teachers array</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/TeachersController.php",
+    "groupTitle": "Teachers",
+    "name": "GetApiTeachers"
+  },
+  {
+    "type": "get",
     "url": "/api/teachers/random",
     "title": "Get random teachers",
     "sampleRequest": [
@@ -653,6 +681,47 @@
     "filename": "app/Http/Controllers/TeachersController.php",
     "groupTitle": "Teachers",
     "name": "GetApiTeachersRandom"
+  },
+  {
+    "type": "get",
+    "url": "/api/teachers/:slug",
+    "title": "Get teacher by unique identificator",
+    "sampleRequest": [
+      {
+        "url": "/api/teachers/:slug"
+      }
+    ],
+    "description": "<p>Get teacher by unique identificator</p> ",
+    "group": "Teachers",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "slug",
+            "description": "<p>Teacher unique identificator</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Returned if teachers array</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/TeachersController.php",
+    "groupTitle": "Teachers",
+    "name": "GetApiTeachersSlug"
   },
   {
     "type": "get",

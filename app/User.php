@@ -40,7 +40,8 @@ class User extends Model implements AuthenticatableContract,
         'password',
         'role',
         'structure_id',
-        'structure_type'
+        'structure_type',
+        'status'
     ];
 
     /**
@@ -70,13 +71,19 @@ class User extends Model implements AuthenticatableContract,
     }
 
     /**
-     * @param $query
+     * @param $
+     * query
      * @param $slug
      * @return mixed
      */
     public function scopeFindBySlug($query, $slug)
     {
-        return $query->where('slug', $slug)->first();
+        return $query->where('slug', $slug);
+    }
+
+    public function scopeActive($query)
+    {
+        return $query->where('status', true);
     }
 
     public function subjects()

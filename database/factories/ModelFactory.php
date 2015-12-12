@@ -33,5 +33,38 @@ $factory->defineAs(App\User::class, 'teachers', function (Faker\Generator $faker
         'description' => $faker->text,
         'password' => bcrypt(str_random(10)),
         'remember_token' => str_random(10),
+        'status'    => true,
+    ];
+});
+
+$factory->defineAs(App\User::class, 'teacher-active', function (Faker\Generator $faker) {
+    return [
+        'name' => 'Test',
+        'surname' => 'User',
+        'avatar' => '',
+        'birthday' => $faker->date('Y-m-d', '1990-09-01'),
+        'phone' => '0931212123',
+        'role'  => 'teacher',
+        'email' => 'test@gmail.com',
+        'description' => 'Teacher description',
+        'password' => bcrypt(str_random(10)),
+        'remember_token' => str_random(10),
+        'status'    => true
+    ];
+});
+
+$factory->defineAs(App\User::class, 'teacher-not-active', function (Faker\Generator $faker) {
+    return [
+        'name' => 'Test',
+        'surname' => 'User2',
+        'avatar' => '',
+        'birthday' => $faker->date('Y-m-d', '1990-09-01'),
+        'phone' => '0931212124',
+        'role'  => 'teacher',
+        'email' => 'test2@gmail.com',
+        'description' => 'Teacher description',
+        'password' => bcrypt(str_random(10)),
+        'remember_token' => str_random(10),
+        'status'    => false
     ];
 });
