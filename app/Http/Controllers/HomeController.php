@@ -8,4 +8,9 @@ class HomeController extends Controller
     {
         return view('doc');
     }
+
+    public function indexAction()
+    {
+        return view('index');
+    }
 }

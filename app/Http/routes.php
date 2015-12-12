@@ -34,3 +34,4 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
 });
 
 Route::get('/doc', 'HomeController@getDocAction');
+Route::get('/', 'HomeController@indexAction');
