@@ -20,6 +20,6 @@ class Teacher extends Model
 
     public function department()
     {
-        return $this->belongsTo(\App\Department::class);
+        return $this->belongsTo(\App\Direction::class);
     }
 }

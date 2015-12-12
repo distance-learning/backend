@@ -16,7 +16,7 @@ class CreateTeachersTable extends Migration
             $table->increments('id');
             $table->integer('teacher_id');
             $table->integer('subject_id');
-            $table->integer('department_id');
+            $table->integer('direction_id');
         });
     }
 

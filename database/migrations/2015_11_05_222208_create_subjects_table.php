@@ -18,13 +18,13 @@ class CreateSubjectsTable extends Migration
             $table->text('description');
 
             $table
-                ->integer('department_id')
+                ->integer('direction_id')
             ;
 
             $table
-                ->foreign('department_id')
+                ->foreign('direction_id')
                 ->references('id')
-                ->on('departments')
+                ->on('directions')
             ;
 
             $table->softDeletes();

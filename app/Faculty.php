@@ -38,14 +38,14 @@ class Faculty extends Model implements SluggableInterface
         return $this->morphTo(\App\User::class, 'structure');
     }
 
-    public function departments()
+    public function directions()
     {
-        return $this->hasMany(\App\Department::class);
+        return $this->hasMany(\App\Direction::class);
     }
 
     public function subjects()
     {
-        return $this->hasManyThrough(\App\Subject::class, \App\Department::class);
+        return $this->hasManyThrough(\App\Subject::class, \App\Direction::class);
     }
 
     public function scopeFindBySlug($query, $slug)
@@ -59,5 +59,10 @@ class Faculty extends Model implements SluggableInterface
         $skip = $totalRows > 0 ? mt_rand(0, $totalRows) : 0;
 
         return  $query->skip($skip)->take($count);
+    }
+
+    public function teachers()
+    {
+        return $this->morphMany(\App\User::class, 'structure');
     }
 }

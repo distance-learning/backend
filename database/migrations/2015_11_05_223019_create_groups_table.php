@@ -21,14 +21,14 @@ class CreateGroupsTable extends Migration
             ;
 
             $table
-                ->integer('department_id')
+                ->integer('direction_id')
                 ->unsigned()
             ;
 
             $table
-                ->foreign('department_id')
+                ->foreign('direction_id')
                 ->references('id')
-                ->on('departments')
+                ->on('directions')
             ;
 
             $table->integer('year_of_entry');

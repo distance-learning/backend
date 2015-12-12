@@ -26,9 +26,9 @@ class AddForeignKeysToTeachersTable extends Migration
             ;
 
             $table
-                ->foreign('department_id')
+                ->foreign('direction_id')
                 ->references('id')
-                ->on('departments')
+                ->on('directions')
             ;
         });
     }
@@ -43,9 +43,9 @@ class AddForeignKeysToTeachersTable extends Migration
         Schema::table('teachers', function (Blueprint $table) {
             $table->dropForeign('teachers_teacher_id_foreign');
             $table->dropForeign('teachers_subject_id_foreign');
-            $table->dropForeign('teachers_department_id_foreign');
+            $table->dropForeign('teachers_direction_id_foreign');
 
-            $table->dropColumn(['teacher_id', 'subject_id', 'department_id']);
+            $table->dropColumn(['teacher_id', 'subject_id', 'direction_id']);
         });
     }
 }

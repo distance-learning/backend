@@ -15,32 +15,32 @@ class SubjectsSeeder extends Seeder
             [
                 'name' => 'Програмування',
                 'description' => '',
-                'department_id' => 5
+                'direction_id' => 5
             ],
             [
                 'name' => 'Веб-програмування',
                 'description' => '',
-                'department_id' => 5
+                'direction_id' => 5
             ],
             [
                 'name' => 'Англійська мова',
                 'description' => '',
-                'department_id' => 2
+                'direction_id' => 2
             ],
             [
                 'name' => 'Німецька мова',
                 'description' => '',
-                'department_id' => 1
+                'direction_id' => 1
             ],
             [
                 'name' => 'Історія',
                 'description' => '',
-                'department_id' => 3
+                'direction_id' => 3
             ],
             [
                 'name' => 'Філософія',
                 'description' => '',
-                'department_id' => 4
+                'direction_id' => 4
             ]
         ];
 

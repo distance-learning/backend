@@ -6,7 +6,7 @@ use Cviebrock\EloquentSluggable\SluggableInterface;
 use Cviebrock\EloquentSluggable\SluggableTrait;
 use Illuminate\Database\Eloquent\Model;
 
-class Department extends Model implements SluggableInterface
+class Direction extends Model implements SluggableInterface
 {
     use SluggableTrait;
 
@@ -17,13 +17,13 @@ class Department extends Model implements SluggableInterface
         'save_to'    => 'slug',
     ];
 
-    public function teacher()
-    {
-        return $this->morphMany(\App\User::class, 'structure');
-    }
-
     public function faculty()
     {
         return $this->belongsTo(\App\User::class);
+    }
+
+    public function subjects()
+    {
+        return $this->hasMany(\App\Subject::class);
     }
 }
