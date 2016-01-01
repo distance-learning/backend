@@ -53,7 +53,7 @@ class UsersController extends Controller
         try {
             $user = User::where('email', $credentials['email'])->first();
 
-            if (!$user->status) {
+            if (!$user || !$user->status) {
                 return response()->json(null, 401);
             }
 
