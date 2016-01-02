@@ -62,6 +62,13 @@ class User extends Model implements AuthenticatableContract,
         'save_to'    => 'slug',
     ];
 
+    public static $rules = [
+        'name'  =>  'required',
+        'surname'  =>  'required',
+        'email'   =>  'required|email|unique:users,email,' . $this->id,
+        'password'    =>   'required|confirmed'
+    ];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphTo
      */

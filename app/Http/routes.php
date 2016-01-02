@@ -18,9 +18,13 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
         Route::get('/{slug}', 'TeachersController@getTeacherBySlugAction');
     });
 
+    Route::group(['prefix' => 'auth'], function () {
+        Route::post('/login', 'UsersController@loginAction');
+        Route::post('/registration', 'UsersController@registrationAction');
+    });
+
     Route::group(['prefix' => 'users'], function () {
         Route::get('/', 'UsersController@getUsersAction');
-        Route::post('/authenticate', 'UsersController@authenticateUserAction');
         Route::get('/{slug}', 'UsersController@getUserAction');
     });
 

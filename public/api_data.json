@@ -1054,11 +1054,11 @@
   },
   {
     "type": "post",
-    "url": "/api/users/authenticate",
+    "url": "/api/auth/login",
     "title": "Authenticate user",
     "sampleRequest": [
       {
-        "url": "/api/users/authenticate"
+        "url": "/api/auth/login"
       }
     ],
     "description": "<p>Authenticate user</p> ",
@@ -1188,8 +1188,176 @@
       }
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/UsersController.php",
+    "filename": "app/Http/Controllers/AuthController.php",
     "groupTitle": "Users",
-    "name": "PostApiUsersAuthenticate"
+    "name": "PostApiAuthLogin"
+  },
+  {
+    "type": "post",
+    "url": "/api/auth/registration",
+    "title": "Registration for new user",
+    "sampleRequest": [
+      {
+        "url": "/api/auth/registration"
+      }
+    ],
+    "description": "<p>Registration for new user</p> ",
+    "group": "Users",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "name",
+            "description": "<p>User name</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "surname",
+            "description": "<p>User surname</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "phone",
+            "description": "<p>User phone number</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "birthday",
+            "description": "<p>User Date of birth</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "email",
+            "description": "<p>User email</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "password",
+            "description": "<p>User password</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "<p>Object</p> ",
+            "optional": false,
+            "field": "user",
+            "description": "<p>User object</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "user.name",
+            "description": "<p>User name</p> "
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "user.surname",
+            "description": ""
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "user.avatar",
+            "description": ""
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "user.birthday",
+            "description": ""
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "user.phone",
+            "description": ""
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "user.slug",
+            "description": ""
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "user.role",
+            "description": ""
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "user.email",
+            "description": ""
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "token",
+            "description": "<p>User authenticate token</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "201": [
+          {
+            "group": "201",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Returned if user successful create</p> "
+          }
+        ],
+        "401": [
+          {
+            "group": "401",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if data not correct</p> "
+          }
+        ],
+        "500": [
+          {
+            "group": "500",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if error on serve</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/AuthController.php",
+    "groupTitle": "Users",
+    "name": "PostApiAuthRegistration"
   }
 ]
