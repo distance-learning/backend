@@ -11,6 +11,7 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Model implements AuthenticatableContract,
                                     AuthorizableContract,
@@ -65,7 +66,7 @@ class User extends Model implements AuthenticatableContract,
     public static $rules = [
         'name'  =>  'required',
         'surname'  =>  'required',
-        'email'   =>  'required|email|unique:users,email,' . $this->id,
+        'email'   =>  'required|email|unique:users',
         'password'    =>   'required|confirmed'
     ];
 
@@ -78,8 +79,7 @@ class User extends Model implements AuthenticatableContract,
     }
 
     /**
-     * @param $
-     * query
+     * @param $query
      * @param $slug
      * @return mixed
      */

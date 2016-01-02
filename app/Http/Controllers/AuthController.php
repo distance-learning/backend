@@ -7,11 +7,11 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Illuminate\Support\Facades\Validator;
 
-class UsersController extends Controller
+class AuthController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('jwt.auth', ['except' => ['loginAction', 'registrationAction']])
+        $this->middleware('jwt.auth', ['except' => ['loginAction', 'registrationAction']]);
     }
 
     /**
@@ -83,6 +83,7 @@ class UsersController extends Controller
      * @apiParam {String} birthday User Date of birth
      * @apiParam {String} email User email
      * @apiParam {String} password User password
+     * @apiParam {String} password_confirmation User password
      *
      * @apiSuccess {Object} user User object
      * @apiSuccess {String} user.name User name
@@ -96,7 +97,7 @@ class UsersController extends Controller
      * @apiSuccess {String} token User authenticate token
      *
      * @apiError (401) error Returned if data not correct
-     * @apiError (201) success Returned if user successful create 
+     * @apiError (201) success Returned if user successful create
      * @apiError (500) error Returned if error on serve
      *
      * @param Request $request
@@ -104,7 +105,7 @@ class UsersController extends Controller
      */
     public function registrationAction(Request $request)
     {
-        $validation = $this->validate($request->all(), User::$rules);
+        $validation = Validator::make($request->all(), User::$rules);
 
         if ($validation->fails()) {
             return response()->json($validation->errors(), 400);
@@ -117,10 +118,12 @@ class UsersController extends Controller
             'email' => $request->request->get('email'),
             'password'  => Hash::make($request->request->get('password')),
             'birthday'  => $request->request->get('birthday'),
-        ])
+            'active'  =>  0,
+            'role'   =>   'student'
+        ]);
 
         if ($user) {
-              return response()->json($user, 201)
+              return response()->json($user, 201);
         }
 
         return response()->json(null, 500);

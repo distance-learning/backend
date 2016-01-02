@@ -19,8 +19,8 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
     });
 
     Route::group(['prefix' => 'auth'], function () {
-        Route::post('/login', 'UsersController@loginAction');
-        Route::post('/registration', 'UsersController@registrationAction');
+        Route::post('/login', 'AuthController@loginAction');
+        Route::post('/registration', 'AuthController@registrationAction');
     });
 
     Route::group(['prefix' => 'users'], function () {

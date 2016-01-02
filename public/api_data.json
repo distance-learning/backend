@@ -1247,6 +1247,13 @@
             "optional": false,
             "field": "password",
             "description": "<p>User password</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "password_confirmation",
+            "description": "<p>User password</p> "
           }
         ]
       }
