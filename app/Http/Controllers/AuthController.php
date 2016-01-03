@@ -10,11 +10,6 @@ use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('jwt.auth', ['except' => ['loginAction', 'registrationAction']]);
-    }
-
     /**
      * Method that authenticate user
      *
