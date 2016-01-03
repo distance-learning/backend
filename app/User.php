@@ -66,7 +66,7 @@ class User extends Model implements AuthenticatableContract,
     public static $rules = [
         'name'  =>  'required',
         'surname'  =>  'required',
-        'email'   =>  'required|email|unique:users',
+        'email'   =>  'required|unique:users',
         'password'    =>   'required|confirmed'
     ];
 
