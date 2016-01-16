@@ -26,4 +26,9 @@ class Direction extends Model implements SluggableInterface
     {
         return $this->hasMany(\App\Subject::class);
     }
+
+    public function scopeFindBySlug($query, $slug)
+    {
+        return $this->where('slug', $slug);
+    }
 }
