@@ -1,6 +1,384 @@
 define({ "api": [
   {
     "type": "delete",
+    "url": "/api/admin/directions/:slug",
+    "title": "Delete direction",
+    "sampleRequest": [
+      {
+        "url": "/api/admin/directions/:slug"
+      }
+    ],
+    "description": "<p>Remove direction</p> ",
+    "group": "Admin_Directions",
+    "permission": [
+      {
+        "name": "administrator, university_administrator"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "204": [
+          {
+            "group": "204",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Returned if direction successful removed</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "403": [
+          {
+            "group": "403",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if user has not access for get directions</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Admin/DirectionsController.php",
+    "groupTitle": "Admin_Directions",
+    "name": "DeleteApiAdminDirectionsSlug"
+  },
+  {
+    "type": "get",
+    "url": "/api/admin/directions",
+    "title": "Get directions by page",
+    "sampleRequest": [
+      {
+        "url": "/api/admin/directions"
+      }
+    ],
+    "description": "<p>Get directions by page</p> ",
+    "group": "Admin_Directions",
+    "permission": [
+      {
+        "name": "administrator, university_administrator"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "page",
+            "description": "<p>Page</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Returned if directions issets</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "403": [
+          {
+            "group": "403",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if user has not access for get directions</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Admin/DirectionsController.php",
+    "groupTitle": "Admin_Directions",
+    "name": "GetApiAdminDirections"
+  },
+  {
+    "type": "get",
+    "url": "/api/admin/directions/:slug",
+    "title": "Get direction by slug",
+    "sampleRequest": [
+      {
+        "url": "/api/admin/directions/:slug"
+      }
+    ],
+    "description": "<p>Get direction by slug</p> ",
+    "group": "Admin_Directions",
+    "permission": [
+      {
+        "name": "administrator, university_administrator"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "slug",
+            "description": "<p>Unique direction slug</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Returned if direction issets</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "403": [
+          {
+            "group": "403",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if user has not access for get directions</p> "
+          }
+        ],
+        "404": [
+          {
+            "group": "404",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if direction not isset</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Admin/DirectionsController.php",
+    "groupTitle": "Admin_Directions",
+    "name": "GetApiAdminDirectionsSlug"
+  },
+  {
+    "type": "post",
+    "url": "/api/admin/directions",
+    "title": "Create new direction",
+    "sampleRequest": [
+      {
+        "url": "/api/admin/directions"
+      }
+    ],
+    "description": "<p>Create direction</p> ",
+    "group": "Admin_Directions",
+    "permission": [
+      {
+        "name": "administrator, university_administrator"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Direction name</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "description",
+            "description": "<p>Direction description</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Integer</p> ",
+            "optional": false,
+            "field": "faculty",
+            "description": "<p>Faculty id</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Returned if direction successful created</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "403": [
+          {
+            "group": "403",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if user has not access for get facilties</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Admin/DirectionsController.php",
+    "groupTitle": "Admin_Directions",
+    "name": "PostApiAdminDirections"
+  },
+  {
+    "type": "put",
+    "url": "/api/admin/directions/:slug",
+    "title": "Update direction",
+    "sampleRequest": [
+      {
+        "url": "/api/admin/directions/:slug"
+      }
+    ],
+    "description": "<p>Update direction</p> ",
+    "group": "Admin_Directions",
+    "permission": [
+      {
+        "name": "administrator, university_administrator"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Direction name</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "description",
+            "description": "<p>Direction description</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Integer</p> ",
+            "optional": false,
+            "field": "faculty",
+            "description": "<p>Faculty id</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Returned if direction successful updated</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "403": [
+          {
+            "group": "403",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if user has not access for get facilties</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Admin/DirectionsController.php",
+    "groupTitle": "Admin_Directions",
+    "name": "PutApiAdminDirectionsSlug"
+  },
+  {
+    "type": "delete",
     "url": "/api/admin/faculties/:slug",
     "title": "Delete faculty by slug",
     "sampleRequest": [
@@ -508,6 +886,920 @@ define({ "api": [
     "filename": "app/Http/Controllers/Admin/FacultiesController.php",
     "groupTitle": "Admin_Faculties",
     "name": "PutApiAdminFacultiesSlug"
+  },
+  {
+    "type": "delete",
+    "url": "/api/admin/teachers/:slug",
+    "title": "Delete teacher",
+    "sampleRequest": [
+      {
+        "url": "/api/admin/teachers/:slug"
+      }
+    ],
+    "description": "<p>Remove teacher</p> ",
+    "group": "Admin_Teachers",
+    "permission": [
+      {
+        "name": "administrator, university_administrator"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "204": [
+          {
+            "group": "204",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Returned if teacher successful removed</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "403": [
+          {
+            "group": "403",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if user has not access for get teacher</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Admin/TeachersController.php",
+    "groupTitle": "Admin_Teachers",
+    "name": "DeleteApiAdminTeachersSlug"
+  },
+  {
+    "type": "get",
+    "url": "/api/admin/teachers",
+    "title": "Get teachers by page",
+    "sampleRequest": [
+      {
+        "url": "/api/admin/teachers"
+      }
+    ],
+    "description": "<p>Get teachers by page</p> ",
+    "group": "Admin_Teachers",
+    "permission": [
+      {
+        "name": "administrator, university_administrator"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "page",
+            "description": "<p>Page</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Returned if teachers issets</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "403": [
+          {
+            "group": "403",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if user has not access for get teachers</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Admin/TeachersController.php",
+    "groupTitle": "Admin_Teachers",
+    "name": "GetApiAdminTeachers"
+  },
+  {
+    "type": "get",
+    "url": "/api/admin/teachers/:slug",
+    "title": "Get teacher by slug",
+    "sampleRequest": [
+      {
+        "url": "/api/admin/teachers/:slug"
+      }
+    ],
+    "description": "<p>Get teacher by slug</p> ",
+    "group": "Admin_Teachers",
+    "permission": [
+      {
+        "name": "administrator, university_administrator"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "slug",
+            "description": "<p>Unique teacher slug</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Returned if teacher issets</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "403": [
+          {
+            "group": "403",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if user has not access for get teachers</p> "
+          }
+        ],
+        "404": [
+          {
+            "group": "404",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if teacher not isset</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Admin/TeachersController.php",
+    "groupTitle": "Admin_Teachers",
+    "name": "GetApiAdminTeachersSlug"
+  },
+  {
+    "type": "post",
+    "url": "/api/admin/teachers",
+    "title": "Create new teacher",
+    "sampleRequest": [
+      {
+        "url": "/api/admin/teachers"
+      }
+    ],
+    "description": "<p>Create teacher</p> ",
+    "group": "Admin_Teachers",
+    "permission": [
+      {
+        "name": "administrator, university_administrator"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "name",
+            "description": "<p>User name</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "surname",
+            "description": "<p>User surname</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "birthday",
+            "description": "<p>User birthday</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "phone",
+            "description": "<p>User phone number</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "email",
+            "description": "<p>User email</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "description",
+            "description": "<p>User description</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "password",
+            "description": "<p>User password</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Returned if teacher successful created</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "403": [
+          {
+            "group": "403",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if user has not access for create teacher</p> "
+          }
+        ],
+        "500": [
+          {
+            "group": "500",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if throw server error</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Admin/TeachersController.php",
+    "groupTitle": "Admin_Teachers",
+    "name": "PostApiAdminTeachers"
+  },
+  {
+    "type": "put",
+    "url": "/api/admin/teachers/:slug",
+    "title": "Update teacher",
+    "sampleRequest": [
+      {
+        "url": "/api/admin/teachers/:slug"
+      }
+    ],
+    "description": "<p>Update teacher</p> ",
+    "group": "Admin_Teachers",
+    "permission": [
+      {
+        "name": "administrator, university_administrator"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "name",
+            "description": "<p>User name</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "surname",
+            "description": "<p>User surname</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "birthday",
+            "description": "<p>User birthday</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "phone",
+            "description": "<p>User phone number</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "email",
+            "description": "<p>User email</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "description",
+            "description": "<p>User description</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "password",
+            "description": "<p>User password</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Returned if teacher successful updated</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "403": [
+          {
+            "group": "403",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if user has not access for update teacher</p> "
+          }
+        ],
+        "500": [
+          {
+            "group": "500",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if throw server error</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Admin/TeachersController.php",
+    "groupTitle": "Admin_Teachers",
+    "name": "PutApiAdminTeachersSlug"
+  },
+  {
+    "type": "delete",
+    "url": "/api/admin/users/:slug",
+    "title": "Delete direction",
+    "sampleRequest": [
+      {
+        "url": "/api/admin/users/:slug"
+      }
+    ],
+    "description": "<p>Remove user</p> ",
+    "group": "Admin_Users",
+    "permission": [
+      {
+        "name": "administrator, university_administrator"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "204": [
+          {
+            "group": "204",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Returned if user successful removed</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "403": [
+          {
+            "group": "403",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if user has not access for get user</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Admin/UsersController.php",
+    "groupTitle": "Admin_Users",
+    "name": "DeleteApiAdminUsersSlug"
+  },
+  {
+    "type": "get",
+    "url": "/api/admin/users",
+    "title": "Get users by page",
+    "sampleRequest": [
+      {
+        "url": "/api/admin/users"
+      }
+    ],
+    "description": "<p>Get users by page</p> ",
+    "group": "Admin_Users",
+    "permission": [
+      {
+        "name": "administrator, university_administrator"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "page",
+            "description": "<p>Page</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Returned if users issets</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "403": [
+          {
+            "group": "403",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if user has not access for get users</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Admin/UsersController.php",
+    "groupTitle": "Admin_Users",
+    "name": "GetApiAdminUsers"
+  },
+  {
+    "type": "get",
+    "url": "/api/admin/users/:slug",
+    "title": "Get user by slug",
+    "sampleRequest": [
+      {
+        "url": "/api/admin/users/:slug"
+      }
+    ],
+    "description": "<p>Get user by slug</p> ",
+    "group": "Admin_Users",
+    "permission": [
+      {
+        "name": "administrator, university_administrator"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "slug",
+            "description": "<p>Unique user slug</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Returned if user issets</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "403": [
+          {
+            "group": "403",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if user has not access for get users</p> "
+          }
+        ],
+        "404": [
+          {
+            "group": "404",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if user not isset</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Admin/UsersController.php",
+    "groupTitle": "Admin_Users",
+    "name": "GetApiAdminUsersSlug"
+  },
+  {
+    "type": "post",
+    "url": "/api/admin/users",
+    "title": "Create new user",
+    "sampleRequest": [
+      {
+        "url": "/api/admin/users"
+      }
+    ],
+    "description": "<p>Create teacher</p> ",
+    "group": "Admin_Users",
+    "permission": [
+      {
+        "name": "administrator, university_administrator"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "name",
+            "description": "<p>User name</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "surname",
+            "description": "<p>User surname</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "birthday",
+            "description": "<p>User birthday</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "phone",
+            "description": "<p>User phone number</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "email",
+            "description": "<p>User email</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "role",
+            "description": "<p>User role</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "description",
+            "description": "<p>User description</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "password",
+            "description": "<p>User password</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Returned if teacher successful created</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "403": [
+          {
+            "group": "403",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if user has not access for create teacher</p> "
+          }
+        ],
+        "500": [
+          {
+            "group": "500",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if throw server error</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Admin/UsersController.php",
+    "groupTitle": "Admin_Users",
+    "name": "PostApiAdminUsers"
+  },
+  {
+    "type": "put",
+    "url": "/api/admin/users/:slug",
+    "title": "Update user",
+    "sampleRequest": [
+      {
+        "url": "/api/admin/users/:slug"
+      }
+    ],
+    "description": "<p>Update teacher</p> ",
+    "group": "Admin_Users",
+    "permission": [
+      {
+        "name": "administrator, university_administrator"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "name",
+            "description": "<p>User name</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "surname",
+            "description": "<p>User surname</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "birthday",
+            "description": "<p>User birthday</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "phone",
+            "description": "<p>User phone number</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "email",
+            "description": "<p>User email</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "role",
+            "description": "<p>User role</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "description",
+            "description": "<p>User description</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "password",
+            "description": "<p>User password</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Returned if teacher successful updated</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "403": [
+          {
+            "group": "403",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if user has not access for update teacher</p> "
+          }
+        ],
+        "500": [
+          {
+            "group": "500",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if throw server error</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Admin/UsersController.php",
+    "groupTitle": "Admin_Users",
+    "name": "PutApiAdminUsersSlug"
   },
   {
     "type": "get",
