@@ -7,6 +7,7 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Psy\Exception\Exception;
 
 class AuthController extends Controller
 {
@@ -107,19 +108,40 @@ class AuthController extends Controller
             return response()->json($validation->errors(), 400);
         }
 
-        $user = User::create([
-            'name'  => $request->request->get('name'),
-            'surname' => $request->request->get('surname'),
-            'phone' => $request->request->get('phone'),
-            'email' => $request->request->get('email'),
-            'password'  => Hash::make($request->request->get('password')),
-            'birthday'  => $request->request->get('birthday'),
-            'active'  =>  1,
-            'role'   =>   'student'
-        ]);
+        try {
+            $user = User::create([
+                'name'  => $request->request->get('name'),
+                'surname' => $request->request->get('surname'),
+                'phone' => $request->request->get('phone'),
+                'email' => $request->request->get('email'),
+                'password'  => Hash::make($request->request->get('password')),
+                'birthday'  => $request->request->get('birthday'),
+                'active'  =>  1,
+                'role'   =>   'student'
+            ]);
 
-        if ($user) {
-              return response()->json($user, 201);
+            try {
+                $user = User::where('email', $user->email)->first();
+
+                if (!$user) {
+                    return response()->json(null, 401);
+                }
+
+                if (! $token = JWTAuth::attempt(['email' => $user->email, 'password' => $user->password])) {
+                    return response()->json(null, 400);
+                }
+            } catch (JWTException $e) {
+                return response()->json(null, 500);
+            }
+
+            $data = [
+                'user' => $user,
+                'token' => $token
+            ];
+
+            return response()->json($data);
+        } catch (Exception $e) {
+            return response()->json(null, 500);
         }
 
         return response()->json(null, 500);
