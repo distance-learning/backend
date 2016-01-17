@@ -127,7 +127,7 @@ class AuthController extends Controller
                     return response()->json(null, 401);
                 }
 
-                if (! $token = JWTAuth::attempt(['email' => $user->email, 'password' => $user->password])) {
+                if (! $token = JWTAuth::attempt(['email' => $request->request->get('email'), 'password' => $request->request->get('password')])) {
                     return response()->json(null, 400);
                 }
             } catch (JWTException $e) {
