@@ -30,7 +30,7 @@ class UsersController extends Controller
      * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function indexAction(Request $Request)
+    public function indexAction(Request $request)
     {
         $students = User::where('role', 'student')->paginate($request->query->get('count'));
 
