@@ -32,7 +32,7 @@ class UsersController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $students = User::where('role', 'student')->paginate($request->query->get('count'));
+        $students = User::paginate($request->query->get('count'));
 
         return response()->json($students);
     }

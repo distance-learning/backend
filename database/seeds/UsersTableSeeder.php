@@ -18,7 +18,7 @@ class UsersTableSeeder extends Seeder
                 'surname' => 'University',
                 'birthday' => '8.11.2015',
                 'phone' => '+380931111111',
-                'role' => 'administrator',
+                'role' => 'admin',
                 'email' => 'admin@admin.com',
                 'description' => 'Admin',
                 'password' => '111111',
