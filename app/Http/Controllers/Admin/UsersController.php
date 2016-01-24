@@ -189,7 +189,7 @@ class UsersController extends Controller
      * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function deleteAction()
+    public function deleteAction($slug)
     {
         $student = User::findBySlug($slug);
 
