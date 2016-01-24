@@ -197,12 +197,8 @@ class UsersController extends Controller
             return response()->json(null, 404);
         }
 
-        try {
-            $student->delete();
+        $student->delete();
 
-            return response()->json(null, 204);
-        } catch (Exception $e) {
-            return response()->json(null, 404);
-        }
+        return response()->json(null, 204);
     }
 }
