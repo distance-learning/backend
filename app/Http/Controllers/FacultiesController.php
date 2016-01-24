@@ -49,7 +49,7 @@ class FacultiesController extends Controller
      */
     public function getFacultyBySlugAction(Request $request, $slug)
     {
-        $faculty = Faculty::findBySlug($slug);
+        $faculty = Faculty::with('directions.subjects')->with('teachers')->findBySlug($slug);
 
         if (!$faculty) {
             return response()->json(null, 404);

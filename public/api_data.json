@@ -1340,7 +1340,7 @@
   {
     "type": "delete",
     "url": "/api/admin/users/:slug",
-    "title": "Delete direction",
+    "title": "Delete user",
     "sampleRequest": [
       {
         "url": "/api/admin/users/:slug"
@@ -2014,6 +2014,50 @@
     "filename": "app/Http/Controllers/TeachersController.php",
     "groupTitle": "Teachers",
     "name": "GetApiTeachersSlug"
+  },
+  {
+    "type": "get",
+    "url": "/api/auth/user",
+    "title": "Get user info",
+    "sampleRequest": [
+      {
+        "url": "/api/auth/user"
+      }
+    ],
+    "description": "<p>Get user info</p> ",
+    "group": "Users",
+    "error": {
+      "fields": {
+        "201": [
+          {
+            "group": "201",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Returned if user successful create</p> "
+          }
+        ],
+        "401": [
+          {
+            "group": "401",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if data not correct</p> "
+          }
+        ],
+        "500": [
+          {
+            "group": "500",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if error on serve</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/AuthController.php",
+    "groupTitle": "Users",
+    "name": "GetApiAuthUser"
   },
   {
     "type": "get",

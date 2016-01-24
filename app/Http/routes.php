@@ -6,6 +6,7 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
 //        Route::post('');
 //    });
 
+
     Route::group(['prefix' => 'faculties'], function () {
         Route::get('/', 'FacultiesController@getPaginatedFacultiesAction');
         Route::get('/random', 'FacultiesController@getRandomFacultiesAction');
@@ -21,6 +22,7 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
     Route::group(['prefix' => 'auth', 'middleware' => 'guest'], function () {
         Route::post('/login', 'AuthController@loginAction');
         Route::post('/registration', 'AuthController@registrationAction');
+        Route::get('/auth', 'AuthController@getUserInfoAction');
     });
 
     Route::group(['prefix' => 'users', 'middleware' =>  ['jwt.refresh', 'jwt.auth']], function () {

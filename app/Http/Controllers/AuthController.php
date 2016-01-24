@@ -11,6 +11,27 @@ use Psy\Exception\Exception;
 
 class AuthController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('jwt.auth', [
+            'only' => [
+                'getUserInfoAction',
+            ]
+        ]);
+
+        $this->middleware('jwt.refresh', [
+            'only' => [
+                'getUserInfoAction',
+            ]
+        ]);
+
+        $this->middleware('guest', [
+            'except' => [
+                'getUserInfoAction',
+            ]
+        ]);
+    }
+
     /**
      * Method that authenticate user
      *
@@ -145,5 +166,27 @@ class AuthController extends Controller
         }
 
         return response()->json(null, 500);
+    }
+
+    /**
+     * Method that authenticate user
+     *
+     * @api {get} /api/auth/user Get user info
+     * @apiSampleRequest /api/auth/user
+     * @apiDescription Get user info
+     * @apiGroup Users
+     *
+     * @apiError (401) error Returned if data not correct
+     * @apiError (201) success Returned if user successful create
+     * @apiError (500) error Returned if error on serve
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getUserInfoAction(Request $request)
+    {
+        $user = $request->user();
+
+        return response()->json($user);
     }
 }

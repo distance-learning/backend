@@ -176,7 +176,7 @@ class UsersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @api {delete} /api/admin/users/:slug Delete direction
+     * @api {delete} /api/admin/users/:slug Delete user
      * @apiSampleRequest /api/admin/users/:slug
      * @apiDescription Remove user
      * @apiGroup Admin|Users
