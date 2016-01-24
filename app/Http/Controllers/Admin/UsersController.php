@@ -87,7 +87,6 @@ class UsersController extends Controller
      * @apiParam {String} email User email
      * @apiParam {String} role User role
      * @apiParam {String} description User description
-     * @apiParam {String} password User password
      *
      * @apiSuccess (200) success Returned if teacher successful created
      *
@@ -163,7 +162,6 @@ class UsersController extends Controller
                 'role'  =>  $request->request->get('role'),
                 'email' =>  $request->request->get('email'),
                 'description' =>  $request->request->get('description'),
-                'password'  =>  $request->request->get('password'),
                 'status'  =>  1
             ]);
 

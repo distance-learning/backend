@@ -58,7 +58,7 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
         Route::group(['prefix'  =>  'users'], function () {
             Route::get('/', 'Admin\UsersController@indexAction');
             Route::get('/{slug}', 'Admin\UsersController@itemAction');
-            Route::post('/', 'Admin\UsersController@createAction');
+            Route::post('/', 'Admin\UsersController@storeAction');
             Route::put('/{slug}', 'Admin\UsersController@putAction');
             Route::delete('/{slug}', 'Admin\UsersController@deleteAction');
         });
