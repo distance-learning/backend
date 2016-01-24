@@ -176,7 +176,7 @@ class AuthController extends Controller
      * @apiDescription Get user info
      * @apiGroup Users
      *
-     * @apiHeader {String} authorization 
+     * @apiHeader {String} authorization
      *
      * @apiError (401) error Returned if data not correct
      * @apiError (201) success Returned if user successful create
@@ -187,8 +187,9 @@ class AuthController extends Controller
      */
     public function getUserInfoAction(Request $request)
     {
-        $user = $request->user();
-
-        return response()->json($user);
+        die();
+        // $user = $request->user();
+        //
+        // return response()->json($user);
     }
 }

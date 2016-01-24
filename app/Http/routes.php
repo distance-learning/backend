@@ -19,10 +19,10 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
         Route::get('/{slug}', 'TeachersController@getTeacherBySlugAction');
     });
 
-    Route::group(['prefix' => 'auth', 'middleware' => 'guest'], function () {
+    Route::group(['prefix' => 'auth'], function () {
         Route::post('/login', 'AuthController@loginAction');
         Route::post('/registration', 'AuthController@registrationAction');
-        Route::get('/auth', 'AuthController@getUserInfoAction');
+        Route::get('/user', 'AuthController@getUserInfoAction');
     });
 
     Route::group(['prefix' => 'users', 'middleware' =>  ['jwt.refresh', 'jwt.auth']], function () {
