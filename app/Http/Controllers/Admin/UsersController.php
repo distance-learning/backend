@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-
+use Auth;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\User;
@@ -147,25 +147,39 @@ class UsersController extends Controller
      */
     public function putAction(Request $request, $slug)
     {
-        $student = User::findBySlug($slug);
+        $user = User::findBySlug($slug);
 
-        if (!$student) {
+        if (!$user) {
             return response()->json(null, 404);
         }
 
         try {
-            $student->update([
-                'name'  =>  $request->request->get('name'),
-                'surname'  =>  $request->request->get('surname'),
-                'birthday'  =>  $request->request->get('birthday'),
-                'phone'  =>  $request->request->get('phone'),
-                'role'  =>  $request->request->get('role'),
-                'email' =>  $request->request->get('email'),
-                'description' =>  $request->request->get('description'),
-                'status'  =>  1
-            ]);
+            if (Auth::check($request->request->get('password'), $user->password)) {
+                $user->update([
+                    'name'  =>  $request->request->get('name'),
+                    'surname'  =>  $request->request->get('surname'),
+                    'birthday'  =>  $request->request->get('birthday'),
+                    'phone'  =>  $request->request->get('phone'),
+                    'role'  =>  $request->request->get('role'),
+                    'email' =>  $request->request->get('email'),
+                    'description' =>  $request->request->get('description'),
+                    'password'  =>  bcrypt($request->request->get('password')),
+                    'status'  =>  1
+                ]);
+            } else {
+                $user->update([
+                    'name'  =>  $request->request->get('name'),
+                    'surname'  =>  $request->request->get('surname'),
+                    'birthday'  =>  $request->request->get('birthday'),
+                    'phone'  =>  $request->request->get('phone'),
+                    'role'  =>  $request->request->get('role'),
+                    'email' =>  $request->request->get('email'),
+                    'description' =>  $request->request->get('description'),
+                    'status'  =>  1
+                ]);
+            }
 
-            return response()->json($student);
+            return response()->json($user);
         } catch (Exception $e) {
             return response()->json(null, 500);
         }

@@ -13,6 +13,12 @@ class AuthController extends Controller
 {
     public function __construct()
     {
+        $this->middleware('guest', [
+            'except' => [
+                'getUserInfoAction',
+            ]
+        ]);
+
         $this->middleware('jwt.auth', [
             'only' => [
                 'getUserInfoAction',
@@ -21,12 +27,6 @@ class AuthController extends Controller
 
         $this->middleware('jwt.refresh', [
             'only' => [
-                'getUserInfoAction',
-            ]
-        ]);
-
-        $this->middleware('guest', [
-            'except' => [
                 'getUserInfoAction',
             ]
         ]);
