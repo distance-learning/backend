@@ -176,6 +176,8 @@ class AuthController extends Controller
      * @apiDescription Get user info
      * @apiGroup Users
      *
+     * @apiHeader {String} authorization 
+     *
      * @apiError (401) error Returned if data not correct
      * @apiError (201) success Returned if user successful create
      * @apiError (500) error Returned if error on serve

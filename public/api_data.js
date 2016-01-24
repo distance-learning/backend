@@ -2026,6 +2026,19 @@ define({ "api": [
     ],
     "description": "<p>Get user info</p> ",
     "group": "Users",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": ""
+          }
+        ]
+      }
+    },
     "error": {
       "fields": {
         "201": [
