@@ -13,23 +13,23 @@ class AuthController extends Controller
 {
     public function __construct()
     {
-        // $this->middleware('jwt.auth', [
-        //     'only' => [
-        //         'getUserInfoAction',
-        //     ]
-        // ]);
-        //
-        // $this->middleware('jwt.refresh', [
-        //     'only' => [
-        //         'getUserInfoAction',
-        //     ]
-        // ]);
-        //
-        // $this->middleware('guest', [
-        //     'except' => [
-        //         'getUserInfoAction',
-        //     ]
-        // ]);
+        $this->middleware('jwt.auth', [
+            'only' => [
+                'getUserInfoAction',
+            ]
+        ]);
+
+        $this->middleware('jwt.refresh', [
+            'only' => [
+                'getUserInfoAction',
+            ]
+        ]);
+
+        $this->middleware('guest', [
+            'except' => [
+                'getUserInfoAction',
+            ]
+        ]);
     }
 
     /**
