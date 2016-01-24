@@ -25,12 +25,12 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
         Route::get('/user', 'AuthController@getUserInfoAction');
     });
 
-    Route::group(['prefix' => 'users', 'middleware' =>  ['jwt.refresh', 'jwt.auth']], function () {
+    Route::group(['prefix' => 'users', 'middleware' =>  ['jwt.auth', 'jwt.refresh']], function () {
         Route::get('/', 'UsersController@getUsersAction');
         Route::get('/{slug}', 'UsersController@getUserAction');
     });
 
-    Route::group(['prefix' => 'admin', 'middleware' => ['jwt.refresh', 'jwt.auth']], function () {
+    Route::group(['prefix' => 'admin', 'middleware' => ['jwt.auth', 'jwt.refresh']], function () {
         Route::group(['prefix' => 'faculties'], function () {
             Route::get('/', 'Admin\FacultiesController@getFacultiesAction');
             Route::post('/', 'Admin\FacultiesController@postFacultyAction');
