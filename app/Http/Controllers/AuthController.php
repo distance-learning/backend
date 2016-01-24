@@ -13,23 +13,23 @@ class AuthController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('jwt.auth', [
-            'only' => [
-                'getUserInfoAction',
-            ]
-        ]);
-
-        $this->middleware('jwt.refresh', [
-            'only' => [
-                'getUserInfoAction',
-            ]
-        ]);
-
-        $this->middleware('guest', [
-            'except' => [
-                'getUserInfoAction',
-            ]
-        ]);
+        // $this->middleware('jwt.auth', [
+        //     'only' => [
+        //         'getUserInfoAction',
+        //     ]
+        // ]);
+        //
+        // $this->middleware('jwt.refresh', [
+        //     'only' => [
+        //         'getUserInfoAction',
+        //     ]
+        // ]);
+        //
+        // $this->middleware('guest', [
+        //     'except' => [
+        //         'getUserInfoAction',
+        //     ]
+        // ]);
     }
 
     /**
@@ -64,7 +64,6 @@ class AuthController extends Controller
     public function loginAction(Request $request)
     {
         $credentials = $request->only('email', 'password');
-
         try {
             $user = User::where('email', $credentials['email'])->first();
 
@@ -187,9 +186,8 @@ class AuthController extends Controller
      */
     public function getUserInfoAction(Request $request)
     {
-        die();
-        // $user = $request->user();
-        //
-        // return response()->json($user);
+        $user = $request->user();
+
+        return response()->json($user);
     }
 }
