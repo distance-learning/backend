@@ -83,10 +83,10 @@ class User extends Model implements AuthenticatableContract,
      * @param $slug
      * @return mixed
      */
-    public function scopeFindBySlug($query, $slug)
-    {
-        return $query->where('slug', $slug);
-    }
+    // public function scopeFindBySlug($query, $slug)
+    // {
+    //     return $query->where('slug', $slug);
+    // }
 
     public function scopeActive($query)
     {

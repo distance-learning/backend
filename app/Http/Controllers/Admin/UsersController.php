@@ -60,11 +60,7 @@ class UsersController extends Controller
      */
     public function itemAction(Request $request, $slug)
     {
-        $student = User::findBySlug($slug)->first();
-
-        if (!$student) {
-            return response()->json(null, 404);
-        }
+        $student = User::findBySlugOrFail($slug);
 
         return response()->json($student);
     }
