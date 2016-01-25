@@ -107,7 +107,7 @@ class UsersController extends Controller
                 'role'  =>  $request->request->get('role'),
                 'email' =>  $request->request->get('email'),
                 'description' =>  $request->request->get('description'),
-                'password'  =>  $request->request->get('password'),
+                'password'  =>  bcrypt($request->request->get('password')),
                 'status'  =>  1
             ]);
 
