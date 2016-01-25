@@ -150,7 +150,7 @@ class UsersController extends Controller
         }
 
         try {
-            if (Auth::check($request->request->get('password'), $user->password)) {
+            if ($request->request->has('password') && !empty($request->request->has('password'))) {
                 $user->update([
                     'name'  =>  $request->request->get('name'),
                     'surname'  =>  $request->request->get('surname'),
@@ -159,7 +159,7 @@ class UsersController extends Controller
                     'role'  =>  $request->request->get('role'),
                     'email' =>  $request->request->get('email'),
                     'description' =>  $request->request->get('description'),
-                    'password'  =>  bcrypt($request->request->get('password')),
+                    'password'  =>  bcrypt(trim($request->request->get('password'))),
                     'status'  =>  1
                 ]);
             } else {
