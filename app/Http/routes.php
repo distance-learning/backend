@@ -23,6 +23,7 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
         Route::post('/login', 'AuthController@loginAction');
         Route::post('/registration', 'AuthController@registrationAction');
         Route::get('/user', 'AuthController@getUserInfoAction');
+        Route::get('/logout', 'AuthController@logoutAction');
     });
 
     Route::group(['prefix' => 'users', 'middleware' =>  ['jwt.auth', 'jwt.refresh']], function () {

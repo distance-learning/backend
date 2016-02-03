@@ -16,18 +16,21 @@ class AuthController extends Controller
         $this->middleware('guest', [
             'except' => [
                 'getUserInfoAction',
+                'logoutAction'
             ]
         ]);
 
         $this->middleware('jwt.auth', [
             'only' => [
                 'getUserInfoAction',
+                'logoutAction'
             ]
         ]);
 
         $this->middleware('jwt.refresh', [
             'only' => [
                 'getUserInfoAction',
+                'logoutAction'
             ]
         ]);
     }
@@ -189,5 +192,29 @@ class AuthController extends Controller
         $user = $request->user();
 
         return response()->json($user);
+    }
+
+    /**
+     * Method that authenticate user
+     *
+     * @api {get} /api/auth/logout Logout user
+     * @apiSampleRequest /api/auth/logout
+     * @apiDescription Logout user
+     * @apiGroup Users
+     *
+     * @apiHeader {String} authorization
+     *
+     * @apiError (401) error Returned if data not correct
+     * @apiError (201) success Returned if user successful create
+     * @apiError (500) error Returned if error on serve
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function logoutAction()
+    {
+        Auth::logout();
+
+        return response()->json(null, 204);
     }
 }
