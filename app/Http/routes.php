@@ -24,9 +24,10 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
         Route::post('/registration', 'AuthController@registrationAction');
         Route::get('/user', 'AuthController@getUserInfoAction');
         Route::put('/update', 'AuthController@updateUserInformationAction');
-        Route::get('/logout', 'AuthController@logoutAction');
+        Route::put('/update-password', 'AuthController@updateUserPasswordAction');
         Route::post('/reset-password', 'AuthController@postResetPassword');
         Route::post('/reset-password/{token}', 'AuthController@postResetPasswordCheck');
+        Route::get('/logout', 'AuthController@logoutAction');
     });
 
     Route::group(['prefix' => 'users', 'middleware' =>  ['jwt.auth', 'jwt.refresh']], function () {

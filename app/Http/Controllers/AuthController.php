@@ -303,6 +303,12 @@ class AuthController extends Controller
      *
      * @apiHeader {String} authorization User token
      *
+     * @apiParam {String} name
+     * @apiParam {String} surname
+     * @apiParam {String} birthday
+     * @apiParam {String} email
+     * @apiParam {String} phone
+     *
      * @param UpdateUserRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
@@ -316,8 +322,39 @@ class AuthController extends Controller
         return response()->json($data, 200);
     }
 
-    public function updateUserPasswordAction()
+    /**
+     * Get user by slug
+     *
+     * @api {put} /api/auth/update-password Update user password
+     * @apiSampleRequest /api/auth/update-password
+     * @apiDescription Update user password
+     * @apiGroup Users
+     *
+     * @apiHeader {String} authorization User token
+     *
+     * @apiParam {String} old_password
+     * @apiParam {String} password
+     * @apiParam {String} password_confirmation
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function updateUserPasswordAction(Request $request)
     {
+        $user = $request->user();
 
+        if (!Auth::check($request->get('old_password'), $user->password)) {
+            return response()->json('Old password not correct', 400);
+        }
+
+        if ($request->get('password') != $request->get('password_confirmation')) {
+            return response()->json('New passwords not equals');
+        }
+
+        $user->update([
+            'password' => bcrypt($request->get('request')),
+        ]);
+
+        return response()->json($user, 200);
     }
 }
