@@ -2010,6 +2010,63 @@ define({ "api": [
   },
   {
     "type": "get",
+    "url": "/api/auth/logout",
+    "title": "Logout user",
+    "sampleRequest": [
+      {
+        "url": "/api/auth/logout"
+      }
+    ],
+    "description": "<p>Logout user</p> ",
+    "group": "Users",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "201": [
+          {
+            "group": "201",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Returned if user successful create</p> "
+          }
+        ],
+        "401": [
+          {
+            "group": "401",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if data not correct</p> "
+          }
+        ],
+        "500": [
+          {
+            "group": "500",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if error on serve</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/AuthController.php",
+    "groupTitle": "Users",
+    "name": "GetApiAuthLogout"
+  },
+  {
+    "type": "get",
     "url": "/api/auth/user",
     "title": "Get user info",
     "sampleRequest": [
@@ -2708,5 +2765,77 @@ define({ "api": [
     "filename": "app/Http/Controllers/AuthController.php",
     "groupTitle": "Users",
     "name": "PostApiAuthRegistration"
+  },
+  {
+    "type": "post",
+    "url": "/api/users/reset-password",
+    "title": "Send request for reset password",
+    "sampleRequest": [
+      {
+        "url": "/api/users/reset-password"
+      }
+    ],
+    "description": "<p>Send request for reset password</p> ",
+    "group": "Users",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "email",
+            "description": "<p>User email</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "password",
+            "description": "<p>User password</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "password_confirmation",
+            "description": "<p>User password confirmation</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/UsersController.php",
+    "groupTitle": "Users",
+    "name": "PostApiUsersResetPassword"
+  },
+  {
+    "type": "post",
+    "url": "/api/users/reset-password/:token",
+    "title": "Change password",
+    "sampleRequest": [
+      {
+        "url": "/api/users/reset-password/:token"
+      }
+    ],
+    "description": "<p>Change password</p> ",
+    "group": "Users",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "token",
+            "description": "<p>User token</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/UsersController.php",
+    "groupTitle": "Users",
+    "name": "PostApiUsersResetPasswordToken"
   }
 ] });
