@@ -27,7 +27,7 @@ class DirectionsController extends Controller
      *
      * @apiError (403) error Returned if user has not access for get directions
      *
-     * @param  string  $slug
+     * @param  Request $request
      * @return \Illuminate\Http\Response
      */
     public function indexAction(Request $request)
@@ -88,7 +88,7 @@ class DirectionsController extends Controller
      *
      * @apiError (403) error Returned if user has not access for get facilties
      *
-     * @param  string  $slug
+     * @param  Request $request
      * @return \Illuminate\Http\Response
      */
     public function storeAction(Request $request)
@@ -125,21 +125,21 @@ class DirectionsController extends Controller
      *
      * @apiError (403) error Returned if user has not access for get facilties
      *
-     * @param  string  $slug
+     * @param  Request $request
      * @return \Illuminate\Http\Response
      */
     public function putAction(Request $request, $facultySlug, $directionSlug)
     {
-        $direction = Direction::findBySlug($slug);
+        $direction = Direction::findBySlug($directionSlug);
 
         if (!$direction) {
             return response()->json('Direction not found', 404);
         }
 
-        $faculty = Faculty::findBySlug($slug)->first();
+        $faculty = Faculty::findBySlug($facultySlug)->first();
 
         if (!$faculty) {
-            return response()->json('Faculty not found')
+            return response()->json('Faculty not found');
         }
 
         $direction = Direction::create([
@@ -168,6 +168,7 @@ class DirectionsController extends Controller
      *
      * @apiError (403) error Returned if user has not access for get directions
      *
+     * @param  Request $request
      * @param  string  $slug
      * @return \Illuminate\Http\Response
      */

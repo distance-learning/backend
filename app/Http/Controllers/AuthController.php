@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\ResetPasswordEvent;
+use App\Http\Requests\UpdateUserRequest;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -225,7 +226,7 @@ class AuthController extends Controller
     /**
      * Get user by slug
      *
-     * @api {post} /api/users/reset-password Send request for reset password
+     * @api {post} /api/auth/reset-password Send request for reset password
      * @apiSampleRequest /api/users/reset-password
      * @apiDescription Send request for reset password
      * @apiGroup Users
@@ -242,13 +243,13 @@ class AuthController extends Controller
         $user = User::where('email', $request->get('email'))->first();
 
         if (!$user) {
-            return response()->json(null, 400);
+            return response()->json('user not found', 400);
         }
 
         $password = $request->get('password');
 
         if ($password != $request->get('password_confirmation')) {
-            return response()->json(null, 400);
+            return response()->json('Passwords not equals', 400);
         }
 
         $token = md5(uniqid('dl_'));
@@ -265,7 +266,7 @@ class AuthController extends Controller
     /**
      * Get user by slug
      *
-     * @api {post} /api/users/reset-password/:token Change password
+     * @api {post} /api/auth/reset-password/:token Change password
      * @apiSampleRequest /api/users/reset-password/:token
      * @apiDescription Change password
      * @apiGroup Users
@@ -280,7 +281,7 @@ class AuthController extends Controller
         $user = User::where('token', $token)->first();
 
         if (!$user) {
-            return response()->json(null, 400);
+            return response()->json('User not found', 400);
         }
 
         $user->update([
@@ -289,6 +290,34 @@ class AuthController extends Controller
             'token' => '',
         ]);
 
-        return response()->json();
+        return response()->json(null, 200);
+    }
+
+    /**
+     * Get user by slug
+     *
+     * @api {put} /api/auth/update Update user information
+     * @apiSampleRequest /api/auth/update
+     * @apiDescription Update user information
+     * @apiGroup Users
+     *
+     * @apiHeader {String} authorization User token
+     *
+     * @param UpdateUserRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function updateUserInformationAction(UpdateUserRequest $request)
+    {
+        $user = $request->user();
+        $data = $request->only('name', 'surname', 'birthday', 'email', 'phone');
+
+        $user->update($data);
+
+        return response()->json($data, 200);
+    }
+
+    public function updateUserPasswordAction()
+    {
+
     }
 }

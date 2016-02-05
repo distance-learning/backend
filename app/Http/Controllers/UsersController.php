@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\ResetPasswordEvent;
+use App\Http\Requests\UpdateUserRequest;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
