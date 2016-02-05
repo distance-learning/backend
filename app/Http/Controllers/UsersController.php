@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ResetPasswordEvent;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Event;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
@@ -97,5 +99,75 @@ class UsersController extends Controller
         }
 
         return response()->json($user);
+    }
+
+    /**
+     * Get user by slug
+     *
+     * @api {post} /api/users/reset-password Send request for reset password
+     * @apiSampleRequest /api/users/reset-password
+     * @apiDescription Send request for reset password
+     * @apiGroup Users
+     *
+     * @apiParam {String} email User email
+     * @apiParam {String} password User password
+     * @apiParam {String} password_confirmation User password confirmation
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function postResetPassword(Request $request)
+    {
+        $user = User::where('email', $request->get('email'))->first();
+
+        if (!$user) {
+            return response()->json(null, 400);
+        }
+
+        $password = $request->get('password');
+
+        if ($password != $request->get('password_confirmation')) {
+            return response()->json(null, 400);
+        }
+
+        $token = md5(uniqid('dl_'));
+        $user->update([
+            'token' => $token,
+            'new_password' => bcrypt($password),
+        ]);
+
+        Event::fire(new ResetPasswordEvent($user));
+
+        return response()->json(null, 200);
+    }
+
+    /**
+     * Get user by slug
+     *
+     * @api {post} /api/users/reset-password/:token Change password
+     * @apiSampleRequest /api/users/reset-password/:token
+     * @apiDescription Change password
+     * @apiGroup Users
+     *
+     * @apiParam {String} token User token
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function postResetPasswordCheck(Request $request, $token)
+    {
+        $user = User::where('token', $token)->first();
+
+        if (!$user) {
+            return response()->json(null, 400);
+        }
+
+        $user->update([
+            'password' => $user->new_password,
+            'new_password' => '',
+            'token' => '',
+        ]);
+
+        return response()->json();
     }
 }
