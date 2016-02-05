@@ -30,7 +30,7 @@ class ResetPasswordEmail
     {
         $user = $event->user;
 
-        Mail::send('emails.reset_password', [], function ($email) use ($user) {
+        Mail::send('emails.reset_password', ['user' => $user], function ($email) use ($user) {
             $email
                 ->from('valik.v1per@gmail.com', 'Valentyn Hrynevych')
                 ->to($user->email, $user->surname . ' ' . $user->name)
