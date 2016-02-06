@@ -27,14 +27,18 @@ class AuthController extends Controller
         $this->middleware('jwt.auth', [
             'only' => [
                 'getUserInfoAction',
-                'logoutAction'
+                'logoutAction',
+                'updateUserInformationAction',
+                'updateUserPasswordAction'
             ]
         ]);
 
         $this->middleware('jwt.refresh', [
             'only' => [
                 'getUserInfoAction',
-                'logoutAction'
+                'logoutAction',
+                'updateUserInformationAction',
+                'updateUserPasswordAction'
             ]
         ]);
     }
@@ -243,7 +247,7 @@ class AuthController extends Controller
         $user = User::where('email', $request->get('email'))->first();
 
         if (!$user) {
-            return response()->json('user not found', 400);
+            return response()->json('user not found', 404);
         }
 
         $password = $request->get('password');
@@ -281,7 +285,7 @@ class AuthController extends Controller
         $user = User::where('token', $token)->first();
 
         if (!$user) {
-            return response()->json('User not found', 400);
+            return response()->json('User not found', 404);
         }
 
         $user->update([
