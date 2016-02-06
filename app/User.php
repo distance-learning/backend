@@ -42,7 +42,8 @@ class User extends Model implements AuthenticatableContract,
         'role',
         'structure_id',
         'structure_type',
-        'status'
+        'status',
+        'token'
     ];
 
     /**

@@ -2840,7 +2840,63 @@
   },
   {
     "type": "put",
-    "url": "/api/auth/update",
+    "url": "/api/user/reset-password",
+    "title": "Update user password",
+    "sampleRequest": [
+      {
+        "url": "/api/auth/update-password"
+      }
+    ],
+    "description": "<p>Update user password</p> ",
+    "group": "Users",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": "<p>User token</p> "
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "old_password",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "password",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "password_confirmation",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/AuthController.php",
+    "groupTitle": "Users",
+    "name": "PutApiUserResetPassword"
+  },
+  {
+    "type": "put",
+    "url": "/api/user/update",
     "title": "Update user information",
     "sampleRequest": [
       {
@@ -2906,62 +2962,6 @@
     "version": "0.0.0",
     "filename": "app/Http/Controllers/AuthController.php",
     "groupTitle": "Users",
-    "name": "PutApiAuthUpdate"
-  },
-  {
-    "type": "put",
-    "url": "/api/auth/update-password",
-    "title": "Update user password",
-    "sampleRequest": [
-      {
-        "url": "/api/auth/update-password"
-      }
-    ],
-    "description": "<p>Update user password</p> ",
-    "group": "Users",
-    "header": {
-      "fields": {
-        "Header": [
-          {
-            "group": "Header",
-            "type": "String",
-            "optional": false,
-            "field": "authorization",
-            "description": "<p>User token</p> "
-          }
-        ]
-      }
-    },
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "<p>String</p> ",
-            "optional": false,
-            "field": "old_password",
-            "description": ""
-          },
-          {
-            "group": "Parameter",
-            "type": "<p>String</p> ",
-            "optional": false,
-            "field": "password",
-            "description": ""
-          },
-          {
-            "group": "Parameter",
-            "type": "<p>String</p> ",
-            "optional": false,
-            "field": "password_confirmation",
-            "description": ""
-          }
-        ]
-      }
-    },
-    "version": "0.0.0",
-    "filename": "app/Http/Controllers/AuthController.php",
-    "groupTitle": "Users",
-    "name": "PutApiAuthUpdatePassword"
+    "name": "PutApiUserUpdate"
   }
 ]

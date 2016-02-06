@@ -296,7 +296,7 @@ class AuthController extends Controller
     /**
      * Get user by slug
      *
-     * @api {put} /api/auth/update Update user information
+     * @api {put} /api/user/update Update user information
      * @apiSampleRequest /api/auth/update
      * @apiDescription Update user information
      * @apiGroup Users
@@ -325,7 +325,7 @@ class AuthController extends Controller
     /**
      * Get user by slug
      *
-     * @api {put} /api/auth/update-password Update user password
+     * @api {put} /api/user/reset-password Update user password
      * @apiSampleRequest /api/auth/update-password
      * @apiDescription Update user password
      * @apiGroup Users
