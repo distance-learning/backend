@@ -154,7 +154,7 @@ class UsersController extends Controller
                 $user->update([
                     'name'  =>  $request->request->get('name'),
                     'surname'  =>  $request->request->get('surname'),
-                    'birthday'  =>  $request->request->get('birthday'),
+                    'birthday'  =>  new \DateTime($request->request->get('birthday')),
                     'phone'  =>  $request->request->get('phone'),
                     'role'  =>  $request->request->get('role'),
                     'email' =>  $request->request->get('email'),
@@ -166,7 +166,7 @@ class UsersController extends Controller
                 $user->update([
                     'name'  =>  $request->request->get('name'),
                     'surname'  =>  $request->request->get('surname'),
-                    'birthday'  =>  $request->request->get('birthday'),
+                    'birthday'  =>  new \DateTime($request->request->get('birthday')),
                     'phone'  =>  $request->request->get('phone'),
                     'role'  =>  $request->request->get('role'),
                     'email' =>  $request->request->get('email'),
