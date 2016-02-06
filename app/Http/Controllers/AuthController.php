@@ -356,7 +356,7 @@ class AuthController extends Controller
         }
 
         $user->update([
-            'password' => bcrypt($request->get('request')),
+            'password' => bcrypt($request->get('password')),
         ]);
 
         return response()->json($user, 200);
