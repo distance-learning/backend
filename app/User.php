@@ -43,7 +43,8 @@ class User extends Model implements AuthenticatableContract,
         'structure_id',
         'structure_type',
         'status',
-        'token'
+        'token',
+        'new_password'
     ];
 
     /**
