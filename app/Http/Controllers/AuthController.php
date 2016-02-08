@@ -318,13 +318,11 @@ class AuthController extends Controller
      */
     public function updateUserInformationAction(UpdateUserRequest $request)
     {
-        echo 1;
         $user = $request->user();
-        echo 2;
         $data = $request->only('name', 'surname', 'birthday', 'email', 'phone');
-        echo 3;
+
         $user->update($data);
-        echo 4;
+
         return response()->json($data, 200);
     }
 
