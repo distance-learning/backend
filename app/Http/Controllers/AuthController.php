@@ -301,7 +301,7 @@ class AuthController extends Controller
      * Get user by slug
      *
      * @api {put} /api/user/update Update user information
-     * @apiSampleRequest /api/auth/update
+     * @apiSampleRequest /api/user/update
      * @apiDescription Update user information
      * @apiGroup Users
      *
