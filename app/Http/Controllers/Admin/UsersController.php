@@ -150,7 +150,7 @@ class UsersController extends Controller
         }
 
         try {
-            if ($request->request->has('password') && !empty($request->request->has('password'))) {
+            if ($request->request->has('password') && !empty($request->request->get('password'))) {
                 $user->update([
                     'name'  =>  $request->request->get('name'),
                     'surname'  =>  $request->request->get('surname'),
@@ -176,7 +176,7 @@ class UsersController extends Controller
             }
 
             return response()->json($user);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return response()->json(null, 500);
         }
     }
