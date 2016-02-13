@@ -316,7 +316,7 @@ class AuthController extends Controller
      * @param UpdateUserRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function updateUserInformationAction(UpdateUserRequest $request)
+    public function updateUserInformationAction(Request $request)
     {
         var_dump("In action");
         $user = $request->user();
