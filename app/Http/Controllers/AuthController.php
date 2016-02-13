@@ -318,8 +318,10 @@ class AuthController extends Controller
      */
     public function updateUserInformationAction(UpdateUserRequest $request)
     {
+        var_dump("In action");
         $user = $request->user();
         $data = $request->only('name', 'surname', 'birthday', 'email', 'phone');
+        var_dump("After get data from request");
 
         $user->update($data);
 
