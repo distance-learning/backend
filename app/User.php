@@ -57,7 +57,8 @@ class User extends Model implements AuthenticatableContract,
         'remember_token',
         'token',
         'structure_id',
-        'structure_type'
+        'structure_type',
+        'new_password'
     ];
 
     protected $sluggable = [
