@@ -82,9 +82,10 @@ class FacultiesController extends Controller
     {
         $user = $request->user();
 
-        if (Gate::denies('createOrUpdateOrDeleteFaculty')) {
-            return response()->json(null, 403);
-        }
+        //TODO need enable
+//        if (Gate::denies('createOrUpdateOrDeleteFaculty')) {
+//            return response()->json(null, 403);
+//        }
 
         $validator = Validator::make($request->all(), Faculty::$rules);
 
@@ -160,9 +161,10 @@ class FacultiesController extends Controller
      */
     public function putFacultyAction(Request $request, $slug)
     {
-        if (Gate::denies('createOrUpdateOrDeleteFaculty')) {
-            return response()->json(null, 403);
-        }
+        //TODO need enable
+//        if (Gate::denies('createOrUpdateOrDeleteFaculty')) {
+//            return response()->json(null, 403);
+//        }
 
         $validator = Validator::make($request->all(), Faculty::$rules);
 
@@ -207,9 +209,10 @@ class FacultiesController extends Controller
      */
     public function deleteFacultyAction($slug)
     {
-        if (Gate::denies('createOrUpdateOrDeleteFaculty')) {
-            return response()->json(null, 403);
-        }
+        //TODO need enable
+//        if (Gate::denies('createOrUpdateOrDeleteFaculty')) {
+//            return response()->json(null, 403);
+//        }
 
         $faculty = Faculty::findBySlug($slug);
 
