@@ -58,7 +58,8 @@ class User extends Model implements AuthenticatableContract,
         'token',
         'structure_id',
         'structure_type',
-        'new_password'
+        'new_password',
+        'group_id'
     ];
 
     protected $sluggable = [
@@ -81,15 +82,10 @@ class User extends Model implements AuthenticatableContract,
         return $this->morphTo();
     }
 
-    /**
-     * @param $query
-     * @param $slug
-     * @return mixed
-     */
-    // public function scopeFindBySlug($query, $slug)
-    // {
-    //     return $query->where('slug', $slug);
-    // }
+    public function group()
+    {
+        return $this->belongsTo(Group::class);
+    }
 
     public function scopeActive($query)
     {

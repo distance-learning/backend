@@ -123,6 +123,7 @@ class AuthController extends Controller
      * @apiSuccess {String} user.slug
      * @apiSuccess {String} user.role
      * @apiSuccess {String} user.email
+     * @apiSuccess {String} user.faculty_id
      * @apiSuccess {String} token User authenticate token
      *
      * @apiError (401) error Returned if data not correct
@@ -149,7 +150,9 @@ class AuthController extends Controller
                 'password'  => Hash::make($request->request->get('password')),
                 'birthday'  => $request->request->get('birthday'),
                 'active'  =>  1,
-                'role'   =>   'student'
+                'role'   =>   'student',
+                'structure_id'  =>  $request->request->get('faculty_id'),
+                'structure_type' => 'App\\Faculty'
             ]);
 
             try {

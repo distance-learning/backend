@@ -889,6 +889,396 @@
   },
   {
     "type": "delete",
+    "url": "/api/admin/groups/:slug",
+    "title": "Delete group by slug",
+    "sampleRequest": [
+      {
+        "url": "/api/admin/groups/:slug"
+      }
+    ],
+    "description": "<p>Delete group by slug</p> ",
+    "group": "Admin_Groups",
+    "permission": [
+      {
+        "name": "administrator, university_administrator"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "slug",
+            "description": "<p>Slug</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Returned if teachers issets</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "403": [
+          {
+            "group": "403",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if user has not access for get teachers</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Admin/GroupsController.php",
+    "groupTitle": "Admin_Groups",
+    "name": "DeleteApiAdminGroupsSlug"
+  },
+  {
+    "type": "get",
+    "url": "/api/admin/groups",
+    "title": "Get groups by page",
+    "sampleRequest": [
+      {
+        "url": "/api/admin/groups"
+      }
+    ],
+    "description": "<p>Get groups by page</p> ",
+    "group": "Admin_Groups",
+    "permission": [
+      {
+        "name": "administrator, university_administrator"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "page",
+            "description": "<p>Page</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Returned if groups issets</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "403": [
+          {
+            "group": "403",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if user has not access for get teachers</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Admin/GroupsController.php",
+    "groupTitle": "Admin_Groups",
+    "name": "GetApiAdminGroups"
+  },
+  {
+    "type": "get",
+    "url": "/api/admin/groups/:slug",
+    "title": "Get group by slug",
+    "sampleRequest": [
+      {
+        "url": "/api/admin/groups/:slug"
+      }
+    ],
+    "description": "<p>Get group by slug</p> ",
+    "group": "Admin_Groups",
+    "permission": [
+      {
+        "name": "administrator, university_administrator"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "slug",
+            "description": "<p>Slug</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Returned if group issets</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "403": [
+          {
+            "group": "403",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if user has not access for get groups</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Admin/GroupsController.php",
+    "groupTitle": "Admin_Groups",
+    "name": "GetApiAdminGroupsSlug"
+  },
+  {
+    "type": "post",
+    "url": "/api/admin/groups",
+    "title": "Create new group",
+    "sampleRequest": [
+      {
+        "url": "/api/admin/groups"
+      }
+    ],
+    "description": "<p>Create new group</p> ",
+    "group": "Admin_Groups",
+    "permission": [
+      {
+        "name": "administrator, university_administrator"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Name</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "direction_id",
+            "description": "<p>Direction id</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "year_of_entry",
+            "description": "<p>Year of entry</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Returned if group issets</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "403": [
+          {
+            "group": "403",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if user has not access for get teachers</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Admin/GroupsController.php",
+    "groupTitle": "Admin_Groups",
+    "name": "PostApiAdminGroups"
+  },
+  {
+    "type": "put",
+    "url": "/api/admin/groups/:slug",
+    "title": "Update group by slug",
+    "sampleRequest": [
+      {
+        "url": "/api/admin/groups/:slug"
+      }
+    ],
+    "description": "<p>Update group by slug</p> ",
+    "group": "Admin_Groups",
+    "permission": [
+      {
+        "name": "administrator, university_administrator"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "slug",
+            "description": "<p>Slug</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Name</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "direction_id",
+            "description": "<p>Direction id</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "year_of_entry",
+            "description": "<p>Year of entry</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Returned if teachers issets</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "403": [
+          {
+            "group": "403",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if user has not access for get teachers</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Admin/GroupsController.php",
+    "groupTitle": "Admin_Groups",
+    "name": "PutApiAdminGroupsSlug"
+  },
+  {
+    "type": "delete",
     "url": "/api/admin/teachers/:slug",
     "title": "Delete teacher",
     "sampleRequest": [
@@ -2737,6 +3127,13 @@
             "type": "<p>String</p> ",
             "optional": false,
             "field": "user.email",
+            "description": ""
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "user.faculty_id",
             "description": ""
           },
           {

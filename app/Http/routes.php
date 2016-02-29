@@ -40,6 +40,14 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
     });
 
     Route::group(['prefix' => 'admin', 'middleware' => ['jwt.auth']], function () {
+        Route::group(['prefix' => 'groups'], function () {
+            Route::get('/', 'Admin\GroupsController@getGroupsAction');
+            Route::post('/', 'Admin\GroupsController@postGroupAction');
+            Route::get('/{group}', 'Admin\GroupsController@getGroupAction');
+            Route::put('/{group}', 'Admin\GroupsController@putGroupAction');
+            Route::delete('/{group}', 'Admin\GroupsController@deleteGroupAction');
+        });
+
         Route::group(['prefix' => 'faculties'], function () {
             Route::get('/', 'Admin\FacultiesController@getFacultiesAction');
             Route::post('/', 'Admin\FacultiesController@postFacultyAction');
