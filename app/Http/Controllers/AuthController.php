@@ -240,7 +240,7 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getFucultiesAction()
+    public function getFacultiesAction()
     {
         $faculties = Faculty::get(['title', 'id']);
 
