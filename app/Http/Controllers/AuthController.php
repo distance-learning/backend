@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\ResetPasswordEvent;
+use App\Faculty;
 use App\Http\Requests\UpdateUserRequest;
 use App\User;
 use Illuminate\Http\Request;
@@ -226,6 +227,25 @@ class AuthController extends Controller
         return response()->json(null, 204);
     }
 
+
+    /**
+     * @api {post} /api/auth/faculties Get faculties
+     * @apiSampleRequest /api/users/reset-password
+     * @apiDescription Send request for reset password
+     * @apiGroup Users
+     *
+     * @apiParam {String} email User email
+     * @apiParam {String} password User password
+     * @apiParam {String} password_confirmation User password confirmation
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getFucultiesAction()
+    {
+        $faculties = Faculty::get(['title', 'id']);
+
+        return response()->json($faculties);
+    }
 
     /**
      * Get user by slug

@@ -26,6 +26,7 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
         Route::post('/reset-password', 'AuthController@postResetPassword');
         Route::post('/reset-password/{token}', 'AuthController@postResetPasswordCheck');
         Route::get('/logout', 'AuthController@logoutAction');
+        Route::get('/faculties', 'AuthController@getFacultiesAction');
     });
 
     Route::group(['prefix' => 'user'], function () {

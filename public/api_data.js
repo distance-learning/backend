@@ -2453,6 +2453,49 @@ define({ "api": [
   },
   {
     "type": "post",
+    "url": "/api/auth/faculties",
+    "title": "Get faculties",
+    "sampleRequest": [
+      {
+        "url": "/api/users/reset-password"
+      }
+    ],
+    "description": "<p>Send request for reset password</p> ",
+    "group": "Users",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "email",
+            "description": "<p>User email</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "password",
+            "description": "<p>User password</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "password_confirmation",
+            "description": "<p>User password confirmation</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/AuthController.php",
+    "groupTitle": "Users",
+    "name": "PostApiAuthFaculties"
+  },
+  {
+    "type": "post",
     "url": "/api/auth/login",
     "title": "Authenticate user",
     "sampleRequest": [
@@ -2900,7 +2943,7 @@ define({ "api": [
     "title": "Update user information",
     "sampleRequest": [
       {
-        "url": "/api/auth/update"
+        "url": "/api/user/update"
       }
     ],
     "description": "<p>Update user information</p> ",
