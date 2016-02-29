@@ -44,7 +44,8 @@ class User extends Model implements AuthenticatableContract,
         'structure_type',
         'status',
         'token',
-        'new_password'
+        'new_password',
+        'group_id',
     ];
 
     /**
@@ -74,6 +75,11 @@ class User extends Model implements AuthenticatableContract,
         'password'    =>   'required|confirmed'
     ];
 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphTo
      */
@@ -100,5 +106,10 @@ class User extends Model implements AuthenticatableContract,
     public function getFullnameAttribute()
     {
         return $this->surname . " " . $this->name;
+    }
+
+    public function isStudent()
+    {
+        return ($this->role == "student")?true:false;
     }
 }

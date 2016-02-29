@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Group;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -153,5 +154,69 @@ class GroupsController extends Controller
         $group->delete();
 
         return response()->json(null, 204);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @api {post} /api/admin/groups/:groupSlug/users/:userSlug Add student to group
+     * @apiSampleRequest /api/admin/groups/:groupSlug/users/:userSlug
+     * @apiDescription Add student to group
+     * @apiGroup Admin|Groups
+     * @apiPermission administrator, university_administrator
+     *
+     * @apiHeader {String} authorization
+     *
+     * @apiParam {String} slug Slug
+     *
+     * @apiSuccess (200) success Returned if teachers issets
+     *
+     * @apiError (403) error Returned if user has not access for get teachers
+     *
+     * @param  Group $group
+     * @return \Illuminate\Http\Response
+     */
+    public function addStudentToGroupAction(Group $group, User $user)
+    {
+        if ($user->isStudent()) {
+            $user->group_id = $group->id;
+            $user->save();
+
+            return response()->json();
+        }
+
+        return response()->json(null, 400);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @api {delete} /api/admin/groups/:groupSlug/users/:userSlug Remove student from group
+     * @apiSampleRequest /api/admin/groups/:groupSlug/users/:userSlug/delete
+     * @apiDescription Remove student from group
+     * @apiGroup Admin|Groups
+     * @apiPermission administrator, university_administrator
+     *
+     * @apiHeader {String} authorization
+     *
+     * @apiParam {String} slug Slug
+     *
+     * @apiSuccess (200) success Returned if teachers issets
+     *
+     * @apiError (403) error Returned if user has not access for get teachers
+     *
+     * @param  Group $group
+     * @return \Illuminate\Http\Response
+     */
+    public function removeStudentFromGroupAction(Group $group, User $user)
+    {
+        if ($user->isStudent()) {
+            $user->group_id = null;
+            $user->save();
+
+            return response()->json();
+        }
+
+        return response()->json(null, 400);
     }
 }

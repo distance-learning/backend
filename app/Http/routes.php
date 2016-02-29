@@ -46,6 +46,9 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
             Route::get('/{group}', 'Admin\GroupsController@getGroupAction');
             Route::put('/{group}', 'Admin\GroupsController@putGroupAction');
             Route::delete('/{group}', 'Admin\GroupsController@deleteGroupAction');
+
+            Route::post('/{group}/users/{user}', 'Admin\GroupsController@addStudentToGroupAction');
+            Route::delete('/{group}/users/{user}', 'Admin\GroupsController@removeStudentFromGroupAction');
         });
 
         Route::group(['prefix' => 'faculties'], function () {
