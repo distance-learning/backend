@@ -230,7 +230,7 @@ class AuthController extends Controller
 
     /**
      * @api {get} /api/auth/faculties Get faculties
-     * @apiSampleRequest /api/users/reset-password
+     * @apiSampleRequest /api/auth/faculties
      * @apiDescription Send request for reset password
      * @apiGroup Users
      *

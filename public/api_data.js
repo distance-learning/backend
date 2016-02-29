@@ -2014,7 +2014,7 @@ define({ "api": [
     "title": "Get faculties",
     "sampleRequest": [
       {
-        "url": "/api/users/reset-password"
+        "url": "/api/auth/faculties"
       }
     ],
     "description": "<p>Send request for reset password</p> ",
