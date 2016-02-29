@@ -82,6 +82,11 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
             Route::put('/{slug}', 'Admin\UsersController@putAction');
             Route::delete('/{slug}', 'Admin\UsersController@deleteAction');
         });
+
+        Route::group(['prefix' => 'students'], function () {
+            Route::get('/', 'Admin\StudentsController@getStudentsAction');
+            Route::get('/search', 'Admin\StudentsController@findStudentsAction');
+        });
     });
 });
 

@@ -1420,6 +1420,148 @@ define({ "api": [
     "name": "PutApiAdminGroupsSlug"
   },
   {
+    "type": "get",
+    "url": "/api/admin/students",
+    "title": "Get students by page",
+    "sampleRequest": [
+      {
+        "url": "/api/admin/students"
+      }
+    ],
+    "description": "<p>Get students by page</p> ",
+    "group": "Admin_Students",
+    "permission": [
+      {
+        "name": "administrator, university_administrator"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "page",
+            "description": "<p>Page</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Returned if teachers issets</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "403": [
+          {
+            "group": "403",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if user has not access for get teachers</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Admin/StudentsController.php",
+    "groupTitle": "Admin_Students",
+    "name": "GetApiAdminStudents"
+  },
+  {
+    "type": "get",
+    "url": "/api/admin/students/search",
+    "title": "Search students",
+    "sampleRequest": [
+      {
+        "url": "/api/admin/students/search"
+      }
+    ],
+    "description": "<p>Search students</p> ",
+    "group": "Admin_Students",
+    "permission": [
+      {
+        "name": "administrator, university_administrator"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "param",
+            "description": "<p>Search params</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Returned if teachers issets</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "403": [
+          {
+            "group": "403",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if user has not access for get teachers</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Admin/StudentsController.php",
+    "groupTitle": "Admin_Students",
+    "name": "GetApiAdminStudentsSearch"
+  },
+  {
     "type": "delete",
     "url": "/api/admin/teachers/:slug",
     "title": "Delete teacher",
