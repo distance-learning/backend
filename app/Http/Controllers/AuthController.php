@@ -238,7 +238,7 @@ class AuthController extends Controller
      */
     public function getFacultiesAction()
     {
-        $faculties = Faculty::get(['title', 'id']);
+        $faculties = Faculty::get(['name', 'id']);
 
         return response()->json($faculties);
     }
