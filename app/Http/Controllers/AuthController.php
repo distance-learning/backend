@@ -229,14 +229,10 @@ class AuthController extends Controller
 
 
     /**
-     * @api {post} /api/auth/faculties Get faculties
+     * @api {get} /api/auth/faculties Get faculties
      * @apiSampleRequest /api/users/reset-password
      * @apiDescription Send request for reset password
      * @apiGroup Users
-     *
-     * @apiParam {String} email User email
-     * @apiParam {String} password User password
-     * @apiParam {String} password_confirmation User password confirmation
      *
      * @return \Illuminate\Http\JsonResponse
      */

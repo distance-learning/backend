@@ -2010,6 +2010,22 @@ define({ "api": [
   },
   {
     "type": "get",
+    "url": "/api/auth/faculties",
+    "title": "Get faculties",
+    "sampleRequest": [
+      {
+        "url": "/api/users/reset-password"
+      }
+    ],
+    "description": "<p>Send request for reset password</p> ",
+    "group": "Users",
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/AuthController.php",
+    "groupTitle": "Users",
+    "name": "GetApiAuthFaculties"
+  },
+  {
+    "type": "get",
     "url": "/api/auth/logout",
     "title": "Logout user",
     "sampleRequest": [
@@ -2450,49 +2466,6 @@ define({ "api": [
     "filename": "app/Http/Controllers/UsersController.php",
     "groupTitle": "Users",
     "name": "GetApiUsersSlug"
-  },
-  {
-    "type": "post",
-    "url": "/api/auth/faculties",
-    "title": "Get faculties",
-    "sampleRequest": [
-      {
-        "url": "/api/users/reset-password"
-      }
-    ],
-    "description": "<p>Send request for reset password</p> ",
-    "group": "Users",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "<p>String</p> ",
-            "optional": false,
-            "field": "email",
-            "description": "<p>User email</p> "
-          },
-          {
-            "group": "Parameter",
-            "type": "<p>String</p> ",
-            "optional": false,
-            "field": "password",
-            "description": "<p>User password</p> "
-          },
-          {
-            "group": "Parameter",
-            "type": "<p>String</p> ",
-            "optional": false,
-            "field": "password_confirmation",
-            "description": "<p>User password confirmation</p> "
-          }
-        ]
-      }
-    },
-    "version": "0.0.0",
-    "filename": "app/Http/Controllers/AuthController.php",
-    "groupTitle": "Users",
-    "name": "PostApiAuthFaculties"
   },
   {
     "type": "post",
