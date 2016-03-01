@@ -87,6 +87,14 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
             Route::get('/', 'Admin\StudentsController@getStudentsAction');
             Route::get('/search', 'Admin\StudentsController@findStudentsAction');
         });
+
+        Route::group(['prefix' => 'courses'], function () {
+            Route::get('/', 'Admin\CoursesController@getCoursesAction');
+            Route::get('/{course}', 'Admin\CoursesController@getCourseAction');
+            Route::post('/', 'Admin\CoursesController@postCourseAction');
+            Route::put('/{course}', 'Admin\CoursesController@putCourseAction');
+            Route::delete('/{course}', 'Admin\CoursesController@deleteCourseAction');
+        });
     });
 });
 

@@ -6,6 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Course extends Model
 {
+    public $fillable = [
+        'subject_id',
+        'teacher_id',
+        'group_id',
+        'slug',
+    ];
+
     public $timestamps = false;
 
     public function group()
