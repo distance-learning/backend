@@ -93,6 +93,11 @@ class User extends Model implements AuthenticatableContract,
         return $this->belongsTo(Group::class);
     }
 
+    public function courses()
+    {
+        return $this->hasMany(Course::class);
+    }
+
     public function scopeActive($query)
     {
         return $query->where('status', true);
@@ -111,5 +116,10 @@ class User extends Model implements AuthenticatableContract,
     public function isStudent()
     {
         return ($this->role == "student")?true:false;
+    }
+
+    public function isTeacher()
+    {
+        return ($this->role == "teacher")?true:false;
     }
 }
