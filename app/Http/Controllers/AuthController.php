@@ -201,7 +201,7 @@ class AuthController extends Controller
      */
     public function getUserInfoAction(Request $request)
     {
-        $user = $request->user();
+        $user = $request->user()->with('group.courses')->first();
 
         return response()->json($user);
     }

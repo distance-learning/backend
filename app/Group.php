@@ -37,4 +37,9 @@ class Group extends Model implements SluggableInterface
     {
         return $this->belongsTo(Direction::class);
     }
+
+    public function courses()
+    {
+        return $this->hasMany(Course::class);
+    }
 }
