@@ -95,7 +95,7 @@ class User extends Model implements AuthenticatableContract,
 
     public function courses()
     {
-        return $this->hasMany(Course::class);
+        return $this->hasMany(Course::class, 'teacher_id');
     }
 
     public function scopeActive($query)
