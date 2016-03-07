@@ -75,7 +75,6 @@ class GroupsController extends Controller
      *
      * @apiParam {String} name Name
      * @apiParam {String} direction_id Direction id
-     * @apiParam {String} year_of_entry Year of entry
      *
      * @apiSuccess (200) success Returned if group issets
      *
@@ -89,7 +88,6 @@ class GroupsController extends Controller
         $group = Group::create([
             'name' => $request->get('name'),
             'direction_id' => $request->get('direction_id'),
-            'year_of_entry' => $request->get('year_of_entry'),
         ]);
 
         return response()->json($group);
@@ -109,7 +107,6 @@ class GroupsController extends Controller
      * @apiParam {String} slug Slug
      * @apiParam {String} name Name
      * @apiParam {String} direction_id Direction id
-     * @apiParam {String} year_of_entry Year of entry
      *
      * @apiSuccess (200) success Returned if teachers issets
      *
@@ -123,7 +120,6 @@ class GroupsController extends Controller
         $group->update([
             'name' => $request->get('name'),
             'direction_id' => $request->get('direction_id'),
-            'year_of_entry' => $request->get('year_of_entry'),
         ]);
 
         return response()->json($group);
@@ -159,9 +155,9 @@ class GroupsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @api {post} /api/admin/groups/:groupSlug/users/:userSlug Add student to group
-     * @apiSampleRequest /api/admin/groups/:groupSlug/users/:userSlug
-     * @apiDescription Add student to group
+     * @api {post} /api/admin/groups/:slug/students Add students to group
+     * @apiSampleRequest /api/admin/groups/:slug/students
+     * @apiDescription Add students to group
      * @apiGroup Admin|Groups
      * @apiPermission administrator, university_administrator
      *
@@ -189,9 +185,9 @@ class GroupsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @api {delete} /api/admin/groups/:groupSlug/users/:userSlug Remove student from group
-     * @apiSampleRequest /api/admin/groups/:groupSlug/users/:userSlug/delete
-     * @apiDescription Remove student from group
+     * @api {delete} /api/admin/groups/:slug/students Remove students from group
+     * @apiSampleRequest /api/admin/groups/:slug/students
+     * @apiDescription Remove students from group
      * @apiGroup Admin|Groups
      * @apiPermission administrator, university_administrator
      *

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Cviebrock\EloquentSluggable\SluggableInterface;
 use Cviebrock\EloquentSluggable\SluggableTrait;
 use Illuminate\Database\Eloquent\Model;
@@ -41,5 +42,10 @@ class Group extends Model implements SluggableInterface
     public function courses()
     {
         return $this->hasMany(Course::class);
+    }
+
+    public function setYearOfEntryAttribute()
+    {
+        $this->attributes['year_of_entry'] = Carbon::now()->format('Y');
     }
 }
