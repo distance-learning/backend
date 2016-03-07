@@ -167,8 +167,6 @@ class GroupsController extends Controller
      *
      * @apiHeader {String} authorization
      *
-     * @apiParam {String} slug Slug
-     *
      * @apiSuccess (200) success Returned if teachers issets
      *
      * @apiError (403) error Returned if user has not access for get teachers
@@ -176,16 +174,16 @@ class GroupsController extends Controller
      * @param  Group $group
      * @return \Illuminate\Http\Response
      */
-    public function addStudentToGroupAction(Group $group, User $user)
+    public function addStudentsToGroupAction(Request $request, Group $group)
     {
-        if ($user->isStudent()) {
-            $user->group_id = $group->id;
-            $user->save();
-
-            return response()->json();
+        foreach ($request->get('students') as $student) {
+            if ($student->isStudent()) {
+                $student->group_id = $group->id;
+                $student->save();
+            }
         }
 
-        return response()->json(null, 400);
+        return response()->json(null, 200);
     }
 
     /**
@@ -208,15 +206,15 @@ class GroupsController extends Controller
      * @param  Group $group
      * @return \Illuminate\Http\Response
      */
-    public function removeStudentFromGroupAction(Group $group, User $user)
+    public function removeStudentsFromGroupAction(Request $request, Group $group)
     {
-        if ($user->isStudent()) {
-            $user->group_id = null;
-            $user->save();
-
-            return response()->json();
+        foreach ($request->get('students') as $student) {
+            if ($student->isStudent()) {
+                $student->group_id = null;
+                $student->save();
+            }
         }
 
-        return response()->json(null, 400);
+        return response()->json(null, 200);
     }
 }
