@@ -143,15 +143,15 @@ class AuthController extends Controller
 
         try {
             $user = User::create([
-                'name'  => $request->request->get('name'),
-                'surname' => $request->request->get('surname'),
-                'phone' => $request->request->get('phone'),
-                'email' => $request->request->get('email'),
-                'password'  => Hash::make($request->request->get('password')),
-                'birthday'  => $request->request->get('birthday'),
+                'name'  => $request->get('name'),
+                'surname' => $request->get('surname'),
+                'phone' => $request->get('phone'),
+                'email' => $request->get('email'),
+                'password'  => Hash::make($request->get('password')),
+                'birthday'  => $request->get('birthday'),
                 'active'  =>  1,
                 'role'   =>   'student',
-                'structure_id'  =>  $request->request->get('faculty_id'),
+                'structure_id'  =>  $request->get('faculty_id'),
                 'structure_type' => 'App\\Faculty'
             ]);
 
@@ -247,7 +247,7 @@ class AuthController extends Controller
      */
     public function getFacultiesAction()
     {
-        $faculties = Faculty::get(['name', 'id']);
+        $faculties = Faculty::with('directions')->get(['name', 'id']);
 
         return response()->json($faculties);
     }
