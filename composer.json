@@ -32,7 +32,8 @@
     },
     "scripts": {
         "post-install-cmd": [
-           "php artisan optimize",
+            "php artisan clear-compiled",
+            "php artisan optimize",
             "cp .env.example_dev .env",
             "php artisan key:generate"
         ],

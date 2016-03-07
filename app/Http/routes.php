@@ -18,7 +18,7 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
         Route::get('/{slug}', 'TeachersController@getTeacherBySlugAction');
     });
 
-    Route::get(['prefix' => 'account'], function () {
+    Route::group(['prefix' => 'account'], function () {
         Route::get('/', 'AccountController@getUserInfoAction');
         Route::get('/logout', 'AccountController@logoutAction');
         Route::put('/update', 'AccountController@updateUserInformationAction');
