@@ -62,6 +62,10 @@ class UsersController extends Controller
     {
         $student = User::findBySlugOrFail($slug);
 
+        if ($student->isStudent()) {
+            $student = $student->with('group')->where('slug', $slug)->first();
+        }
+
         return response()->json($student);
     }
 
@@ -96,14 +100,15 @@ class UsersController extends Controller
     {
         try {
             $student = User::create([
-                'name'  =>  $request->request->get('name'),
-                'surname'  =>  $request->request->get('surname'),
-                'birthday'  =>  $request->request->get('birthday'),
-                'phone'  =>  $request->request->get('phone'),
-                'role'  =>  $request->request->get('role'),
-                'email' =>  $request->request->get('email'),
-                'description' =>  $request->request->get('description'),
-                'password'  =>  bcrypt($request->request->get('password')),
+                'name'  =>  $request->get('name'),
+                'surname'  =>  $request->get('surname'),
+                'birthday'  =>  $request->get('birthday'),
+                'phone'  =>  $request->get('phone'),
+                'role'  =>  $request->get('role'),
+                'email' =>  $request->get('email'),
+                'description' =>  $request->get('description'),
+                'password'  =>  bcrypt($request->get('password')),
+                'group_id' => $request->get('group_id'),
                 'status'  =>  1
             ]);
 
@@ -152,25 +157,27 @@ class UsersController extends Controller
         try {
             if ($request->request->has('password') && !empty($request->request->get('password'))) {
                 $user->update([
-                    'name'  =>  $request->request->get('name'),
-                    'surname'  =>  $request->request->get('surname'),
-                    'birthday'  =>  new \DateTime($request->request->get('birthday')),
-                    'phone'  =>  $request->request->get('phone'),
-                    'role'  =>  $request->request->get('role'),
-                    'email' =>  $request->request->get('email'),
-                    'description' =>  $request->request->get('description'),
-                    'password'  =>  bcrypt(trim($request->request->get('password'))),
+                    'name'  =>  $request->get('name'),
+                    'surname'  =>  $request->get('surname'),
+                    'birthday'  =>  new \DateTime($request->get('birthday')),
+                    'phone'  =>  $request->get('phone'),
+                    'role'  =>  $request->get('role'),
+                    'email' =>  $request->get('email'),
+                    'description' =>  $request->get('description'),
+                    'password'  =>  bcrypt(trim($request->get('password'))),
+                    'group_id' => $request->get('group_id'),
                     'status'  =>  1
                 ]);
             } else {
                 $user->update([
-                    'name'  =>  $request->request->get('name'),
-                    'surname'  =>  $request->request->get('surname'),
-                    'birthday'  =>  new \DateTime($request->request->get('birthday')),
-                    'phone'  =>  $request->request->get('phone'),
-                    'role'  =>  $request->request->get('role'),
-                    'email' =>  $request->request->get('email'),
-                    'description' =>  $request->request->get('description'),
+                    'name'  =>  $request->get('name'),
+                    'surname'  =>  $request->get('surname'),
+                    'birthday'  =>  new \DateTime($request->get('birthday')),
+                    'phone'  =>  $request->get('phone'),
+                    'role'  =>  $request->get('role'),
+                    'email' =>  $request->get('email'),
+                    'description' =>  $request->get('description'),
+                    'group_id' => $request->get('group_id'),
                     'status'  =>  1
                 ]);
             }

@@ -6,7 +6,6 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
 //        Route::post('');
 //    });
 
-
     Route::group(['prefix' => 'faculties'], function () {
         Route::get('/', 'FacultiesController@getPaginatedFacultiesAction');
         Route::get('/random', 'FacultiesController@getRandomFacultiesAction');
@@ -19,19 +18,19 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
         Route::get('/{slug}', 'TeachersController@getTeacherBySlugAction');
     });
 
+    Route::get(['prefix' => 'account'], function () {
+        Route::get('/', 'AccountController@getUserInfoAction');
+        Route::get('/logout', 'AccountController@logoutAction');
+        Route::put('/update', 'AccountController@updateUserInformationAction');
+        Route::put('/reset-password', 'AccountController@updateUserPasswordAction');
+    });
+
     Route::group(['prefix' => 'auth'], function () {
         Route::post('/login', 'AuthController@loginAction');
         Route::post('/registration', 'AuthController@registrationAction');
-        Route::get('/user', 'AuthController@getUserInfoAction');
         Route::post('/reset-password', 'AuthController@postResetPassword');
         Route::post('/reset-password/{token}', 'AuthController@postResetPasswordCheck');
-        Route::get('/logout', 'AuthController@logoutAction');
         Route::get('/faculties', 'AuthController@getFacultiesAction');
-    });
-
-    Route::group(['prefix' => 'user'], function () {
-        Route::put('/update', 'AuthController@updateUserInformationAction');
-        Route::put('/reset-password', 'AuthController@updateUserPasswordAction');
     });
 
     Route::group(['prefix' => 'users', 'middleware' =>  ['jwt.auth']], function () {
@@ -47,8 +46,8 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
             Route::put('/{group}', 'Admin\GroupsController@putGroupAction');
             Route::delete('/{group}', 'Admin\GroupsController@deleteGroupAction');
 
-            Route::post('/{group}/users/{user}', 'Admin\GroupsController@addStudentToGroupAction');
-            Route::delete('/{group}/users/{user}', 'Admin\GroupsController@removeStudentFromGroupAction');
+            Route::post('/{group}/students', 'Admin\GroupsController@addStudentsToGroupAction');
+            Route::delete('/{group}/students', 'Admin\GroupsController@removeStudentsFromGroupAction');
         });
 
         Route::group(['prefix' => 'faculties'], function () {
