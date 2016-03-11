@@ -49,6 +49,7 @@ class Faculty extends Model implements SluggableInterface
     ];
 
     /**
+     * @deprecated
      * @return \Illuminate\Database\Eloquent\Relations\MorphTo
      */
     public function faculty_administrator()
@@ -57,25 +58,11 @@ class Faculty extends Model implements SluggableInterface
     }
 
     /**
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
      */
-    public function students()
+    public function users()
     {
-        return $this->morphMany(User::class, 'structure')
-            ->where('role', 'student')
-            ->get()
-        ;
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
-     */
-    public function teachers()
-    {
-        return $this->morphMany(User::class, 'structure')
-            ->where('role', 'teacher')
-            ->get()
-        ;
+        return $this->morphMany(User::class, 'structure');
     }
 
     /**

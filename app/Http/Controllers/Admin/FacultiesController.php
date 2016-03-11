@@ -127,9 +127,20 @@ class FacultiesController extends Controller
     public function getFacultyAction($slug)
     {
         $faculty = Faculty::with('directions')
-            ->with('students')
-            ->with('teachers')
             ->findBySlug($slug)
+        ;
+
+        //TODO i wan't cry :C
+        $faculty['students'] = $faculty
+            ->users
+            ->where('role', 'student')
+            ->all()
+        ;
+
+        $faculty['teachers'] = $faculty
+            ->users
+            ->where('role', 'teacher')
+            ->all()
         ;
 
         if (!$faculty) {
