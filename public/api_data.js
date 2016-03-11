@@ -851,6 +851,19 @@ define({ "api": [
     ],
     "description": "<p>Get some faculties</p> ",
     "group": "Admin_Faculties",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": ""
+          }
+        ]
+      }
+    },
     "parameter": {
       "fields": {
         "Parameter": [
@@ -977,6 +990,19 @@ define({ "api": [
     ],
     "description": "<p>Get faculty by slug</p> ",
     "group": "Admin_Faculties",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": ""
+          }
+        ]
+      }
+    },
     "parameter": {
       "fields": {
         "Parameter": [
@@ -1063,7 +1089,7 @@ define({ "api": [
             "group": "Header",
             "type": "String",
             "optional": false,
-            "field": "Authorization",
+            "field": "authorization",
             "description": ""
           }
         ]
@@ -1273,77 +1299,6 @@ define({ "api": [
   },
   {
     "type": "delete",
-    "url": "/api/admin/groups/:groupSlug/users/:userSlug",
-    "title": "Remove student from group",
-    "sampleRequest": [
-      {
-        "url": "/api/admin/groups/:groupSlug/users/:userSlug/delete"
-      }
-    ],
-    "description": "<p>Remove student from group</p> ",
-    "group": "Admin_Groups",
-    "permission": [
-      {
-        "name": "administrator, university_administrator"
-      }
-    ],
-    "header": {
-      "fields": {
-        "Header": [
-          {
-            "group": "Header",
-            "type": "String",
-            "optional": false,
-            "field": "authorization",
-            "description": ""
-          }
-        ]
-      }
-    },
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "<p>String</p> ",
-            "optional": false,
-            "field": "slug",
-            "description": "<p>Slug</p> "
-          }
-        ]
-      }
-    },
-    "success": {
-      "fields": {
-        "200": [
-          {
-            "group": "200",
-            "optional": false,
-            "field": "success",
-            "description": "<p>Returned if teachers issets</p> "
-          }
-        ]
-      }
-    },
-    "error": {
-      "fields": {
-        "403": [
-          {
-            "group": "403",
-            "optional": false,
-            "field": "error",
-            "description": "<p>Returned if user has not access for get teachers</p> "
-          }
-        ]
-      }
-    },
-    "version": "0.0.0",
-    "filename": "app/Http/Controllers/Admin/GroupsController.php",
-    "groupTitle": "Admin_Groups",
-    "name": "DeleteApiAdminGroupsGroupslugUsersUserslug"
-  },
-  {
-    "type": "delete",
     "url": "/api/admin/groups/:slug",
     "title": "Delete group by slug",
     "sampleRequest": [
@@ -1412,6 +1367,77 @@ define({ "api": [
     "filename": "app/Http/Controllers/Admin/GroupsController.php",
     "groupTitle": "Admin_Groups",
     "name": "DeleteApiAdminGroupsSlug"
+  },
+  {
+    "type": "delete",
+    "url": "/api/admin/groups/:slug/students",
+    "title": "Remove students from group",
+    "sampleRequest": [
+      {
+        "url": "/api/admin/groups/:slug/students"
+      }
+    ],
+    "description": "<p>Remove students from group</p> ",
+    "group": "Admin_Groups",
+    "permission": [
+      {
+        "name": "administrator, university_administrator"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "slug",
+            "description": "<p>Slug</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Returned if teachers issets</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "403": [
+          {
+            "group": "403",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if user has not access for get teachers</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Admin/GroupsController.php",
+    "groupTitle": "Admin_Groups",
+    "name": "DeleteApiAdminGroupsSlugStudents"
   },
   {
     "type": "get",
@@ -1600,13 +1626,6 @@ define({ "api": [
             "optional": false,
             "field": "direction_id",
             "description": "<p>Direction id</p> "
-          },
-          {
-            "group": "Parameter",
-            "type": "<p>String</p> ",
-            "optional": false,
-            "field": "year_of_entry",
-            "description": "<p>Year of entry</p> "
           }
         ]
       }
@@ -1642,14 +1661,14 @@ define({ "api": [
   },
   {
     "type": "post",
-    "url": "/api/admin/groups/:groupSlug/users/:userSlug",
-    "title": "Add student to group",
+    "url": "/api/admin/groups/:slug/students",
+    "title": "Add students to group",
     "sampleRequest": [
       {
-        "url": "/api/admin/groups/:groupSlug/users/:userSlug"
+        "url": "/api/admin/groups/:slug/students"
       }
     ],
-    "description": "<p>Add student to group</p> ",
+    "description": "<p>Add students to group</p> ",
     "group": "Admin_Groups",
     "permission": [
       {
@@ -1665,19 +1684,6 @@ define({ "api": [
             "optional": false,
             "field": "authorization",
             "description": ""
-          }
-        ]
-      }
-    },
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "<p>String</p> ",
-            "optional": false,
-            "field": "slug",
-            "description": "<p>Slug</p> "
           }
         ]
       }
@@ -1709,7 +1715,7 @@ define({ "api": [
     "version": "0.0.0",
     "filename": "app/Http/Controllers/Admin/GroupsController.php",
     "groupTitle": "Admin_Groups",
-    "name": "PostApiAdminGroupsGroupslugUsersUserslug"
+    "name": "PostApiAdminGroupsSlugStudents"
   },
   {
     "type": "put",
@@ -1763,13 +1769,6 @@ define({ "api": [
             "optional": false,
             "field": "direction_id",
             "description": "<p>Direction id</p> "
-          },
-          {
-            "group": "Parameter",
-            "type": "<p>String</p> ",
-            "optional": false,
-            "field": "year_of_entry",
-            "description": "<p>Year of entry</p> "
           }
         ]
       }
@@ -3135,7 +3134,7 @@ define({ "api": [
       }
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/AuthController.php",
+    "filename": "app/Http/Controllers/AccountController.php",
     "groupTitle": "Users",
     "name": "GetApiAuthLogout"
   },
@@ -3192,7 +3191,7 @@ define({ "api": [
       }
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/AuthController.php",
+    "filename": "app/Http/Controllers/AccountController.php",
     "groupTitle": "Users",
     "name": "GetApiAuthUser"
   },
@@ -3971,7 +3970,7 @@ define({ "api": [
       }
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/AuthController.php",
+    "filename": "app/Http/Controllers/AccountController.php",
     "groupTitle": "Users",
     "name": "PutApiUserResetPassword"
   },
@@ -4041,7 +4040,7 @@ define({ "api": [
       }
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/AuthController.php",
+    "filename": "app/Http/Controllers/AccountController.php",
     "groupTitle": "Users",
     "name": "PutApiUserUpdate"
   }

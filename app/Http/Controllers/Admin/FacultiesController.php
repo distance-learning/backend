@@ -28,6 +28,8 @@ class FacultiesController extends Controller
      * @apiDescription Get some faculties
      * @apiGroup Admin|Faculties
      *
+     * @apiHeader {String} authorization
+     *
      * @apiParam {Number} count Count faculties by page
      * @apiParam {Number} page Faculty page
      *
@@ -62,7 +64,7 @@ class FacultiesController extends Controller
      * @apiGroup Admin|Faculties
      * @apiPermission administrator, university_administrator
      *
-     * @apiHeader {String} Authorization
+     * @apiHeader {String} authorization
      *
      * @apiParam {String} name Faculty name
      * @apiParam {String} description Faculty description
@@ -107,6 +109,8 @@ class FacultiesController extends Controller
      * @apiSampleRequest /api/admin/faculties/:slug
      * @apiDescription Get faculty by slug
      * @apiGroup Admin|Faculties
+     *
+     * @apiHeader {String} authorization
      *
      * @apiParam {String} slug Faculty unique name
      *

@@ -142,7 +142,6 @@ class CoursesController extends Controller
      *
      * @apiHeader {String} authorization
      *
-     *
      * @apiSuccess (200) success Returned if directions issets
      *
      * @apiError (403) error Returned if user has not access for get directions
