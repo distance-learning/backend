@@ -126,7 +126,7 @@ class FacultiesController extends Controller
      */
     public function getFacultyAction($slug)
     {
-        $faculty = Faculty::findBySlug($slug);
+        $faculty = Faculty::with('directions')->findBySlug($slug);
 
         if (!$faculty) {
             return response()->json(null, 400);
