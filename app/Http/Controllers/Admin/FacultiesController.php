@@ -96,7 +96,7 @@ class FacultiesController extends Controller
         }
 
         //TODO Make upload faculty avatar
-        $faculty = new Faculty([
+        $faculty = Faculty::create([
             'name' => $request->request->get('name'),
             'description' => $request->request->get('description')
         ]);
