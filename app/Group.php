@@ -11,11 +11,17 @@ class Group extends Model implements SluggableInterface
 {
     use SluggableTrait;
 
+    /**
+     * @var array
+     */
     protected $sluggable = [
         'build_from' => 'name',
         'save_to'    => 'slug',
     ];
 
+    /**
+     * @var array
+     */
     public $fillable = [
         'name',
         'direction_id',
