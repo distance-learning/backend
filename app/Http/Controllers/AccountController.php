@@ -36,9 +36,20 @@ class AccountController extends Controller
         $user = $request->user();
 
         if ($user->isStudent()) {
-            $user = $request->user()->with('group.courses')->where('slug', $user->slug)->first();
+            $user = $request
+                ->user()
+                ->with('group.courses')
+                ->where('slug', $user->slug)
+                ->first()
+            ;
         } elseif ($user->isTeacher()) {
-            $user = $request->user()->with('courses')->where('slug', $user->slug)->first();
+            $user = $request
+                ->user()
+                ->with('courses.group')
+                ->with('courses.subject')
+                ->where('slug', $user->slug)
+                ->first()
+            ;
         }
 
         return response()->json($user);
