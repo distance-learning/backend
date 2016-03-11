@@ -61,7 +61,21 @@ class Faculty extends Model implements SluggableInterface
      */
     public function students()
     {
-        return $this->morphMany(User::class, 'structure');
+        return $this->morphMany(User::class, 'structure')
+            ->where('role', 'student')
+            ->get()
+        ;
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function teachers()
+    {
+        return $this->morphMany(User::class, 'structure')
+            ->where('role', 'teacher')
+            ->get()
+        ;
     }
 
     /**
@@ -101,13 +115,5 @@ class Faculty extends Model implements SluggableInterface
         $skip = $totalRows > 0 ? mt_rand(0, $totalRows) : 0;
 
         return  $query->skip($skip)->take($count);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
-     */
-    public function teachers()
-    {
-        return $this->morphMany(\App\User::class, 'structure');
     }
 }
