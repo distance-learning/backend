@@ -3067,84 +3067,11 @@
   },
   {
     "type": "get",
-    "url": "/api/auth/faculties",
-    "title": "Get faculties",
-    "sampleRequest": [
-      {
-        "url": "/api/auth/faculties"
-      }
-    ],
-    "description": "<p>Send request for reset password</p> ",
-    "group": "Users",
-    "version": "0.0.0",
-    "filename": "app/Http/Controllers/AuthController.php",
-    "groupTitle": "Users",
-    "name": "GetApiAuthFaculties"
-  },
-  {
-    "type": "get",
-    "url": "/api/auth/logout",
-    "title": "Logout user",
-    "sampleRequest": [
-      {
-        "url": "/api/auth/logout"
-      }
-    ],
-    "description": "<p>Logout user</p> ",
-    "group": "Users",
-    "header": {
-      "fields": {
-        "Header": [
-          {
-            "group": "Header",
-            "type": "String",
-            "optional": false,
-            "field": "authorization",
-            "description": ""
-          }
-        ]
-      }
-    },
-    "error": {
-      "fields": {
-        "201": [
-          {
-            "group": "201",
-            "optional": false,
-            "field": "success",
-            "description": "<p>Returned if user successful create</p> "
-          }
-        ],
-        "401": [
-          {
-            "group": "401",
-            "optional": false,
-            "field": "error",
-            "description": "<p>Returned if data not correct</p> "
-          }
-        ],
-        "500": [
-          {
-            "group": "500",
-            "optional": false,
-            "field": "error",
-            "description": "<p>Returned if error on serve</p> "
-          }
-        ]
-      }
-    },
-    "version": "0.0.0",
-    "filename": "app/Http/Controllers/AccountController.php",
-    "groupTitle": "Users",
-    "name": "GetApiAuthLogout"
-  },
-  {
-    "type": "get",
-    "url": "/api/auth/user",
+    "url": "/api/account",
     "title": "Get user info",
     "sampleRequest": [
       {
-        "url": "/api/auth/user"
+        "url": "/api/account"
       }
     ],
     "description": "<p>Get user info</p> ",
@@ -3193,7 +3120,80 @@
     "version": "0.0.0",
     "filename": "app/Http/Controllers/AccountController.php",
     "groupTitle": "Users",
-    "name": "GetApiAuthUser"
+    "name": "GetApiAccount"
+  },
+  {
+    "type": "get",
+    "url": "/api/account/logout",
+    "title": "Logout user",
+    "sampleRequest": [
+      {
+        "url": "/api/account/logout"
+      }
+    ],
+    "description": "<p>Logout user</p> ",
+    "group": "Users",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "201": [
+          {
+            "group": "201",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Returned if user successful create</p> "
+          }
+        ],
+        "401": [
+          {
+            "group": "401",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if data not correct</p> "
+          }
+        ],
+        "500": [
+          {
+            "group": "500",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if error on serve</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/AccountController.php",
+    "groupTitle": "Users",
+    "name": "GetApiAccountLogout"
+  },
+  {
+    "type": "get",
+    "url": "/api/auth/faculties",
+    "title": "Get faculties",
+    "sampleRequest": [
+      {
+        "url": "/api/auth/faculties"
+      }
+    ],
+    "description": "<p>Send request for reset password</p> ",
+    "group": "Users",
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/AuthController.php",
+    "groupTitle": "Users",
+    "name": "GetApiAuthFaculties"
   },
   {
     "type": "get",
@@ -3920,11 +3920,11 @@
   },
   {
     "type": "put",
-    "url": "/api/user/reset-password",
+    "url": "/api/account/reset-password",
     "title": "Update user password",
     "sampleRequest": [
       {
-        "url": "/api/auth/update-password"
+        "url": "/api/account/update-password"
       }
     ],
     "description": "<p>Update user password</p> ",
@@ -3972,15 +3972,15 @@
     "version": "0.0.0",
     "filename": "app/Http/Controllers/AccountController.php",
     "groupTitle": "Users",
-    "name": "PutApiUserResetPassword"
+    "name": "PutApiAccountResetPassword"
   },
   {
     "type": "put",
-    "url": "/api/user/update",
+    "url": "/api/account/update",
     "title": "Update user information",
     "sampleRequest": [
       {
-        "url": "/api/user/update"
+        "url": "/api/account/update"
       }
     ],
     "description": "<p>Update user information</p> ",
@@ -4042,6 +4042,6 @@
     "version": "0.0.0",
     "filename": "app/Http/Controllers/AccountController.php",
     "groupTitle": "Users",
-    "name": "PutApiUserUpdate"
+    "name": "PutApiAccountUpdate"
   }
 ]

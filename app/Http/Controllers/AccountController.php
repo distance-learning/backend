@@ -17,8 +17,8 @@ class AccountController extends Controller
     /**
      * Method that authenticate user
      *
-     * @api {get} /api/auth/user Get user info
-     * @apiSampleRequest /api/auth/user
+     * @api {get} /api/account Get user info
+     * @apiSampleRequest /api/account
      * @apiDescription Get user info
      * @apiGroup Users
      *
@@ -58,8 +58,8 @@ class AccountController extends Controller
     /**
      * Method that authenticate user
      *
-     * @api {get} /api/auth/logout Logout user
-     * @apiSampleRequest /api/auth/logout
+     * @api {get} /api/account/logout Logout user
+     * @apiSampleRequest /api/account/logout
      * @apiDescription Logout user
      * @apiGroup Users
      *
@@ -82,8 +82,8 @@ class AccountController extends Controller
     /**
      * Get user by slug
      *
-     * @api {put} /api/user/update Update user information
-     * @apiSampleRequest /api/user/update
+     * @api {put} /api/account/update Update user information
+     * @apiSampleRequest /api/account/update
      * @apiDescription Update user information
      * @apiGroup Users
      *
@@ -111,8 +111,8 @@ class AccountController extends Controller
     /**
      * Get user by slug
      *
-     * @api {put} /api/user/reset-password Update user password
-     * @apiSampleRequest /api/auth/update-password
+     * @api {put} /api/account/reset-password Update user password
+     * @apiSampleRequest /api/account/update-password
      * @apiDescription Update user password
      * @apiGroup Users
      *

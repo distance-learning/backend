@@ -38,7 +38,7 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
         Route::get('/{slug}', 'UsersController@getUserAction');
     });
 
-    Route::group(['prefix' => 'admin', 'middleware' => ['jwt.auth']], function () {
+    Route::group(['prefix' => 'admin'], function () {
         Route::group(['prefix' => 'groups'], function () {
             Route::get('/', 'Admin\GroupsController@getGroupsAction');
             Route::post('/', 'Admin\GroupsController@postGroupAction');
