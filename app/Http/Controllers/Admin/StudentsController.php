@@ -32,7 +32,7 @@ class StudentsController extends Controller
      */
     public function getStudentsAction()
     {
-        $students = User::where('role', 'student')->paginate(20);
+        $students = User::where('role', 'student')->paginate(10);
 
         return response()->json($students);
     }
