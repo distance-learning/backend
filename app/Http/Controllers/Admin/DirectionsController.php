@@ -60,7 +60,7 @@ class DirectionsController extends Controller
      */
     public function itemAction(Request $request, $slug)
     {
-        $faculty  = Faculty::findBySlug($slug)->first();
+        $faculty = Faculty::findBySlug($slug);
 
         if (!$faculty) {
             return response()->json(null, 404);
@@ -174,7 +174,7 @@ class DirectionsController extends Controller
      */
     public function deleteAction(Request $request, $slug)
     {
-        $direction = Direction::findBySlug($slug)->first();
+        $direction = Direction::findBySlug($slug);
 
         if (!$direction) {
             return response()->json(null, 404);

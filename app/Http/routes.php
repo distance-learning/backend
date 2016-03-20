@@ -61,7 +61,7 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
         Route::group(['prefix'  =>  'directions'], function () {
             Route::get('/', 'Admin\DirectionsController@indexAction');
             Route::get('/{slug}', 'Admin\DirectionsController@itemAction');
-            Route::post('/', 'Admin\DirectionsController@createAction');
+            Route::post('/', 'Admin\DirectionsController@storeAction');
             Route::put('/{slug}', 'Admin\DirectionsController@putAction');
             Route::delete('/{slug}', 'Admin\DirectionsController@deleteAction');
         });
