@@ -12,7 +12,8 @@ class Direction extends Model implements SluggableInterface
 
     public $fillable = [
         'name',
-        'description'
+        'description',
+        'faculty_id'
     ];
 
     public $timestamps = false;
