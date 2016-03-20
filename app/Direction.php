@@ -10,6 +10,11 @@ class Direction extends Model implements SluggableInterface
 {
     use SluggableTrait;
 
+    public $fillable = [
+        'name',
+        'description'
+    ];
+
     public $timestamps = false;
 
     protected $sluggable = [
