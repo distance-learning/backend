@@ -131,17 +131,17 @@ class FacultiesController extends Controller
         ;
 
         //TODO i wan't cry :C
-        $faculty['students'] = $faculty
-            ->users
-            ->where('role', 'student')
-            ->all()
-        ;
-
-        $faculty['teachers'] = $faculty
-            ->users
-            ->where('role', 'teacher')
-            ->all()
-        ;
+//        $faculty['students'] = $faculty
+//            ->users
+//            ->where('role', 'student')
+//            ->all()
+//        ;
+//
+//        $faculty['teachers'] = $faculty
+//            ->users
+//            ->where('role', 'teacher')
+//            ->all()
+//        ;
 
         if (!$faculty) {
             return response()->json(null, 400);
