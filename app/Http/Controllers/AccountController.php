@@ -72,9 +72,12 @@ class AccountController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function logoutAction()
+    public function logoutAction(Request $request)
     {
-        Auth::logout();
+        $request
+            ->user()
+            ->logout()
+        ;
 
         return response()->json(null, 204);
     }
