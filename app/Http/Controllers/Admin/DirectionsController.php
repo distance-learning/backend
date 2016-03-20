@@ -93,14 +93,12 @@ class DirectionsController extends Controller
      */
     public function storeAction(Request $request)
     {
-        $faculty = Faculty::find($request->request->get('faculty'));
-
         $direction = Direction::create([
-            'name'  =>  $request->request->get('name'),
-            'description' =>  $request->request->get('description'),
+            'name'  =>  $request->get('name'),
+            'description' =>  $request->get('description'),
+            'faculty_id' => $request->get('faculty')
         ]);
 
-        $direction->faculty()->associate($faculty);
         $direction->save();
 
         return response()->json($direction);
