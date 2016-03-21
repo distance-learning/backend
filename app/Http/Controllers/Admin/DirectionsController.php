@@ -32,7 +32,7 @@ class DirectionsController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $faculties = Faculty::paginate($request->query->get('count'));
+        $faculties = Direction::paginate($request->query->get('count'));
 
         return response()->json($faculties);
     }
@@ -60,7 +60,7 @@ class DirectionsController extends Controller
      */
     public function itemAction(Request $request, $slug)
     {
-        $faculty = Faculty::findBySlug($slug);
+        $faculty = Direction::findBySlug($slug);
 
         if (!$faculty) {
             return response()->json(null, 404);
