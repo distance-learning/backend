@@ -205,7 +205,14 @@ class DirectionsController extends Controller
      */
     public function getGroupsByDirectionSlugAction(Request $request, $slug)
     {
-        $groups = Group::where('direction.slug', $slug)->paginate(10);
+        //TODO need fix
+        $direction = Direction::findBySlug($slug);
+
+        if (!$direction) {
+            return response()->json(null, 404);
+        }
+
+        $groups = Group::where('direction_id', $direction->id)->paginate(10);
 
         return response()->json($groups, 200);
     }
