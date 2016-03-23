@@ -64,6 +64,8 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
             Route::post('/', 'Admin\DirectionsController@storeAction');
             Route::put('/{slug}', 'Admin\DirectionsController@putAction');
             Route::delete('/{slug}', 'Admin\DirectionsController@deleteAction');
+
+            Route::get('/{slug}/groups', 'Admin\DirectionsController@getGroupsByDirectionSlugAction');
         });
 
         Route::group(['prefix'  =>  'teachers'], function () {

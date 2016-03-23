@@ -182,4 +182,34 @@ class DirectionsController extends Controller
 
         return response()->json(null, 204);
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @api {get} /api/admin/directions/:slug/groups Get groups by directions slug
+     * @apiSampleRequest /api/admin/directions/:slug/groups
+     * @apiDescription Get groups by directions slug
+     * @apiGroup Admin|Directions
+     * @apiPermission administrator, university_administrator
+     *
+     * @apiHeader {String} authorization
+     *
+     * @apiSuccess (204) success Returned if direction successful removed
+     *
+     * @apiError (403) error Returned if user has not access for get directions
+     *
+     * @param  Request $request
+     * @param  string  $slug
+     * @return \Illuminate\Http\Response
+     */
+    public function getGroupsByDirectionSlugAction(Request $request, $slug)
+    {
+        $direction = Direction::findBySlug($slug);
+
+        if (!$direction) {
+            return response()->json(null, 404);
+        }
+
+        return response()->json($direction->groups, 200);
+    }
 }

@@ -592,6 +592,64 @@ define({ "api": [
     "name": "GetApiAdminDirectionsSlug"
   },
   {
+    "type": "get",
+    "url": "/api/admin/directions/:slug/groups",
+    "title": "Get groups by directions slug",
+    "sampleRequest": [
+      {
+        "url": "/api/admin/directions/:slug/groups"
+      }
+    ],
+    "description": "<p>Get groups by directions slug</p> ",
+    "group": "Admin_Directions",
+    "permission": [
+      {
+        "name": "administrator, university_administrator"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "204": [
+          {
+            "group": "204",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Returned if direction successful removed</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "403": [
+          {
+            "group": "403",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if user has not access for get directions</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Admin/DirectionsController.php",
+    "groupTitle": "Admin_Directions",
+    "name": "GetApiAdminDirectionsSlugGroups"
+  },
+  {
     "type": "post",
     "url": "/api/admin/directions",
     "title": "Create new direction",
