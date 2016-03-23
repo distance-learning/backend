@@ -15,16 +15,19 @@ class CreateTeachersTable extends Migration
         Schema::create('teachers', function (Blueprint $table) {
             $table->increments('id');
             $table
-              ->integer('teacher_id')
-              ->unsigned()
+                ->integer('teacher_id')
+                ->unsigned()
+                ->nullable()
             ;
             $table
-              ->integer('subject_id')
-              ->unsigned()
+                ->integer('subject_id')
+                ->unsigned()
+                ->nullable()
             ;
             $table
-              ->integer('direction_id')
-              ->unsigned()
+                ->integer('direction_id')
+                ->unsigned()
+                ->nullable()
             ;
         });
     }

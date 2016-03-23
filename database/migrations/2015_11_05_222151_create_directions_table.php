@@ -28,6 +28,7 @@ class CreateDirectionsTable extends Migration
             $table
                 ->integer('faculty_id')
                 ->unsigned()
+                ->nullable()
             ;
             $table->softDeletes();
 
@@ -35,6 +36,7 @@ class CreateDirectionsTable extends Migration
                 ->foreign('faculty_id')
                 ->references('id')
                 ->on('faculties')
+                ->onDelete('SET NULL')
             ;
         });
     }

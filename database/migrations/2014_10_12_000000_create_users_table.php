@@ -40,6 +40,7 @@ class CreateUsersTable extends Migration
             $table->string('role');
             $table
                 ->integer('structure_id')
+                ->unsigned()
                 ->nullable()
             ;
             $table

@@ -23,7 +23,7 @@ class AddColumnGroupIdToUsersTable extends Migration
                 ->foreign('group_id')
                 ->references('id')
                 ->on('groups')
-                ->onDelete('CASCADE')
+                ->onDelete('SET NULL')
             ;
         });
     }

@@ -19,12 +19,15 @@ class CreateSubjectsTable extends Migration
 
             $table
                 ->integer('direction_id')
+                ->unsigned()
+                ->nullable()
             ;
 
             $table
                 ->foreign('direction_id')
                 ->references('id')
                 ->on('directions')
+                ->onDelete('SET NULL')
             ;
 
             $table->softDeletes();

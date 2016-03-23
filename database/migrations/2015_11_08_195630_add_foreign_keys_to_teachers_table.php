@@ -17,18 +17,21 @@ class AddForeignKeysToTeachersTable extends Migration
                 ->foreign('teacher_id')
                 ->references('id')
                 ->on('users')
+                ->onDelete('SET NULL')
             ;
 
             $table
                 ->foreign('subject_id')
                 ->references('id')
                 ->on('subjects')
+                ->onDelete('SET NULL');
             ;
 
             $table
                 ->foreign('direction_id')
                 ->references('id')
                 ->on('directions')
+                ->onDelete('SET NULL')
             ;
         });
     }
