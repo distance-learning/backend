@@ -90,6 +90,8 @@ class GroupsController extends Controller
             'direction_id' => $request->get('direction_id'),
         ]);
 
+        $group->students()->sync($request->get('students'));
+
         return response()->json($group);
     }
 
@@ -121,6 +123,8 @@ class GroupsController extends Controller
             'name' => $request->get('name'),
             'direction_id' => $request->get('direction_id'),
         ]);
+
+        $group->students()->sync($request->get('students'));
 
         return response()->json($group);
     }
