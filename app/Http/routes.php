@@ -38,6 +38,12 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
         Route::get('/{slug}', 'UsersController@getUserAction');
     });
 
+    Route::group(['prefix' => 'tests'], function () {
+        Route::get('/', 'TestsController@getTestsAction');
+        Route::post('/', 'TestsController@postTestAction');
+        Route::get('/{id}', 'TestsController@getTestAction');
+    });
+
     Route::group(['prefix' => 'admin'], function () {
         Route::group(['prefix' => 'groups'], function () {
             Route::get('/', 'Admin\GroupsController@getGroupsAction');
