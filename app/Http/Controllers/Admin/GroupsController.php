@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Group;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -88,6 +89,7 @@ class GroupsController extends Controller
         $group = Group::create([
             'name' => $request->get('name'),
             'direction_id' => $request->get('direction_id'),
+            'year_of_entry' => Carbon::now()->format('Y'),
         ]);
 
         $group->students()->sync($request->get('students'));
