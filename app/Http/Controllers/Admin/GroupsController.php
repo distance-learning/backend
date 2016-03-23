@@ -91,8 +91,9 @@ class GroupsController extends Controller
             'direction_id' => $request->get('direction_id'),
             'year_of_entry' => Carbon::now()->format('Y'),
         ]);
+        $students = User::find($request->get('students'));
 
-        $group->students()->sync($request->get('students'));
+        $group->students()->saveMany($students);
 
         return response()->json($group);
     }
@@ -126,7 +127,9 @@ class GroupsController extends Controller
             'direction_id' => $request->get('direction_id'),
         ]);
 
-        $group->students()->sync($request->get('students'));
+        $students = User::find($request->get('students'));
+
+        $group->students()->saveMany($students);
 
         return response()->json($group);
     }

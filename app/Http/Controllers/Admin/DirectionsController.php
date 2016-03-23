@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Group;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -204,12 +205,8 @@ class DirectionsController extends Controller
      */
     public function getGroupsByDirectionSlugAction(Request $request, $slug)
     {
-        $direction = Direction::findBySlug($slug);
+        $groups = Group::where('direction.slug', $slug)->paginate(10);
 
-        if (!$direction) {
-            return response()->json(null, 404);
-        }
-
-        return response()->json($direction->groups, 200);
+        return response()->json($groups, 200);
     }
 }
