@@ -39,10 +39,10 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
     });
 
     Route::group(['prefix' => 'tests', 'middleware' =>  ['jwt.auth']], function () {
-        Route::get('/', 'TestsController@getTestsAction');
         Route::post('/', 'TestsController@postTestAction');
-        Route::get('/{test}', 'TestsController@getTestAction');
+        Route::get('/', 'TestsController@getTestsAction');
         Route::put('/{test}', 'TestsController@updateTestAction');
+        Route::get('/{test}', 'TestsController@getTestAction');
         Route::delete('/{test}', 'TestsController@deleteTestAction');
 
         Route::group(['prefix' => 'questions'], function () {

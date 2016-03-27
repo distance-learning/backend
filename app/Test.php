@@ -12,6 +12,8 @@ class Test extends Model
         'teacher_id'
     ];
 
+    public $timestamps = false;
+
     public function teacher()
     {
         return $this->belongsTo(User::class);

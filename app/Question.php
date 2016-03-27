@@ -13,6 +13,8 @@ class Question extends Model
         'test_id'
     ];
 
+    public $timestamps = false;
+
     public function test()
     {
         return $this->belongsTo(Test::class);
