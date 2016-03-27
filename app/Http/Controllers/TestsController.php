@@ -27,8 +27,8 @@ class TestsController extends Controller
      */
     public function getTestsAction(Request $request)
     {
-        $user = $request->users();
-        $tests = Test::where('teacher_id', $user->id);
+        $user = $request->user();
+        $tests = Test::where('teacher_id', $user->id)->get();
 
         return response()->json($tests);
     }
