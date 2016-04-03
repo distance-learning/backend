@@ -83,7 +83,7 @@ class QuestionsController extends Controller
             $image = "{$request->root()}/uploads/questions/{$image}";
         }
 
-        $question = $question->update([
+        $question->update([
             'name' => $request->get('name'),
             'type' => $request->get('type'),
             'image' => $image,
