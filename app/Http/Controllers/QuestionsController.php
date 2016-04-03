@@ -34,6 +34,7 @@ class QuestionsController extends Controller
             'type' => 'single',
             'test_id' => $test->id,
             'image' => '',
+            'code' => md5(uniqid('questions_')) . rand(1, 1000),
         ]);
 
         return response()->json($question);

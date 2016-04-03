@@ -10,10 +10,16 @@ class Question extends Model
         'name',
         'image',
         'type',
-        'test_id'
+        'test_id',
+        'code',
     ];
 
     public $timestamps = false;
+
+    public function getRouteKeyName()
+    {
+        return 'code';
+    }
 
     public function test()
     {
