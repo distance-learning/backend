@@ -8,7 +8,7 @@ use App\Test;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 
-class QuestionsControler extends Controller
+class QuestionsController extends Controller
 {
     /**
      * Method that authenticate user
