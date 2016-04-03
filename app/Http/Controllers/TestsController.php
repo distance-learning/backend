@@ -87,8 +87,8 @@ class TestsController extends Controller
         $user = $request->user();
 
         $test = Test::create([
-            'name' => $request->get('name'),
-            'time' => $request->get('time'),
+            'name' => '',
+            'time' => '',
             'teacher_id' => $user->id,
         ]);
 
