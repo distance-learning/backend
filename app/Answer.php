@@ -8,7 +8,7 @@ class Answer extends Model
 {
     public $fillable = [
         'name',
-        'isCorrectly'
+        'iscorrectly'
     ];
 
     public $timestamps = false;

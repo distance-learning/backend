@@ -97,7 +97,7 @@ class QuestionsController extends Controller
             foreach ($request->get('question')['answers'] as $answer) {
                 Answer::create([
                     'body' => $answer['name'],
-                    'isCorrectly' => $answer['isCorrectly'],
+                    'iscorrectly' => $answer['isCorrectly'],
                     'question_id' => $question->id,
                 ]);
             }
