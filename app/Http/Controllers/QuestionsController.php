@@ -70,14 +70,14 @@ class QuestionsController extends Controller
 
         $image = null;
 
-        if ($request->hasFile('image')) {
+        if ($request->hasFile('question')['image']) {
             if ($question->image && file_exists(public_path("/uploads/questions/{$question->image}"))) {
                 unlink(public_path("/uploads/questions/{$question->image}"));
             }
 
-            $image = md5(uniqid()) . '.' . $request->file('image')->getClientOriginalExtension();
+            $image = md5(uniqid()) . '.' . $request->file('question')['image']->getClientOriginalExtension();
 
-            $request->file('image')->move(
+            $request->file('question')['image']->move(
                 public_path('/uploads/questions'),
                 $image
             );
