@@ -84,8 +84,8 @@ class QuestionsController extends Controller
         }
 
         $question->update([
-            'name' => $request->get('name'),
-            'type' => $request->get('type'),
+            'name' => $request->get('question')['name'],
+            'type' => $request->get('question')['type'],
             'image' => $image,
         ]);
 
