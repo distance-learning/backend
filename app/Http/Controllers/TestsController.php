@@ -56,7 +56,7 @@ class TestsController extends Controller
         $user = $request->user();
 
         if ($test->teacher_id != $user->id) {
-            return response()->json(null, $user->id);
+            return response()->json(null, 404);
         }
 
         return response()->json($test);
