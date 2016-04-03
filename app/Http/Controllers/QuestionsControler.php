@@ -20,13 +20,6 @@ class QuestionsControler extends Controller
      *
      * @apiHeader {String} authorization User token
      *
-     * @apiParam {String} name Question name
-     * @apiParam {String} type Question type
-     * @apiParam {String} image Question image
-     * @apiParam {Array} answers  Question Answers
-     * @apiParam {String} answers[][name] Answer name
-     * @apiParam {Boolean} answers[][correct] Answer correct
-     *
      * @apiError (401) error Returned if user not active
      * @apiError (400) error Returned if credentials not correct
      * @apiError (500) error Returned if error on serve
@@ -36,37 +29,12 @@ class QuestionsControler extends Controller
      */
     public function createQuestionAction(Request $request, Test $test)
     {
-        $image = null;
-
-        if ($request->hasFile('image')) {
-            $image = md5(uniqid()) . '.' . $request->file('image')->getClientOriginalExtension();
-
-            $request->file('image')->move(
-                public_path('/uploads/questions'),
-                $image
-            );
-
-            $image = "{$request->root()}/uploads/questions/{$image}";
-        }
-
         $question = Question::create([
-            'name' => $request->get('name'),
-            'type' => $request->get('type'),
+            'name' => '',
+            'type' => 'single',
             'test_id' => $test->id,
-            'image' => $image,
+            'image' => '',
         ]);
-
-        foreach ($request->get('answers') as $answer) {
-            Answer::create([
-                'body' => $answer['body'],
-                'correct' => $answer['correct'],
-                'question_id' => $question->id,
-            ]);
-        }
-
-        $question = Question::with('answers')
-            ->find($question->id)
-        ;
 
         return response()->json($question);
     }
@@ -86,7 +54,7 @@ class QuestionsControler extends Controller
      * @apiParam {String} image Question image
      * @apiParam {Array} answers  Question Answers
      * @apiParam {String} answers[][name] Answer name
-     * @apiParam {Boolean} answers[][correct] Answer correct
+     * @apiParam {Boolean} answers[][isCorrectly] Answer correct
      *
      * @apiError (401) error Returned if user not active
      * @apiError (400) error Returned if credentials not correct
@@ -125,7 +93,7 @@ class QuestionsControler extends Controller
         foreach ($request->get('answers') as $answer) {
             Answer::create([
                 'body' => $answer['body'],
-                'correct' => $answer['correct'],
+                'isCorrectly' => $answer['isCorrectly'],
                 'question_id' => $question->id,
             ]);
         }

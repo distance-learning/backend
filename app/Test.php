@@ -9,14 +9,14 @@ class Test extends Model
     public $fillable = [
         'name',
         'time',
-        'teacher_id'
+        'faculty_id'
     ];
 
     public $timestamps = false;
 
-    public function teacher()
+    public function faculty()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Faculty::class);
     }
 
     public function questions()

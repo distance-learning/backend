@@ -28,7 +28,7 @@ class TestsController extends Controller
     public function getTestsAction(Request $request)
     {
         $user = $request->user();
-        $tests = Test::where('teacher_id', $user->id)->get();
+        $tests = Test::where('faculty_id', $user->structure->id)->paginate(10);
 
         return response()->json($tests);
     }
@@ -72,9 +72,6 @@ class TestsController extends Controller
      *
      * @apiHeader {String} authorization User token
      *
-     * @apiParam {String} name Test name
-     * @apiParam {String} time Test time
-     *
      * @apiError (401) error Returned if user not active
      * @apiError (400) error Returned if credentials not correct
      * @apiError (500) error Returned if error on serve
@@ -87,9 +84,9 @@ class TestsController extends Controller
         $user = $request->user();
 
         $test = Test::create([
-            'name' => '',
+            'name' => md5(uniqid()),
             'time' => 0,
-            'teacher_id' => $user->id,
+            'faculty_id' => $user->structure->id
         ]);
 
         return response()->json($test);

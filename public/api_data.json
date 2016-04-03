@@ -3344,26 +3344,6 @@
         ]
       }
     },
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "<p>String</p> ",
-            "optional": false,
-            "field": "name",
-            "description": "<p>Test name</p> "
-          },
-          {
-            "group": "Parameter",
-            "type": "<p>String</p> ",
-            "optional": false,
-            "field": "time",
-            "description": "<p>Test time</p> "
-          }
-        ]
-      }
-    },
     "error": {
       "fields": {
         "400": [
@@ -3417,40 +3397,6 @@
             "optional": false,
             "field": "authorization",
             "description": "<p>User token</p> "
-          }
-        ]
-      }
-    },
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "<p>String</p> ",
-            "optional": false,
-            "field": "name",
-            "description": "<p>Question name</p> "
-          },
-          {
-            "group": "Parameter",
-            "type": "<p>String</p> ",
-            "optional": false,
-            "field": "type",
-            "description": "<p>Question type</p> "
-          },
-          {
-            "group": "Parameter",
-            "type": "<p>String</p> ",
-            "optional": false,
-            "field": "image",
-            "description": "<p>Question image</p> "
-          },
-          {
-            "group": "Parameter",
-            "type": "<p>Array</p> ",
-            "optional": false,
-            "field": "answers",
-            "description": "<p>Question Answers</p> "
           }
         ]
       }
