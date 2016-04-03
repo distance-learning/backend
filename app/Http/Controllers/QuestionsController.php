@@ -89,7 +89,9 @@ class QuestionsController extends Controller
             'image' => $image,
         ]);
 
-        $question->answers()->delete();
+//        $question->answers()->delete();
+
+        Answer::where('question_id', $question->id)->delete();
 
         foreach ($request->get('answers') as $answer) {
             Answer::create([

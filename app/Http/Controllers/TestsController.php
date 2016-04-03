@@ -55,7 +55,7 @@ class TestsController extends Controller
     {
         $user = $request->user();
 
-        return response()->json($test);
+        return response()->json($test->with('questions')->where('id', $test->id)->first());
     }
 
     /**
