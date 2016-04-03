@@ -84,9 +84,10 @@ class TestsController extends Controller
         $user = $request->user();
 
         $test = Test::create([
-            'name' => md5(uniqid()),
+            'name' => '',
             'time' => 0,
-            'faculty_id' => $user->structure->id
+            'faculty_id' => $user->structure->id,
+            'code' => md5(uniqid()) . rand(1, 100),
         ]);
 
         return response()->json($test);
