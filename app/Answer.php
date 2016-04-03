@@ -8,7 +8,8 @@ class Answer extends Model
 {
     public $fillable = [
         'body',
-        'iscorrectly'
+        'iscorrectly',
+        'question_id',
     ];
 
     public $timestamps = false;
