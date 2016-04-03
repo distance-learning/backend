@@ -43,7 +43,7 @@ class QuestionsController extends Controller
     /**
      * Method that authenticate user
      *
-     * @api {post} /api/tests/{id}/questions/{question_id} Update question
+     * @api {put} /api/tests/{id}/questions/{question_id} Update question
      * @apiSampleRequest /api/tests/{id}/questions/{question_id} Update question
      * @apiDescription update question
      * @apiGroup Tests
@@ -54,8 +54,8 @@ class QuestionsController extends Controller
      * @apiParam {String} type Question type
      * @apiParam {String} image Question image
      * @apiParam {Array} answers  Question Answers
-     * @apiParam {String} answers[][name] Answer name
-     * @apiParam {Boolean} answers[][isCorrectly] Answer correct
+     * @apiParam {String} answers.name Answer name
+     * @apiParam {Boolean} answers.isCorrectly Answer correct
      *
      * @apiError (401) error Returned if user not active
      * @apiError (400) error Returned if credentials not correct
@@ -89,7 +89,7 @@ class QuestionsController extends Controller
             'image' => $image,
         ]);
 
-        $question->answers->delete();
+        $question->answers()->delete();
 
         foreach ($request->get('answers') as $answer) {
             Answer::create([
