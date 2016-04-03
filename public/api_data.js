@@ -3430,100 +3430,9 @@ define({ "api": [
       }
     },
     "version": "0.0.0",
-    "filename": "app/Http/Controllers/QuestionsControler.php",
+    "filename": "app/Http/Controllers/QuestionsController.php",
     "groupTitle": "Tests",
     "name": "PostApiTestsIdQuestions"
-  },
-  {
-    "type": "post",
-    "url": "/api/tests/{id}/questions/{question_id}",
-    "title": "Update question",
-    "sampleRequest": [
-      {
-        "url": "/api/tests/{id}/questions/{question_id} Update question"
-      }
-    ],
-    "description": "<p>update question</p> ",
-    "group": "Tests",
-    "header": {
-      "fields": {
-        "Header": [
-          {
-            "group": "Header",
-            "type": "String",
-            "optional": false,
-            "field": "authorization",
-            "description": "<p>User token</p> "
-          }
-        ]
-      }
-    },
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "<p>String</p> ",
-            "optional": false,
-            "field": "name",
-            "description": "<p>Question name</p> "
-          },
-          {
-            "group": "Parameter",
-            "type": "<p>String</p> ",
-            "optional": false,
-            "field": "type",
-            "description": "<p>Question type</p> "
-          },
-          {
-            "group": "Parameter",
-            "type": "<p>String</p> ",
-            "optional": false,
-            "field": "image",
-            "description": "<p>Question image</p> "
-          },
-          {
-            "group": "Parameter",
-            "type": "<p>Array</p> ",
-            "optional": false,
-            "field": "answers",
-            "description": "<p>Question Answers</p> "
-          }
-        ]
-      }
-    },
-    "error": {
-      "fields": {
-        "400": [
-          {
-            "group": "400",
-            "optional": false,
-            "field": "error",
-            "description": "<p>Returned if credentials not correct</p> "
-          }
-        ],
-        "401": [
-          {
-            "group": "401",
-            "optional": false,
-            "field": "error",
-            "description": "<p>Returned if user not active</p> "
-          }
-        ],
-        "500": [
-          {
-            "group": "500",
-            "optional": false,
-            "field": "error",
-            "description": "<p>Returned if error on serve</p> "
-          }
-        ]
-      }
-    },
-    "version": "0.0.0",
-    "filename": "app/Http/Controllers/QuestionsControler.php",
-    "groupTitle": "Tests",
-    "name": "PostApiTestsIdQuestionsQuestion_id"
   },
   {
     "type": "put",
@@ -3608,6 +3517,111 @@ define({ "api": [
     "filename": "app/Http/Controllers/TestsController.php",
     "groupTitle": "Tests",
     "name": "PutApiTestsId"
+  },
+  {
+    "type": "put",
+    "url": "/api/tests/{id}/questions/{question_id}",
+    "title": "Update question",
+    "sampleRequest": [
+      {
+        "url": "/api/tests/{id}/questions/{question_id} Update question"
+      }
+    ],
+    "description": "<p>update question</p> ",
+    "group": "Tests",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": "<p>User token</p> "
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Question name</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "type",
+            "description": "<p>Question type</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "image",
+            "description": "<p>Question image</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Array</p> ",
+            "optional": false,
+            "field": "answers",
+            "description": "<p>Question Answers</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "answers.name",
+            "description": "<p>Answer name</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Boolean</p> ",
+            "optional": false,
+            "field": "answers.isCorrectly",
+            "description": "<p>Answer correct</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "400": [
+          {
+            "group": "400",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if credentials not correct</p> "
+          }
+        ],
+        "401": [
+          {
+            "group": "401",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if user not active</p> "
+          }
+        ],
+        "500": [
+          {
+            "group": "500",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if error on serve</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/QuestionsController.php",
+    "groupTitle": "Tests",
+    "name": "PutApiTestsIdQuestionsQuestion_id"
   },
   {
     "type": "get",

@@ -66,6 +66,8 @@ class QuestionsController extends Controller
      */
     public function updateQuestionAction(Request $request, Test $test, Question $question)
     {
+//        var_dump($test->id);
+
         $image = null;
 
         if ($request->hasFile('image')) {
