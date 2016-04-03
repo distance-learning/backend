@@ -93,10 +93,10 @@ class QuestionsController extends Controller
 
         Answer::where('question_id', $question->id)->delete();
 
-        if (count($request->get('questions')['answers']) > 0) {
-            foreach ($request->get('questions')['answers'] as $answer) {
+        if (count($request->get('question')['answers']) > 0) {
+            foreach ($request->get('question')['answers'] as $answer) {
                 Answer::create([
-                    'body' => $answer['body'],
+                    'body' => $answer['name'],
                     'isCorrectly' => $answer['isCorrectly'],
                     'question_id' => $question->id,
                 ]);
