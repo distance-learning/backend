@@ -88,7 +88,7 @@ class TestsController extends Controller
 
         $test = Test::create([
             'name' => '',
-            'time' => '',
+            'time' => 0,
             'teacher_id' => $user->id,
         ]);
 
