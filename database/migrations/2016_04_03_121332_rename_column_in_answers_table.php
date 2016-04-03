@@ -28,7 +28,7 @@ class RenameColumnInAnswersTable extends Migration
     {
         Schema::table('answers', function (Blueprint $table) {
             $table
-                ->renameColumn('isCorrectly', 'correct')
+                ->renameColumn('isCorrectrly', 'correct')
             ;
         });
     }
