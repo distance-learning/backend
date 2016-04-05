@@ -49,7 +49,7 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
             Route::post('/', 'QuestionsController@createQuestionAction');
             Route::get('/{question}', 'QuestionsController@getQuestionByCodeAction');
             Route::put('/{question}', 'QuestionsController@updateQuestionAction');
-            Route::post('/{question}/upload', 'QuestionsController@updateQuestionAction');
+            Route::post('/{question}/upload', 'QuestionsController@updateImageToQuestionByCodeAction');
         });
     });
 

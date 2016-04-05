@@ -131,8 +131,9 @@ class QuestionsController extends Controller
 
             $image = "{$request->root()}/uploads/questions/{$image}";
 
-            $question->image = $image;
-            $question->save();
+            $question->update([
+                'image' => $image,
+            ]);
 
             return response()->json($question);
         }
