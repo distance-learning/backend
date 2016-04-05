@@ -117,23 +117,22 @@ class QuestionsController extends Controller
 
     public function updateImageToQuestionByCodeAction(Request $request, Test $test, Question $question)
     {
-        if ($request->hasFile('image')) {
+        if ($request->hasFile('file')) {
             if ($question->image && file_exists(public_path("/uploads/questions/{$question->image}"))) {
                 unlink(public_path("/uploads/questions/{$question->image}"));
             }
 
-            $image = md5(uniqid()) . '.' . $request->file('question')['image']->getClientOriginalExtension();
+            $image = md5(uniqid()) . '.' . $request->file('file')->getClientOriginalExtension();
 
-            $request->file('question')['image']->move(
+            $request->file('file')->move(
                 public_path('/uploads/questions'),
                 $image
             );
 
             $image = "{$request->root()}/uploads/questions/{$image}";
 
-            $question->update([
-                'image' => $image,
-            ]);
+            $question->image = $image;
+            $question->save();
 
             return response()->json($question);
         }
