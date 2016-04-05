@@ -13,6 +13,29 @@ class QuestionsController extends Controller
     /**
      * Method that authenticate user
      *
+     * @api {get} /api/tests/{id}/questions/{question_id} Get question
+     * @apiSampleRequest /api/tests/{id}/questions/{question_id} Update question
+     * @apiDescription get question
+     * @apiGroup Tests
+     *
+     * @apiHeader {String} authorization User token
+     *
+     * @apiError (401) error Returned if user not active
+     * @apiError (400) error Returned if credentials not correct
+     * @apiError (500) error Returned if error on serve
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     *
+     **/
+    public function getQuestionByCodeAction(Test $test, Question $question)
+    {
+        return response()->json($question);
+    }
+
+    /**
+     * Method that authenticate user
+     *
      * @api {post} /api/tests/{id}/questions Create question
      * @apiSampleRequest /api/tests/{id}/questions
      * @apiDescription Create question
@@ -66,8 +89,6 @@ class QuestionsController extends Controller
      */
     public function updateQuestionAction(Request $request, Test $test, Question $question)
     {
-//        var_dump($test->id);
-
         $image = null;
 
         if ($request->hasFile('question')['image']) {

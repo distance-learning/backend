@@ -3321,6 +3321,63 @@
     "name": "GetApiTestsId"
   },
   {
+    "type": "get",
+    "url": "/api/tests/{id}/questions/{question_id}",
+    "title": "Get question",
+    "sampleRequest": [
+      {
+        "url": "/api/tests/{id}/questions/{question_id} Update question"
+      }
+    ],
+    "description": "<p>get question</p> ",
+    "group": "Tests",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": "<p>User token</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "400": [
+          {
+            "group": "400",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if credentials not correct</p> "
+          }
+        ],
+        "401": [
+          {
+            "group": "401",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if user not active</p> "
+          }
+        ],
+        "500": [
+          {
+            "group": "500",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if error on serve</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/QuestionsController.php",
+    "groupTitle": "Tests",
+    "name": "GetApiTestsIdQuestionsQuestion_id"
+  },
+  {
     "type": "post",
     "url": "/api/tests",
     "title": "Create test",
