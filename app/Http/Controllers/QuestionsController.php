@@ -89,27 +89,9 @@ class QuestionsController extends Controller
      */
     public function updateQuestionAction(Request $request, Test $test, Question $question)
     {
-        $image = null;
-
-        if ($request->hasFile('question')['image']) {
-            if ($question->image && file_exists(public_path("/uploads/questions/{$question->image}"))) {
-                unlink(public_path("/uploads/questions/{$question->image}"));
-            }
-
-            $image = md5(uniqid()) . '.' . $request->file('question')['image']->getClientOriginalExtension();
-
-            $request->file('question')['image']->move(
-                public_path('/uploads/questions'),
-                $image
-            );
-
-            $image = "{$request->root()}/uploads/questions/{$image}";
-        }
-
         $question->update([
             'name' => $request->get('question')['name'],
             'type' => $request->get('question')['type'],
-            'image' => $image,
         ]);
 
 //        $question->answers()->delete();
@@ -131,5 +113,31 @@ class QuestionsController extends Controller
         ;
 
         return response()->json($question);
+    }
+
+    public function updateImageToQuestionByCodeAction(Request $request, Test $test, Question $question)
+    {
+        if ($request->hasFile('image')) {
+            if ($question->image && file_exists(public_path("/uploads/questions/{$question->image}"))) {
+                unlink(public_path("/uploads/questions/{$question->image}"));
+            }
+
+            $image = md5(uniqid()) . '.' . $request->file('question')['image']->getClientOriginalExtension();
+
+            $request->file('question')['image']->move(
+                public_path('/uploads/questions'),
+                $image
+            );
+
+            $image = "{$request->root()}/uploads/questions/{$image}";
+
+            $question->update([
+                'image' => $image,
+            ]);
+
+            return response()->json($question);
+        }
+
+        return response()->json(null, 400);
     }
 }
