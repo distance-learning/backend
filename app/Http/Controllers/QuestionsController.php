@@ -30,7 +30,7 @@ class QuestionsController extends Controller
      **/
     public function getQuestionByCodeAction(Test $test, Question $question)
     {
-        return response()->json($question);
+        return response()->json($question->with('answers')->where('id', $question->id)->first());
     }
 
     /**
