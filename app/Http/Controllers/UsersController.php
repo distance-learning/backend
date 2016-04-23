@@ -93,7 +93,7 @@ class UsersController extends Controller
      */
     public function getUserAction(Request $request, $slug)
     {
-        $user = User::findBySlug($slug);
+        $user = User::with('subjects')->findBySlug($slug);
 
         if (!$user) {
             return response()->json(null, 404);
