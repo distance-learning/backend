@@ -118,6 +118,8 @@ class QuestionsController extends Controller
     public function updateImageToQuestionByCodeAction(Request $request, Test $test, Question $question)
     {
         if ($request->hasFile('file')) {
+
+            //TODO fix remove image
             if ($question->image && file_exists(public_path("/uploads/questions/{$question->image}"))) {
                 unlink(public_path("/uploads/questions/{$question->image}"));
             }

@@ -74,7 +74,7 @@ class FacultiesController extends Controller
      */
     public function getPaginatedFacultiesAction(Request $request)
     {
-        $faculties = Faculty::with('directions.subjects')->with('teachers')->paginate($request->query->get('count', 5));
+        $faculties = Faculty::with('directions.subjects')->paginate($request->query->get('count', 5));
 
         return response()->json($faculties);
     }
