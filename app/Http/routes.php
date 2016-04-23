@@ -33,23 +33,37 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
         Route::get('/faculties', 'AuthController@getFacultiesAction');
     });
 
-    Route::group(['prefix' => 'users', 'middleware' =>  ['jwt.auth']], function () {
-        Route::get('/', 'UsersController@getUsersAction');
-        Route::get('/{slug}', 'UsersController@getUserAction');
-    });
+    Route::group(['middleware' => ['jwt.auth']], function () {
+        Route::group(['prefix' => 'users'], function () {
+            Route::get('/', 'UsersController@getUsersAction');
+            Route::get('/{slug}', 'UsersController@getUserAction');
+        });
 
-    Route::group(['prefix' => 'tests', 'middleware' =>  ['jwt.auth']], function () {
-        Route::post('/', 'TestsController@postTestAction');
-        Route::get('/', 'TestsController@getTestsAction');
-        Route::put('/{test}', 'TestsController@updateTestAction');
-        Route::get('/{test}', 'TestsController@getTestAction');
-        Route::delete('/{test}', 'TestsController@deleteTestAction');
+        Route::group(['prefix' => 'courses'], function () {
+            Route::get('/', 'Admin\CoursesController@getCoursesAction');
+            Route::get('/{course}', 'Admin\CoursesController@getCourseAction');
+            Route::post('/', 'Admin\CoursesController@postCourseAction');
+            Route::put('/{course}', 'Admin\CoursesController@putCourseAction');
+            Route::delete('/{course}', 'Admin\CoursesController@deleteCourseAction');
+        });
 
-        Route::group(['prefix' => '/{test}/questions'], function () {
-            Route::post('/', 'QuestionsController@createQuestionAction');
-            Route::get('/{question}', 'QuestionsController@getQuestionByCodeAction');
-            Route::put('/{question}', 'QuestionsController@updateQuestionAction');
-            Route::post('/{question}/upload', 'QuestionsController@updateImageToQuestionByCodeAction');
+        Route::group(['prefix' => 'tests'], function () {
+            Route::post('/', 'TestsController@postTestAction');
+            Route::get('/', 'TestsController@getTestsAction');
+            Route::put('/{test}', 'TestsController@updateTestAction');
+            Route::get('/{test}', 'TestsController@getTestAction');
+            Route::delete('/{test}', 'TestsController@deleteTestAction');
+
+            Route::group(['prefix' => '/{test}/questions'], function () {
+                Route::post('/', 'QuestionsController@createQuestionAction');
+                Route::get('/{question}', 'QuestionsController@getQuestionByCodeAction');
+                Route::put('/{question}', 'QuestionsController@updateQuestionAction');
+                Route::post('/{question}/upload', 'QuestionsController@updateImageToQuestionByCodeAction');
+            });
+        });
+
+        Route::group(['prefix' => 'subjects'], function () {
+            Route::get('/{subject_id}/courses', 'SubjectsController@getCoursesBySubjectAndTeacherAction');
         });
     });
 

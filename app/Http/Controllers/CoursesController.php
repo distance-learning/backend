@@ -1,14 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use App\Course;
+use App\Subject;
 use App\Traits\CoursesTrait;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
 
+/**
+ * Class CoursesController
+ * @package App\Http\Controllers
+ */
 class CoursesController extends Controller
 {
     use CoursesTrait;
@@ -16,10 +19,10 @@ class CoursesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @api {get} /api/admin/courses Get courses by page
+     * @api {get} /api/courses Get courses by page
      * @apiSampleRequest /api/admin/courses
      * @apiDescription Get courses by page
-     * @apiGroup Admin|Courses
+     * @apiGroup Courses
      * @apiPermission administrator, university_administrator
      *
      * @apiHeader {String} authorization
@@ -36,10 +39,10 @@ class CoursesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @api {get} /api/admin/course/:id Get course by id
+     * @api {get} /api/course/:id Get course by id
      * @apiSampleRequest /api/admin/course/:id
      * @apiDescription Get course by id
-     * @apiGroup Admin|Courses
+     * @apiGroup Courses
      * @apiPermission administrator, university_administrator
      *
      * @apiHeader {String} authorization
@@ -57,10 +60,10 @@ class CoursesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @api {post} /api/admin/courses Create new course
+     * @api {post} /api/courses Create new course
      * @apiSampleRequest /api/admin/courses
      * @apiDescription Create new course
-     * @apiGroup Admin|Courses
+     * @apiGroup Courses
      * @apiPermission administrator, university_administrator
      *
      * @apiHeader {String} authorization
@@ -81,10 +84,10 @@ class CoursesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @api {put} /api/admin/courses/:id Update course by id
+     * @api {put} /api/courses/:id Update course by id
      * @apiSampleRequest /api/admin/courses/:id
      * @apiDescription Update course by id
-     * @apiGroup Admin|Courses
+     * @apiGroup Courses
      * @apiPermission administrator, university_administrator
      *
      * @apiHeader {String} authorization
@@ -105,10 +108,10 @@ class CoursesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @api {delete} /api/admin/courses/:id Delete course by id
+     * @api {delete} /api/courses/:id Delete course by id
      * @apiSampleRequest /api/admin/courses/:id
      * @apiDescription Delete course by id
-     * @apiGroup Admin|Courses
+     * @apiGroup Courses
      * @apiPermission administrator, university_administrator
      *
      * @apiHeader {String} authorization
