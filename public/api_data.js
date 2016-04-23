@@ -3411,6 +3411,47 @@ define({ "api": [
     "name": "GetApiFacultiesSlug"
   },
   {
+    "type": "post",
+    "url": "/api/files",
+    "title": "Upload file to server",
+    "sampleRequest": [
+      {
+        "url": "/api/files"
+      }
+    ],
+    "description": "<p>Upload file to server</p> ",
+    "group": "Files",
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Returned file</p> "
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>Object</p> ",
+            "optional": false,
+            "field": "file",
+            "description": "<p>File object</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/FilesController.php",
+    "groupTitle": "Files",
+    "name": "PostApiFiles"
+  },
+  {
     "type": "get",
     "url": "/api/subjects/{subject_id}/courses",
     "title": "Get courses by subject_id and teacher_id",
@@ -3437,6 +3478,68 @@ define({ "api": [
     "filename": "app/Http/Controllers/SubjectsController.php",
     "groupTitle": "Subjects",
     "name": "GetApiSubjectsSubject_idCourses"
+  },
+  {
+    "type": "post",
+    "url": "/api/tasks",
+    "title": "Create new task",
+    "sampleRequest": [
+      {
+        "url": "/api/tasks"
+      }
+    ],
+    "description": "<p>Create new task</p> ",
+    "group": "Tasks",
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Returned task</p> "
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>Integer</p> ",
+            "optional": false,
+            "field": "attachment_id",
+            "description": "<p>Attachment object id</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "attachment_type",
+            "description": "<p>Attachment object name</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Integer</p> ",
+            "optional": false,
+            "field": "student_id",
+            "description": "<p>Student object id</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Date</p> ",
+            "optional": false,
+            "field": "deadline",
+            "description": "<p>Tasks deadline</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/TasksController.php",
+    "groupTitle": "Tasks",
+    "name": "PostApiTasks"
   },
   {
     "type": "get",
