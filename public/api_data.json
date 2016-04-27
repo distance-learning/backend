@@ -2003,6 +2003,336 @@
     "name": "GetApiAdminStudentsSearch"
   },
   {
+    "type": "post",
+    "url": "/api/admin/directions/:slug/subjects",
+    "title": "Create subject",
+    "sampleRequest": [
+      {
+        "url": "/api/admin/directions/:slug/subjects"
+      }
+    ],
+    "description": "<p>Create subject</p> ",
+    "group": "Admin_Subject",
+    "permission": [
+      {
+        "name": "administrator, university_administrator"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Subject name</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "description",
+            "description": "<p>Subject description</p> "
+          }
+        ]
+      }
+    },
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Returned if teachers issets</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "403": [
+          {
+            "group": "403",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if user has not access for get teachers</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Admin/SubjectsController.php",
+    "groupTitle": "Admin_Subject",
+    "name": "PostApiAdminDirectionsSlugSubjects"
+  },
+  {
+    "type": "delete",
+    "url": "/api/admin/directions/:slug/subjects/{id}",
+    "title": "Delete subject by id",
+    "sampleRequest": [
+      {
+        "url": "/api/admin/directions/:slug/subjects/{id}"
+      }
+    ],
+    "description": "<p>Delete subject by id</p> ",
+    "group": "Admin_Subjects",
+    "permission": [
+      {
+        "name": "administrator, university_administrator"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Returned if teachers issets</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "403": [
+          {
+            "group": "403",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if user has not access for get teachers</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Admin/SubjectsController.php",
+    "groupTitle": "Admin_Subjects",
+    "name": "DeleteApiAdminDirectionsSlugSubjectsId"
+  },
+  {
+    "type": "get",
+    "url": "/api/admin/directions/:slug/subjects",
+    "title": "Get subjects list",
+    "sampleRequest": [
+      {
+        "url": "/api/admin/directions/:slug/subjects"
+      }
+    ],
+    "description": "<p>Get subjects list</p> ",
+    "group": "Admin_Subjects",
+    "permission": [
+      {
+        "name": "administrator, university_administrator"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Returned if teachers issets</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "403": [
+          {
+            "group": "403",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if user has not access for get teachers</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Admin/SubjectsController.php",
+    "groupTitle": "Admin_Subjects",
+    "name": "GetApiAdminDirectionsSlugSubjects"
+  },
+  {
+    "type": "get",
+    "url": "/api/admin/directions/:slug/subjects/{id}",
+    "title": "Get subject by id",
+    "sampleRequest": [
+      {
+        "url": "/api/admin/directions/:slug/subjects/{id}"
+      }
+    ],
+    "description": "<p>Get subject by id</p> ",
+    "group": "Admin_Subjects",
+    "permission": [
+      {
+        "name": "administrator, university_administrator"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Returned if teachers issets</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "403": [
+          {
+            "group": "403",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if user has not access for get teachers</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Admin/SubjectsController.php",
+    "groupTitle": "Admin_Subjects",
+    "name": "GetApiAdminDirectionsSlugSubjectsId"
+  },
+  {
+    "type": "put",
+    "url": "/api/admin/directions/:slug/subjects/{id}",
+    "title": "Update subject action",
+    "sampleRequest": [
+      {
+        "url": "/api/admin/directions/:slug/subjects/{id}"
+      }
+    ],
+    "description": "<p>Update subject action</p> ",
+    "group": "Admin_Subjects",
+    "permission": [
+      {
+        "name": "administrator, university_administrator"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Subject name</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "description",
+            "description": "<p>Subject description</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Returned if teachers issets</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "403": [
+          {
+            "group": "403",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if user has not access for get teachers</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Admin/SubjectsController.php",
+    "groupTitle": "Admin_Subjects",
+    "name": "PutApiAdminDirectionsSlugSubjectsId"
+  },
+  {
     "type": "delete",
     "url": "/api/admin/teachers/:slug",
     "title": "Delete teacher",
