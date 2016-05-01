@@ -3810,6 +3810,74 @@
     "name": "GetApiSubjectsSubject_idCourses"
   },
   {
+    "type": "delete",
+    "url": "/api/tasks/:task_id",
+    "title": "Delete task",
+    "sampleRequest": [
+      {
+        "url": "/api/tasks/:task_id"
+      }
+    ],
+    "description": "<p>Delete task</p> ",
+    "group": "Tasks",
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/TasksController.php",
+    "groupTitle": "Tasks",
+    "name": "DeleteApiTasksTask_id"
+  },
+  {
+    "type": "get",
+    "url": "/api/events",
+    "title": "Get events by interval",
+    "sampleRequest": [
+      {
+        "url": "/api/events"
+      }
+    ],
+    "description": "<p>Get events by interval</p> ",
+    "group": "Tasks",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "from",
+            "description": "<p>From date</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "to",
+            "description": "<p>From date</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/EventsController.php",
+    "groupTitle": "Tasks",
+    "name": "GetApiEvents"
+  },
+  {
+    "type": "get",
+    "url": "/api/tasks/:task_id",
+    "title": "Get task by id",
+    "sampleRequest": [
+      {
+        "url": "/api/tasks/:task_id"
+      }
+    ],
+    "description": "<p>Create new task</p> ",
+    "group": "Tasks",
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/TasksController.php",
+    "groupTitle": "Tasks",
+    "name": "GetApiTasksTask_id"
+  },
+  {
     "type": "post",
     "url": "/api/tasks",
     "title": "Create new task",
@@ -3870,6 +3938,54 @@
     "filename": "app/Http/Controllers/TasksController.php",
     "groupTitle": "Tasks",
     "name": "PostApiTasks"
+  },
+  {
+    "type": "put",
+    "url": "/api/tasks/:task_id",
+    "title": "Update task",
+    "sampleRequest": [
+      {
+        "url": "/api/tasks/:task_id"
+      }
+    ],
+    "description": "<p>Update task</p> ",
+    "group": "Tasks",
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Returned task</p> "
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>Integer</p> ",
+            "optional": false,
+            "field": "student_id",
+            "description": "<p>Student object id</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Date</p> ",
+            "optional": false,
+            "field": "deadline",
+            "description": "<p>Tasks deadline</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/TasksController.php",
+    "groupTitle": "Tasks",
+    "name": "PutApiTasksTask_id"
   },
   {
     "type": "get",
