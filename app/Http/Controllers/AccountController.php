@@ -2,13 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Task;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * Class AccountController
+ * @package App\Http\Controllers
+ */
 class AccountController extends Controller
 {
+    /**
+     *
+     */
     public function __construct()
     {
         $this->middleware('jwt.auth');
@@ -142,5 +150,21 @@ class AccountController extends Controller
         ]);
 
         return response()->json($user, 200);
+    }
+
+    /**
+     * @api {get} /api/account/tasks Get user tasks
+     * @apiSampleRequest /api/account/tasks
+     * @apiDescription Get user tasks
+     * @apiGroup Users
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getTasksAction(Request $request)
+    {
+        $tasks = Task::where('receiver_id', $request->user()->id)->get();
+
+        return response()->json($tasks);
     }
 }
