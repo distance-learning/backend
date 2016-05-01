@@ -13,6 +13,21 @@ use App\Http\Requests;
 class TasksController extends Controller
 {
     /**
+     * @api {get} /api/tasks/:task_id Get task by id
+     * @apiSampleRequest /api/tasks/:task_id
+     * @apiDescription Create new task
+     * @apiGroup Tasks
+     *
+     * @param Request $request
+     * @param Task $task
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getTaskAction(Request $request, Task $task)
+    {
+        return response()->json();
+    }
+
+    /**
      * @api {post} /api/tasks Create new task
      * @apiSampleRequest /api/tasks
      * @apiDescription Create new task
@@ -48,5 +63,57 @@ class TasksController extends Controller
         ]);
 
         return response()->json($task);
+    }
+
+    /**
+     * @api {put} /api/tasks/:task_id Update task
+     * @apiSampleRequest /api/tasks/:task_id
+     * @apiDescription Update task
+     * @apiGroup Tasks
+     *
+     * @apiSuccess (200) success Returned task
+     *
+     * @apiParam {Integer} student_id Student object id
+     * @apiParam {Date} deadline Tasks deadline
+     *
+     * @param Request $request
+     * @param Task $task
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function updateTaskAction(Request $request, Task $task)
+    {
+        $task->update([
+            'recipient_id' => $request->get('student_id'),
+            'deadline' => $request->get('deadline'),
+        ]);
+
+        $task->events()->update([
+            'recipient_id' => $request->get('student_id'),
+            'deadline' => $request->get('deadline'),
+        ]);
+
+        return response()->json($task);
+    }
+
+    /**
+     * @api {delete} /api/tasks/:task_id Delete task
+     * @apiSampleRequest /api/tasks/:task_id
+     * @apiDescription Delete task
+     * @apiGroup Tasks
+     *
+     * @param Request $request
+     * @param Task $task
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
+     */
+    public function deleteTaskAction(Request $request, Task $task)
+    {
+        foreach ($task->events as $event) {
+            $event->delete();
+        }
+
+        $task->delete();
+
+        return response()->json();
     }
 }
