@@ -4757,6 +4757,22 @@ define({ "api": [
   },
   {
     "type": "get",
+    "url": "/api/account/tasks",
+    "title": "Get user tasks",
+    "sampleRequest": [
+      {
+        "url": "/api/account/tasks"
+      }
+    ],
+    "description": "<p>Get user tasks</p> ",
+    "group": "Users",
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/AccountController.php",
+    "groupTitle": "Users",
+    "name": "GetApiAccountTasks"
+  },
+  {
+    "type": "get",
     "url": "/api/auth/faculties",
     "title": "Get faculties",
     "sampleRequest": [
