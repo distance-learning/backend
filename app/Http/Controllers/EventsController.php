@@ -13,6 +13,14 @@ use App\Http\Requests;
 class EventsController extends Controller
 {
     /**
+     * @api {get} /api/events Get events by interval
+     * @apiSampleRequest /api/events
+     * @apiDescription Get events by interval
+     * @apiGroup Tasks
+     *
+     * @apiParam {String} from From date
+     * @apiParam {String} to From date
+     *
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
