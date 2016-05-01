@@ -34,6 +34,10 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
     });
 
     Route::group(['middleware' => ['jwt.auth']], function () {
+        Route::group(['prefix' => 'events'], function () {
+            Route::get('/', 'EventsController@getEventsByInterval');
+        });
+
         Route::group(['prefix' => 'files'], function () {
             Route::post('/', 'FilesController@uploadFileAction');
         });

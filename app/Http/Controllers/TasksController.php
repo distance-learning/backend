@@ -40,6 +40,13 @@ class TasksController extends Controller
             'deadline' => $request->get('deadline'),
         ]);
 
+        //Create event on create task
+        $task->events()->create([
+            'sender_id' => $task->sender_id,
+            'recipient_id' => $task->recipient_id,
+            'deadline' => $task->deadline
+        ]);
+
         return response()->json($task);
     }
 }

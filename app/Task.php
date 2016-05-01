@@ -41,4 +41,12 @@ class Task extends Model
     {
         return $this->belongsTo(User::class, 'recipient_id');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function events()
+    {
+        return $this->morphMany(Event::class, 'attachments');
+    }
 }
