@@ -162,9 +162,7 @@ class TestsController extends Controller
      */
     public function getTestsForPassingTest(Request $request, Test $test)
     {
-//        var_dump(Test::all());
-
-        $questions = $test->questions()->with('answers')->orderByRaw('RANDOM()')->limit(20)->get();
+        $questions = $test->questions->shuffle()->splice(0, 20);
 
         return response()->json($questions);
     }
