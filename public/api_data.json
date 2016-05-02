@@ -4086,11 +4086,11 @@
   },
   {
     "type": "delete",
-    "url": "/api/tests/{id}",
+    "url": "/api/tests/:id",
     "title": "Delete test by id",
     "sampleRequest": [
       {
-        "url": "/api/tests/{id}"
+        "url": "/api/tests/:id"
       }
     ],
     "description": "<p>Delete test</p> ",
@@ -4213,11 +4213,11 @@
   },
   {
     "type": "get",
-    "url": "/api/tests/{id}",
+    "url": "/api/tests/:id",
     "title": "Get test by id",
     "sampleRequest": [
       {
-        "url": "/api/tests/{id}"
+        "url": "/api/tests/:id"
       }
     ],
     "description": "<p>Get teacher tests by id</p> ",
@@ -4283,11 +4283,11 @@
   },
   {
     "type": "get",
-    "url": "/api/tests/{id}/passing",
+    "url": "/api/tests/:id/passing",
     "title": "Get test for passing",
     "sampleRequest": [
       {
-        "url": "/api/tests/{id}/passing"
+        "url": "/api/tests/:id/passing"
       }
     ],
     "description": "<p>Get test for passing</p> ",
@@ -4301,6 +4301,19 @@
             "optional": false,
             "field": "authorization",
             "description": "<p>User token</p> "
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>Integer</p> ",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Test id</p> "
           }
         ]
       }
@@ -4483,11 +4496,11 @@
   },
   {
     "type": "put",
-    "url": "/api/tests/{id}",
+    "url": "/api/tests/:id",
     "title": "Update test by id",
     "sampleRequest": [
       {
-        "url": "/api/tests/{id}"
+        "url": "/api/tests/:id"
       }
     ],
     "description": "<p>Update test</p> ",

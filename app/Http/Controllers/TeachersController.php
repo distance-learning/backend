@@ -19,7 +19,7 @@ class TeachersController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getRandomTeachersAction()
+    public function getRandomTeachersAction(Request $request)
     {
         $teachers = User::where('role', 'teacher')
             ->with('subjects')

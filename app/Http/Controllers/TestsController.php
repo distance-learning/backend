@@ -36,8 +36,8 @@ class TestsController extends Controller
     /**
      * Method that authenticate user
      *
-     * @api {get} /api/tests/{id} Get test by id
-     * @apiSampleRequest /api/tests/{id}
+     * @api {get} /api/tests/:id Get test by id
+     * @apiSampleRequest /api/tests/:id
      * @apiDescription Get teacher tests by id
      * @apiGroup Tests
      *
@@ -92,8 +92,8 @@ class TestsController extends Controller
     /**
      * Method that authenticate user
      *
-     * @api {put} /api/tests/{id} Update test by id
-     * @apiSampleRequest /api/tests/{id}
+     * @api {put} /api/tests/:id Update test by id
+     * @apiSampleRequest /api/tests/:id
      * @apiDescription Update test
      * @apiGroup Tests
      *
@@ -123,8 +123,8 @@ class TestsController extends Controller
     /**
      * Method that authenticate user
      *
-     * @api {delete} /api/tests/{id} Delete test by id
-     * @apiSampleRequest /api/tests/{id}
+     * @api {delete} /api/tests/:id Delete test by id
+     * @apiSampleRequest /api/tests/:id
      * @apiDescription Delete test
      * @apiGroup Tests
      *
@@ -147,12 +147,14 @@ class TestsController extends Controller
     }
 
     /**
-     * @api {get} /api/tests/{id}/passing Get test for passing
-     * @apiSampleRequest /api/tests/{id}/passing
+     * @api {get} /api/tests/:code/passing Get test for passing
+     * @apiSampleRequest /api/tests/:code/passing
      * @apiDescription Get test for passing
      * @apiGroup Tests
      *
      * @apiHeader {String} authorization User token
+     *
+     * @apiParam {String} code Test code
      *
      * @param Request $request
      * @param Test $test
@@ -160,7 +162,9 @@ class TestsController extends Controller
      */
     public function getTestsForPassingTest(Request $request, Test $test)
     {
-        $questions = $test->questions()->with('answers')->$this->orderByRaw('RANDOM()')->limit(20);
+//        var_dump(Test::all());
+
+        $questions = $test->questions()->with('answers')->orderByRaw('RANDOM()')->limit(20)->get();
 
         return response()->json($questions);
     }
