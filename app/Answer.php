@@ -12,6 +12,10 @@ class Answer extends Model
         'question_id',
     ];
 
+    public $hidden = [
+        'iscorrectly'
+    ];
+
     public $timestamps = false;
 
     public function question()

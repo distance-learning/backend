@@ -4283,6 +4283,35 @@ define({ "api": [
   },
   {
     "type": "get",
+    "url": "/api/tests/{id}/passing",
+    "title": "Get test for passing",
+    "sampleRequest": [
+      {
+        "url": "/api/tests/{id}/passing"
+      }
+    ],
+    "description": "<p>Get test for passing</p> ",
+    "group": "Tests",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": "<p>User token</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/TestsController.php",
+    "groupTitle": "Tests",
+    "name": "GetApiTestsIdPassing"
+  },
+  {
+    "type": "get",
     "url": "/api/tests/{id}/questions/{question_id}",
     "title": "Get question",
     "sampleRequest": [

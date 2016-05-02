@@ -145,4 +145,28 @@ class TestsController extends Controller
 
         return response()->json(null, 204);
     }
+
+    /**
+     * @api {get} /api/tests/{id}/passing Get test for passing
+     * @apiSampleRequest /api/tests/{id}/passing
+     * @apiDescription Get test for passing
+     * @apiGroup Tests
+     *
+     * @apiHeader {String} authorization User token
+     *
+     * @param Request $request
+     * @param Test $test
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getTestsForPassingTest(Request $request, Test $test)
+    {
+        $questions = $test->questions()->with('answers')->$this->orderByRaw('RANDOM()')->limit(20);
+
+        return response()->json($questions);
+    }
+
+    public function getCompletedTests()
+    {
+
+    }
 }
