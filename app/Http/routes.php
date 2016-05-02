@@ -51,7 +51,6 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
             Route::get('/{task}', 'TasksController@getTaskAction');
             Route::put('/{task}', 'TasksController@updateTaskAction');
             Route::delete('/{task}', 'TasksController@deleteTaskAction');
-            Route::get('/{task}/passing', 'TasksController@getTestsForPassingTest');
         });
 
         Route::group(['prefix' => 'users'], function () {
@@ -73,6 +72,7 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
             Route::put('/{test}', 'TestsController@updateTestAction');
             Route::get('/{test}', 'TestsController@getTestAction');
             Route::delete('/{test}', 'TestsController@deleteTestAction');
+            Route::get('/{test}/passing', 'TestsController@getTestsForPassingTest');
 
             Route::group(['prefix' => '/{test}/questions'], function () {
                 Route::post('/', 'QuestionsController@createQuestionAction');
