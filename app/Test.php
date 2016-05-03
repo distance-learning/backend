@@ -35,4 +35,12 @@ class Test extends Model
     {
         return $this->hasMany(Question::class);
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function scores()
+    {
+        return $this->hasMany(Score::class);
+    }
 }

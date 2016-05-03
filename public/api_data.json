@@ -2004,11 +2004,11 @@
   },
   {
     "type": "post",
-    "url": "/api/admin/directions/:slug/subjects",
+    "url": "/api/admin/faculties/:slug/subjects",
     "title": "Create subject",
     "sampleRequest": [
       {
-        "url": "/api/admin/directions/:slug/subjects"
+        "url": "/api/admin/faculties/:slug/subjects"
       }
     ],
     "description": "<p>Create subject</p> ",
@@ -2078,15 +2078,15 @@
     "version": "0.0.0",
     "filename": "app/Http/Controllers/Admin/SubjectsController.php",
     "groupTitle": "Admin_Subject",
-    "name": "PostApiAdminDirectionsSlugSubjects"
+    "name": "PostApiAdminFacultiesSlugSubjects"
   },
   {
     "type": "delete",
-    "url": "/api/admin/directions/:slug/subjects/{id}",
+    "url": "/api/admin/faculties/:slug/subjects/:id",
     "title": "Delete subject by id",
     "sampleRequest": [
       {
-        "url": "/api/admin/directions/:slug/subjects/{id}"
+        "url": "/api/admin/faculties/:slug/subjects/:id"
       }
     ],
     "description": "<p>Delete subject by id</p> ",
@@ -2136,15 +2136,15 @@
     "version": "0.0.0",
     "filename": "app/Http/Controllers/Admin/SubjectsController.php",
     "groupTitle": "Admin_Subjects",
-    "name": "DeleteApiAdminDirectionsSlugSubjectsId"
+    "name": "DeleteApiAdminFacultiesSlugSubjectsId"
   },
   {
     "type": "get",
-    "url": "/api/admin/directions/:slug/subjects",
+    "url": "/api/admin/faculties/:slug/subjects",
     "title": "Get subjects list",
     "sampleRequest": [
       {
-        "url": "/api/admin/directions/:slug/subjects"
+        "url": "/api/admin/faculties/:slug/subjects"
       }
     ],
     "description": "<p>Get subjects list</p> ",
@@ -2194,15 +2194,15 @@
     "version": "0.0.0",
     "filename": "app/Http/Controllers/Admin/SubjectsController.php",
     "groupTitle": "Admin_Subjects",
-    "name": "GetApiAdminDirectionsSlugSubjects"
+    "name": "GetApiAdminFacultiesSlugSubjects"
   },
   {
     "type": "get",
-    "url": "/api/admin/directions/:slug/subjects/{id}",
+    "url": "/api/admin/faculties/:slug/subjects/:id",
     "title": "Get subject by id",
     "sampleRequest": [
       {
-        "url": "/api/admin/directions/:slug/subjects/{id}"
+        "url": "/api/admin/faculties/:slug/subjects/:id"
       }
     ],
     "description": "<p>Get subject by id</p> ",
@@ -2252,15 +2252,15 @@
     "version": "0.0.0",
     "filename": "app/Http/Controllers/Admin/SubjectsController.php",
     "groupTitle": "Admin_Subjects",
-    "name": "GetApiAdminDirectionsSlugSubjectsId"
+    "name": "GetApiAdminFacultiesSlugSubjectsId"
   },
   {
     "type": "put",
-    "url": "/api/admin/directions/:slug/subjects/{id}",
+    "url": "/api/admin/faculties/:slug/subjects/:id",
     "title": "Update subject action",
     "sampleRequest": [
       {
-        "url": "/api/admin/directions/:slug/subjects/{id}"
+        "url": "/api/admin/faculties/:slug/subjects/:id"
       }
     ],
     "description": "<p>Update subject action</p> ",
@@ -2330,7 +2330,7 @@
     "version": "0.0.0",
     "filename": "app/Http/Controllers/Admin/SubjectsController.php",
     "groupTitle": "Admin_Subjects",
-    "name": "PutApiAdminDirectionsSlugSubjectsId"
+    "name": "PutApiAdminFacultiesSlugSubjectsId"
   },
   {
     "type": "delete",
@@ -3780,6 +3780,35 @@
     "filename": "app/Http/Controllers/FilesController.php",
     "groupTitle": "Files",
     "name": "PostApiFiles"
+  },
+  {
+    "type": "get",
+    "url": "/api/tests/:test_id/scores",
+    "title": "Get scores by test",
+    "sampleRequest": [
+      {
+        "url": "/api/tests/:id/scores"
+      }
+    ],
+    "description": "<p>Get scores by test</p> ",
+    "group": "Score",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": "<p>User token</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/ScoresController.php",
+    "groupTitle": "Score",
+    "name": "GetApiTestsTest_idScores"
   },
   {
     "type": "get",
