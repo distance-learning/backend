@@ -93,6 +93,14 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
             Route::get('/{slug}', 'Admin\FacultiesController@getFacultyAction');
             Route::put('/{slug}', 'Admin\FacultiesController@putFacultyAction');
             Route::delete('/{slug}', 'Admin\FacultiesController@deleteFacultyAction');
+
+            Route::group(['prefix' => '/{slug}/subjects'], function () {
+                Route::get('/', 'Admin\SubjectsController@getSubjectsAction');
+                Route::get('/{subject}', 'Admin\SubjectsController@getSubjectAction');
+                Route::post('/', 'Admin\SubjectsController@createSubjectAction');
+                Route::put('/{subject}', 'Admin\SubjectsController@editSubjectAction');
+                Route::delete('/{subject}', 'Admin\SubjectsController@deleteSubjectAction');
+            });
         });
 
         Route::group(['prefix'  =>  'directions'], function () {
@@ -103,14 +111,6 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
             Route::delete('/{slug}', 'Admin\DirectionsController@deleteAction');
 
             Route::get('/{slug}/groups', 'Admin\DirectionsController@getGroupsByDirectionSlugAction');
-
-            Route::group(['prefix' => '/{slug}/subjects'], function () {
-                Route::get('/', 'Admin\SubjectsController@getSubjectsAction');
-                Route::get('/{subject}', 'Admin\SubjectsController@getSubjectAction');
-                Route::post('/', 'Admin\SubjectsController@createSubjectAction');
-                Route::put('/{subject}', 'Admin\SubjectsController@editSubjectAction');
-                Route::delete('/{subject}', 'Admin\SubjectsController@deleteSubjectAction');
-            });
         });
 
         Route::group(['prefix'  =>  'teachers'], function () {

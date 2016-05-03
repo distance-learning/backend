@@ -78,7 +78,7 @@ class Faculty extends Model implements SluggableInterface
      */
     public function subjects()
     {
-        return $this->hasManyThrough(\App\Subject::class, \App\Direction::class);
+        return $this->hasMany(Subject::class);
     }
 
     /**
