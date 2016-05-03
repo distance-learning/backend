@@ -6,7 +6,27 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Question
+ *
  * @package App
+ * @property integer $id
+ * @property string $name
+ * @property string $image
+ * @property string $type
+ * @property integer $test_id
+ * @property string $code
+ * @property float $score
+ * @property integer $time
+ * @property-read \App\Test $test
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Answer[] $answers
+ * @method static \Illuminate\Database\Query\Builder|\App\Question whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Question whereName($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Question whereImage($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Question whereType($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Question whereTestId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Question whereCode($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Question whereScore($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Question whereTime($value)
+ * @mixin \Eloquent
  */
 class Question extends Model
 {

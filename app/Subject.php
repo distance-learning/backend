@@ -6,7 +6,22 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Subject
+ *
  * @package App
+ * @property integer $id
+ * @property string $name
+ * @property string $description
+ * @property string $deleted_at
+ * @property integer $faculty_id
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Teacher[] $teachers
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Course[] $courses
+ * @property-read \App\Faculty $faculty
+ * @method static \Illuminate\Database\Query\Builder|\App\Subject whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Subject whereName($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Subject whereDescription($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Subject whereDeletedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Subject whereFacultyId($value)
+ * @mixin \Eloquent
  */
 class Subject extends Model
 {

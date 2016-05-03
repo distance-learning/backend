@@ -7,16 +7,21 @@ use App\User;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
+/**
+ * Class ResetPasswordEvent
+ * @package App\Events
+ */
 class ResetPasswordEvent extends Event
 {
     use SerializesModels;
 
+    /**
+     * @var User
+     */
     public $user;
 
     /**
-     * Create a new event instance.
-     *
-     * @return void
+     * @param User $user
      */
     public function __construct(User $user)
     {

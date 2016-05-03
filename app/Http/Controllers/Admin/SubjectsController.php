@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Direction;
 use App\Faculty;
 use App\Http\Controllers\Controller;
 use App\Subject;
@@ -23,9 +22,9 @@ class SubjectsController extends Controller
      *
      * @apiHeader {String} authorization
      *
-     * @apiSuccess (200) success Returned if teachers issets
+     * @apiSuccess (200) success Returned if subjects isset
      *
-     * @apiError (403) error Returned if user has not access for get teachers
+     * @apiError (403) error Returned if user has not access for get subjects
      *
      * @param Faculty $faculty
      * @return \Illuminate\Http\JsonResponse
@@ -49,9 +48,9 @@ class SubjectsController extends Controller
      *
      * @apiHeader {String} authorization
      *
-     * @apiSuccess (200) success Returned if teachers issets
+     * @apiSuccess (200) success Returned if subject successful created
      *
-     * @apiError (403) error Returned if user has not access for get teachers
+     * @apiError (403) error Returned if user has not access for create subject
      *
      * @param Request $request
      * @param Faculty $faculty
@@ -80,9 +79,9 @@ class SubjectsController extends Controller
      * @apiParam {String} name Subject name
      * @apiParam {String} description Subject description
      *
-     * @apiSuccess (200) success Returned if teachers issets
+     * @apiSuccess (200) success Returned if subject successful update
      *
-     * @apiError (403) error Returned if user has not access for get teachers
+     * @apiError (403) error Returned if user has not access for update subjects
      *
      * @param Request $request
      * @param Faculty $faculty
@@ -108,9 +107,9 @@ class SubjectsController extends Controller
      *
      * @apiHeader {String} authorization
      *
-     * @apiSuccess (200) success Returned if teachers issets
+     * @apiSuccess (200) success Returned if subject isset
      *
-     * @apiError (403) error Returned if user has not access for get teachers
+     * @apiError (403) error Returned if user has not access for get subject
      *
      * @param Subject $subject
      * @return \Illuminate\Http\JsonResponse
@@ -129,9 +128,9 @@ class SubjectsController extends Controller
      *
      * @apiHeader {String} authorization
      *
-     * @apiSuccess (200) success Returned if teachers issets
+     * @apiSuccess (200) success Returned if subject successful delete
      *
-     * @apiError (403) error Returned if user has not access for get teachers
+     * @apiError (403) error Returned if user has not access for delete subject
      *
      * @param Subject $subject
      * @return \Illuminate\Http\JsonResponse

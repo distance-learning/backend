@@ -8,11 +8,13 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\User;
 
+/**
+ * Class UsersController
+ * @package App\Http\Controllers\Admin
+ */
 class UsersController extends Controller
 {
     /**
-     * Remove the specified resource from storage.
-     *
      * @api {get} /api/admin/users Get users by page
      * @apiSampleRequest /api/admin/users
      * @apiDescription Get users by page
@@ -27,7 +29,7 @@ class UsersController extends Controller
      *
      * @apiError (403) error Returned if user has not access for get users
      *
-     * @param  string  $slug
+     * @param  Request $request
      * @return \Illuminate\Http\Response
      */
     public function indexAction(Request $request)
@@ -38,8 +40,6 @@ class UsersController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
      * @api {get} /api/admin/users/:slug Get user by slug
      * @apiSampleRequest /api/admin/users/:slug
      * @apiDescription Get user by slug
@@ -55,15 +55,14 @@ class UsersController extends Controller
      * @apiError (403) error Returned if user has not access for get users
      * @apiError (404) error Returned if user not isset
      *
-     * @param  string  $slug
+     * @param  Request $request
+     * @param  User $student
      * @return \Illuminate\Http\Response
      */
-    public function itemAction(Request $request, $slug)
+    public function itemAction(Request $request, User $student)
     {
-        $student = User::findBySlugOrFail($slug);
-
         if ($student->isStudent()) {
-            $student = $student->with('group')->where('slug', $slug)->first();
+            $student->load('group');
         }
 
         return response()->json($student);
@@ -88,39 +87,33 @@ class UsersController extends Controller
      * @apiParam {String} role User role
      * @apiParam {String} description User description
      *
-     * @apiSuccess (200) success Returned if teacher successful created
+     * @apiSuccess (200) success Returned if user successful created
      *
-     * @apiError (403) error Returned if user has not access for create teacher
+     * @apiError (403) error Returned if user has not access for create another user
      * @apiError (500) error Returned if throw server error
      *
-     * @param  string  $slug
+     * @param  Request $request
      * @return \Illuminate\Http\Response
      */
     public function storeAction(Request $request)
     {
-        try {
-            $student = User::create([
-                'name'  =>  $request->get('name'),
-                'surname'  =>  $request->get('surname'),
-                'birthday'  =>  $request->get('birthday'),
-                'phone'  =>  $request->get('phone'),
-                'role'  =>  $request->get('role'),
-                'email' =>  $request->get('email'),
-                'description' =>  $request->get('description'),
-                'password'  =>  bcrypt($request->get('password')),
-                'group_id' => $request->get('group_id'),
-                'status'  =>  1
-            ]);
+        $student = User::create([
+            'name'  =>  $request->get('name'),
+            'surname'  =>  $request->get('surname'),
+            'birthday'  =>  $request->get('birthday'),
+            'phone'  =>  $request->get('phone'),
+            'role'  =>  $request->get('role'),
+            'email' =>  $request->get('email'),
+            'description' =>  $request->get('description'),
+            'password'  =>  $request->get('password'),
+            'group_id' => $request->get('group_id'),
+            'status'  =>  1,
+        ]);
 
-            return response()->json($student);
-        } catch (Exception $e) {
-            return response()->json(null, 500);
-        }
+        return response()->json($student);
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
      * @api {put} /api/admin/users/:slug Update user
      * @apiSampleRequest /api/admin/users/:slug
      * @apiDescription Update teacher
@@ -138,54 +131,45 @@ class UsersController extends Controller
      * @apiParam {String} description User description
      * @apiParam {String} password User password
      *
-     * @apiSuccess (200) success Returned if teacher successful updated
+     * @apiSuccess (200) success Returned if user successful updated
      *
-     * @apiError (403) error Returned if user has not access for update teacher
+     * @apiError (403) error Returned if user has not access for update another user
      * @apiError (500) error Returned if throw server error
      *
-     * @param  string  $slug
+     * @param  Request $request
+     * @param  User $user
      * @return \Illuminate\Http\Response
      */
-    public function putAction(Request $request, $slug)
+    public function putAction(Request $request, User $user)
     {
-        $user = User::findBySlug($slug);
-
-        if (!$user) {
-            return response()->json(null, 404);
+        if ($request->has('password') && !empty($request->get('password'))) {
+            $user->update([
+                'name'  =>  $request->get('name'),
+                'surname'  =>  $request->get('surname'),
+                'birthday'  =>  new \DateTime($request->get('birthday')),
+                'phone'  =>  $request->get('phone'),
+                'role'  =>  $request->get('role'),
+                'email' =>  $request->get('email'),
+                'description' =>  $request->get('description'),
+                'password'  =>  trim($request->get('password')),
+                'group_id' => $request->get('group_id'),
+                'status'  =>  1
+            ]);
+        } else {
+            $user->update([
+                'name'  =>  $request->get('name'),
+                'surname'  =>  $request->get('surname'),
+                'birthday'  =>  new \DateTime($request->get('birthday')),
+                'phone'  =>  $request->get('phone'),
+                'role'  =>  $request->get('role'),
+                'email' =>  $request->get('email'),
+                'description' =>  $request->get('description'),
+                'group_id' => $request->get('group_id'),
+                'status'  =>  1
+            ]);
         }
 
-        try {
-            if ($request->request->has('password') && !empty($request->request->get('password'))) {
-                $user->update([
-                    'name'  =>  $request->get('name'),
-                    'surname'  =>  $request->get('surname'),
-                    'birthday'  =>  new \DateTime($request->get('birthday')),
-                    'phone'  =>  $request->get('phone'),
-                    'role'  =>  $request->get('role'),
-                    'email' =>  $request->get('email'),
-                    'description' =>  $request->get('description'),
-                    'password'  =>  bcrypt(trim($request->get('password'))),
-                    'group_id' => $request->get('group_id'),
-                    'status'  =>  1
-                ]);
-            } else {
-                $user->update([
-                    'name'  =>  $request->get('name'),
-                    'surname'  =>  $request->get('surname'),
-                    'birthday'  =>  new \DateTime($request->get('birthday')),
-                    'phone'  =>  $request->get('phone'),
-                    'role'  =>  $request->get('role'),
-                    'email' =>  $request->get('email'),
-                    'description' =>  $request->get('description'),
-                    'group_id' => $request->get('group_id'),
-                    'status'  =>  1
-                ]);
-            }
-
-            return response()->json($user);
-        } catch (\Exception $e) {
-            return response()->json(null, 500);
-        }
+        return response()->json($user);
     }
 
     /**
@@ -201,20 +185,14 @@ class UsersController extends Controller
      *
      * @apiSuccess (204) success Returned if user successful removed
      *
-     * @apiError (403) error Returned if user has not access for get user
+     * @apiError (403) error Returned if user has not access for delete user
      *
-     * @param  string  $slug
+     * @param  User $user
      * @return \Illuminate\Http\Response
      */
-    public function deleteAction($slug)
+    public function deleteAction(User $user)
     {
-        $student = User::findBySlug($slug);
-
-        if (!$student) {
-            return response()->json(null, 404);
-        }
-
-        $student->delete();
+        $user->delete();
 
         return response()->json(null, 204);
     }

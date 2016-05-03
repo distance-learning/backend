@@ -77,7 +77,6 @@ class AccountController extends Controller
      * @apiError (201) success Returned if user successful create
      * @apiError (500) error Returned if error on serve
      *
-     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function logoutAction()

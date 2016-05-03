@@ -6,6 +6,28 @@ use Cviebrock\EloquentSluggable\SluggableInterface;
 use Cviebrock\EloquentSluggable\SluggableTrait;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Direction
+ *
+ * @package App
+ * @property integer $id
+ * @property string $name
+ * @property string $slug
+ * @property string $description
+ * @property integer $faculty_id
+ * @property string $deleted_at
+ * @property-read \App\User $faculty
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Subject[] $subjects
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Group[] $groups
+ * @method static \Illuminate\Database\Query\Builder|\App\Direction whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Direction whereName($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Direction whereSlug($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Direction whereDescription($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Direction whereFacultyId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Direction whereDeletedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Direction findBySlug($slug)
+ * @mixin \Eloquent
+ */
 class Direction extends Model implements SluggableInterface
 {
     use SluggableTrait;
@@ -33,11 +55,19 @@ class Direction extends Model implements SluggableInterface
     ];
 
     /**
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function faculty()
     {
-        return $this->belongsTo(\App\User::class);
+        return $this->belongsTo(User::class);
     }
 
     /**
@@ -45,7 +75,7 @@ class Direction extends Model implements SluggableInterface
      */
     public function subjects()
     {
-        return $this->hasMany(\App\Subject::class);
+        return $this->hasMany(Subject::class);
     }
 
     /**

@@ -17,7 +17,15 @@ class FacultiesController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('jwt.auth', ['only' => ['postFacultyAction', 'putFacultyAction', 'deleteFacultyAction']]);
+        $this->middleware('jwt.auth',
+            [
+                'only' => [
+                    'postFacultyAction',
+                    'putFacultyAction',
+                    'deleteFacultyAction'
+                ]
+            ]
+        );
     }
 
     /**
@@ -124,12 +132,8 @@ class FacultiesController extends Controller
      * @param $slug
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getFacultyAction($slug)
+    public function getFacultyAction(Faculty $faculty)
     {
-        $faculty = Faculty::with('directions')
-            ->findBySlug($slug)
-        ;
-
         //TODO i wan't cry :C
 //        $faculty['students'] = $faculty
 //            ->users
@@ -142,10 +146,6 @@ class FacultiesController extends Controller
 //            ->where('role', 'teacher')
 //            ->all()
 //        ;
-
-        if (!$faculty) {
-            return response()->json(null, 400);
-        }
 
         return response()->json($faculty, 200);
     }
@@ -178,7 +178,7 @@ class FacultiesController extends Controller
      * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function putFacultyAction(Request $request, $slug)
+    public function putFacultyAction(Request $request, Faculty $faculty)
     {
         //TODO need enable
 //        if (Gate::denies('createOrUpdateOrDeleteFaculty')) {
@@ -189,12 +189,6 @@ class FacultiesController extends Controller
 
         if ($validator->fails()) {
             return response()->json($validator->errors(), 400);
-        }
-
-        $faculty = Faculty::findBySlug($slug);
-
-        if (!$faculty) {
-            return response()->json(null, 404);
         }
 
         $faculty->update([
@@ -226,18 +220,12 @@ class FacultiesController extends Controller
      * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function deleteFacultyAction($slug)
+    public function deleteFacultyAction(Faculty $faculty)
     {
         //TODO need enable
 //        if (Gate::denies('createOrUpdateOrDeleteFaculty')) {
 //            return response()->json(null, 403);
 //        }
-
-        $faculty = Faculty::findBySlug($slug);
-
-        if (!$faculty) {
-            return response()->json(null, 404);
-        }
 
         $faculty->delete();
 

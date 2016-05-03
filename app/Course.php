@@ -6,7 +6,25 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Course
+ *
  * @package App
+ * @property integer $id
+ * @property integer $subject_id
+ * @property integer $teacher_id
+ * @property integer $group_id
+ * @property string $slug
+ * @property string $deleted_at
+ * @property-read \App\Group $group
+ * @property-read \App\Subject $subject
+ * @property-read \App\Teacher $teacher
+ * @method static \Illuminate\Database\Query\Builder|\App\Course whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Course whereSubjectId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Course whereTeacherId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Course whereGroupId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Course whereSlug($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Course whereDeletedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Course findBySubjectAndTeacher($teacher_id, $subject_id)
+ * @mixin \Eloquent
  */
 class Course extends Model
 {
@@ -30,7 +48,7 @@ class Course extends Model
      */
     public function group()
     {
-        return $this->belongsTo(\App\Group::class);
+        return $this->belongsTo(Group::class);
     }
 
     /**
@@ -38,7 +56,7 @@ class Course extends Model
      */
     public function subject()
     {
-        return $this->belongsTo(\App\Subject::class);
+        return $this->belongsTo(Subject::class);
     }
 
     /**
@@ -46,7 +64,7 @@ class Course extends Model
      */
     public function teacher()
     {
-        return $this->belongsTo(\App\Teacher::class);
+        return $this->belongsTo(Teacher::class);
     }
 
     /**

@@ -11,9 +11,7 @@ use Illuminate\Support\Facades\Mail;
 class ResetPasswordEmail
 {
     /**
-     * Create the event listener.
      *
-     * @return void
      */
     public function __construct()
     {

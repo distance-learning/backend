@@ -3,10 +3,8 @@ namespace App\Http\Controllers;
 
 use App\Events\ResetPasswordEvent;
 use App\Faculty;
-use App\Http\Requests\UpdateUserRequest;
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Event;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
@@ -14,6 +12,10 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Psy\Exception\Exception;
 
+/**
+ * Class AuthController
+ * @package App\Http\Controllers
+ */
 class AuthController extends Controller
 {
     public function __construct()

@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\User;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+/**
+ * Class StudentsController
+ * @package App\Http\Controllers\Admin
+ */
 class StudentsController extends Controller
 {
     /**
@@ -23,16 +26,18 @@ class StudentsController extends Controller
      *
      * @apiParam {String} page Page
      *
-     * @apiSuccess (200) success Returned if teachers issets
+     * @apiSuccess (200) success Returned if students issets
      *
-     * @apiError (403) error Returned if user has not access for get teachers
+     * @apiError (403) error Returned if user has not access for get students
      *
-     * @param  Group $group
      * @return \Illuminate\Http\Response
      */
     public function getStudentsAction()
     {
-        $students = User::where('role', 'student')->whereNull('group_id')->paginate(10);
+        $students = User::where('role', 'student')
+            ->whereNull('group_id')
+            ->paginate(10)
+        ;
 
         return response()->json($students);
     }
@@ -50,11 +55,11 @@ class StudentsController extends Controller
      *
      * @apiParam {String} param Search params
      *
-     * @apiSuccess (200) success Returned if teachers issets
+     * @apiSuccess (200) success Returned if students issets
      *
-     * @apiError (403) error Returned if user has not access for get teachers
+     * @apiError (403) error Returned if user has not access for get students
      *
-     * @param  Group $group
+     * @param  Request $request
      * @return \Illuminate\Http\Response
      */
     public function findStudentsAction(Request $request)

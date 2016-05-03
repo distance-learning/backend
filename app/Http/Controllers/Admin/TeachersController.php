@@ -10,8 +10,6 @@ use App\User;
 class TeachersController extends Controller
 {
     /**
-     * Remove the specified resource from storage.
-     *
      * @api {get} /api/admin/teachers Get teachers by page
      * @apiSampleRequest /api/admin/teachers
      * @apiDescription Get teachers by page
@@ -22,11 +20,11 @@ class TeachersController extends Controller
      *
      * @apiParam {String} page  Page
      *
-     * @apiSuccess (200) success Returned if teachers issets
+     * @apiSuccess (200) success Returned if teachers isset
      *
      * @apiError (403) error Returned if user has not access for get teachers
      *
-     * @param  string  $slug
+     * @param  Request $request
      * @return \Illuminate\Http\Response
      */
     public function indexAction(Request $request)
@@ -37,8 +35,6 @@ class TeachersController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
      * @api {get} /api/admin/teachers/:slug Get teacher by slug
      * @apiSampleRequest /api/admin/teachers/:slug
      * @apiDescription Get teacher by slug
@@ -54,23 +50,16 @@ class TeachersController extends Controller
      * @apiError (403) error Returned if user has not access for get teachers
      * @apiError (404) error Returned if teacher not isset
      *
-     * @param  string  $slug
+     * @param  Request $request
+     * @param  User $teacher
      * @return \Illuminate\Http\Response
      */
-    public function itemAction(Request $request, $slug)
+    public function itemAction(Request $request, User $teacher)
     {
-        $teacher = User::findBySlug($slug)->first();
-
-        if (!$teacher) {
-            return response()->json(null, 404);
-        }
-
         return response()->json($teacher);
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
      * @api {post} /api/admin/teachers Create new teacher
      * @apiSampleRequest /api/admin/teachers
      * @apiDescription Create teacher
@@ -92,33 +81,27 @@ class TeachersController extends Controller
      * @apiError (403) error Returned if user has not access for create teacher
      * @apiError (500) error Returned if throw server error
      *
-     * @param  string  $slug
+     * @param  Request $request
      * @return \Illuminate\Http\Response
      */
     public function storeAction(Request $request)
     {
-        try {
-            $teacher = User::create([
-                'name'  =>  $request->request->get('name'),
-                'surname'  =>  $request->request->get('surname'),
-                'birthday'  =>  $request->request->get('birthday'),
-                'phone'  =>  $request->request->get('phone'),
-                'role'  =>  'teacher',
-                'email' =>  $request->request->get('email'),
-                'description' =>  $request->request->get('description'),
-                'password'  =>  $request->request->get('password'),
-                'status'  =>  1
-            ]);
+        $teacher = User::create([
+            'name'  =>  $request->request->get('name'),
+            'surname'  =>  $request->request->get('surname'),
+            'birthday'  =>  $request->request->get('birthday'),
+            'phone'  =>  $request->request->get('phone'),
+            'role'  =>  'teacher',
+            'email' =>  $request->request->get('email'),
+            'description' =>  $request->request->get('description'),
+            'password'  =>  $request->request->get('password'),
+            'status'  =>  1
+        ]);
 
-            return response()->json($teacher);
-        } catch (Exception $e) {
-            return response()->json(null, 500);
-        }
+        return response()->json($teacher);
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
      * @api {put} /api/admin/teachers/:slug Update teacher
      * @apiSampleRequest /api/admin/teachers/:slug
      * @apiDescription Update teacher
@@ -140,39 +123,28 @@ class TeachersController extends Controller
      * @apiError (403) error Returned if user has not access for update teacher
      * @apiError (500) error Returned if throw server error
      *
-     * @param  string  $slug
+     * @param  Request $request
+     * @param  User $teacher
      * @return \Illuminate\Http\Response
      */
-    public function putAction(Request $request, $slug)
+    public function putAction(Request $request, User $teacher)
     {
-        $teacher = User::findBySlug($slug);
+        $teacher->update([
+            'name'  =>  $request->request->get('name'),
+            'surname'  =>  $request->request->get('surname'),
+            'birthday'  =>  $request->request->get('birthday'),
+            'phone'  =>  $request->request->get('phone'),
+            'role'  =>  'teacher',
+            'email' =>  $request->request->get('email'),
+            'description' =>  $request->request->get('description'),
+            'password'  =>  $request->request->get('password'),
+            'status'  =>  1
+        ]);
 
-        if (!$teacher) {
-            return response()->json(null, 404);
-        }
-
-        try {
-            $teacher->update([
-                'name'  =>  $request->request->get('name'),
-                'surname'  =>  $request->request->get('surname'),
-                'birthday'  =>  $request->request->get('birthday'),
-                'phone'  =>  $request->request->get('phone'),
-                'role'  =>  'teacher',
-                'email' =>  $request->request->get('email'),
-                'description' =>  $request->request->get('description'),
-                'password'  =>  $request->request->get('password'),
-                'status'  =>  1
-            ]);
-
-            return response()->json($teacher);
-        } catch (Exception $e) {
-            return response()->json(null, 500);
-        }
+        return response()->json($teacher);
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
      * @api {delete} /api/admin/teachers/:slug Delete teacher
      * @apiSampleRequest /api/admin/teachers/:slug
      * @apiDescription Remove teacher
@@ -183,25 +155,15 @@ class TeachersController extends Controller
      *
      * @apiSuccess (204) success Returned if teacher successful removed
      *
-     * @apiError (403) error Returned if user has not access for get teacher
+     * @apiError (403) error Returned if user has not access for delete teacher
      *
-     * @param  string  $slug
+     * @param  User $teacher
      * @return \Illuminate\Http\Response
      */
-    public function deleteAction()
+    public function deleteAction(User $teacher)
     {
-        $teacher = User::findBySlug($slug);
+        $teacher->delete();
 
-        if (!$teacher) {
-            return response()->json(null, 404);
-        }
-
-        try {
-            $teacher->delete();
-
-            return response()->json(null, 204);
-        } catch (Exception $e) {
-            return response()->json(null, 404);
-        }
+        return response()->json(null, 204);
     }
 }

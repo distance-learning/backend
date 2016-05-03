@@ -9,11 +9,13 @@ use App\Http\Controllers\Controller;
 use App\Faculty;
 use App\Direction;
 
+/**
+ * Class DirectionsController
+ * @package App\Http\Controllers\Admin
+ */
 class DirectionsController extends Controller
 {
     /**
-     * Remove the specified resource from storage.
-     *
      * @api {get} /api/admin/directions Get directions by page
      * @apiSampleRequest /api/admin/directions
      * @apiDescription Get directions by page
@@ -33,14 +35,14 @@ class DirectionsController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $faculties = Direction::paginate($request->query->get('count'));
+        $directions = Direction::paginate(
+            $request->query->get('count')
+        );
 
-        return response()->json($faculties);
+        return response()->json($directions);
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
      * @api {get} /api/admin/directions/:slug Get direction by slug
      * @apiSampleRequest /api/admin/directions/:slug
      * @apiDescription Get direction by slug
@@ -59,20 +61,12 @@ class DirectionsController extends Controller
      * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function itemAction(Request $request, $slug)
+    public function itemAction(Request $request, Direction $direction)
     {
-        $faculty = Direction::findBySlug($slug);
-
-        if (!$faculty) {
-            return response()->json(null, 404);
-        }
-
-        return response()->json($faculty);
+        return response()->json($direction);
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
      * @api {post} /api/admin/directions Create new direction
      * @apiSampleRequest /api/admin/directions
      * @apiDescription Create direction
@@ -87,7 +81,7 @@ class DirectionsController extends Controller
      *
      * @apiSuccess (200) success Returned if direction successful created
      *
-     * @apiError (403) error Returned if user has not access for get facilties
+     * @apiError (403) error Returned if user has not access for create directions
      *
      * @param  Request $request
      * @return \Illuminate\Http\Response
@@ -106,8 +100,6 @@ class DirectionsController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
      * @api {put} /api/admin/directions/:slug Update direction
      * @apiSampleRequest /api/admin/directions/:slug
      * @apiDescription Update direction
@@ -122,39 +114,23 @@ class DirectionsController extends Controller
      *
      * @apiSuccess (200) success Returned if direction successful updated
      *
-     * @apiError (403) error Returned if user has not access for get facilties
+     * @apiError (403) error Returned if user has not access for update direction
      *
      * @param  Request $request
      * @return \Illuminate\Http\Response
      */
-    public function putAction(Request $request, $facultySlug, $directionSlug)
+    public function putAction(Request $request, Faculty $faculty, Direction $direction)
     {
-        $direction = Direction::findBySlug($directionSlug);
-
-        if (!$direction) {
-            return response()->json('Direction not found', 404);
-        }
-
-        $faculty = Faculty::findBySlug($facultySlug)->first();
-
-        if (!$faculty) {
-            return response()->json('Faculty not found');
-        }
-
-        $direction = Direction::create([
-            'name'  =>  $request->request->get('name'),
-            'description' =>  $request->request->get('description'),
+        $direction->update([
+            'name'  =>  $request->get('name'),
+            'description' =>  $request->get('description'),
+            'faculty_id' => $faculty->id,
         ]);
-
-        $direction->faculty()->associate($faculty);
-        $direction->save();
 
         return response()->json($direction);
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
      * @api {delete} /api/admin/directions/:slug Delete direction
      * @apiSampleRequest /api/admin/directions/:slug
      * @apiDescription Remove direction
@@ -165,20 +141,14 @@ class DirectionsController extends Controller
      *
      * @apiSuccess (204) success Returned if direction successful removed
      *
-     * @apiError (403) error Returned if user has not access for get directions
+     * @apiError (403) error Returned if user has not access for delete direction
      *
      * @param  Request $request
      * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function deleteAction(Request $request, $slug)
+    public function deleteAction(Request $request, Direction $direction)
     {
-        $direction = Direction::findBySlug($slug);
-
-        if (!$direction) {
-            return response()->json(null, 404);
-        }
-
         $direction->delete();
 
         return response()->json(null, 204);
@@ -187,9 +157,9 @@ class DirectionsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @api {get} /api/admin/directions/:slug/groups Get groups by directions slug
+     * @api {get} /api/admin/directions/:slug/groups Get groups by direction
      * @apiSampleRequest /api/admin/directions/:slug/groups
-     * @apiDescription Get groups by directions slug
+     * @apiDescription Get groups by direction
      * @apiGroup Admin|Directions
      * @apiPermission administrator, university_administrator
      *
@@ -197,21 +167,14 @@ class DirectionsController extends Controller
      *
      * @apiSuccess (204) success Returned if direction successful removed
      *
-     * @apiError (403) error Returned if user has not access for get directions
+     * @apiError (403) error Returned if user has not access for get groups in directions
      *
      * @param  Request $request
      * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function getGroupsByDirectionSlugAction(Request $request, $slug)
+    public function getGroupsByDirectionSlugAction(Request $request, Direction $direction)
     {
-        //TODO need fix
-        $direction = Direction::findBySlug($slug);
-
-        if (!$direction) {
-            return response()->json(null, 404);
-        }
-
         $groups = Group::where('direction_id', $direction->id)->paginate(10);
 
         return response()->json($groups, 200);

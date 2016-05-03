@@ -7,6 +7,29 @@ use Cviebrock\EloquentSluggable\SluggableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * Class Faculty
+ *
+ * @package App
+ * @property integer $id
+ * @property string $name
+ * @property string $description
+ * @property string $avatar
+ * @property string $slug
+ * @property \Carbon\Carbon $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $faculty_administrator
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\User[] $users
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Direction[] $directions
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Subject[] $subjects
+ * @method static \Illuminate\Database\Query\Builder|\App\Faculty whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Faculty whereName($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Faculty whereDescription($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Faculty whereAvatar($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Faculty whereSlug($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Faculty whereDeletedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Faculty random($count)
+ * @mixin \Eloquent
+ */
 class Faculty extends Model implements SluggableInterface
 {
     use SluggableTrait, SoftDeletes;
@@ -49,12 +72,20 @@ class Faculty extends Model implements SluggableInterface
     ];
 
     /**
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    /**
      * @deprecated
      * @return \Illuminate\Database\Eloquent\Relations\MorphTo
      */
     public function faculty_administrator()
     {
-        return $this->morphTo(\App\User::class, 'structure');
+        return $this->morphTo(User::class, 'structure');
     }
 
     /**
@@ -70,7 +101,7 @@ class Faculty extends Model implements SluggableInterface
      */
     public function directions()
     {
-        return $this->hasMany(\App\Direction::class);
+        return $this->hasMany(Direction::class);
     }
 
     /**
@@ -79,16 +110,6 @@ class Faculty extends Model implements SluggableInterface
     public function subjects()
     {
         return $this->hasMany(Subject::class);
-    }
-
-    /**
-     * @param $query
-     * @param $slug
-     * @return mixed
-     */
-    public function scopeFindBySlug($query, $slug)
-    {
-        return $query->where('slug', $slug)->first();
     }
 
     /**

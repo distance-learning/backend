@@ -9,11 +9,13 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+/**
+ * Class GroupsController
+ * @package App\Http\Controllers\Admin
+ */
 class GroupsController extends Controller
 {
     /**
-     * Remove the specified resource from storage.
-     *
      * @api {get} /api/admin/groups/:slug Get group by slug
      * @apiSampleRequest /api/admin/groups/:slug
      * @apiDescription Get group by slug
@@ -24,7 +26,7 @@ class GroupsController extends Controller
      *
      * @apiParam {String} slug Slug
      *
-     * @apiSuccess (200) success Returned if group issets
+     * @apiSuccess (200) success Returned if group isset
      *
      * @apiError (403) error Returned if user has not access for get groups
      *
@@ -37,8 +39,6 @@ class GroupsController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
      * @api {get} /api/admin/groups Get groups by page
      * @apiSampleRequest /api/admin/groups
      * @apiDescription Get groups by page
@@ -49,11 +49,10 @@ class GroupsController extends Controller
      *
      * @apiParam {String} page Page
      *
-     * @apiSuccess (200) success Returned if groups issets
+     * @apiSuccess (200) success Returned if groups isset
      *
      * @apiError (403) error Returned if user has not access for get teachers
      *
-     * @param  Group $group
      * @return \Illuminate\Http\Response
      */
     public function getGroupsAction()
@@ -64,8 +63,6 @@ class GroupsController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
      * @api {post} /api/admin/groups Create new group
      * @apiSampleRequest /api/admin/groups
      * @apiDescription Create new group
@@ -81,7 +78,7 @@ class GroupsController extends Controller
      *
      * @apiError (403) error Returned if user has not access for get teachers
      *
-     * @param  Group $group
+     * @param  Request $request
      * @return \Illuminate\Http\Response
      */
     public function postGroupAction(Request $request)
@@ -91,6 +88,7 @@ class GroupsController extends Controller
             'direction_id' => $request->get('direction_id'),
             'year_of_entry' => Carbon::now()->format('Y'),
         ]);
+
         $students = User::find($request->get('students'));
 
         $group->students()->saveMany($students);
@@ -117,6 +115,7 @@ class GroupsController extends Controller
      *
      * @apiError (403) error Returned if user has not access for get teachers
      *
+     * @param  Request $request
      * @param  Group $group
      * @return \Illuminate\Http\Response
      */

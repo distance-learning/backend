@@ -6,10 +6,35 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Task
+ *
  * @package App
+ * @property integer $id
+ * @property integer $attachment_id
+ * @property string $attachment_type
+ * @property integer $sender_id
+ * @property integer $recipient_id
+ * @property string $deadline
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $attachment
+ * @property-read \App\User $sender
+ * @property-read \App\User $recipient
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Event[] $events
+ * @method static \Illuminate\Database\Query\Builder|\App\Task whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Task whereAttachmentId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Task whereAttachmentType($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Task whereSenderId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Task whereRecipientId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Task whereDeadline($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Task whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Task whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class Task extends Model
 {
+    /**
+     * @var array
+     */
     public $fillable = [
         'attachment_id',
         'attachment_type',
