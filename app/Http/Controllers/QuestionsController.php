@@ -30,7 +30,14 @@ class QuestionsController extends Controller
      **/
     public function getQuestionByCodeAction(Test $test, Question $question)
     {
-        return response()->json($question->with('answers')->where('id', $question->id)->first());
+        $questions = $question
+            ->with('answers')
+            ->where('id', $question->id)
+            ->first();
+
+
+        return response()
+            ->json($questions);
     }
 
     /**
@@ -92,6 +99,8 @@ class QuestionsController extends Controller
         $question->update([
             'name' => $request->get('question')['name'],
             'type' => $request->get('question')['type'],
+            'score' => $request->get('question')['score'],
+            'time' => $request->get('question')['time'],
         ]);
 
 //        $question->answers()->delete();
@@ -115,6 +124,12 @@ class QuestionsController extends Controller
         return response()->json($question);
     }
 
+    /**
+     * @param Request $request
+     * @param Test $test
+     * @param Question $question
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function updateImageToQuestionByCodeAction(Request $request, Test $test, Question $question)
     {
         if ($request->hasFile('file')) {
