@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Direction;
+use App\Faculty;
 use App\Http\Controllers\Controller;
 use App\Subject;
 use Illuminate\Http\Request;
@@ -14,8 +15,8 @@ use Illuminate\Http\Request;
 class SubjectsController extends Controller
 {
     /**
-     * @api {get} /api/admin/directions/:slug/subjects Get subjects list
-     * @apiSampleRequest /api/admin/directions/:slug/subjects
+     * @api {get} /api/admin/faculties/:slug/subjects Get subjects list
+     * @apiSampleRequest /api/admin/faculties/:slug/subjects
      * @apiDescription Get subjects list
      * @apiGroup Admin|Subjects
      * @apiPermission administrator, university_administrator
@@ -26,19 +27,19 @@ class SubjectsController extends Controller
      *
      * @apiError (403) error Returned if user has not access for get teachers
      *
-     * @param Direction $direction
+     * @param Faculty $faculty
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getSubjectsAction(Direction $direction)
+    public function getSubjectsAction(Faculty $faculty)
     {
-        $subjects = Subject::where('direction_id', $direction->id)->paginate(10);
+        $subjects = Subject::where('faculty_id', $faculty->id)->paginate(10);
 
         return response()->json($subjects);
     }
 
     /**
-     * @api {post} /api/admin/directions/:slug/subjects Create subject
-     * @apiSampleRequest /api/admin/directions/:slug/subjects
+     * @api {post} /api/admin/faculties/:slug/subjects Create subject
+     * @apiSampleRequest /api/admin/faculties/:slug/subjects
      * @apiDescription Create subject
      * @apiGroup Admin|Subject
      * @apiPermission administrator, university_administrator
@@ -53,13 +54,13 @@ class SubjectsController extends Controller
      * @apiError (403) error Returned if user has not access for get teachers
      *
      * @param Request $request
-     * @param Direction $direction
+     * @param Faculty $faculty
      * @return \Illuminate\Http\JsonResponse
      */
-    public function createSubjectAction(Request $request, Direction $direction)
+    public function createSubjectAction(Request $request, Faculty $faculty)
     {
         $subject = Subject::create([
-            'direction_id' => $direction->id,
+            'faculty_id' => $faculty->id,
             'name' => $request->get('name'),
             'description' => $request->get('description'),
         ]);
@@ -68,8 +69,8 @@ class SubjectsController extends Controller
     }
 
     /**
-     * @api {put} /api/admin/directions/:slug/subjects/{id} Update subject action
-     * @apiSampleRequest /api/admin/directions/:slug/subjects/{id}
+     * @api {put} /api/admin/faculties/:slug/subjects/:id Update subject action
+     * @apiSampleRequest /api/admin/faculties/:slug/subjects/:id
      * @apiDescription Update subject action
      * @apiGroup Admin|Subjects
      * @apiPermission administrator, university_administrator
@@ -84,20 +85,23 @@ class SubjectsController extends Controller
      * @apiError (403) error Returned if user has not access for get teachers
      *
      * @param Request $request
-     * @param Direction $direction
+     * @param Faculty $faculty
      * @param Subject $subject
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function updateSubjectAction(Request $request, Direction $direction, Subject $subject)
+    public function updateSubjectAction(Request $request, Faculty $faculty, Subject $subject)
     {
         $subject->update([
             'name' => $request->get('name'),
             'description' => $request->get('description'),
         ]);
+
+        return response()->json($subject);
     }
 
     /**
-     * @api {get} /api/admin/directions/:slug/subjects/{id} Get subject by id
-     * @apiSampleRequest /api/admin/directions/:slug/subjects/{id}
+     * @api {get} /api/admin/faculties/:slug/subjects/:id Get subject by id
+     * @apiSampleRequest /api/admin/faculties/:slug/subjects/:id
      * @apiDescription Get subject by id
      * @apiGroup Admin|Subjects
      * @apiPermission administrator, university_administrator
@@ -117,8 +121,8 @@ class SubjectsController extends Controller
     }
 
     /**
-     * @api {delete} /api/admin/directions/:slug/subjects/{id} Delete subject by id
-     * @apiSampleRequest /api/admin/directions/:slug/subjects/{id}
+     * @api {delete} /api/admin/faculties/:slug/subjects/:id Delete subject by id
+     * @apiSampleRequest /api/admin/faculties/:slug/subjects/:id
      * @apiDescription Delete subject by id
      * @apiGroup Admin|Subjects
      * @apiPermission administrator, university_administrator
@@ -133,7 +137,7 @@ class SubjectsController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Exception
      */
-    public function deleteSubjectAction(Subject $subject)
+    public function deleteSubjectAction(Faculty $faculty, Subject $subject)
     {
         $subject->delete();
 
