@@ -6,6 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Test extends Model
 {
+    public static $types = [
+        'single',
+        'multiple',
+        'writable',
+    ];
+
     public $fillable = [
         'name',
         'time',

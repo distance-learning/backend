@@ -4439,6 +4439,35 @@ define({ "api": [
   },
   {
     "type": "post",
+    "url": "/api/tests/:code/check",
+    "title": "Check user questions in test",
+    "sampleRequest": [
+      {
+        "url": "/api/tests/:code/check"
+      }
+    ],
+    "description": "<p>Check user questions in test</p> ",
+    "group": "Tests",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": "<p>User token</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/TestsController.php",
+    "groupTitle": "Tests",
+    "name": "PostApiTestsCodeCheck"
+  },
+  {
+    "type": "post",
     "url": "/api/tests/{id}/questions",
     "title": "Create question",
     "sampleRequest": [

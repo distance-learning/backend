@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Score;
 use App\Test;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -160,15 +161,69 @@ class TestsController extends Controller
      * @param Test $test
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getTestsForPassingTest(Request $request, Test $test)
+    public function getTestsForPassingAction(Request $request, Test $test)
     {
         $questions = $test->questions->shuffle()->splice(0, 20);
 
         return response()->json($questions);
     }
 
-    public function getCompletedTests()
+    /**
+     * @api {post} /api/tests/:code/check Check user questions in test
+     * @apiSampleRequest /api/tests/:code/check
+     * @apiDescription Check user questions in test
+     * @apiGroup Tests
+     *
+     * @apiHeader {String} authorization User token
+     *
+     * @param Request $request
+     * @param Test $test
+     */
+    public function checkCompletedTestsAction(Request $request, Test $test)
     {
+        $questions = $test->questions;
+        $answers = $request->get('answers');
+        $score = 0;
+        $user = $request->user();
 
+        foreach ($answers as $key => $answer) {
+            $question = $questions->where('id', $key);
+
+            if (!$question) {
+                continue;
+            }
+
+            if (is_array($answer)) {
+                $answers_in_question = $answer;
+                $correctQ = true;
+
+                foreach ($answers_in_question as $answer) {
+                    $result = $question->answers->where('id', $answer)->where('isCorrectly', 1);
+
+                    if (!$result) {
+                        $correctQ = false;
+                        break;
+                    }
+                }
+
+                if ($correctQ) {
+                    $score += $question->score;
+                }
+
+                continue;
+            }
+
+            $result = $result = $question->answers->where('id', $answer)->where('isCorrectly', 1);
+
+            if ($result) {
+                $score += $question->score;
+            }
+        }
+
+        Score::create([
+            'score' => $score,
+            'student_id' => $user->id,
+            'test_id' => $test->id,
+        ]);
     }
 }

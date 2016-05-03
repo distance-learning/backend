@@ -72,7 +72,8 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
             Route::put('/{test}', 'TestsController@updateTestAction');
             Route::get('/{test}', 'TestsController@getTestAction');
             Route::delete('/{test}', 'TestsController@deleteTestAction');
-            Route::get('/{test}/passing', 'TestsController@getTestsForPassingTest');
+            Route::get('/{test}/passing', 'TestsController@getTestsForPassingAction');
+            Route::post('/{test}/check', 'TestsController@checkCompletedTestsAction');
 
             Route::group(['prefix' => '/{test}/questions'], function () {
                 Route::post('/', 'QuestionsController@createQuestionAction');
