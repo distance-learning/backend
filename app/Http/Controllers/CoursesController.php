@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Course;
-use App\Subject;
 use App\Traits\CoursesTrait;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -17,8 +15,6 @@ class CoursesController extends Controller
     use CoursesTrait;
 
     /**
-     * Remove the specified resource from storage.
-     *
      * @api {get} /api/courses Get courses by page
      * @apiSampleRequest /api/admin/courses
      * @apiDescription Get courses by page
@@ -37,8 +33,6 @@ class CoursesController extends Controller
      */
 
     /**
-     * Remove the specified resource from storage.
-     *
      * @api {get} /api/course/:id Get course by id
      * @apiSampleRequest /api/admin/course/:id
      * @apiDescription Get course by id
@@ -58,8 +52,6 @@ class CoursesController extends Controller
      */
 
     /**
-     * Remove the specified resource from storage.
-     *
      * @api {post} /api/courses Create new course
      * @apiSampleRequest /api/admin/courses
      * @apiDescription Create new course
@@ -82,8 +74,6 @@ class CoursesController extends Controller
      */
 
     /**
-     * Remove the specified resource from storage.
-     *
      * @api {put} /api/courses/:id Update course by id
      * @apiSampleRequest /api/admin/courses/:id
      * @apiDescription Update course by id
@@ -106,8 +96,6 @@ class CoursesController extends Controller
      */
 
     /**
-     * Remove the specified resource from storage.
-     *
      * @api {delete} /api/courses/:id Delete course by id
      * @apiSampleRequest /api/admin/courses/:id
      * @apiDescription Delete course by id

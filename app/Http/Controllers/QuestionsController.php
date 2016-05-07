@@ -24,20 +24,16 @@ class QuestionsController extends Controller
      * @apiError (400) error Returned if credentials not correct
      * @apiError (500) error Returned if error on serve
      *
-     * @param Request $request
+     * @param Test $test
+     * @param Question $question
      * @return \Illuminate\Http\JsonResponse
      *
      **/
     public function getQuestionByCodeAction(Test $test, Question $question)
     {
-        $questions = $question
-            ->with('answers')
-            ->where('id', $question->id)
-            ->first();
+        $questions = $question->load('answers');
 
-
-        return response()
-            ->json($questions);
+        return response()->json($questions);
     }
 
     /**

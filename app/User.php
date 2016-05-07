@@ -117,6 +117,10 @@ class User extends Model implements AuthenticatableContract,
         'group_id'
     ];
 
+    protected $casts = [
+        'status' => 'boolean',
+    ];
+
     /**
      * @var array
      */
@@ -214,5 +218,10 @@ class User extends Model implements AuthenticatableContract,
     public function isTeacher()
     {
         return ($this->role == "teacher") ? true : false;
+    }
+
+    public function isActive()
+    {
+        return $this->status?:false;
     }
 }

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Task;
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 /**
@@ -14,9 +13,6 @@ use Illuminate\Support\Facades\Auth;
  */
 class AccountController extends Controller
 {
-    /**
-     *
-     */
     public function __construct()
     {
         $this->middleware('jwt.auth');
@@ -156,6 +152,8 @@ class AccountController extends Controller
      * @apiSampleRequest /api/account/tasks
      * @apiDescription Get user tasks
      * @apiGroup Users
+     *
+     * @apiHeader {String} authorization User token
      *
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse

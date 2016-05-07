@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Events\ResetPasswordEvent;
@@ -62,7 +63,7 @@ class AuthController extends Controller
                 return response()->json(null, 401);
             }
 
-            if (! $token = JWTAuth::attempt($credentials)) {
+            if (!$token = JWTAuth::attempt($credentials)) {
                 return response()->json(null, 400);
             }
         } catch (JWTException $e) {

@@ -4,11 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Faculty;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Validator;
 
 class FacultiesController extends Controller
 {
@@ -28,7 +24,9 @@ class FacultiesController extends Controller
         $faculties = Faculty::with('subjects')->get();
 
         //TODO Need refactoring
-        $faculties = $faculties->random(4);
+//        $faculties = $faculties->random(4);
+
+        $faculties = $faculties->shuffle()->splice(0, 4);
 
         return response()->json($faculties);
     }
@@ -44,16 +42,12 @@ class FacultiesController extends Controller
      * @apiSuccess (200) success Returned if faculty isset
      *
      * @param Request $request
-     * @param $slug
+     * @param Faculty $faculty
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getFacultyBySlugAction(Request $request, $slug)
+    public function getFacultyBySlugAction(Request $request, Faculty $faculty)
     {
-        $faculty = Faculty::with('directions.subjects')->with('teachers')->findBySlug($slug);
-
-        if (!$faculty) {
-            return response()->json(null, 404);
-        }
+        $faculty = $faculty->load('directions.subjects');
 
         return response()->json($faculty);
     }

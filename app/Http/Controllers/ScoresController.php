@@ -15,7 +15,7 @@ class ScoresController extends Controller
 {
     /**
      * @api {get} /api/tests/:test_id/scores Get scores by test
-     * @apiSampleRequest /api/tests/:id/scores
+     * @apiSampleRequest /api/tests/:test_id/scores
      * @apiDescription Get scores by test
      * @apiGroup Score
      *

@@ -14,8 +14,8 @@ use App\Http\Requests;
 class SubjectsController extends Controller
 {
     /**
-     * @api {get} /api/subjects/{subject_id}/courses Get courses by subject_id and teacher_id
-     * @apiSampleRequest /api/subjects/{subject_id}/courses
+     * @api {get} /api/subjects/:subject_id/courses Get courses by subject_id and teacher_id
+     * @apiSampleRequest /api/subjects/:subject_id/courses
      * @apiDescription Get courses by subject_id and teacher_id
      * @apiGroup Subjects
      *

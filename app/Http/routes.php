@@ -11,7 +11,7 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
     Route::group(['prefix' => 'teachers'], function () {
         Route::get('/random', 'TeachersController@getRandomTeachersAction');
         Route::get('/', 'TeachersController@getTeachersAction');
-        Route::get('/{faculty}', 'TeachersController@getTeacherBySlugAction');
+        Route::get('/{user}', 'TeachersController@getTeacherBySlugAction');
     });
 
     Route::group(['prefix' => 'account'], function () {

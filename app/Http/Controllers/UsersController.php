@@ -88,17 +88,11 @@ class UsersController extends Controller
      * @apiSuccess {String} data.updated_at
      *
      * @param Request $request
-     * @param $slug
+     * @param User $user
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getUserAction(Request $request, $slug)
+    public function getUserAction(Request $request, User $user)
     {
-        $user = User::with('subjects')->findBySlug($slug);
-
-        if (!$user) {
-            return response()->json(null, 404);
-        }
-
         return response()->json($user);
     }
 }

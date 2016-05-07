@@ -16,7 +16,7 @@ class EventsController extends Controller
      * @api {get} /api/events Get events by interval
      * @apiSampleRequest /api/events
      * @apiDescription Get events by interval
-     * @apiGroup Tasks
+     * @apiGroup Events
      *
      * @apiParam {String} from From date
      * @apiParam {String} to From date
@@ -34,8 +34,7 @@ class EventsController extends Controller
             ->where('deadline', '>=', $from)
             ->where('deadline', '<=', $to)
             ->with('attachment')
-            ->get()
-        ;
+            ->get();
 
         return response()->json($events);
     }

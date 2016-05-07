@@ -28,7 +28,9 @@ class TeachersController extends Controller
         ;
 
         //TODO Need refactoring
-        $teachers = $teachers->random(6);
+//        $teachers = $teachers->random(6);
+
+        $teachers = $teachers->shuffle()->splice(0, 6);
 
         return response()
             ->json($teachers)
@@ -54,9 +56,7 @@ class TeachersController extends Controller
             ->get()
         ;
 
-        return response()
-            ->json($teachers)
-        ;
+        return response()->json($teachers);
     }
 
     /**
@@ -70,14 +70,12 @@ class TeachersController extends Controller
      * @apiSuccess (200) success Returned if teachers array
      *
      * @param Request $request
-     * @param $slug
+     * @param User $teacher
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getTeacherBySlugAction(Request $request, $slug)
+    public function getTeacherBySlugAction(Request $request, User $teacher)
     {
-        $teacher = User::active()->findBySlug($slug)->first();
-
-        if (!$teacher) {
+        if (!$teacher->isActive()) {
             return response()
                 ->json(null, 404)
             ;
