@@ -97,6 +97,12 @@ class Faculty extends Model implements SluggableInterface
         return $this->morphMany(User::class, 'structure');
     }
 
+
+    public function teachers()
+    {
+        return $this->morphMany(User::class, 'structure')->where('role', 'teacher');
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
