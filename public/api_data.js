@@ -35,7 +35,7 @@ define({ "api": [
             "group": "200",
             "optional": false,
             "field": "success",
-            "description": "<p>Returned if directions issets</p> "
+            "description": "<p>Returned if directions successful deleted</p> "
           }
         ]
       }
@@ -47,7 +47,7 @@ define({ "api": [
             "group": "403",
             "optional": false,
             "field": "error",
-            "description": "<p>Returned if user has not access for get directions</p> "
+            "description": "<p>Returned if user has not access for delete course</p> "
           }
         ]
       }
@@ -106,7 +106,7 @@ define({ "api": [
             "group": "200",
             "optional": false,
             "field": "success",
-            "description": "<p>Returned if directions issets</p> "
+            "description": "<p>Returned if course isset</p> "
           }
         ]
       }
@@ -118,7 +118,7 @@ define({ "api": [
             "group": "403",
             "optional": false,
             "field": "error",
-            "description": "<p>Returned if user has not access for get directions</p> "
+            "description": "<p>Returned if user has not access for get course</p> "
           }
         ]
       }
@@ -177,7 +177,7 @@ define({ "api": [
             "group": "200",
             "optional": false,
             "field": "success",
-            "description": "<p>Returned if directions issets</p> "
+            "description": "<p>Returned if courses issets</p> "
           }
         ]
       }
@@ -189,7 +189,7 @@ define({ "api": [
             "group": "403",
             "optional": false,
             "field": "error",
-            "description": "<p>Returned if user has not access for get directions</p> "
+            "description": "<p>Returned if user has not access for get courses</p> "
           }
         ]
       }
@@ -269,7 +269,7 @@ define({ "api": [
             "group": "200",
             "optional": false,
             "field": "success",
-            "description": "<p>Returned if directions issets</p> "
+            "description": "<p>Returned if course successful created</p> "
           }
         ]
       }
@@ -281,7 +281,7 @@ define({ "api": [
             "group": "403",
             "optional": false,
             "field": "error",
-            "description": "<p>Returned if user has not access for get directions</p> "
+            "description": "<p>Returned if user has not access for create course</p> "
           }
         ]
       }
@@ -361,7 +361,7 @@ define({ "api": [
             "group": "200",
             "optional": false,
             "field": "success",
-            "description": "<p>Returned if directions issets</p> "
+            "description": "<p>Returned if course successful updated</p> "
           }
         ]
       }
@@ -373,7 +373,7 @@ define({ "api": [
             "group": "403",
             "optional": false,
             "field": "error",
-            "description": "<p>Returned if user has not access for get directions</p> "
+            "description": "<p>Returned if user has not access for update course</p> "
           }
         ]
       }
@@ -431,7 +431,7 @@ define({ "api": [
             "group": "403",
             "optional": false,
             "field": "error",
-            "description": "<p>Returned if user has not access for get directions</p> "
+            "description": "<p>Returned if user has not access for delete direction</p> "
           }
         ]
       }
@@ -594,13 +594,13 @@ define({ "api": [
   {
     "type": "get",
     "url": "/api/admin/directions/:slug/groups",
-    "title": "Get groups by directions slug",
+    "title": "Get groups by direction",
     "sampleRequest": [
       {
         "url": "/api/admin/directions/:slug/groups"
       }
     ],
-    "description": "<p>Get groups by directions slug</p> ",
+    "description": "<p>Get groups by direction</p> ",
     "group": "Admin_Directions",
     "permission": [
       {
@@ -639,7 +639,7 @@ define({ "api": [
             "group": "403",
             "optional": false,
             "field": "error",
-            "description": "<p>Returned if user has not access for get directions</p> "
+            "description": "<p>Returned if user has not access for get groups in directions</p> "
           }
         ]
       }
@@ -724,7 +724,7 @@ define({ "api": [
             "group": "403",
             "optional": false,
             "field": "error",
-            "description": "<p>Returned if user has not access for get facilties</p> "
+            "description": "<p>Returned if user has not access for create directions</p> "
           }
         ]
       }
@@ -809,7 +809,7 @@ define({ "api": [
             "group": "403",
             "optional": false,
             "field": "error",
-            "description": "<p>Returned if user has not access for get facilties</p> "
+            "description": "<p>Returned if user has not access for update direction</p> "
           }
         ]
       }
@@ -1203,6 +1203,13 @@ define({ "api": [
             "optional": false,
             "field": "faculties.avatar",
             "description": ""
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "faculties.examinations",
+            "description": ""
           }
         ]
       }
@@ -1317,6 +1324,13 @@ define({ "api": [
             "type": "<p>String</p> ",
             "optional": false,
             "field": "faculty.avatar",
+            "description": ""
+          },
+          {
+            "group": "Success 200",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "faculty.examinations",
             "description": ""
           }
         ]
@@ -1546,7 +1560,7 @@ define({ "api": [
             "group": "200",
             "optional": false,
             "field": "success",
-            "description": "<p>Returned if groups issets</p> "
+            "description": "<p>Returned if groups isset</p> "
           }
         ]
       }
@@ -1617,7 +1631,7 @@ define({ "api": [
             "group": "200",
             "optional": false,
             "field": "success",
-            "description": "<p>Returned if group issets</p> "
+            "description": "<p>Returned if group isset</p> "
           }
         ]
       }
@@ -1909,7 +1923,7 @@ define({ "api": [
             "group": "200",
             "optional": false,
             "field": "success",
-            "description": "<p>Returned if teachers issets</p> "
+            "description": "<p>Returned if students issets</p> "
           }
         ]
       }
@@ -1921,7 +1935,7 @@ define({ "api": [
             "group": "403",
             "optional": false,
             "field": "error",
-            "description": "<p>Returned if user has not access for get teachers</p> "
+            "description": "<p>Returned if user has not access for get students</p> "
           }
         ]
       }
@@ -1980,7 +1994,7 @@ define({ "api": [
             "group": "200",
             "optional": false,
             "field": "success",
-            "description": "<p>Returned if teachers issets</p> "
+            "description": "<p>Returned if students issets</p> "
           }
         ]
       }
@@ -1992,7 +2006,7 @@ define({ "api": [
             "group": "403",
             "optional": false,
             "field": "error",
-            "description": "<p>Returned if user has not access for get teachers</p> "
+            "description": "<p>Returned if user has not access for get students</p> "
           }
         ]
       }
@@ -2058,7 +2072,7 @@ define({ "api": [
             "group": "200",
             "optional": false,
             "field": "success",
-            "description": "<p>Returned if teachers issets</p> "
+            "description": "<p>Returned if subject successful created</p> "
           }
         ]
       }
@@ -2070,7 +2084,7 @@ define({ "api": [
             "group": "403",
             "optional": false,
             "field": "error",
-            "description": "<p>Returned if user has not access for get teachers</p> "
+            "description": "<p>Returned if user has not access for create subject</p> "
           }
         ]
       }
@@ -2116,7 +2130,7 @@ define({ "api": [
             "group": "200",
             "optional": false,
             "field": "success",
-            "description": "<p>Returned if teachers issets</p> "
+            "description": "<p>Returned if subject successful delete</p> "
           }
         ]
       }
@@ -2128,7 +2142,7 @@ define({ "api": [
             "group": "403",
             "optional": false,
             "field": "error",
-            "description": "<p>Returned if user has not access for get teachers</p> "
+            "description": "<p>Returned if user has not access for delete subject</p> "
           }
         ]
       }
@@ -2141,7 +2155,7 @@ define({ "api": [
   {
     "type": "get",
     "url": "/api/admin/faculties/:slug/subjects",
-    "title": "Get subjects list",
+    "title": "Get paginated subjects list",
     "sampleRequest": [
       {
         "url": "/api/admin/faculties/:slug/subjects"
@@ -2174,7 +2188,7 @@ define({ "api": [
             "group": "200",
             "optional": false,
             "field": "success",
-            "description": "<p>Returned if teachers issets</p> "
+            "description": "<p>Returned if subjects isset</p> "
           }
         ]
       }
@@ -2186,7 +2200,7 @@ define({ "api": [
             "group": "403",
             "optional": false,
             "field": "error",
-            "description": "<p>Returned if user has not access for get teachers</p> "
+            "description": "<p>Returned if user has not access for get subjects</p> "
           }
         ]
       }
@@ -2232,7 +2246,7 @@ define({ "api": [
             "group": "200",
             "optional": false,
             "field": "success",
-            "description": "<p>Returned if teachers issets</p> "
+            "description": "<p>Returned if subject isset</p> "
           }
         ]
       }
@@ -2244,7 +2258,7 @@ define({ "api": [
             "group": "403",
             "optional": false,
             "field": "error",
-            "description": "<p>Returned if user has not access for get teachers</p> "
+            "description": "<p>Returned if user has not access for get subject</p> "
           }
         ]
       }
@@ -2253,6 +2267,64 @@ define({ "api": [
     "filename": "app/Http/Controllers/Admin/SubjectsController.php",
     "groupTitle": "Admin_Subjects",
     "name": "GetApiAdminFacultiesSlugSubjectsId"
+  },
+  {
+    "type": "get",
+    "url": "/api/admin/subjects",
+    "title": "Get paginated subjects",
+    "sampleRequest": [
+      {
+        "url": "/api/admin/subjects"
+      }
+    ],
+    "description": "<p>Get paginated subjects</p> ",
+    "group": "Admin_Subjects",
+    "permission": [
+      {
+        "name": "administrator, university_administrator"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Returned if subjects isset</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "403": [
+          {
+            "group": "403",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if user has not access for get subjects</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Admin/SubjectsController.php",
+    "groupTitle": "Admin_Subjects",
+    "name": "GetApiAdminSubjects"
   },
   {
     "type": "put",
@@ -2310,7 +2382,7 @@ define({ "api": [
             "group": "200",
             "optional": false,
             "field": "success",
-            "description": "<p>Returned if teachers issets</p> "
+            "description": "<p>Returned if subject successful update</p> "
           }
         ]
       }
@@ -2322,7 +2394,7 @@ define({ "api": [
             "group": "403",
             "optional": false,
             "field": "error",
-            "description": "<p>Returned if user has not access for get teachers</p> "
+            "description": "<p>Returned if user has not access for update subjects</p> "
           }
         ]
       }
@@ -2380,7 +2452,7 @@ define({ "api": [
             "group": "403",
             "optional": false,
             "field": "error",
-            "description": "<p>Returned if user has not access for get teacher</p> "
+            "description": "<p>Returned if user has not access for delete teacher</p> "
           }
         ]
       }
@@ -2439,7 +2511,7 @@ define({ "api": [
             "group": "200",
             "optional": false,
             "field": "success",
-            "description": "<p>Returned if teachers issets</p> "
+            "description": "<p>Returned if teachers isset</p> "
           }
         ]
       }
@@ -2830,7 +2902,7 @@ define({ "api": [
             "group": "403",
             "optional": false,
             "field": "error",
-            "description": "<p>Returned if user has not access for get user</p> "
+            "description": "<p>Returned if user has not access for delete user</p> "
           }
         ]
       }
@@ -3081,7 +3153,7 @@ define({ "api": [
             "group": "200",
             "optional": false,
             "field": "success",
-            "description": "<p>Returned if teacher successful created</p> "
+            "description": "<p>Returned if user successful created</p> "
           }
         ]
       }
@@ -3093,7 +3165,7 @@ define({ "api": [
             "group": "403",
             "optional": false,
             "field": "error",
-            "description": "<p>Returned if user has not access for create teacher</p> "
+            "description": "<p>Returned if user has not access for create another user</p> "
           }
         ],
         "500": [
@@ -3209,7 +3281,7 @@ define({ "api": [
             "group": "200",
             "optional": false,
             "field": "success",
-            "description": "<p>Returned if teacher successful updated</p> "
+            "description": "<p>Returned if user successful updated</p> "
           }
         ]
       }
@@ -3221,7 +3293,7 @@ define({ "api": [
             "group": "403",
             "optional": false,
             "field": "error",
-            "description": "<p>Returned if user has not access for update teacher</p> "
+            "description": "<p>Returned if user has not access for update another user</p> "
           }
         ],
         "500": [
@@ -3625,6 +3697,42 @@ define({ "api": [
   },
   {
     "type": "get",
+    "url": "/api/events",
+    "title": "Get events by interval",
+    "sampleRequest": [
+      {
+        "url": "/api/events"
+      }
+    ],
+    "description": "<p>Get events by interval</p> ",
+    "group": "Events",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "from",
+            "description": "<p>From date</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "to",
+            "description": "<p>From date</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/EventsController.php",
+    "groupTitle": "Events",
+    "name": "GetApiEvents"
+  },
+  {
+    "type": "get",
     "url": "/api/faculties",
     "title": "Get paginated faculties",
     "sampleRequest": [
@@ -3787,7 +3895,7 @@ define({ "api": [
     "title": "Get scores by test",
     "sampleRequest": [
       {
-        "url": "/api/tests/:id/scores"
+        "url": "/api/tests/:test_id/scores"
       }
     ],
     "description": "<p>Get scores by test</p> ",
@@ -3812,11 +3920,11 @@ define({ "api": [
   },
   {
     "type": "get",
-    "url": "/api/subjects/{subject_id}/courses",
+    "url": "/api/subjects/:subject_id/courses",
     "title": "Get courses by subject_id and teacher_id",
     "sampleRequest": [
       {
-        "url": "/api/subjects/{subject_id}/courses"
+        "url": "/api/subjects/:subject_id/courses"
       }
     ],
     "description": "<p>Get courses by subject_id and teacher_id</p> ",
@@ -3853,42 +3961,6 @@ define({ "api": [
     "filename": "app/Http/Controllers/TasksController.php",
     "groupTitle": "Tasks",
     "name": "DeleteApiTasksTask_id"
-  },
-  {
-    "type": "get",
-    "url": "/api/events",
-    "title": "Get events by interval",
-    "sampleRequest": [
-      {
-        "url": "/api/events"
-      }
-    ],
-    "description": "<p>Get events by interval</p> ",
-    "group": "Tasks",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "<p>String</p> ",
-            "optional": false,
-            "field": "from",
-            "description": "<p>From date</p> "
-          },
-          {
-            "group": "Parameter",
-            "type": "<p>String</p> ",
-            "optional": false,
-            "field": "to",
-            "description": "<p>From date</p> "
-          }
-        ]
-      }
-    },
-    "version": "0.0.0",
-    "filename": "app/Http/Controllers/EventsController.php",
-    "groupTitle": "Tasks",
-    "name": "GetApiEvents"
   },
   {
     "type": "get",
@@ -4866,6 +4938,19 @@ define({ "api": [
     ],
     "description": "<p>Get user tasks</p> ",
     "group": "Users",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": "<p>User token</p> "
+          }
+        ]
+      }
+    },
     "version": "0.0.0",
     "filename": "app/Http/Controllers/AccountController.php",
     "groupTitle": "Users",
