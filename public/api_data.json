@@ -2212,64 +2212,6 @@
   },
   {
     "type": "get",
-    "url": "/api/admin/faculties/:slug/subjects/:id",
-    "title": "Get subject by id",
-    "sampleRequest": [
-      {
-        "url": "/api/admin/faculties/:slug/subjects/:id"
-      }
-    ],
-    "description": "<p>Get subject by id</p> ",
-    "group": "Admin_Subjects",
-    "permission": [
-      {
-        "name": "administrator, university_administrator"
-      }
-    ],
-    "header": {
-      "fields": {
-        "Header": [
-          {
-            "group": "Header",
-            "type": "String",
-            "optional": false,
-            "field": "authorization",
-            "description": ""
-          }
-        ]
-      }
-    },
-    "success": {
-      "fields": {
-        "200": [
-          {
-            "group": "200",
-            "optional": false,
-            "field": "success",
-            "description": "<p>Returned if subject isset</p> "
-          }
-        ]
-      }
-    },
-    "error": {
-      "fields": {
-        "403": [
-          {
-            "group": "403",
-            "optional": false,
-            "field": "error",
-            "description": "<p>Returned if user has not access for get subject</p> "
-          }
-        ]
-      }
-    },
-    "version": "0.0.0",
-    "filename": "app/Http/Controllers/Admin/SubjectsController.php",
-    "groupTitle": "Admin_Subjects",
-    "name": "GetApiAdminFacultiesSlugSubjectsId"
-  },
-  {
-    "type": "get",
     "url": "/api/admin/subjects",
     "title": "Get paginated subjects",
     "sampleRequest": [
@@ -2325,6 +2267,64 @@
     "filename": "app/Http/Controllers/Admin/SubjectsController.php",
     "groupTitle": "Admin_Subjects",
     "name": "GetApiAdminSubjects"
+  },
+  {
+    "type": "get",
+    "url": "/api/admin/subjects/:id",
+    "title": "Get subject by id",
+    "sampleRequest": [
+      {
+        "url": "/api/admin/subjects/:id"
+      }
+    ],
+    "description": "<p>Get subject by id</p> ",
+    "group": "Admin_Subjects",
+    "permission": [
+      {
+        "name": "administrator, university_administrator"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Returned if subject isset</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "403": [
+          {
+            "group": "403",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if user has not access for get subject</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Admin/SubjectsController.php",
+    "groupTitle": "Admin_Subjects",
+    "name": "GetApiAdminSubjectsId"
   },
   {
     "type": "put",

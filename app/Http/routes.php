@@ -89,6 +89,7 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
     Route::group(['prefix' => 'admin'], function () {
         Route::group(['prefix' => 'subjects'], function () {
             Route::get('/', 'Admin\SubjectsController@getPaginatedSubjectsAction');
+            Route::get('/{subject}', 'Admin\SubjectsController@getSubjectAction');
         });
 
         Route::group(['prefix' => 'groups'], function () {

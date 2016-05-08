@@ -122,8 +122,8 @@ class SubjectsController extends Controller
     }
 
     /**
-     * @api {get} /api/admin/faculties/:slug/subjects/:id Get subject by id
-     * @apiSampleRequest /api/admin/faculties/:slug/subjects/:id
+     * @api {get} /api/admin/subjects/:id Get subject by id
+     * @apiSampleRequest /api/admin/subjects/:id
      * @apiDescription Get subject by id
      * @apiGroup Admin|Subjects
      * @apiPermission administrator, university_administrator
