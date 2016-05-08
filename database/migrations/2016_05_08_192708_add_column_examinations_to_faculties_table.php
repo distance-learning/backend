@@ -14,7 +14,8 @@ class AddColumnExaminationsToFacultiesTable extends Migration
     {
         Schema::table('faculties', function (Blueprint $table) {
             $table
-                ->text('examinations');
+                ->text('examinations')
+                ->nullable();
         });
     }
 
