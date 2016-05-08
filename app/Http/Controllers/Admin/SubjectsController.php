@@ -14,7 +14,30 @@ use Illuminate\Http\Request;
 class SubjectsController extends Controller
 {
     /**
-     * @api {get} /api/admin/faculties/:slug/subjects Get subjects list
+     * @api {get} /api/admin/subjects Get paginated subjects
+     * @apiSampleRequest /api/admin/subjects
+     * @apiDescription Get paginated subjects
+     * @apiGroup Admin|Subjects
+     * @apiPermission administrator, university_administrator
+     *
+     * @apiHeader {String} authorization
+     *
+     * @apiSuccess (200) success Returned if subjects isset
+     *
+     * @apiError (403) error Returned if user has not access for get subjects
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getPaginatedSubjectsAction(Request $request)
+    {
+        $subjects = Subject::with('faculty')->paginate(10);
+
+        return response()->json($subjects);
+    }
+
+    /**
+     * @api {get} /api/admin/faculties/:slug/subjects Get paginated subjects list
      * @apiSampleRequest /api/admin/faculties/:slug/subjects
      * @apiDescription Get subjects list
      * @apiGroup Admin|Subjects

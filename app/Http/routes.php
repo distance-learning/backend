@@ -87,6 +87,10 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
     });
 
     Route::group(['prefix' => 'admin'], function () {
+        Route::group(['prefix' => 'subjects'], function () {
+            Route::get('/', 'Admin\SubjectsController@getPaginatedSubjectsAction');
+        });
+
         Route::group(['prefix' => 'groups'], function () {
             Route::get('/', 'Admin\GroupsController@getGroupsAction');
             Route::post('/', 'Admin\GroupsController@postGroupAction');
