@@ -81,6 +81,7 @@ class FacultiesController extends Controller
      * @apiSuccess {String} faculties.name Faculty name
      * @apiSuccess {String} faculties.description
      * @apiSuccess {String} faculties.avatar
+     * @apiSuccess {String} faculties.examinations
      *
      * @apiError (400) error Returned if validation error
      * @apiError (403) error Returned if user not access for create faculty
@@ -105,8 +106,9 @@ class FacultiesController extends Controller
 
         //TODO Make upload faculty avatar
         $faculty = Faculty::create([
-            'name' => $request->request->get('name'),
-            'description' => $request->request->get('description')
+            'name' => $request->get('name'),
+            'description' => $request->get('description'),
+            'examinations' => json_encode($request->get('examinations')),
         ]);
 
         return response()->json($faculty, 200);
@@ -169,6 +171,7 @@ class FacultiesController extends Controller
      * @apiSuccess {String} faculty.name Faculty name
      * @apiSuccess {String} faculty.description
      * @apiSuccess {String} faculty.avatar
+     * @apiSuccess {String} faculty.examinations
      *
      * @apiError (400) error Returned if validation error
      * @apiError (403) error Returned if user not has access for update
@@ -194,6 +197,7 @@ class FacultiesController extends Controller
         $faculty->update([
             'name' => $request->request->get('name'),
             'description' => $request->request->get('description'),
+            'examinations' => json_encode($request->get('examinations')),
         ]);
 
         return response()->json($faculty, 200);

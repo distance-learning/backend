@@ -45,7 +45,8 @@ class Faculty extends Model implements SluggableInterface
     public $fillable = [
         'name',
         'description',
-        'avatar'
+        'avatar',
+        'examinations'
     ];
 
     /**
