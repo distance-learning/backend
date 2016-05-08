@@ -40,7 +40,6 @@ trait CoursesTrait
             'subject_id' => $request->get('subject_id'),
             'teacher_id' => $request->get('teacher_id'),
             'group_id' => $request->get('group_id'),
-            'slug'      => $request->get('slug'),
         ]);
 
         return response()->json($course);
@@ -57,7 +56,6 @@ trait CoursesTrait
             'subject_id' => $request->get('subject_id'),
             'teacher_id' => $request->get('teacher_id'),
             'group_id' => $request->get('group_id'),
-            'slug'      => $request->get('slug'),
         ]);
 
         return response()->json($course);
