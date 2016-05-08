@@ -93,6 +93,7 @@ class SubjectsController extends Controller
         $subject->update([
             'name' => $request->get('name'),
             'description' => $request->get('description'),
+            'faculty_id' => $request->get('faculty_id'),
         ]);
 
         return response()->json($subject);
