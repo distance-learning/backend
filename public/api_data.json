@@ -2018,7 +2018,7 @@
   },
   {
     "type": "post",
-    "url": "/api/admin/faculties/:slug/subjects",
+    "url": "/api/admin/subjects",
     "title": "Create subject",
     "sampleRequest": [
       {
@@ -2092,15 +2092,15 @@
     "version": "0.0.0",
     "filename": "app/Http/Controllers/Admin/SubjectsController.php",
     "groupTitle": "Admin_Subject",
-    "name": "PostApiAdminFacultiesSlugSubjects"
+    "name": "PostApiAdminSubjects"
   },
   {
     "type": "delete",
-    "url": "/api/admin/faculties/:slug/subjects/:id",
+    "url": "/api/admin/subjects/:id",
     "title": "Delete subject by id",
     "sampleRequest": [
       {
-        "url": "/api/admin/faculties/:slug/subjects/:id"
+        "url": "/api/admin/subjects/:id"
       }
     ],
     "description": "<p>Delete subject by id</p> ",
@@ -2150,65 +2150,7 @@
     "version": "0.0.0",
     "filename": "app/Http/Controllers/Admin/SubjectsController.php",
     "groupTitle": "Admin_Subjects",
-    "name": "DeleteApiAdminFacultiesSlugSubjectsId"
-  },
-  {
-    "type": "get",
-    "url": "/api/admin/faculties/:slug/subjects",
-    "title": "Get paginated subjects list",
-    "sampleRequest": [
-      {
-        "url": "/api/admin/faculties/:slug/subjects"
-      }
-    ],
-    "description": "<p>Get subjects list</p> ",
-    "group": "Admin_Subjects",
-    "permission": [
-      {
-        "name": "administrator, university_administrator"
-      }
-    ],
-    "header": {
-      "fields": {
-        "Header": [
-          {
-            "group": "Header",
-            "type": "String",
-            "optional": false,
-            "field": "authorization",
-            "description": ""
-          }
-        ]
-      }
-    },
-    "success": {
-      "fields": {
-        "200": [
-          {
-            "group": "200",
-            "optional": false,
-            "field": "success",
-            "description": "<p>Returned if subjects isset</p> "
-          }
-        ]
-      }
-    },
-    "error": {
-      "fields": {
-        "403": [
-          {
-            "group": "403",
-            "optional": false,
-            "field": "error",
-            "description": "<p>Returned if user has not access for get subjects</p> "
-          }
-        ]
-      }
-    },
-    "version": "0.0.0",
-    "filename": "app/Http/Controllers/Admin/SubjectsController.php",
-    "groupTitle": "Admin_Subjects",
-    "name": "GetApiAdminFacultiesSlugSubjects"
+    "name": "DeleteApiAdminSubjectsId"
   },
   {
     "type": "get",
@@ -2328,11 +2270,11 @@
   },
   {
     "type": "put",
-    "url": "/api/admin/faculties/:slug/subjects/:id",
+    "url": "/api/admin/subjects/:id",
     "title": "Update subject action",
     "sampleRequest": [
       {
-        "url": "/api/admin/faculties/:slug/subjects/:id"
+        "url": "/api/admin/subjects/:id"
       }
     ],
     "description": "<p>Update subject action</p> ",
@@ -2402,7 +2344,7 @@
     "version": "0.0.0",
     "filename": "app/Http/Controllers/Admin/SubjectsController.php",
     "groupTitle": "Admin_Subjects",
-    "name": "PutApiAdminFacultiesSlugSubjectsId"
+    "name": "PutApiAdminSubjectsId"
   },
   {
     "type": "delete",

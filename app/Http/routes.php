@@ -90,6 +90,9 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
         Route::group(['prefix' => 'subjects'], function () {
             Route::get('/', 'Admin\SubjectsController@getPaginatedSubjectsAction');
             Route::get('/{subject}', 'Admin\SubjectsController@getSubjectAction');
+            Route::post('/', 'Admin\SubjectsController@createSubjectAction');
+            Route::put('/{subject}', 'Admin\SubjectsController@updateSubjectAction');
+            Route::delete('/{subject}', 'Admin\SubjectsController@deleteSubjectAction');
         });
 
         Route::group(['prefix' => 'groups'], function () {
@@ -109,14 +112,6 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
             Route::get('/{slug}', 'Admin\FacultiesController@getFacultyAction');
             Route::put('/{slug}', 'Admin\FacultiesController@putFacultyAction');
             Route::delete('/{slug}', 'Admin\FacultiesController@deleteFacultyAction');
-
-            Route::group(['prefix' => '/{slug}/subjects'], function () {
-                Route::get('/', 'Admin\SubjectsController@getSubjectsAction');
-                Route::get('/{subject}', 'Admin\SubjectsController@getSubjectAction');
-                Route::post('/', 'Admin\SubjectsController@createSubjectAction');
-                Route::put('/{subject}', 'Admin\SubjectsController@editSubjectAction');
-                Route::delete('/{subject}', 'Admin\SubjectsController@deleteSubjectAction');
-            });
         });
 
         Route::group(['prefix'  =>  'directions'], function () {

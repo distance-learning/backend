@@ -37,30 +37,7 @@ class SubjectsController extends Controller
     }
 
     /**
-     * @api {get} /api/admin/faculties/:slug/subjects Get paginated subjects list
-     * @apiSampleRequest /api/admin/faculties/:slug/subjects
-     * @apiDescription Get subjects list
-     * @apiGroup Admin|Subjects
-     * @apiPermission administrator, university_administrator
-     *
-     * @apiHeader {String} authorization
-     *
-     * @apiSuccess (200) success Returned if subjects isset
-     *
-     * @apiError (403) error Returned if user has not access for get subjects
-     *
-     * @param Faculty $faculty
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function getSubjectsAction(Faculty $faculty)
-    {
-        $subjects = Subject::where('faculty_id', $faculty->id)->paginate(10);
-
-        return response()->json($subjects);
-    }
-
-    /**
-     * @api {post} /api/admin/faculties/:slug/subjects Create subject
+     * @api {post} /api/admin/subjects Create subject
      * @apiSampleRequest /api/admin/faculties/:slug/subjects
      * @apiDescription Create subject
      * @apiGroup Admin|Subject
@@ -79,10 +56,10 @@ class SubjectsController extends Controller
      * @param Faculty $faculty
      * @return \Illuminate\Http\JsonResponse
      */
-    public function createSubjectAction(Request $request, Faculty $faculty)
+    public function createSubjectAction(Request $request)
     {
         $subject = Subject::create([
-            'faculty_id' => $faculty->id,
+            'faculty_id' => $request->get('faculty_id'),
             'name' => $request->get('name'),
             'description' => $request->get('description'),
         ]);
@@ -91,8 +68,8 @@ class SubjectsController extends Controller
     }
 
     /**
-     * @api {put} /api/admin/faculties/:slug/subjects/:id Update subject action
-     * @apiSampleRequest /api/admin/faculties/:slug/subjects/:id
+     * @api {put} /api/admin/subjects/:id Update subject action
+     * @apiSampleRequest /api/admin/subjects/:id
      * @apiDescription Update subject action
      * @apiGroup Admin|Subjects
      * @apiPermission administrator, university_administrator
@@ -143,8 +120,8 @@ class SubjectsController extends Controller
     }
 
     /**
-     * @api {delete} /api/admin/faculties/:slug/subjects/:id Delete subject by id
-     * @apiSampleRequest /api/admin/faculties/:slug/subjects/:id
+     * @api {delete} /api/admin/subjects/:id Delete subject by id
+     * @apiSampleRequest /api/admin/subjects/:id
      * @apiDescription Delete subject by id
      * @apiGroup Admin|Subjects
      * @apiPermission administrator, university_administrator
