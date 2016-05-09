@@ -59,13 +59,13 @@ class UsersController extends Controller
      * @param  User $student
      * @return \Illuminate\Http\Response
      */
-    public function itemAction(Request $request, User $student)
+    public function itemAction(Request $request, User $user)
     {
-        if ($student->isStudent()) {
-            $student->load('group');
+        if ($user->isStudent()) {
+            $user->load('group');
         }
 
-        return response()->json($student);
+        return response()->json($user);
     }
 
     /**
