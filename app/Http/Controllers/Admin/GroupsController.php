@@ -33,7 +33,7 @@ class GroupsController extends Controller
      * @param  Group $group
      * @return \Illuminate\Http\Response
      */
-    public  function getGroupAction(Group $group)
+    public function getGroupAction(Group $group)
     {
         return response()->json($group);
     }
