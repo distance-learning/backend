@@ -4,9 +4,9 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class AuthTest extends TestCase
-{
-    use DatabaseTransactions;
+//class AuthTest extends TestCase
+//{
+//    use DatabaseTransactions;
 
 //    public function testRegistrationAction()
 //    {
@@ -53,4 +53,4 @@ class AuthTest extends TestCase
 //            'password' => '112233'
 //        ]);
 //    }
-}
+//}

@@ -6,8 +6,6 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class FacultiesTest extends TestCase
 {
-    use DatabaseTransactions;
-
     /**
      *
      */
@@ -16,8 +14,6 @@ class FacultiesTest extends TestCase
         //Assert if table is empty
         $json = $this->call('GET', '/api/faculties');
         $response = (array) json_decode($json->content());
-
-        var_dump($response);
 
         $this->assertEquals(0, count($response['data']));
 
@@ -59,7 +55,8 @@ class FacultiesTest extends TestCase
 
         $faculty = $faculty->toArray();
         $faculty = array_merge($faculty, [
-            'deleted_at' => null
+            'deleted_at' => null,
+            'directions' => [],
         ]);
 
         $this->assertEquals($response, $faculty);

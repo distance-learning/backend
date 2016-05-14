@@ -73,16 +73,12 @@ class TeachersController extends Controller
      * @param User $teacher
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getTeacherBySlugAction(Request $request, User $teacher)
+    public function getTeacherBySlugAction(Request $request, User $user)
     {
-        if (!$teacher->isActive()) {
-            return response()
-                ->json(null, 404)
-            ;
+        if (!$user->isActive()) {
+            return response()->json(null, 404);
         }
 
-        return response()
-            ->json($teacher)
-        ;
+        return response()->json($user);
     }
 }

@@ -23,6 +23,8 @@ $factory->defineAs(App\Faculty::class, 'fotius', function () {
     return [
         'name'          => 'ФОТИУС',
         'description'   => 'Опис факультету ФОТИУС',
-        'avatar'        => ''
+        'avatar'        => '',
+        'slug'          => 'fotius',
+        'examinations'  => '[]',
     ];
 });
