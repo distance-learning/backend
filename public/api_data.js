@@ -2017,91 +2017,6 @@ define({ "api": [
     "name": "GetApiAdminStudentsSearch"
   },
   {
-    "type": "post",
-    "url": "/api/admin/subjects",
-    "title": "Create subject",
-    "sampleRequest": [
-      {
-        "url": "/api/admin/faculties/:slug/subjects"
-      }
-    ],
-    "description": "<p>Create subject</p> ",
-    "group": "Admin_Subject",
-    "permission": [
-      {
-        "name": "administrator, university_administrator"
-      }
-    ],
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "<p>String</p> ",
-            "optional": false,
-            "field": "name",
-            "description": "<p>Subject name</p> "
-          },
-          {
-            "group": "Parameter",
-            "type": "<p>String</p> ",
-            "optional": false,
-            "field": "description",
-            "description": "<p>Subject description</p> "
-          },
-          {
-            "group": "Parameter",
-            "type": "<p>Number</p> ",
-            "optional": false,
-            "field": "faculty_id",
-            "description": "<p>Faculty identificator</p> "
-          }
-        ]
-      }
-    },
-    "header": {
-      "fields": {
-        "Header": [
-          {
-            "group": "Header",
-            "type": "String",
-            "optional": false,
-            "field": "authorization",
-            "description": ""
-          }
-        ]
-      }
-    },
-    "success": {
-      "fields": {
-        "200": [
-          {
-            "group": "200",
-            "optional": false,
-            "field": "success",
-            "description": "<p>Returned if subject successful created</p> "
-          }
-        ]
-      }
-    },
-    "error": {
-      "fields": {
-        "403": [
-          {
-            "group": "403",
-            "optional": false,
-            "field": "error",
-            "description": "<p>Returned if user has not access for create subject</p> "
-          }
-        ]
-      }
-    },
-    "version": "0.0.0",
-    "filename": "app/Http/Controllers/Admin/SubjectsController.php",
-    "groupTitle": "Admin_Subject",
-    "name": "PostApiAdminSubjects"
-  },
-  {
     "type": "delete",
     "url": "/api/admin/subjects/:id",
     "title": "Delete subject by id",
@@ -2274,6 +2189,91 @@ define({ "api": [
     "filename": "app/Http/Controllers/Admin/SubjectsController.php",
     "groupTitle": "Admin_Subjects",
     "name": "GetApiAdminSubjectsId"
+  },
+  {
+    "type": "post",
+    "url": "/api/admin/subjects",
+    "title": "Create subject",
+    "sampleRequest": [
+      {
+        "url": "/api/admin/subjects"
+      }
+    ],
+    "description": "<p>Create subject</p> ",
+    "group": "Admin_Subjects",
+    "permission": [
+      {
+        "name": "administrator, university_administrator"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Subject name</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "description",
+            "description": "<p>Subject description</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "faculty_id",
+            "description": "<p>Faculty identificator</p> "
+          }
+        ]
+      }
+    },
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Returned if subject successful created</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "403": [
+          {
+            "group": "403",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if user has not access for create subject</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Admin/SubjectsController.php",
+    "groupTitle": "Admin_Subjects",
+    "name": "PostApiAdminSubjects"
   },
   {
     "type": "put",

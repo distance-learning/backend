@@ -38,9 +38,9 @@ class SubjectsController extends Controller
 
     /**
      * @api {post} /api/admin/subjects Create subject
-     * @apiSampleRequest /api/admin/faculties/:slug/subjects
+     * @apiSampleRequest /api/admin/subjects
      * @apiDescription Create subject
-     * @apiGroup Admin|Subject
+     * @apiGroup Admin|Subjects
      * @apiPermission administrator, university_administrator
      *
      * @apiParam {String} name Subject name
