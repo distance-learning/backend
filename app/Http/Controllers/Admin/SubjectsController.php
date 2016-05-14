@@ -45,6 +45,7 @@ class SubjectsController extends Controller
      *
      * @apiParam {String} name Subject name
      * @apiParam {String} description Subject description
+     * @apiParam {Number} faculty_id Faculty identificator
      *
      * @apiHeader {String} authorization
      *
@@ -53,7 +54,6 @@ class SubjectsController extends Controller
      * @apiError (403) error Returned if user has not access for create subject
      *
      * @param Request $request
-     * @param Faculty $faculty
      * @return \Illuminate\Http\JsonResponse
      */
     public function createSubjectAction(Request $request)

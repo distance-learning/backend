@@ -2048,6 +2048,13 @@ define({ "api": [
             "optional": false,
             "field": "description",
             "description": "<p>Subject description</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "faculty_id",
+            "description": "<p>Faculty identificator</p> "
           }
         ]
       }

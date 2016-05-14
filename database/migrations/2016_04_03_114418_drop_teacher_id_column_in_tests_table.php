@@ -35,6 +35,8 @@ class DropTeacherIdColumnInTestsTable extends Migration
         Schema::table('tests', function (Blueprint $table) {
             $table
                 ->integer('teacher_id')
+                ->unsigned()
+                ->nullable()
             ;
 
             $table

@@ -31,6 +31,15 @@ class FixConstraintInCoursesTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('courses', function (Blueprint $table) {
+            $table
+                ->dropForeign('courses_teacher_id_foreign');
+
+            $table
+                ->foreign('teacher_id')
+                ->references('id')
+                ->on('teachers')
+                ->onDelete('SET NULL');
+        });
     }
 }
