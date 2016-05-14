@@ -36,7 +36,7 @@ class DirectionsController extends Controller
     public function indexAction(Request $request)
     {
         $directions = Direction::paginate(
-            $request->query->get('count')
+            $request->query->get('count', 10)
         );
 
         return response()->json($directions);
@@ -96,7 +96,7 @@ class DirectionsController extends Controller
 
         $direction->save();
 
-        return response()->json($direction);
+        return response()->json($direction, 201);
     }
 
     /**
