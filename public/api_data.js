@@ -784,7 +784,7 @@ define({ "api": [
             "group": "Parameter",
             "type": "<p>Integer</p> ",
             "optional": false,
-            "field": "faculty",
+            "field": "faculty_id",
             "description": "<p>Faculty id</p> "
           }
         ]
