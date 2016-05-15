@@ -55,9 +55,9 @@ class GroupsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getGroupsAction()
+    public function getGroupsAction(Request $request)
     {
-        $groups = Group::paginate(15);
+        $groups = Group::paginate($request->get('count'));
 
         return response()->json($groups);
     }

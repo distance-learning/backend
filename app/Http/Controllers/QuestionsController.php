@@ -61,6 +61,7 @@ class QuestionsController extends Controller
             'test_id' => $test->id,
             'image' => '',
             'code' => md5(uniqid('questions_')) . rand(1, 1000),
+            'score' => $request->get('score'),
         ]);
 
         return response()->json($question);
@@ -79,6 +80,7 @@ class QuestionsController extends Controller
      * @apiParam {String} name Question name
      * @apiParam {String} type Question type
      * @apiParam {String} image Question image
+     * @apiParam {Number} score Question score
      * @apiParam {Array} answers  Question Answers
      * @apiParam {String} answers.name Answer name
      * @apiParam {Boolean} answers.isCorrectly Answer correct

@@ -4707,6 +4707,13 @@ define({ "api": [
           },
           {
             "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "score",
+            "description": "<p>Question score</p> "
+          },
+          {
+            "group": "Parameter",
             "type": "<p>Array</p> ",
             "optional": false,
             "field": "answers",
