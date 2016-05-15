@@ -12,21 +12,21 @@ use Illuminate\Support\Facades\Validator;
 
 class FacultiesController extends Controller
 {
-    /**
-     *
-     */
-    public function __construct()
-    {
-        $this->middleware('jwt.auth',
-            [
-                'only' => [
-                    'postFacultyAction',
-                    'putFacultyAction',
-                    'deleteFacultyAction'
-                ]
-            ]
-        );
-    }
+//    /**
+//     *
+//     */
+//    public function __construct()
+//    {
+//        $this->middleware('jwt.auth',
+//            [
+//                'only' => [
+//                    'postFacultyAction',
+//                    'putFacultyAction',
+//                    'deleteFacultyAction'
+//                ]
+//            ]
+//        );
+//    }
 
     /**
      * Display a listing of the resource.
@@ -54,11 +54,12 @@ class FacultiesController extends Controller
      * @apiSuccess {String} data.description
      * @apiSuccess {String} data.avatar
      *
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
     public function getFacultiesAction(Request $request)
     {
-        $faculties = Faculty::paginate($request->query->get('count'));
+        $faculties = Faculty::paginate($request->get('count', 10));
 
         return response()->json($faculties);
     }
@@ -111,7 +112,7 @@ class FacultiesController extends Controller
             'examinations' => json_encode($request->get('examinations')),
         ]);
 
-        return response()->json($faculty, 200);
+        return response()->json($faculty, 201);
     }
 
     /**
@@ -131,7 +132,7 @@ class FacultiesController extends Controller
      *
      * @apiError error Returned if faculty by slug not found
      *
-     * @param $slug
+     * @param Faculty $faculty
      * @return \Illuminate\Http\JsonResponse
      */
     public function getFacultyAction(Faculty $faculty)

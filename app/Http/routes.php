@@ -109,9 +109,9 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
         Route::group(['prefix' => 'faculties'], function () {
             Route::get('/', 'Admin\FacultiesController@getFacultiesAction');
             Route::post('/', 'Admin\FacultiesController@postFacultyAction');
-            Route::get('/{slug}', 'Admin\FacultiesController@getFacultyAction');
-            Route::put('/{slug}', 'Admin\FacultiesController@putFacultyAction');
-            Route::delete('/{slug}', 'Admin\FacultiesController@deleteFacultyAction');
+            Route::get('/{faculty}', 'Admin\FacultiesController@getFacultyAction');
+            Route::put('/{faculty}', 'Admin\FacultiesController@putFacultyAction');
+            Route::delete('/{faculty}', 'Admin\FacultiesController@deleteFacultyAction');
         });
 
         Route::group(['prefix'  =>  'directions'], function () {

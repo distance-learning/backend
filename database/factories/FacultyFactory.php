@@ -26,5 +26,6 @@ $factory->defineAs(App\Faculty::class, 'fotius', function () {
         'avatar'        => '',
         'slug'          => 'fotius',
         'examinations'  => '[]',
+        'deleted_at'    => null,
     ];
 });
