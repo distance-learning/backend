@@ -4,6 +4,8 @@ class AdminDirectionsTest extends TestCase
 {
     public function testGetDirections()
     {
+        $this->checkAuthPermission('get', '/api/admin/directions');
+
         $request = $this->get('/api/admin/directions', [
             'Authorization' => 'Bearer ' . $this->getAuthUserToken(),
         ]);
@@ -45,6 +47,12 @@ class AdminDirectionsTest extends TestCase
     {
         factory(App\Faculty::class, 1)->create();
 
+        $this->checkAuthPermission('post', '/api/admin/directions', [
+            'name' => 'First',
+            'description' => 'Description',
+            'faculty_id' => 1
+        ]);
+
         $request = $this->post('/api/admin/directions', [
             'name' => 'First',
             'description' => 'Description',
@@ -59,7 +67,7 @@ class AdminDirectionsTest extends TestCase
         $this->assertEquals(201, $statusCode);
 
         $request = $this->get('/api/admin/directions/first', [
-            'Authorization' => 'Bearer ' . $this->getAuthUserToken(),
+            'Authorization' => $this->getToken(),
         ]);
 
         $direction = (array) json_decode($request->response->getContent());
@@ -69,5 +77,143 @@ class AdminDirectionsTest extends TestCase
         ]);
 
         $this->assertEquals($direction, $content);
+    }
+
+    public function testGetDirection()
+    {
+
+        $request = $this->get('/api/admin/directions/test', [
+            'Authorization' => $this->getToken(),
+        ]);
+
+        $statusCode = $request->response->getStatusCode();
+
+        $this->assertEquals(404, $statusCode);
+
+        factory(App\Faculty::class, 1)->create();
+        $direction = factory(App\Direction::class, 'active')->create();
+        $direction = $direction->toArray();
+
+        $this->checkAuthPermission('get', '/api/admin/directions/test');
+
+        $request = $this->get('/api/admin/directions/test', [
+            'Authorization' => $this->getToken(),
+        ]);
+
+        $content = (array) json_decode($request->response->getContent());
+        $statusCode = $request->response->getStatusCode();
+
+        $this->assertEquals(200, $statusCode);
+        $this->assertEquals($direction, $content);
+    }
+
+    public function testEditDirection()
+    {
+        factory(App\Faculty::class, 2)->create();
+        $direction = factory(App\Direction::class, 'active')->create();
+        $direction = $direction->toArray();
+
+        $direction['name'] = 'Second';
+        $direction['description'] = 'Another description';
+        $direction['faculty_id'] = 2;
+
+        $this->checkAuthPermission('put', '/api/admin/directions/test', [
+            'name' => $direction['name'],
+            'description' => $direction['description'],
+            'faculty_id'  => $direction['faculty_id'],
+        ]);
+
+        $request = $this->put('/api/admin/directions/test', [
+            'name' => $direction['name'],
+            'description' => $direction['description'],
+            'faculty_id'  => $direction['faculty_id'],
+        ], [
+            'Authorization' => $this->getToken(),
+        ]);
+
+        $content = (array) json_decode($request->response->getContent());
+        $statusCode = $request->response->getStatusCode();
+
+        $this->assertEquals(200, $statusCode);
+        $this->assertEquals($direction, $content);
+
+        $request = $this->get('/api/admin/directions/test', [
+            'Authorization' => $this->getToken(),
+        ]);
+
+        $content = (array) json_decode($request->response->getContent());
+        $statusCode = $request->response->getStatusCode();
+
+        $this->assertEquals(200, $statusCode);
+        $this->assertEquals($direction, $content);
+    }
+
+    public function testDeleteDirection()
+    {
+        factory(App\Faculty::class, 2)->create();
+        factory(App\Direction::class, 'active')->create();
+
+        $this->checkAuthPermission('delete', '/api/admin/directions/test');
+
+        $request = $this->get('/api/admin/directions/test', [
+            'Authorization' => $this->getToken(),
+        ]);
+
+        $statusCode = $request->response->getStatusCode();
+        $this->assertEquals(200, $statusCode);
+
+        $request = $this->delete('/api/admin/directions/test', [
+            'Authorization' => $this->getToken()
+        ]);
+
+        $statusCode = $request->response->getStatusCode();
+        $this->assertEquals(204, $statusCode);
+
+        $request = $this->get('/api/admin/directions/test', [
+            'Authorization' => $this->getToken(),
+        ]);
+
+        $statusCode = $request->response->getStatusCode();
+        $this->assertEquals(404, $statusCode);
+    }
+
+    public function testGetGroupsByDirectionSlugAction()
+    {
+
+        $request = $this->get('/api/admin/directions/test/groups', [
+            'Authorization' => $this->getToken(),
+        ]);
+
+        $statusCode = $request->response->getStatusCode();
+
+        $this->assertEquals(404, $statusCode);
+
+        factory(App\Faculty::class, 1)->create();
+        factory(App\Direction::class, 'active')->create();
+        factory(App\Group::class, 20)->create();
+
+        $this->checkAuthPermission('get', '/api/admin/directions/test/groups');
+
+        $request = $this->get('/api/admin/directions/test/groups', [
+            'Authorization' => $this->getToken(),
+        ]);
+
+        $statusCode = $request->response->getStatusCode();
+        $content = (array) json_decode($request->response->getContent());
+
+        $this->assertEquals(200, $statusCode);
+        $this->assertCount(10, $content['data']);
+        $this->assertEquals(2, $content['last_page']);
+
+        $request = $this->get('/api/admin/directions/test/groups?count=2', [
+            'Authorization' => $this->getToken(),
+        ]);
+
+        $statusCode = $request->response->getStatusCode();
+        $content = (array) json_decode($request->response->getContent());
+
+        $this->assertEquals(200, $statusCode);
+        $this->assertCount(2, $content['data']);
+        $this->assertEquals(10, $content['last_page']);
     }
 }

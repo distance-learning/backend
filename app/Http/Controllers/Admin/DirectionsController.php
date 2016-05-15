@@ -110,21 +110,22 @@ class DirectionsController extends Controller
      *
      * @apiParam {String} name Direction name
      * @apiParam {String} description Direction description
-     * @apiParam {Integer} faculty Faculty id
+     * @apiParam {Integer} faculty_id Faculty id
      *
      * @apiSuccess (200) success Returned if direction successful updated
      *
      * @apiError (403) error Returned if user has not access for update direction
      *
      * @param  Request $request
+     * @param  Direction $direction
      * @return \Illuminate\Http\Response
      */
-    public function putAction(Request $request, Faculty $faculty, Direction $direction)
+    public function putAction(Request $request, Direction $direction)
     {
         $direction->update([
             'name'  =>  $request->get('name'),
             'description' =>  $request->get('description'),
-            'faculty_id' => $faculty->id,
+            'faculty_id' => $request->get('faculty_id'),
         ]);
 
         return response()->json($direction);
@@ -144,7 +145,7 @@ class DirectionsController extends Controller
      * @apiError (403) error Returned if user has not access for delete direction
      *
      * @param  Request $request
-     * @param  string  $slug
+     * @param  Direction $direction
      * @return \Illuminate\Http\Response
      */
     public function deleteAction(Request $request, Direction $direction)
@@ -170,13 +171,13 @@ class DirectionsController extends Controller
      * @apiError (403) error Returned if user has not access for get groups in directions
      *
      * @param  Request $request
-     * @param  string  $slug
+     * @param  Direction $direction
      * @return \Illuminate\Http\Response
      */
     public function getGroupsByDirectionSlugAction(Request $request, Direction $direction)
     {
-        $groups = Group::where('direction_id', $direction->id)->paginate(10);
+        $groups = $direction->groups()->paginate($request->get('count', 10));
 
-        return response()->json($groups, 200);
+        return response()->json($groups);
     }
 }

@@ -35,6 +35,11 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
         return $app;
     }
 
+    public function getToken()
+    {
+        return 'Bearer ' . $this->getAuthUserToken();
+    }
+
     public function getAuthUser()
     {
         if (! $this->authUser) {
@@ -85,5 +90,14 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
     {
 //        $this->artisan('migrate:reset');
         parent::tearDown();
+    }
+
+    public function checkAuthPermission($method, $uri, $data = [])
+    {
+        $request = $this->{$method}($uri, $data);
+
+        $statusCode = $request->response->getStatusCode();
+
+        $this->assertEquals(400, $statusCode);
     }
 }
