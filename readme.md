@@ -1,2 +1,2 @@
 ## Distance learning service
-[ ![Codeship Status for distancelearning/distance-learning-backend](https://codeship.com/projects/57f7ff60-fcbe-0133-54ba-6207d5dc29e2/status?branch=develop)](https://codeship.com/projects/152074)
+[ ![Codeship Status for distancelearning/distance-learning-backend](https://codeship.com/projects/57f7ff60-fcbe-0133-54ba-6207d5dc29e2/status?branch=create-some-tests)](https://codeship.com/projects/152074)
