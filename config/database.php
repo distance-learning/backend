@@ -82,12 +82,12 @@ return [
             'charset'  => 'utf8',
             'prefix'   => '',
         ],
-        'mysql_codeship' => [
+        'mysql_ci' => [
             'driver'    => 'mysql',
             'host'      => env('DB_HOST', 'localhost'),
-            'database'  => env('DB_DATABASE', 'forge'),
-            'username'  => env('MYSQL_USER'),
-            'password'  => env('MYSQL_PASSWORD'),
+            'database'  => env('DB_DATABASE', 'test'),
+            'username'  => env('MYSQL_USER', env('DB_USERNAME')),
+            'password'  => env('MYSQL_PASSWORD', env('DB_PASSWORD')),
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',
