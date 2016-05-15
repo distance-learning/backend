@@ -82,7 +82,17 @@ return [
             'charset'  => 'utf8',
             'prefix'   => '',
         ],
-
+        'mysql_codeship' => [
+            'driver'    => 'mysql',
+            'host'      => env('DB_HOST', 'localhost'),
+            'database'  => env('DB_DATABASE', 'forge'),
+            'username'  => env('DB_USERNAME', env('MYSQL_USER')),
+            'password'  => env('DB_PASSWORD', env('MYSQL_PASSWORD')),
+            'charset'   => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix'    => '',
+            'strict'    => false,
+        ],
     ],
 
     /*
@@ -92,7 +102,7 @@ return [
     |
     | This table keeps track of all the migrations that have already run for
     | your application. Using this information, we can determine which of
-    | the migrations on disk haven't actually been run in the database.
+    | the migrations on disk haven't actual ly been run in the database.
     |
     */
 
