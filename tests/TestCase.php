@@ -64,12 +64,26 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->artisan('migrate');
+
+        DB::statement("SET foreign_key_checks=0");
+        $tableNames = Schema::getConnection()->getDoctrineSchemaManager()->listTableNames();
+
+        foreach ($tableNames as $name) {
+            //if you don't want to truncate migrations
+            if ($name == 'migrations') {
+                continue;
+            }
+            DB::table($name)->truncate();
+        }
+        DB::statement("SET foreign_key_checks=1");
+
+//        shell_exec('mysql -u root -Nse \'show tables\' distance_learning_test | while read table; do mysql -u root -e "truncate table $table" distance_learning_test; done');
+//        $this->artisan('migrate');
     }
 
     public function tearDown()
     {
-        $this->artisan('migrate:reset');
+//        $this->artisan('migrate:reset');
         parent::tearDown();
     }
 }
