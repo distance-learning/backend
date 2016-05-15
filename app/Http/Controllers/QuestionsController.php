@@ -46,6 +46,12 @@ class QuestionsController extends Controller
      *
      * @apiHeader {String} authorization User token
      *
+     * @apiParam {String} name Question name
+     * @apiParam {String} type Question type
+     * @apiParam {String} image Question image
+     * @apiParam {Number} score Question score
+     * @apiParam {Number} time  Question time in seconds
+     *
      * @apiError (401) error Returned if user not active
      * @apiError (400) error Returned if credentials not correct
      * @apiError (500) error Returned if error on serve
@@ -62,6 +68,7 @@ class QuestionsController extends Controller
             'image' => '',
             'code' => md5(uniqid('questions_')) . rand(1, 1000),
             'score' => $request->get('score'),
+            'time'  => $request->get('time'),
         ]);
 
         return response()->json($question);
@@ -81,6 +88,7 @@ class QuestionsController extends Controller
      * @apiParam {String} type Question type
      * @apiParam {String} image Question image
      * @apiParam {Number} score Question score
+     * @apiParam {Number} time  Question time in seconds
      * @apiParam {Array} answers  Question Answers
      * @apiParam {String} answers.name Answer name
      * @apiParam {Boolean} answers.isCorrectly Answer correct

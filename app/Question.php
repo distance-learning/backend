@@ -39,7 +39,8 @@ class Question extends Model
         'type',
         'test_id',
         'code',
-        'time'
+        'time',
+        'score'
     ];
 
     /**
