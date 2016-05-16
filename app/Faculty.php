@@ -72,6 +72,10 @@ class Faculty extends Model implements SluggableInterface
         'description' => 'required'
     ];
 
+    protected $casts = [
+        'examinations' => 'array'
+    ];
+
     /**
      * @return string
      */

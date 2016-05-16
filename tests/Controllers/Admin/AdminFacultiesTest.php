@@ -142,7 +142,6 @@ class AdminFacultiesTest extends TestCase
         ]);
 
         $content = json_decode($request->response->getContent(), 1);
-        $content["examinations"] = json_decode($content["examinations"], 1);
         $statusCode = $request->response->getStatusCode();
 
         $this->assertEquals(200, $statusCode);

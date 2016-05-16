@@ -109,7 +109,7 @@ class FacultiesController extends Controller
         $faculty = Faculty::create([
             'name' => $request->get('name'),
             'description' => $request->get('description'),
-            'examinations' => json_encode($request->get('examinations')),
+            'examinations' => $request->get('examinations'),
         ]);
 
         return response()->json($faculty, 201);
@@ -198,7 +198,7 @@ class FacultiesController extends Controller
         $faculty->update([
             'name' => $request->request->get('name'),
             'description' => $request->request->get('description'),
-            'examinations' => json_encode($request->get('examinations')),
+            'examinations' => $request->get('examinations'),
         ]);
 
         return response()->json($faculty, 200);
