@@ -59,77 +59,6 @@
   },
   {
     "type": "get",
-    "url": "/api/admin/course/:id",
-    "title": "Get course by id",
-    "sampleRequest": [
-      {
-        "url": "/api/admin/course/:id"
-      }
-    ],
-    "description": "<p>Get course by id</p> ",
-    "group": "Admin_Courses",
-    "permission": [
-      {
-        "name": "administrator, university_administrator"
-      }
-    ],
-    "header": {
-      "fields": {
-        "Header": [
-          {
-            "group": "Header",
-            "type": "String",
-            "optional": false,
-            "field": "authorization",
-            "description": ""
-          }
-        ]
-      }
-    },
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "<p>String</p> ",
-            "optional": false,
-            "field": "id",
-            "description": "<p>Course id</p> "
-          }
-        ]
-      }
-    },
-    "success": {
-      "fields": {
-        "200": [
-          {
-            "group": "200",
-            "optional": false,
-            "field": "success",
-            "description": "<p>Returned if course isset</p> "
-          }
-        ]
-      }
-    },
-    "error": {
-      "fields": {
-        "403": [
-          {
-            "group": "403",
-            "optional": false,
-            "field": "error",
-            "description": "<p>Returned if user has not access for get course</p> "
-          }
-        ]
-      }
-    },
-    "version": "0.0.0",
-    "filename": "app/Http/Controllers/Admin/CoursesController.php",
-    "groupTitle": "Admin_Courses",
-    "name": "GetApiAdminCourseId"
-  },
-  {
-    "type": "get",
     "url": "/api/admin/courses",
     "title": "Get courses by page",
     "sampleRequest": [
@@ -198,6 +127,77 @@
     "filename": "app/Http/Controllers/Admin/CoursesController.php",
     "groupTitle": "Admin_Courses",
     "name": "GetApiAdminCourses"
+  },
+  {
+    "type": "get",
+    "url": "/api/admin/courses/:id",
+    "title": "Get course by id",
+    "sampleRequest": [
+      {
+        "url": "/api/admin/course/:id"
+      }
+    ],
+    "description": "<p>Get course by id</p> ",
+    "group": "Admin_Courses",
+    "permission": [
+      {
+        "name": "administrator, university_administrator"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Course id</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Returned if course isset</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "403": [
+          {
+            "group": "403",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if user has not access for get course</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Admin/CoursesController.php",
+    "groupTitle": "Admin_Courses",
+    "name": "GetApiAdminCoursesId"
   },
   {
     "type": "post",
@@ -4540,6 +4540,47 @@
         ]
       }
     },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Question name</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "type",
+            "description": "<p>Question type</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "image",
+            "description": "<p>Question image</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "score",
+            "description": "<p>Question score</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "time",
+            "description": "<p>Question time in seconds</p> "
+          }
+        ]
+      }
+    },
     "error": {
       "fields": {
         "400": [
@@ -4711,6 +4752,13 @@
             "optional": false,
             "field": "score",
             "description": "<p>Question score</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "time",
+            "description": "<p>Question time in seconds</p> "
           },
           {
             "group": "Parameter",

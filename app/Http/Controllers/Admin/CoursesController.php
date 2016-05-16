@@ -34,7 +34,7 @@ class CoursesController extends Controller
      */
 
     /**
-     * @api {get} /api/admin/course/:id Get course by id
+     * @api {get} /api/admin/courses/:id Get course by id
      * @apiSampleRequest /api/admin/course/:id
      * @apiDescription Get course by id
      * @apiGroup Admin|Courses
