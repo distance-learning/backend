@@ -31,7 +31,7 @@ class SubjectsController extends Controller
      */
     public function getPaginatedSubjectsAction(Request $request)
     {
-        $subjects = Subject::with('faculty')->paginate($request->get('count'));
+        $subjects = Subject::with('faculty')->paginate($request->get('count', 10));
 
         return response()->json($subjects);
     }
@@ -64,7 +64,7 @@ class SubjectsController extends Controller
             'description' => $request->get('description'),
         ]);
 
-        return response()->json($subject);
+        return response()->json($subject, 201);
     }
 
     /**

@@ -35,7 +35,7 @@ class GroupsController extends Controller
      */
     public function getGroupAction(Group $group)
     {
-        return response()->json($group);
+        return response()->json($group->load('students'));
     }
 
     /**

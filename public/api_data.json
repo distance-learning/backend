@@ -4661,6 +4661,13 @@
             "optional": false,
             "field": "time",
             "description": "<p>Test time</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "allow_skip",
+            "description": "<p>Allow skip test</p> "
           }
         ]
       }

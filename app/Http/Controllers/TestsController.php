@@ -103,6 +103,7 @@ class TestsController extends Controller
      * @apiParam {Integer} id Test id
      * @apiParam {String} name Test name
      * @apiParam {String} time Test time
+     * @apiParam {Number} allow_skip Allow skip test
      *
      * @apiError (401) error Returned if user not active
      * @apiError (400) error Returned if credentials not correct
@@ -115,7 +116,8 @@ class TestsController extends Controller
     {
         $test->update([
             'name' => $request->get('name'),
-            'time' => $request->get('time')
+            'time' => $request->get('time'),
+            'allow_skip' => $request->get('allow_skip')
         ]);
 
         return response()->json($test);
