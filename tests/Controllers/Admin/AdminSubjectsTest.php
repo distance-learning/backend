@@ -102,4 +102,65 @@ class AdminSubjectsTest extends TestCase
         $this->assertEquals(200, $statusCode);
         $this->assertEquals($direction, $content);
     }
+
+    public function testUpdateFacultyAction()
+    {
+        factory(App\Faculty::class, 2)->create();
+        $subject = factory(App\Subject::class, 'OOP')->create();
+        $subject = $subject->toArray();
+
+        $this->checkAuthPermission('put', '/api/admin/subjects/1');
+
+        $subject['name'] = 'Second';
+        $subject['description'] = 'Description';
+        $subject['faculty_id'] = 2;
+
+        $request = $this->put('/api/admin/subjects/1', [
+            'name' => $subject['name'],
+            'description' => $subject['description'],
+            'faculty_id' => $subject['faculty_id'],
+        ], [
+            'Authorization' => $this->getToken(),
+        ]);
+
+        $content = json_decode($request->response->getContent(), 1);
+        $statusCode = $request->response->getStatusCode();
+
+        $this->assertEquals(200, $statusCode);
+        $this->assertEquals($subject, $content);
+
+        $request = $this->get('/api/admin/subjects/1', [
+            'Authorization' => $this->getToken(),
+        ]);
+
+        $content = json_decode($request->response->getContent(), 1);
+        $statusCode = $request->response->getStatusCode();
+
+        $this->assertEquals(200, $statusCode);
+        $this->assertEquals($subject, $content);
+    }
+
+    public function testDeleteSubjectAction()
+    {
+        factory(App\Faculty::class, 1)->create();
+        factory(App\Subject::class, 'OOP')->create();
+
+        $this->checkAuthPermission('delete', '/api/admin/subjects/1');
+
+        $request = $this->delete('/api/admin/subjects/1', [], [
+            'Authorization' => $this->getToken(),
+        ]);
+
+        $statusCode = $request->response->getStatusCode();
+
+        $this->assertEquals(204, $statusCode);
+
+        $request = $this->get('/api/admin/subjects/1', [
+            'Authorization' => $this->getToken(),
+        ]);
+
+        $statusCode = $request->response->getStatusCode();
+
+        $this->assertEquals(404, $statusCode);
+    }
 }

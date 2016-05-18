@@ -148,7 +148,7 @@ class AdminDirectionsTest extends TestCase
         $this->assertEquals($direction, $content);
     }
 
-    public function testDeleteDirection()
+    public function testDeleteDirectionAction()
     {
         factory(App\Faculty::class, 2)->create();
         factory(App\Direction::class, 'active')->create();
@@ -162,7 +162,7 @@ class AdminDirectionsTest extends TestCase
         $statusCode = $request->response->getStatusCode();
         $this->assertEquals(200, $statusCode);
 
-        $request = $this->delete('/api/admin/directions/test', [
+        $request = $this->delete('/api/admin/directions/test', [], [
             'Authorization' => $this->getToken()
         ]);
 

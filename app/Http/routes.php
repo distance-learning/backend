@@ -33,7 +33,7 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
         Route::group(['prefix' => 'account'], function () {
             Route::get('/tasks', 'AccountController@getTasksAction');
             Route::get('/courses', 'AccountController@getCoursesAction');
-            Route::get('/subjects', 'AccountController@getSubjectsAction');
+            Route::get('/subjects', 'AccountController@getAction');
         });
 
         Route::group(['prefix' => 'events'], function () {
