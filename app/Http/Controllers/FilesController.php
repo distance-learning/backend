@@ -66,12 +66,6 @@ class FilesController extends Controller
      *
      * @apiSuccess (200) success Returned files
      *
-     * @apiParam {Number} id File id
-     * @apiParam {Number} author_id File author id
-     * @apiParam {String} filename File filename
-     * @apiParam {String} path File path
-     * @apiParam {String} content_type
-     *
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
@@ -92,12 +86,6 @@ class FilesController extends Controller
      *
      * @apiSuccess (200) success Returned documents
      *
-     * @apiParam {Number} id File id
-     * @apiParam {Number} author_id File author id
-     * @apiParam {String} filename File filename
-     * @apiParam {String} path File path
-     * @apiParam {String} content_type
-     *
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
@@ -117,12 +105,6 @@ class FilesController extends Controller
      * @apiHeader Authorization Authorization header
      *
      * @apiSuccess (200) success Returned images
-     *
-     * @apiParam {Number} id File id
-     * @apiParam {Number} author_id File author id
-     * @apiParam {String} filename File filename
-     * @apiParam {String} path File path
-     * @apiParam {String} content_type
      *
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse

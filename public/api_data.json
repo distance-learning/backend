@@ -3872,47 +3872,6 @@
         ]
       }
     },
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "<p>Number</p> ",
-            "optional": false,
-            "field": "id",
-            "description": "<p>File id</p> "
-          },
-          {
-            "group": "Parameter",
-            "type": "<p>Number</p> ",
-            "optional": false,
-            "field": "author_id",
-            "description": "<p>File author id</p> "
-          },
-          {
-            "group": "Parameter",
-            "type": "<p>String</p> ",
-            "optional": false,
-            "field": "filename",
-            "description": "<p>File filename</p> "
-          },
-          {
-            "group": "Parameter",
-            "type": "<p>String</p> ",
-            "optional": false,
-            "field": "path",
-            "description": "<p>File path</p> "
-          },
-          {
-            "group": "Parameter",
-            "type": "<p>String</p> ",
-            "optional": false,
-            "field": "content_type",
-            "description": ""
-          }
-        ]
-      }
-    },
     "version": "0.0.0",
     "filename": "app/Http/Controllers/FilesController.php",
     "groupTitle": "Files",
@@ -3949,47 +3908,6 @@
             "optional": false,
             "field": "success",
             "description": "<p>Returned documents</p> "
-          }
-        ]
-      }
-    },
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "<p>Number</p> ",
-            "optional": false,
-            "field": "id",
-            "description": "<p>File id</p> "
-          },
-          {
-            "group": "Parameter",
-            "type": "<p>Number</p> ",
-            "optional": false,
-            "field": "author_id",
-            "description": "<p>File author id</p> "
-          },
-          {
-            "group": "Parameter",
-            "type": "<p>String</p> ",
-            "optional": false,
-            "field": "filename",
-            "description": "<p>File filename</p> "
-          },
-          {
-            "group": "Parameter",
-            "type": "<p>String</p> ",
-            "optional": false,
-            "field": "path",
-            "description": "<p>File path</p> "
-          },
-          {
-            "group": "Parameter",
-            "type": "<p>String</p> ",
-            "optional": false,
-            "field": "content_type",
-            "description": ""
           }
         ]
       }
@@ -4111,47 +4029,6 @@
             "optional": false,
             "field": "success",
             "description": "<p>Returned images</p> "
-          }
-        ]
-      }
-    },
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "<p>Number</p> ",
-            "optional": false,
-            "field": "id",
-            "description": "<p>File id</p> "
-          },
-          {
-            "group": "Parameter",
-            "type": "<p>Number</p> ",
-            "optional": false,
-            "field": "author_id",
-            "description": "<p>File author id</p> "
-          },
-          {
-            "group": "Parameter",
-            "type": "<p>String</p> ",
-            "optional": false,
-            "field": "filename",
-            "description": "<p>File filename</p> "
-          },
-          {
-            "group": "Parameter",
-            "type": "<p>String</p> ",
-            "optional": false,
-            "field": "path",
-            "description": "<p>File path</p> "
-          },
-          {
-            "group": "Parameter",
-            "type": "<p>String</p> ",
-            "optional": false,
-            "field": "content_type",
-            "description": ""
           }
         ]
       }
