@@ -35,13 +35,20 @@ class Course extends Model
         'subject_id',
         'teacher_id',
         'group_id',
-        'slug',
+        'is_active',
     ];
 
     /**
      * @var bool
      */
     public $timestamps = false;
+
+    /**
+     * @var array
+     */
+    public $casts = [
+        'is_active' => 'boolean'
+    ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

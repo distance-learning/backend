@@ -64,7 +64,7 @@ class CoursesController extends Controller
      * @apiParam {String} subject_id
      * @apiParam {String} teacher_id
      * @apiParam {String} group_id
-     * @apiParam {String} slug
+     * @apiParam {Number} is_active
      *
      * @apiSuccess (200) success Returned if course successful created
      *
@@ -86,7 +86,7 @@ class CoursesController extends Controller
      * @apiParam {String} subject_id
      * @apiParam {String} teacher_id
      * @apiParam {String} group_id
-     * @apiParam {String} slug
+     * @apiParam {Number} is_active
      *
      * @apiSuccess (200) success Returned if course successful updated
      *

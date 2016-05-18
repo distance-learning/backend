@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Course;
 use App\File;
 use App\Test;
 use Illuminate\Database\Eloquent\Relations\Relation;
@@ -20,6 +21,10 @@ class AppServiceProvider extends ServiceProvider
             'file' => File::class,
             'test' => Test::class,
         ]);
+
+        Course::created(function (Course $course) {
+            $course->name = $course->group->name . ' ' . $course->subject->name . ' ' . $course->teacher->full_name;
+        });
     }
 
     /**
