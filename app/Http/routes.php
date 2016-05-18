@@ -40,6 +40,11 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
 
         Route::group(['prefix' => 'files'], function () {
             Route::post('/', 'FilesController@uploadFileAction');
+            Route::get('/', 'FilesController@getFilesAction');
+            Route::get('/documents', 'FilesController@getDocumentsAction');
+            Route::get('/images', 'FilesController@getImagesAction');
+            Route::get('/{file}', 'FilesController@getFileAction');
+            Route::delete('/{file}', 'FilesController@deleteFileAction');
         });
 
         Route::group(['prefix' => 'tasks'], function () {

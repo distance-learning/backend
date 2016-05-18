@@ -31,7 +31,8 @@ class File extends Model
     public $fillable = [
         'filename',
         'path',
-        'author_id'
+        'author_id',
+        'content_type'
     ];
 
     /**
@@ -40,5 +41,23 @@ class File extends Model
     public function author()
     {
         return $this->belongsTo(User::class, 'author_id');
+    }
+
+    /**
+     * @param $query
+     * @return mixed
+     */
+    public function scopeGetNotImages($query)
+    {
+        return $query->where('content_type', '<>', 'image/jpeg')->where('content_type', '<>', 'image/gif')->where('content_type', '<>', 'image/png');
+    }
+
+    /**
+     * @param $query
+     * @return mixed
+     */
+    public function scopeGetImages($query)
+    {
+        return $query->where('content_type', 'image/jpeg')->orWhere('content_type', 'image/gif')->orWhere('content_type', 'image/png');
     }
 }

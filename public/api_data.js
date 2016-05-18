@@ -3798,6 +3798,310 @@ define({ "api": [
     "name": "GetApiFacultiesSlug"
   },
   {
+    "type": "delete",
+    "url": "/api/files/:id",
+    "title": "Delete file by id",
+    "sampleRequest": [
+      {
+        "url": "/api/files/:id"
+      }
+    ],
+    "description": "<p>Delete file by id</p> ",
+    "group": "Files",
+    "success": {
+      "fields": {
+        "204": [
+          {
+            "group": "204",
+            "optional": false,
+            "field": "success",
+            "description": "<p>File deleted</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/FilesController.php",
+    "groupTitle": "Files",
+    "name": "DeleteApiFilesId"
+  },
+  {
+    "type": "get",
+    "url": "/api/files",
+    "title": "Get all files current user",
+    "sampleRequest": [
+      {
+        "url": "/api/files"
+      }
+    ],
+    "description": "<p>Get all files current user</p> ",
+    "group": "Files",
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Returned files</p> "
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "id",
+            "description": "<p>File id</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "author_id",
+            "description": "<p>File author id</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "filename",
+            "description": "<p>File filename</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "path",
+            "description": "<p>File path</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "content_type",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/FilesController.php",
+    "groupTitle": "Files",
+    "name": "GetApiFiles"
+  },
+  {
+    "type": "get",
+    "url": "/api/files/documents",
+    "title": "Get all documents current user",
+    "sampleRequest": [
+      {
+        "url": "/api/files/documents"
+      }
+    ],
+    "description": "<p>Get all documents current user</p> ",
+    "group": "Files",
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Returned documents</p> "
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "id",
+            "description": "<p>File id</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "author_id",
+            "description": "<p>File author id</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "filename",
+            "description": "<p>File filename</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "path",
+            "description": "<p>File path</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "content_type",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/FilesController.php",
+    "groupTitle": "Files",
+    "name": "GetApiFilesDocuments"
+  },
+  {
+    "type": "get",
+    "url": "/api/files/:id",
+    "title": "Get file by id",
+    "sampleRequest": [
+      {
+        "url": "/api/files/:id"
+      }
+    ],
+    "description": "<p>Get file by id</p> ",
+    "group": "Files",
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Returned file</p> "
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "id",
+            "description": "<p>File id</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "author_id",
+            "description": "<p>File author id</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "filename",
+            "description": "<p>File filename</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "path",
+            "description": "<p>File path</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "content_type",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/FilesController.php",
+    "groupTitle": "Files",
+    "name": "GetApiFilesId"
+  },
+  {
+    "type": "get",
+    "url": "/api/files/images",
+    "title": "Get all images current user",
+    "sampleRequest": [
+      {
+        "url": "/api/files/images"
+      }
+    ],
+    "description": "<p>Get all images current user</p> ",
+    "group": "Files",
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Returned images</p> "
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "id",
+            "description": "<p>File id</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "author_id",
+            "description": "<p>File author id</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "filename",
+            "description": "<p>File filename</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "path",
+            "description": "<p>File path</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "content_type",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/FilesController.php",
+    "groupTitle": "Files",
+    "name": "GetApiFilesImages"
+  },
+  {
     "type": "post",
     "url": "/api/files",
     "title": "Upload file to server",
@@ -3825,10 +4129,38 @@ define({ "api": [
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "<p>Object</p> ",
+            "type": "<p>Number</p> ",
             "optional": false,
-            "field": "file",
-            "description": "<p>File object</p> "
+            "field": "id",
+            "description": "<p>File id</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "author_id",
+            "description": "<p>File author id</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "filename",
+            "description": "<p>File filename</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "path",
+            "description": "<p>File path</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "content_type",
+            "description": ""
           }
         ]
       }

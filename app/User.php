@@ -189,6 +189,14 @@ class User extends Model implements AuthenticatableContract,
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function files()
+    {
+        return $this->hasMany(File::class, 'author_id');
+    }
+
+    /**
      * @return string
      */
     public function getFullnameAttribute()
