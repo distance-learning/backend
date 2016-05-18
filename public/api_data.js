@@ -254,9 +254,9 @@ define({ "api": [
           },
           {
             "group": "Parameter",
-            "type": "<p>String</p> ",
+            "type": "<p>Number</p> ",
             "optional": false,
-            "field": "slug",
+            "field": "is_active",
             "description": ""
           }
         ]
@@ -346,9 +346,9 @@ define({ "api": [
           },
           {
             "group": "Parameter",
-            "type": "<p>String</p> ",
+            "type": "<p>Number</p> ",
             "optional": false,
-            "field": "slug",
+            "field": "is_active",
             "description": ""
           }
         ]
