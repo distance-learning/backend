@@ -18,6 +18,8 @@ class FilesController extends Controller
      * @apiDescription Upload file to server
      * @apiGroup Files
      *
+     * @apiHeader Authorization Authorization header
+     *
      * @apiSuccess (200) success Returned file
      *
      * @apiParam {Number} id File id
@@ -60,6 +62,8 @@ class FilesController extends Controller
      * @apiDescription Get all files current user
      * @apiGroup Files
      *
+     * @apiHeader Authorization Authorization header
+     *
      * @apiSuccess (200) success Returned files
      *
      * @apiParam {Number} id File id
@@ -83,6 +87,8 @@ class FilesController extends Controller
      * @apiSampleRequest /api/files/documents
      * @apiDescription Get all documents current user
      * @apiGroup Files
+     *
+     * @apiHeader Authorization Authorization header
      *
      * @apiSuccess (200) success Returned documents
      *
@@ -108,6 +114,8 @@ class FilesController extends Controller
      * @apiDescription Get all images current user
      * @apiGroup Files
      *
+     * @apiHeader Authorization Authorization header
+     *
      * @apiSuccess (200) success Returned images
      *
      * @apiParam {Number} id File id
@@ -131,6 +139,8 @@ class FilesController extends Controller
      * @apiSampleRequest /api/files/:id
      * @apiDescription Get file by id
      * @apiGroup Files
+     *
+     * @apiHeader Authorization Authorization header
      *
      * @apiSuccess (200) success Returned file
      *
@@ -158,6 +168,8 @@ class FilesController extends Controller
      * @apiSampleRequest /api/files/:id
      * @apiDescription Delete file by id
      * @apiGroup Files
+     *
+     * @apiHeader Authorization Authorization header
      *
      * @apiSuccess (204) success File deleted
      *

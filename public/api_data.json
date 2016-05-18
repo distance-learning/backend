@@ -3808,6 +3808,18 @@
     ],
     "description": "<p>Delete file by id</p> ",
     "group": "Files",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Authorization header</p> "
+          }
+        ]
+      }
+    },
     "success": {
       "fields": {
         "204": [
@@ -3836,6 +3848,18 @@
     ],
     "description": "<p>Get all files current user</p> ",
     "group": "Files",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Authorization header</p> "
+          }
+        ]
+      }
+    },
     "success": {
       "fields": {
         "200": [
@@ -3905,6 +3929,18 @@
     ],
     "description": "<p>Get all documents current user</p> ",
     "group": "Files",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Authorization header</p> "
+          }
+        ]
+      }
+    },
     "success": {
       "fields": {
         "200": [
@@ -3974,6 +4010,18 @@
     ],
     "description": "<p>Get file by id</p> ",
     "group": "Files",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Authorization header</p> "
+          }
+        ]
+      }
+    },
     "success": {
       "fields": {
         "200": [
@@ -4043,6 +4091,18 @@
     ],
     "description": "<p>Get all images current user</p> ",
     "group": "Files",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Authorization header</p> "
+          }
+        ]
+      }
+    },
     "success": {
       "fields": {
         "200": [
@@ -4112,6 +4172,18 @@
     ],
     "description": "<p>Upload file to server</p> ",
     "group": "Files",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Authorization header</p> "
+          }
+        ]
+      }
+    },
     "success": {
       "fields": {
         "200": [
