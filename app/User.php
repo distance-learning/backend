@@ -217,7 +217,7 @@ class User extends Model implements AuthenticatableContract,
      */
     public function isStudent()
     {
-        return ($this->role == "student") ? true : false;
+        return ($this->role == "student")?:false;
     }
 
     /**
@@ -225,7 +225,7 @@ class User extends Model implements AuthenticatableContract,
      */
     public function isTeacher()
     {
-        return ($this->role == "teacher") ? true : false;
+        return ($this->role == "teacher")?:false;
     }
 
     public function isActive()

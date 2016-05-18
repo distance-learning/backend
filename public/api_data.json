@@ -6235,5 +6235,63 @@
     "filename": "app/Http/Controllers/AccountController.php",
     "groupTitle": "Users",
     "name": "PutApiAccountUpdate"
+  },
+  {
+    "type": "get",
+    "url": "/api/account/courses",
+    "title": "Get student courses",
+    "sampleRequest": [
+      {
+        "url": "/api/account/courses"
+      }
+    ],
+    "description": "<p>Get student courses</p> ",
+    "group": "Users_Student",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": "<p>User token</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/AccountController.php",
+    "groupTitle": "Users_Student",
+    "name": "GetApiAccountCourses"
+  },
+  {
+    "type": "get",
+    "url": "/api/account/subjects",
+    "title": "Get teacher subjects",
+    "sampleRequest": [
+      {
+        "url": "/api/account/subjects"
+      }
+    ],
+    "description": "<p>Get teacher subjects</p> ",
+    "group": "Users_Teacher",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": "<p>User token</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/AccountController.php",
+    "groupTitle": "Users_Teacher",
+    "name": "GetApiAccountSubjects"
   }
 ]

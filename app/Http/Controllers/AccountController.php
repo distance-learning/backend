@@ -164,4 +164,52 @@ class AccountController extends Controller
 
         return response()->json($tasks);
     }
+
+    /**
+     * @api {get} /api/account/courses Get student courses
+     * @apiSampleRequest /api/account/courses
+     * @apiDescription Get student courses
+     * @apiGroup Users|Student
+     *
+     * @apiHeader {String} authorization User token
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getCoursesAction(Request $request)
+    {
+        $user = $request->user();
+
+        if ($user->isStudent()) {
+            $courses = $user->group->courses()->active()->load('subject, teacher');
+
+            return response()->json($courses);
+        }
+
+        return response()->json(null, 400);
+    }
+
+    /**
+     * @api {get} /api/account/subjects Get teacher subjects
+     * @apiSampleRequest /api/account/subjects
+     * @apiDescription Get teacher subjects
+     * @apiGroup Users|Teacher
+     *
+     * @apiHeader {String} authorization User token
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getSubjectsAction(Request $request)
+    {
+        $user = $request->user();
+
+        if ($user->isStudent()) {
+            $subjects = $user->subjects()->load('courses.group');
+
+            return response()->json($subjects);
+        }
+
+        return response()->json(null, 400);
+    }
 }
