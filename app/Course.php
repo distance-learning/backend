@@ -87,4 +87,9 @@ class Course extends Model
             ->where('subject_id', $subject_id)
         ;
     }
+
+    public function scopeActive($scope)
+    {
+        return $scope->where('is_active', 1);
+    }
 }
