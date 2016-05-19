@@ -16,7 +16,7 @@ trait CoursesTrait
      */
     public function getCoursesAction()
     {
-        $courses = Course::active()->with('group', 'subject', 'teacher')->paginate(15);
+        $courses = Course::with('group', 'subject', 'teacher')->paginate(15);
 
         return response()->json($courses);
     }
@@ -27,10 +27,6 @@ trait CoursesTrait
      */
     public function getCourseAction(Course $course)
     {
-        if (!$course->is_active) {
-            return response()->json(null, 404);
-        }
-
         return response()->json($course->load('group', 'subject', 'teacher'));
     }
 
