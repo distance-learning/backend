@@ -127,7 +127,7 @@ class AuthController extends Controller
                 'surname' => $request->get('surname'),
                 'phone' => $request->get('phone'),
                 'email' => $request->get('email'),
-                'password'  => Hash::make($request->get('password')),
+                'password'  => $request->get('password'),
                 'birthday'  => $request->get('birthday'),
                 'active'  =>  1,
                 'role'   =>   'student',
@@ -136,13 +136,7 @@ class AuthController extends Controller
             ]);
 
             try {
-                $user = User::where('email', $user->email)->first();
-
-                if (!$user) {
-                    return response()->json(null, 401);
-                }
-
-                if (! $token = JWTAuth::attempt(['email' => $request->request->get('email'), 'password' => $request->request->get('password')])) {
+                if (! $token = JWTAuth::attempt(['email' => $request->get('email'), 'password' => $request->get('password')])) {
                     return response()->json(null, 400);
                 }
             } catch (JWTException $e) {

@@ -18,17 +18,16 @@ class AuthTest extends TestCase
             'password_confirmation'   =>    '112233'
        ];
 
-        $json = $this->call('POST', '/api/auth/registration', $data);
+        $request = $this->post('/api/auth/registration', $data);
 
-        var_dump($json->getStatusCode());
-        $response = $json->content();
+        $statusCode = $request->response->getStatusCode();
+        $content = json_decode($request->response->getContent(), 1);
 
-        var_dump($response);
-
-        $this->assertEquals($data['name'], $response['name']);
-        $this->assertEquals($data['surname'], $response['surname']);
-        $this->assertEquals($data['email'], $response['email']);
-        $this->assertEquals($data['birthday'], $response['birthday']);
+        $this->assertEquals(200, $statusCode);
+        $this->assertEquals($data['name'], $content['user']['name']);
+        $this->assertEquals($data['surname'], $content['user']['surname']);
+        $this->assertEquals($data['email'], $content['user']['email']);
+        $this->assertEquals($data['birthday'], $content['user']['birthday']);
 
         $data = [
             'name'  =>  'Test',
@@ -39,16 +38,36 @@ class AuthTest extends TestCase
             'password'  =>    '112233',
        ];
 
-        $json = $this->call('POST', '/api/auth/registration', $data);
+        $request = $this->post('/api/auth/registration', $data);
 
-        $this->assertResponseStatus(400);
+        $statusCode = $request->response->getStatusCode();
+
+        $this->assertEquals(302, $statusCode);
     }
 
     public function testLoginAction()
     {
-        $this->call('POST', '/api/auth/login', [
+        $request = $this->post('/api/auth/login', [
             'email' => 'user@test.com',
             'password' => '112233'
         ]);
+
+        $statusCode = $request->response->getStatusCode();
+
+        $this->assertEquals(401, $statusCode);
+
+        factory(App\User::class, 'auth-user')->create();
+
+        $request = $this->post('/api/auth/login', [
+            'email' => 'auth@mail.ru',
+            'password' => '112233'
+        ]);
+
+        $statusCode = $request->response->getStatusCode();
+        $content = json_decode($request->response->getContent(), 1);
+
+        $this->assertEquals(200, $statusCode);
+        $this->assertArrayHasKey("user", $content);
+        $this->assertArrayHasKey("token", $content);
     }
 }

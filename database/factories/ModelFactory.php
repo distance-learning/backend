@@ -24,6 +24,22 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 });
 
 
+$factory->defineAs(App\User::class, 'auth-user', function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->firstName,
+        'surname' => $faker->lastName,
+        'avatar' => '',
+        'birthday' => $faker->date('Y-m-d', '1990-09-01'),
+        'phone' => $faker->phoneNumber,
+        'role'  => 'teacher',
+        'email' => 'auth@mail.ru',
+        'description' => $faker->text,
+        'password' => '112233',
+        'remember_token' => str_random(10),
+        'status'    => true,
+    ];
+});
+
 $factory->defineAs(App\User::class, 'teachers', function (Faker\Generator $faker) {
     return [
         'name' => $faker->firstName,
@@ -34,11 +50,13 @@ $factory->defineAs(App\User::class, 'teachers', function (Faker\Generator $faker
         'role'  => 'teacher',
         'email' => $faker->email,
         'description' => $faker->text,
-        'password' => bcrypt(str_random(10)),
+        'password' => '112233',
         'remember_token' => str_random(10),
         'status'    => true,
     ];
 });
+
+
 
 $factory->defineAs(App\User::class, 'teacher-active', function (Faker\Generator $faker) {
     return [
