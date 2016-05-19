@@ -163,7 +163,7 @@ class AdminFacultiesTest extends TestCase
         $this->assertEquals(200, $statusCode);
 
 
-        $request = $this->delete('/api/admin/faculties/fotius', [
+        $request = $this->delete('/api/admin/faculties/fotius', [], [
             'Authorization' => $this->getToken(),
         ]);
 
