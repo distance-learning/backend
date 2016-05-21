@@ -140,11 +140,11 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
         });
 
         Route::group(['prefix'  =>  'users'], function () {
-            Route::get('/', 'Admin\UsersController@indexAction');
-            Route::get('/{user}', 'Admin\UsersController@itemAction');
-            Route::post('/', 'Admin\UsersController@storeAction');
-            Route::put('/{user}', 'Admin\UsersController@putAction');
-            Route::delete('/{user}', 'Admin\UsersController@deleteAction');
+            Route::get('/', 'Admin\UsersController@getUsersAction');
+            Route::get('/{user}', 'Admin\UsersController@getUserAction');
+            Route::post('/', 'Admin\UsersController@storeUserAction');
+            Route::put('/{user}', 'Admin\UsersController@updateUserAction');
+            Route::delete('/{user}', 'Admin\UsersController@deleteUserAction');
         });
 
         Route::group(['prefix' => 'students'], function () {
