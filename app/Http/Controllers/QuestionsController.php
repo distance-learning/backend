@@ -13,8 +13,8 @@ class QuestionsController extends Controller
     /**
      * Method that authenticate user
      *
-     * @api {get} /api/tests/{id}/questions/{question_id} Get question
-     * @apiSampleRequest /api/tests/{id}/questions/{question_id} Update question
+     * @api {get} /api/tests/:code/questions/:code Get question
+     * @apiSampleRequest /api/tests/:code/questions/:code Update question
      * @apiDescription get question
      * @apiGroup Tests
      *
@@ -39,8 +39,8 @@ class QuestionsController extends Controller
     /**
      * Method that authenticate user
      *
-     * @api {post} /api/tests/{id}/questions Create question
-     * @apiSampleRequest /api/tests/{id}/questions
+     * @api {post} /api/tests/:code/questions Create question
+     * @apiSampleRequest /api/tests/:code/questions
      * @apiDescription Create question
      * @apiGroup Tests
      *
@@ -77,8 +77,8 @@ class QuestionsController extends Controller
     /**
      * Method that authenticate user
      *
-     * @api {put} /api/tests/{id}/questions/{question_id} Update question
-     * @apiSampleRequest /api/tests/{id}/questions/{question_id} Update question
+     * @api {put} /api/tests/:code/questions/:code Update question
+     * @apiSampleRequest /api/tests/:code/questions/:code Update question
      * @apiDescription update question
      * @apiGroup Tests
      *

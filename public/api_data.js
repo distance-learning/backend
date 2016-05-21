@@ -4417,11 +4417,11 @@ define({ "api": [
   },
   {
     "type": "delete",
-    "url": "/api/tests/:id",
+    "url": "/api/tests/:code",
     "title": "Delete test by id",
     "sampleRequest": [
       {
-        "url": "/api/tests/:id"
+        "url": "/api/tests/:code"
       }
     ],
     "description": "<p>Delete test</p> ",
@@ -4483,7 +4483,7 @@ define({ "api": [
     "version": "0.0.0",
     "filename": "app/Http/Controllers/TestsController.php",
     "groupTitle": "Tests",
-    "name": "DeleteApiTestsId"
+    "name": "DeleteApiTestsCode"
   },
   {
     "type": "get",
@@ -4544,56 +4544,14 @@ define({ "api": [
   },
   {
     "type": "get",
-    "url": "/api/tests/:code/passing",
-    "title": "Get test for passing",
+    "url": "/api/tests/:code",
+    "title": "Get test by code",
     "sampleRequest": [
       {
-        "url": "/api/tests/:code/passing"
+        "url": "/api/tests/:code"
       }
     ],
-    "description": "<p>Get test for passing</p> ",
-    "group": "Tests",
-    "header": {
-      "fields": {
-        "Header": [
-          {
-            "group": "Header",
-            "type": "String",
-            "optional": false,
-            "field": "authorization",
-            "description": "<p>User token</p> "
-          }
-        ]
-      }
-    },
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "<p>String</p> ",
-            "optional": false,
-            "field": "code",
-            "description": "<p>Test code</p> "
-          }
-        ]
-      }
-    },
-    "version": "0.0.0",
-    "filename": "app/Http/Controllers/TestsController.php",
-    "groupTitle": "Tests",
-    "name": "GetApiTestsCodePassing"
-  },
-  {
-    "type": "get",
-    "url": "/api/tests/:id",
-    "title": "Get test by id",
-    "sampleRequest": [
-      {
-        "url": "/api/tests/:id"
-      }
-    ],
-    "description": "<p>Get teacher tests by id</p> ",
+    "description": "<p>Get teacher tests by code</p> ",
     "group": "Tests",
     "header": {
       "fields": {
@@ -4652,15 +4610,57 @@ define({ "api": [
     "version": "0.0.0",
     "filename": "app/Http/Controllers/TestsController.php",
     "groupTitle": "Tests",
-    "name": "GetApiTestsId"
+    "name": "GetApiTestsCode"
   },
   {
     "type": "get",
-    "url": "/api/tests/{id}/questions/{question_id}",
+    "url": "/api/tests/:code/passing",
+    "title": "Get test for passing",
+    "sampleRequest": [
+      {
+        "url": "/api/tests/:code/passing"
+      }
+    ],
+    "description": "<p>Get test for passing</p> ",
+    "group": "Tests",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": "<p>User token</p> "
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "code",
+            "description": "<p>Test code</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/TestsController.php",
+    "groupTitle": "Tests",
+    "name": "GetApiTestsCodePassing"
+  },
+  {
+    "type": "get",
+    "url": "/api/tests/:code/questions/:code",
     "title": "Get question",
     "sampleRequest": [
       {
-        "url": "/api/tests/{id}/questions/{question_id} Update question"
+        "url": "/api/tests/:code/questions/:code Update question"
       }
     ],
     "description": "<p>get question</p> ",
@@ -4709,7 +4709,7 @@ define({ "api": [
     "version": "0.0.0",
     "filename": "app/Http/Controllers/QuestionsController.php",
     "groupTitle": "Tests",
-    "name": "GetApiTestsIdQuestionsQuestion_id"
+    "name": "GetApiTestsCodeQuestionsCode"
   },
   {
     "type": "post",
@@ -4799,11 +4799,11 @@ define({ "api": [
   },
   {
     "type": "post",
-    "url": "/api/tests/{id}/questions",
+    "url": "/api/tests/:code/questions",
     "title": "Create question",
     "sampleRequest": [
       {
-        "url": "/api/tests/{id}/questions"
+        "url": "/api/tests/:code/questions"
       }
     ],
     "description": "<p>Create question</p> ",
@@ -4893,15 +4893,15 @@ define({ "api": [
     "version": "0.0.0",
     "filename": "app/Http/Controllers/QuestionsController.php",
     "groupTitle": "Tests",
-    "name": "PostApiTestsIdQuestions"
+    "name": "PostApiTestsCodeQuestions"
   },
   {
     "type": "put",
-    "url": "/api/tests/:id",
+    "url": "/api/tests/:code",
     "title": "Update test by id",
     "sampleRequest": [
       {
-        "url": "/api/tests/:id"
+        "url": "/api/tests/:code"
       }
     ],
     "description": "<p>Update test</p> ",
@@ -4984,15 +4984,15 @@ define({ "api": [
     "version": "0.0.0",
     "filename": "app/Http/Controllers/TestsController.php",
     "groupTitle": "Tests",
-    "name": "PutApiTestsId"
+    "name": "PutApiTestsCode"
   },
   {
     "type": "put",
-    "url": "/api/tests/{id}/questions/{question_id}",
+    "url": "/api/tests/:code/questions/:code",
     "title": "Update question",
     "sampleRequest": [
       {
-        "url": "/api/tests/{id}/questions/{question_id} Update question"
+        "url": "/api/tests/:code/questions/:code Update question"
       }
     ],
     "description": "<p>update question</p> ",
@@ -5103,7 +5103,7 @@ define({ "api": [
     "version": "0.0.0",
     "filename": "app/Http/Controllers/QuestionsController.php",
     "groupTitle": "Tests",
-    "name": "PutApiTestsIdQuestionsQuestion_id"
+    "name": "PutApiTestsCodeQuestionsCode"
   },
   {
     "type": "get",

@@ -37,9 +37,9 @@ class TestsController extends Controller
     /**
      * Method that authenticate user
      *
-     * @api {get} /api/tests/:id Get test by id
-     * @apiSampleRequest /api/tests/:id
-     * @apiDescription Get teacher tests by id
+     * @api {get} /api/tests/:code Get test by code
+     * @apiSampleRequest /api/tests/:code
+     * @apiDescription Get teacher tests by code
      * @apiGroup Tests
      *
      * @apiHeader {String} authorization User token
@@ -93,8 +93,8 @@ class TestsController extends Controller
     /**
      * Method that authenticate user
      *
-     * @api {put} /api/tests/:id Update test by id
-     * @apiSampleRequest /api/tests/:id
+     * @api {put} /api/tests/:code Update test by id
+     * @apiSampleRequest /api/tests/:code
      * @apiDescription Update test
      * @apiGroup Tests
      *
@@ -126,8 +126,8 @@ class TestsController extends Controller
     /**
      * Method that authenticate user
      *
-     * @api {delete} /api/tests/:id Delete test by id
-     * @apiSampleRequest /api/tests/:id
+     * @api {delete} /api/tests/:code Delete test by id
+     * @apiSampleRequest /api/tests/:code
      * @apiDescription Delete test
      * @apiGroup Tests
      *
