@@ -32,9 +32,9 @@ class UsersController extends Controller
      * @param  Request $request
      * @return \Illuminate\Http\Response
      */
-    public function indexAction(Request $request)
+    public function getUsersAction(Request $request)
     {
-        $students = User::paginate($request->query->get('count'));
+        $students = User::paginate($request->get('count', 10));
 
         return response()->json($students);
     }
@@ -56,10 +56,10 @@ class UsersController extends Controller
      * @apiError (404) error Returned if user not isset
      *
      * @param  Request $request
-     * @param  User $student
+     * @param  User $user
      * @return \Illuminate\Http\Response
      */
-    public function itemAction(Request $request, User $user)
+    public function getUserAction(Request $request, User $user)
     {
         if ($user->isStudent()) {
             $user->load('group');
@@ -95,7 +95,7 @@ class UsersController extends Controller
      * @param  Request $request
      * @return \Illuminate\Http\Response
      */
-    public function storeAction(Request $request)
+    public function storeUserAction(Request $request)
     {
         $student = User::create([
             'name'  =>  $request->get('name'),
@@ -110,7 +110,7 @@ class UsersController extends Controller
             'status'  =>  1,
         ]);
 
-        return response()->json($student);
+        return response()->json($student, 201);
     }
 
     /**
@@ -140,13 +140,13 @@ class UsersController extends Controller
      * @param  User $user
      * @return \Illuminate\Http\Response
      */
-    public function putAction(Request $request, User $user)
+    public function updateUserAction(Request $request, User $user)
     {
         if ($request->has('password') && !empty($request->get('password'))) {
             $user->update([
                 'name'  =>  $request->get('name'),
                 'surname'  =>  $request->get('surname'),
-                'birthday'  =>  new \DateTime($request->get('birthday')),
+                'birthday'  =>  $request->get('birthday'),
                 'phone'  =>  $request->get('phone'),
                 'role'  =>  $request->get('role'),
                 'email' =>  $request->get('email'),
@@ -159,7 +159,7 @@ class UsersController extends Controller
             $user->update([
                 'name'  =>  $request->get('name'),
                 'surname'  =>  $request->get('surname'),
-                'birthday'  =>  new \DateTime($request->get('birthday')),
+                'birthday'  =>  $request->get('birthday'),
                 'phone'  =>  $request->get('phone'),
                 'role'  =>  $request->get('role'),
                 'email' =>  $request->get('email'),
@@ -190,7 +190,7 @@ class UsersController extends Controller
      * @param  User $user
      * @return \Illuminate\Http\Response
      */
-    public function deleteAction(User $user)
+    public function deleteUserAction(User $user)
     {
         $user->delete();
 
