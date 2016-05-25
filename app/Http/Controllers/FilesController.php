@@ -44,13 +44,15 @@ class FilesController extends Controller
             mkdir(public_path($path), '0755', true);
         }
 
+        $content_type = $file->getMimeType();
+
         $file->move(public_path($path), $full_filename);
 
         $file = File::create([
             'author_id' => $user->id,
             'filename' => $filename,
             'path' => $path . $full_filename,
-            'content_type' => $file->getMimeType()
+            'content_type' => $content_type,
         ]);
 
         return response()->json($file);
