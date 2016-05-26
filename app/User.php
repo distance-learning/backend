@@ -232,4 +232,9 @@ class User extends Model implements AuthenticatableContract,
     {
         return $this->status?:false;
     }
+
+    public function isAdmin()
+    {
+        return ($this->role == "admin")?:false;
+    }
 }

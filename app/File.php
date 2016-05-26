@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Request;
 
 /**
  * Class File
@@ -59,5 +60,14 @@ class File extends Model
     public function scopeGetImages($query)
     {
         return $query->where('content_type', 'image/jpeg')->orWhere('content_type', 'image/gif')->orWhere('content_type', 'image/png');
+    }
+
+    /**
+     * @param $value
+     * @return string
+     */
+    public function setPathAttribute($value)
+    {
+        return Request::root() . $value;
     }
 }

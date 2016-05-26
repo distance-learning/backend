@@ -73,7 +73,13 @@ class FilesController extends Controller
      */
     public function getFilesAction(Request $request)
     {
-        $files = $request->user()->files()->paginate($request->get('count', 10));
+        if (!$request->user()->isAdmin()) {
+            $files = $request->user()->files()->paginate($request->get('count', 10));
+
+            return response()->json($files);
+        }
+
+        $files = File::paginate($request->get('count', 10));
 
         return response()->json($files);
     }
@@ -93,7 +99,13 @@ class FilesController extends Controller
      */
     public function getDocumentsAction(Request $request)
     {
-        $files = $request->user()->files()->getNotImages()->paginate($request->get('count', 10));
+        if (!$request->user()->isAdmin()) {
+            $files = $request->user()->files()->getNotImages()->paginate($request->get('count', 10));
+
+            return response()->json($files);
+        }
+
+        $files = File::getNotImages()->paginate($request->get('count', 10));
 
         return response()->json($files);
     }
@@ -113,7 +125,13 @@ class FilesController extends Controller
      */
     public function getImagesAction(Request $request)
     {
-        $files = $request->user()->files()->getImages()->paginate($request->get('count', 10));
+        if (!$request->user()->isAdmin()) {
+            $files = $request->user()->files()->getImages()->paginate($request->get('count', 10));
+
+            return response()->json($files);
+        }
+
+        $files = File::getImages()->paginate($request->get('count', 10));
 
         return response()->json($files);
     }
