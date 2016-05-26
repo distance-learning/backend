@@ -203,7 +203,7 @@ class AccountController extends Controller
             $subjects = [];
 
             foreach ($user->courses as $course) {
-                $subjects[$course->subject->id] = $course->subject;
+                $subjects[$course->subject->id] = $course->subject->toArray();
                 $subjects[$course->subject->id]['groups'][] = $course->group->load('students');
             }
 
