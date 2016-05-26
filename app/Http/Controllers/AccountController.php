@@ -200,7 +200,7 @@ class AccountController extends Controller
         $user = $request->user();
 
         if ($user->isTeacher()) {
-            $subjects = $user->subjects()->load('group.students');
+            $subjects = $user->subjects->load('group.students');
 
             return response()->json($subjects);
         }
