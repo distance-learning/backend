@@ -68,6 +68,6 @@ class File extends Model
      */
     public function setPathAttribute($value)
     {
-        return Request::root() . $value;
+        $this->attributes['path'] = Request::root() . $value;
     }
 }
