@@ -185,7 +185,8 @@ class User extends Model implements AuthenticatableContract,
      */
     public function subjects()
     {
-        return $this->belongsToMany(Subject::class, 'teacher_subject', 'user_id', 'subject_id');
+        return $this->hasManyThrough(Subject::class, Course::class);
+//        return $this->belongsToMany(Subject::class, 'teacher_subject', 'user_id', 'subject_id');
     }
 
     /**
