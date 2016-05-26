@@ -42,17 +42,12 @@ class AccountController extends Controller
         if ($user->isStudent()) {
             $user = $request
                 ->user()
-                ->with('group.courses')
-                ->where('slug', $user->slug)
-                ->first()
+                ->load('group.courses')
             ;
         } elseif ($user->isTeacher()) {
             $user = $request
                 ->user()
-                ->with('courses.group')
-                ->with('courses.subject')
-                ->where('slug', $user->slug)
-                ->first()
+                ->load('subjects.group.students')
             ;
         }
 

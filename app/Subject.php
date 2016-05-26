@@ -55,6 +55,11 @@ class Subject extends Model
         return $this->hasMany(Course::class);
     }
 
+    public function group()
+    {
+        return $this->hasManyThrough(Group::class, Course::class);
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
