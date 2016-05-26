@@ -200,7 +200,12 @@ class AccountController extends Controller
         $user = $request->user();
 
         if ($user->isTeacher()) {
-            $subjects = $user->subjects->load('group.students');
+            $subjects = [];
+
+            foreach ($user->courses as $course) {
+                $subjects[$course->subject->id] = $course->subject;
+                $subjects[$course->subject->id]['groups'][] = $course->group->load('students');
+            }
 
             return response()->json($subjects);
         }
