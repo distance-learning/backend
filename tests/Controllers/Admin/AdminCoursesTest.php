@@ -17,4 +17,9 @@ class AdminCoursesTest extends TestCase
         $this->assertEquals(200, $statusCode);
         $this->assertCount(0, $content['data']);
     }
+
+//    public function testGetCourse()
+//    {
+//
+//    }
 }

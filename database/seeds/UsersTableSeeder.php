@@ -151,7 +151,7 @@ class UsersTableSeeder extends Seeder
                 'phone' => $user['phone'],
                 'role' => $user['role'],
                 'email' => $user['email'],
-                'password' => Hash::make($user['password']),
+                'password' => $user['password'],
                 'status' => $user['status'],
                 'description' => $user['description'],
                 'structure_id' => (isset($user['structure_id']))?$user['structure_id']:1,

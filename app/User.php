@@ -197,6 +197,14 @@ class User extends Model implements AuthenticatableContract,
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function moduleGroups()
+    {
+        return $this->hasMany(ModuleGroup::class, 'teacher_id');
+    }
+
+    /**
      * @return string
      */
     public function getFullnameAttribute()

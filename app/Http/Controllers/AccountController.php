@@ -219,4 +219,22 @@ class AccountController extends Controller
 
         return response()->json(null, 400);
     }
+
+    /**
+     * @api {get} /api/account/modules Get teacher modules
+     * @apiSampleRequest /api/account/modules
+     * @apiDescription Get teacher modules
+     * @apiGroup Users|Teacher
+     *
+     * @apiHeader {String} authorization User token
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getModulesAction(Request $request)
+    {
+        $moduleGroups = $request->user()->moduleGroups->load('modules');
+
+        return response()->json($moduleGroups);
+    }
 }

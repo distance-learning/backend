@@ -29,11 +29,18 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
         Route::get('/faculties', 'AuthController@getFacultiesAction');
     });
 
+    Route::group(['prefix' => 'modules'], function () {
+        Route::post('/', 'ModulesController@createModuleAction');
+        Route::post('/groups', 'ModulesController@createModuleGroupAction');
+        Route::put('/{module}', 'ModulesController@createModuleAction');
+    });
+
     Route::group(['middleware' => ['jwt.auth']], function () {
         Route::group(['prefix' => 'account'], function () {
             Route::get('/tasks', 'AccountController@getTasksAction');
             Route::get('/courses', 'AccountController@getCoursesAction');
             Route::get('/subjects', 'AccountController@getSubjectsAction');
+            Route::get('/modules', 'AccountController@getModulesAction');
         });
 
         Route::group(['prefix' => 'events'], function () {
