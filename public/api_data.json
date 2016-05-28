@@ -4856,6 +4856,20 @@
             "group": "Parameter",
             "type": "<p>Number</p> ",
             "optional": false,
+            "field": "is_skip",
+            "description": "<p>Question is skip</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "is_active",
+            "description": "<p>Question is active</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
             "field": "time",
             "description": "<p>Question time in seconds</p> "
           }
@@ -5047,6 +5061,20 @@
             "optional": false,
             "field": "time",
             "description": "<p>Question time in seconds</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "is_skip",
+            "description": "<p>Question is skip</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "is_active",
+            "description": "<p>Question is active</p> "
           },
           {
             "group": "Parameter",

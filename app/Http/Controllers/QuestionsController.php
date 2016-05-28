@@ -50,6 +50,8 @@ class QuestionsController extends Controller
      * @apiParam {String} type Question type
      * @apiParam {String} image Question image
      * @apiParam {Number} score Question score
+     * @apiParam {Number} is_skip Question is skip
+     * @apiParam {Number} is_active Question is active
      * @apiParam {Number} time  Question time in seconds
      *
      * @apiError (401) error Returned if user not active
@@ -91,6 +93,8 @@ class QuestionsController extends Controller
      * @apiParam {String} image Question image
      * @apiParam {Number} score Question score
      * @apiParam {Number} time  Question time in seconds
+     * @apiParam {Number} is_skip  Question is skip
+     * @apiParam {Number} is_active  Question is active
      * @apiParam {Array} answers  Question Answers
      * @apiParam {String} answers.name Answer name
      * @apiParam {Boolean} answers.isCorrectly Answer correct
