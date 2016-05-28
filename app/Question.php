@@ -40,7 +40,9 @@ class Question extends Model
         'test_id',
         'code',
         'time',
-        'score'
+        'score',
+        'is_active',
+        'is_skip'
     ];
 
     /**

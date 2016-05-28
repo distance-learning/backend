@@ -69,6 +69,8 @@ class QuestionsController extends Controller
             'code' => md5(uniqid('questions_')) . rand(1, 1000),
             'score' => $request->get('score'),
             'time'  => $request->get('time'),
+            'is_skip' => $request->get('is_skip'),
+            'is_active' => $request->get('is_active'),
         ]);
 
         return response()->json($question);
@@ -107,6 +109,8 @@ class QuestionsController extends Controller
             'type' => $request->get('question')['type'],
             'score' => $request->get('question')['score'],
             'time' => $request->get('question')['time'],
+            'is_skip' => $request->get('question')['is_skip'],
+            'is_active' => $request->get('question')['is_active'],
         ]);
 
 //        $question->answers()->delete();
