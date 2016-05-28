@@ -47,7 +47,8 @@ class AccountController extends Controller
         } elseif ($user->isTeacher()) {
             $user = $request
                 ->user()
-                ->load('subjects.group.students')
+                ->load('courses.group')
+                ->load('courses.subject')
             ;
         }
 
