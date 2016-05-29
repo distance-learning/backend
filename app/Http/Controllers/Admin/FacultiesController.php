@@ -62,7 +62,7 @@ class FacultiesController extends Controller
      */
     public function getFacultiesAction(Request $request)
     {
-        $faculties = Faculty::with('directions')->paginate($request->get('count', 10));
+        $faculties = Faculty::with('directions', 'avatar')->paginate($request->get('count', 10));
 
         return response()->json($faculties);
     }
@@ -153,7 +153,7 @@ class FacultiesController extends Controller
 //            ->all()
 //        ;
 
-        return response()->json($faculty->load('directions'), 200);
+        return response()->json($faculty->load('directions', 'avatar'), 200);
     }
 
     /**

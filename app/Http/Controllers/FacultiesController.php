@@ -21,7 +21,7 @@ class FacultiesController extends Controller
      */
     public function getRandomFacultiesAction(Request $request)
     {
-        $faculties = Faculty::with('subjects')->get();
+        $faculties = Faculty::with('subjects', 'avatar')->get();
 
         //TODO Need refactoring
 //        $faculties = $faculties->random(4);
@@ -47,7 +47,7 @@ class FacultiesController extends Controller
      */
     public function getFacultyBySlugAction(Request $request, Faculty $faculty)
     {
-        $faculty = $faculty->load('directions.subjects');
+        $faculty = $faculty->load('directions.subjects', 'avatar');
 
         return response()->json($faculty);
     }
@@ -68,7 +68,7 @@ class FacultiesController extends Controller
      */
     public function getPaginatedFacultiesAction(Request $request)
     {
-        $faculties = Faculty::with('subjects', 'directions', 'teachers')->paginate($request->query->get('count', 5));
+        $faculties = Faculty::with('subjects', 'directions', 'teachers', 'avatar')->paginate($request->query->get('count', 5));
 
         return response()->json($faculties);
     }
