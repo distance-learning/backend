@@ -153,7 +153,7 @@ class FacultiesController extends Controller
 //            ->all()
 //        ;
 
-        return response()->json($faculty, 200);
+        return response()->json($faculty->load('directions'), 200);
     }
 
     /**
