@@ -16,8 +16,16 @@ class CreateModuleGroupsTable extends Migration
             $table->increments('id');
             $table->string('name');
 
-            $table->integer('teacher_id')->unsigned();
-            $table->foreign('teacher_id')->references('id')->on('users')->onDelete('CASCADE');
+            $table
+                ->integer('teacher_id')
+                ->unsigned()
+            ;
+            $table
+                ->foreign('teacher_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('CASCADE')
+            ;
         });
     }
 

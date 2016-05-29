@@ -27,6 +27,10 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Question whereScore($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Question whereTime($value)
  * @mixin \Eloquent
+ * @property boolean $is_active
+ * @property boolean $is_skip
+ * @method static \Illuminate\Database\Query\Builder|\App\Question whereIsActive($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Question whereIsSkip($value)
  */
 class Question extends Model
 {

@@ -29,6 +29,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\Faculty whereDeletedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Faculty random($count)
  * @mixin \Eloquent
+ * @property string $examinations
+ * @property integer $avatar_id
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\User[] $teachers
+ * @method static \Illuminate\Database\Query\Builder|\App\Faculty whereExaminations($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Faculty whereAvatarId($value)
  */
 class Faculty extends Model implements SluggableInterface
 {
@@ -101,7 +106,9 @@ class Faculty extends Model implements SluggableInterface
         return $this->morphMany(User::class, 'structure');
     }
 
-
+    /**
+     * @return mixed
+     */
     public function teachers()
     {
         return $this->morphMany(User::class, 'structure')->where('role', 'teacher');
@@ -124,6 +131,14 @@ class Faculty extends Model implements SluggableInterface
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function avatar()
+    {
+        return $this->belongsTo(File::class, 'avatar_id');
+    }
+
+    /**
      * @param $query
      * @param $count
      * @return mixed
@@ -133,6 +148,6 @@ class Faculty extends Model implements SluggableInterface
         $totalRows = static::count() - 1;
         $skip = $totalRows > 0 ? mt_rand(0, $totalRows) : 0;
 
-        return  $query->skip($skip)->take($count);
+        return $query->skip($skip)->take($count);
     }
 }

@@ -3798,6 +3798,35 @@
     "name": "GetApiFacultiesSlug"
   },
   {
+    "type": "put",
+    "url": "/api/faculties/:slug/image",
+    "title": "Set image for faculty",
+    "sampleRequest": [
+      {
+        "url": "/api/faculties/:slug/image"
+      }
+    ],
+    "description": "<p>Set image for faculty</p> ",
+    "group": "Faculties",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "count",
+            "description": "<p>Count faculties by page</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Admin/FacultiesController.php",
+    "groupTitle": "Faculties",
+    "name": "PutApiFacultiesSlugImage"
+  },
+  {
     "type": "delete",
     "url": "/api/files/:id",
     "title": "Delete file by id",
@@ -4118,6 +4147,188 @@
     "filename": "app/Http/Controllers/FilesController.php",
     "groupTitle": "Files",
     "name": "PostApiFiles"
+  },
+  {
+    "type": "post",
+    "url": "/api/modules",
+    "title": "Create module",
+    "sampleRequest": [
+      {
+        "url": "/api/modules"
+      }
+    ],
+    "description": "<p>Create module</p> ",
+    "group": "Modules",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": "<p>User token</p> "
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Module name</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "content",
+            "description": "<p>Module content</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "type",
+            "description": "<p>Module type</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "module_group_id",
+            "description": "<p>Group id</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "test_id",
+            "description": "<p>Test id</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/ModulesController.php",
+    "groupTitle": "Modules",
+    "name": "PostApiModules"
+  },
+  {
+    "type": "post",
+    "url": "/api/modules/groups",
+    "title": "Create module group",
+    "sampleRequest": [
+      {
+        "url": "/api/modules/groups"
+      }
+    ],
+    "description": "<p>Create module group</p> ",
+    "group": "Modules",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": "<p>User token</p> "
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Group name</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/ModulesController.php",
+    "groupTitle": "Modules",
+    "name": "PostApiModulesGroups"
+  },
+  {
+    "type": "put",
+    "url": "/api/modules/:id",
+    "title": "Update module",
+    "sampleRequest": [
+      {
+        "url": "/api/modules/:id"
+      }
+    ],
+    "description": "<p>Create module</p> ",
+    "group": "Modules",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": "<p>User token</p> "
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Module name</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "content",
+            "description": "<p>Module content</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "type",
+            "description": "<p>Module type</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "module_group_id",
+            "description": "<p>Group id</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "test_id",
+            "description": "<p>Test id</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/ModulesController.php",
+    "groupTitle": "Modules",
+    "name": "PutApiModulesId"
   },
   {
     "type": "get",
@@ -6169,6 +6380,35 @@
     "filename": "app/Http/Controllers/AccountController.php",
     "groupTitle": "Users_Student",
     "name": "GetApiAccountCourses"
+  },
+  {
+    "type": "get",
+    "url": "/api/account/modules",
+    "title": "Get teacher modules",
+    "sampleRequest": [
+      {
+        "url": "/api/account/modules"
+      }
+    ],
+    "description": "<p>Get teacher modules</p> ",
+    "group": "Users_Teacher",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": "<p>User token</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/AccountController.php",
+    "groupTitle": "Users_Teacher",
+    "name": "GetApiAccountModules"
   },
   {
     "type": "get",

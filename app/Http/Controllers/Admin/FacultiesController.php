@@ -236,4 +236,24 @@ class FacultiesController extends Controller
 
         return response()->json(null, 204);
     }
+
+    /**
+     * @api {put} /api/faculties/:slug/image Set image for faculty
+     * @apiSampleRequest /api/faculties/:slug/image
+     * @apiDescription Set image for faculty
+     * @apiGroup Faculties
+     *
+     * @apiParam {Number} count Count faculties by page
+     *
+     * @param Request $request
+     * @param Faculty $faculty
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function setFacultyImageAction(Request $request, Faculty $faculty)
+    {
+        $faculty->avatar_id = $request->get('avatar_id');
+        $faculty->save();
+
+        return response()->json($faculty->load('avatar'));
+    }
 }

@@ -22,6 +22,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Test whereFacultyId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Test whereCode($value)
  * @mixin \Eloquent
+ * @property boolean $allow_skip
+ * @method static \Illuminate\Database\Query\Builder|\App\Test whereAllowSkip($value)
  */
 class Test extends Model
 {

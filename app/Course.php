@@ -25,6 +25,11 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Course whereDeletedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Course findBySubjectAndTeacher($teacher_id, $subject_id)
  * @mixin \Eloquent
+ * @property boolean $is_active
+ * @property string $name
+ * @method static \Illuminate\Database\Query\Builder|\App\Course whereIsActive($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Course whereName($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Course active()
  */
 class Course extends Model
 {

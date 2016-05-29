@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use App\Module;
 use App\ModuleGroup;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 
+/**
+ * Class ModulesController
+ * @package App\Http\Controllers
+ */
 class ModulesController extends Controller
 {
     /**

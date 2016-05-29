@@ -66,6 +66,8 @@ use Illuminate\Support\Facades\Hash;
  * @method static \Illuminate\Database\Query\Builder|\App\User whereGroupId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\User active()
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\File[] $files
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\ModuleGroup[] $moduleGroups
  */
 class User extends Model implements AuthenticatableContract,
                                     AuthorizableContract,

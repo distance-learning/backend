@@ -23,6 +23,10 @@ use Illuminate\Support\Facades\Request;
  * @method static \Illuminate\Database\Query\Builder|\App\File whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\File whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property string $content_type
+ * @method static \Illuminate\Database\Query\Builder|\App\File whereContentType($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\File getNotImages()
+ * @method static \Illuminate\Database\Query\Builder|\App\File getImages()
  */
 class File extends Model
 {
