@@ -1512,6 +1512,77 @@
     "name": "DeleteApiAdminGroupsSlugStudents"
   },
   {
+    "type": "delete",
+    "url": "/api/admin/groups/:slug/students/:student_slug",
+    "title": "Remove student from group",
+    "sampleRequest": [
+      {
+        "url": "/api/admin/groups/:slug/students/:student_slug"
+      }
+    ],
+    "description": "<p>Remove student from group</p> ",
+    "group": "Admin_Groups",
+    "permission": [
+      {
+        "name": "administrator, university_administrator"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "slug",
+            "description": "<p>Slug</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Returned if teachers issets</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "403": [
+          {
+            "group": "403",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if user has not access for get teachers</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Admin/GroupsController.php",
+    "groupTitle": "Admin_Groups",
+    "name": "DeleteApiAdminGroupsSlugStudentsStudent_slug"
+  },
+  {
     "type": "get",
     "url": "/api/admin/groups",
     "title": "Get groups by page",

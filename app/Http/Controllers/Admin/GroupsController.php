@@ -225,4 +225,35 @@ class GroupsController extends Controller
 
         return response()->json(null, 200);
     }
+
+    /**
+     * @api {delete} /api/admin/groups/:slug/students/:student_slug Remove student from group
+     * @apiSampleRequest /api/admin/groups/:slug/students/:student_slug
+     * @apiDescription Remove student from group
+     * @apiGroup Admin|Groups
+     * @apiPermission administrator, university_administrator
+     *
+     * @apiHeader {String} authorization
+     *
+     * @apiParam {String} slug Slug
+     * @apiParam {String} slug student_slug
+     *
+     * @apiSuccess (200) success Returned if teachers issets
+     *
+     * @apiError (403) error Returned if user has not access for get teachers
+     *
+     * @param Request $request
+     * @param Group $group
+     * @param User $user
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function removeSingleStudentFromGroupAction(Request $request, Group $group, User $user)
+    {
+        if ($user->isStudent()) {
+            $user->group_id = null;
+            $user->save();
+        }
+
+        return response()->json(null, 200);
+    }
 }

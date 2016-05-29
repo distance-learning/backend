@@ -32,11 +32,11 @@ class StudentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getStudentsAction()
+    public function getStudentsAction(Request $request)
     {
         $students = User::where('role', 'student')
             ->whereNull('group_id')
-            ->paginate(10)
+            ->paginate($request->get('count', 10))
         ;
 
         return response()->json($students);
