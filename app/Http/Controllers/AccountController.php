@@ -55,7 +55,7 @@ class AccountController extends Controller
             ;
         }
 
-        return response()->json($user);
+        return response()->json($user->load('avatar'));
     }
 
     /**
@@ -180,7 +180,7 @@ class AccountController extends Controller
         $user = $request->user();
 
         if ($user->isStudent()) {
-            $courses = $user->group->courses()->active()->load('subject, teacher');
+            $courses = $user->group->courses()->active()->load('subject, teacher.avatar');
 
             return response()->json($courses);
         }

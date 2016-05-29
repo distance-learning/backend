@@ -34,7 +34,7 @@ class UsersController extends Controller
      */
     public function getUsersAction(Request $request)
     {
-        $students = User::paginate($request->get('count', 10));
+        $students = User::with('avatar')->paginate($request->get('count', 10));
 
         return response()->json($students);
     }
@@ -65,7 +65,7 @@ class UsersController extends Controller
             $user->load('group');
         }
 
-        return response()->json($user);
+        return response()->json($user->load('avatar'));
     }
 
     /**

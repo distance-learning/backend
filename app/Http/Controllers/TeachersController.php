@@ -22,7 +22,7 @@ class TeachersController extends Controller
     public function getRandomTeachersAction(Request $request)
     {
         $teachers = User::where('role', 'teacher')
-            ->with('subjects')
+            ->with('subjects', 'avatar')
             ->active()
             ->get()
         ;
@@ -51,7 +51,7 @@ class TeachersController extends Controller
     public function getTeachersAction(Request $request)
     {
         $teachers = User::where('role', 'teacher')
-            ->with('subjects')
+            ->with('subjects', 'avatar')
             ->active()
             ->get()
         ;
@@ -79,6 +79,6 @@ class TeachersController extends Controller
             return response()->json(null, 404);
         }
 
-        return response()->json($user);
+        return response()->json($user->load('avatar'));
     }
 }
