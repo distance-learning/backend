@@ -182,7 +182,7 @@ class FacultiesController extends Controller
      * @apiError (404) error Returned if faculty by slug not found
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  string  $slug
+     * @param  Faculty $faculty
      * @return \Illuminate\Http\Response
      */
     public function putFacultyAction(Request $request, Faculty $faculty)
@@ -241,8 +241,8 @@ class FacultiesController extends Controller
     }
 
     /**
-     * @api {post} /api/faculties/:slug/image Set image for faculty
-     * @apiSampleRequest /api/faculties/:slug/image
+     * @api {post} /api/admin/faculties/:slug/image Set image for faculty
+     * @apiSampleRequest /api/admin/faculties/:slug/image
      * @apiDescription Set image for faculty
      * @apiGroup Faculties
      *
@@ -256,9 +256,13 @@ class FacultiesController extends Controller
     {
         $file = $this->uploadFile($request);
 
+        if ($file && file_exists(public_path($faculty->avatar->path))) {
+            unlink(public_path($faculty->avatar->path));
+        }
+
         $faculty->avatar_id = $file->id;
         $faculty->save();
 
         return response()->json($faculty->load('avatar'));
     }
-}
+};

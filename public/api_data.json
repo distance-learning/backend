@@ -3870,11 +3870,11 @@
   },
   {
     "type": "post",
-    "url": "/api/faculties/:slug/image",
+    "url": "/api/admin/faculties/:slug/image",
     "title": "Set image for faculty",
     "sampleRequest": [
       {
-        "url": "/api/faculties/:slug/image"
+        "url": "/api/admin/faculties/:slug/image"
       }
     ],
     "description": "<p>Set image for faculty</p> ",
@@ -3895,7 +3895,7 @@
     "version": "0.0.0",
     "filename": "app/Http/Controllers/Admin/FacultiesController.php",
     "groupTitle": "Faculties",
-    "name": "PostApiFacultiesSlugImage"
+    "name": "PostApiAdminFacultiesSlugImage"
   },
   {
     "type": "delete",
