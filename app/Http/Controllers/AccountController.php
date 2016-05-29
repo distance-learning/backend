@@ -255,7 +255,7 @@ class AccountController extends Controller
         $user = $request->user();
         $file = $this->uploadFile($request);
 
-        if ($file && file_exists(public_path($user->avatar->path))) {
+        if ($file && $user->avatar && file_exists(public_path($user->avatar->path))) {
             unlink(public_path($user->avatar->path));
         }
 

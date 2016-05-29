@@ -256,7 +256,7 @@ class FacultiesController extends Controller
     {
         $file = $this->uploadFile($request);
 
-        if ($file && file_exists(public_path($faculty->avatar->path))) {
+        if ($file && $faculty->avatar && file_exists(public_path($faculty->avatar->path))) {
             unlink(public_path($faculty->avatar->path));
         }
 
