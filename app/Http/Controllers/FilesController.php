@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\File;
+use App\Traits\FileUpload;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 
@@ -12,6 +13,8 @@ use App\Http\Requests;
  */
 class FilesController extends Controller
 {
+    use FileUpload;
+
     /**
      * @api {post} /api/files Upload file to server
      * @apiSampleRequest /api/files
@@ -33,27 +36,7 @@ class FilesController extends Controller
      */
     public function uploadFileAction(Request $request)
     {
-        $user = $request->user();
-        $file = $request->file('file');
-
-        $filename =  $file->getClientOriginalName();
-        $full_filename = md5($filename . uniqid()) . "." . $file->getClientOriginalExtension();
-        $path = "/uploads/files/";
-
-        if (!file_exists(public_path($path))) {
-            mkdir(public_path($path), '0755', true);
-        }
-
-        $content_type = $file->getMimeType();
-
-        $file->move(public_path($path), $full_filename);
-
-        $file = File::create([
-            'author_id' => $user->id,
-            'filename' => $filename,
-            'path' => $path . $full_filename,
-            'content_type' => $content_type,
-        ]);
+        $file = $this->uploadFile($request);
 
         return response()->json($file);
     }

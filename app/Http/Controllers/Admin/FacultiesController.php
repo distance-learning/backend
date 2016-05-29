@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Faculty;
+use App\Traits\FileUpload;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -12,6 +13,8 @@ use Illuminate\Support\Facades\Validator;
 
 class FacultiesController extends Controller
 {
+    use FileUpload;
+
 //    /**
 //     *
 //     */
@@ -251,7 +254,9 @@ class FacultiesController extends Controller
      */
     public function setFacultyImageAction(Request $request, Faculty $faculty)
     {
-        $faculty->avatar_id = $request->get('avatar_id');
+        $file = $this->uploadFile($request);
+
+        $faculty->avatar_id = $file->id;
         $faculty->save();
 
         return response()->json($faculty->load('avatar'));
