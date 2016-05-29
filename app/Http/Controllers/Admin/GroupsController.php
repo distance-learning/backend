@@ -214,7 +214,9 @@ class GroupsController extends Controller
      */
     public function removeStudentsFromGroupAction(Request $request, Group $group)
     {
-        foreach ($request->get('students') as $student) {
+        $students = User::findMany($request->get('students'));
+
+        foreach ($students as $student) {
             if ($student->isStudent()) {
                 $student->group_id = null;
                 $student->save();
