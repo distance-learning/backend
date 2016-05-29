@@ -150,4 +150,13 @@ class Faculty extends Model implements SluggableInterface
 
         return $query->skip($skip)->take($count);
     }
+
+    public function getExaminationsAttribute($value)
+    {
+        if (is_null($value)) {
+            return [];
+        }
+
+        return $value;
+    }
 }
