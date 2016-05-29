@@ -241,7 +241,7 @@ class FacultiesController extends Controller
     }
 
     /**
-     * @api {put} /api/faculties/:slug/image Set image for faculty
+     * @api {post} /api/faculties/:slug/image Set image for faculty
      * @apiSampleRequest /api/faculties/:slug/image
      * @apiDescription Set image for faculty
      * @apiGroup Faculties

@@ -128,7 +128,7 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
             Route::get('/{faculty}', 'Admin\FacultiesController@getFacultyAction');
             Route::put('/{faculty}', 'Admin\FacultiesController@putFacultyAction');
             Route::delete('/{faculty}', 'Admin\FacultiesController@deleteFacultyAction');
-            Route::put('/{faculty}/image', 'Admin\FacultiesController@setFacultyImageAction');
+            Route::post('/{faculty}/image', 'Admin\FacultiesController@setFacultyImageAction');
         });
 
         Route::group(['prefix'  =>  'directions'], function () {
