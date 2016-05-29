@@ -19,6 +19,7 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
         Route::get('/logout', 'AccountController@logoutAction');
         Route::put('/update', 'AccountController@updateUserInformationAction');
         Route::put('/reset-password', 'AccountController@updateUserPasswordAction');
+        Route::post('/image', 'AccountController@setAvatarAction');
     });
 
     Route::group(['prefix' => 'auth'], function () {

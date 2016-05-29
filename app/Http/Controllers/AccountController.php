@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Task;
+use App\Traits\FileUpload;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
@@ -13,6 +14,8 @@ use Illuminate\Support\Facades\Auth;
  */
 class AccountController extends Controller
 {
+    use FileUpload;
+
     public function __construct()
     {
         $this->middleware('jwt.auth');
@@ -236,5 +239,29 @@ class AccountController extends Controller
         $moduleGroups = $request->user()->moduleGroups->load('modules');
 
         return response()->json($moduleGroups);
+    }
+
+    /**
+     * @api {post} /api/account/image Set avatar for current user
+     * @apiSampleRequest /api/account/image
+     * @apiDescription Set avatar for current user
+     * @apiGroup Account
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function setAvatarAction(Request $request)
+    {
+        $user = $request->user();
+        $file = $this->uploadFile($request);
+
+        if ($file && file_exists(public_path($user->avatar->path))) {
+            unlink(public_path($user->avatar->path));
+        }
+
+        $user->avatar_id = $file->id;
+        $user->save();
+
+        return response()->json($user->load('avatar'));
     }
 }

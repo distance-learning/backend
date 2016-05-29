@@ -199,6 +199,14 @@ class User extends Model implements AuthenticatableContract,
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function avatar()
+    {
+        return $this->belongsTo(File::class, 'avatar_id');
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function moduleGroups()

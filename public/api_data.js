@@ -1,5 +1,21 @@
 define({ "api": [
   {
+    "type": "post",
+    "url": "/api/account/image",
+    "title": "Set avatar for current user",
+    "sampleRequest": [
+      {
+        "url": "/api/account/image"
+      }
+    ],
+    "description": "<p>Set avatar for current user</p> ",
+    "group": "Account",
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/AccountController.php",
+    "groupTitle": "Account",
+    "name": "PostApiAccountImage"
+  },
+  {
     "type": "delete",
     "url": "/api/admin/courses/:id",
     "title": "Delete course by id",
