@@ -52,4 +52,12 @@ class Module extends Model
     {
         return $this->belongsTo(Test::class);
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function tasks()
+    {
+        return $this->morphMany(Task::class, 'module');
+    }
 }

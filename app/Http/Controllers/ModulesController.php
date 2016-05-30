@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Group;
 use App\Module;
 use App\ModuleGroup;
 use Illuminate\Http\Request;

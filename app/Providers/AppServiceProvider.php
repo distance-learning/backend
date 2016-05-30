@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Course;
 use App\File;
+use App\Module;
 use App\Test;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
@@ -20,6 +21,7 @@ class AppServiceProvider extends ServiceProvider
         Relation::morphMap([
             'file' => File::class,
             'test' => Test::class,
+            'module' => Module::class,
         ]);
 
         Course::created(function (Course $course) {
