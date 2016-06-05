@@ -4236,6 +4236,35 @@ define({ "api": [
     "name": "PostApiFiles"
   },
   {
+    "type": "delete",
+    "url": "/api/modules/:id",
+    "title": "Delete module",
+    "sampleRequest": [
+      {
+        "url": "/api/modules/:id"
+      }
+    ],
+    "description": "<p>Delete module</p> ",
+    "group": "Modules",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": "<p>User token</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/ModulesController.php",
+    "groupTitle": "Modules",
+    "name": "DeleteApiModulesId"
+  },
+  {
     "type": "post",
     "url": "/api/modules",
     "title": "Create module",
@@ -4332,6 +4361,48 @@ define({ "api": [
     "filename": "app/Http/Controllers/ModulesController.php",
     "groupTitle": "Modules",
     "name": "PostApiModulesGroups"
+  },
+  {
+    "type": "put",
+    "url": "/api/modules/groups/:id",
+    "title": "Update module group",
+    "sampleRequest": [
+      {
+        "url": "/api/modules/groups/:id"
+      }
+    ],
+    "description": "<p>Update module group</p> ",
+    "group": "Modules",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": "<p>User token</p> "
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Group name</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/ModulesController.php",
+    "groupTitle": "Modules",
+    "name": "PutApiModulesGroupsId"
   },
   {
     "type": "put",

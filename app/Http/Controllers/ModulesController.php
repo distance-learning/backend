@@ -68,6 +68,26 @@ class ModulesController extends Controller
     }
 
     /**
+     * @api {delete} /api/modules/:id Delete module
+     * @apiSampleRequest /api/modules/:id
+     * @apiDescription Delete module
+     * @apiGroup Modules
+     *
+     * @apiHeader {String} authorization User token
+     *
+     * @param Request $request
+     * @param Module $module
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
+     */
+    public function deleteModuleAction(Request $request, Module $module)
+    {
+        $module->delete();
+
+        return response()->json(null, 204);
+    }
+
+    /**
      * @api {post} /api/modules/groups Create module group
      * @apiSampleRequest /api/modules/groups
      * @apiDescription Create module group
@@ -90,5 +110,27 @@ class ModulesController extends Controller
         ]);
 
         return response()->json($moduleModule, 201);
+    }
+
+    /**
+     * @api {put} /api/modules/groups/:id Update module group
+     * @apiSampleRequest /api/modules/groups/:id
+     * @apiDescription Update module group
+     * @apiGroup Modules
+     *
+     * @apiHeader {String} authorization User token
+     *
+     * @apiParam {String} name Group name
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function updateModuleGroupAction(Request $request, ModuleGroup $moduleGroup)
+    {
+        $moduleGroup->update([
+            'name' => $request->get('name'),
+        ]);
+
+        return response()->json($moduleGroup);
     }
 }
