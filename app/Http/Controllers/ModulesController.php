@@ -34,7 +34,6 @@ class ModulesController extends Controller
         $module = Module::create([
             'name' => $request->get('name'),
             'content' => $request->get('content'),
-            'type' => $request->get('type'),
             'module_group_id' => $request->get('module_group_id'),
         ]);
 
@@ -62,7 +61,6 @@ class ModulesController extends Controller
         $module->update([
             'name' => $request->get('name'),
             'content' => $request->get('content'),
-            'type' => $request->get('type'),
             'module_group_id' => $request->get('module_group_id'),
         ]);
 
