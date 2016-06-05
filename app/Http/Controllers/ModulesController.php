@@ -24,7 +24,6 @@ class ModulesController extends Controller
      *
      * @apiParam {String} name Module name
      * @apiParam {String} content Module content
-     * @apiParam {String} type Module type
      * @apiParam {Number} module_group_id Group id
      *
      * @param Request $request
@@ -52,7 +51,6 @@ class ModulesController extends Controller
      *
      * @apiParam {String} name Module name
      * @apiParam {String} content Module content
-     * @apiParam {String} type Module type
      * @apiParam {Number} module_group_id Group id
      *
      * @param Request $request

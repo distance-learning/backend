@@ -4278,13 +4278,6 @@ define({ "api": [
           },
           {
             "group": "Parameter",
-            "type": "<p>String</p> ",
-            "optional": false,
-            "field": "type",
-            "description": "<p>Module type</p> "
-          },
-          {
-            "group": "Parameter",
             "type": "<p>Number</p> ",
             "optional": false,
             "field": "module_group_id",
@@ -4380,13 +4373,6 @@ define({ "api": [
             "optional": false,
             "field": "content",
             "description": "<p>Module content</p> "
-          },
-          {
-            "group": "Parameter",
-            "type": "<p>String</p> ",
-            "optional": false,
-            "field": "type",
-            "description": "<p>Module type</p> "
           },
           {
             "group": "Parameter",
