@@ -34,7 +34,6 @@ class Module extends Model
         'content',
         'type',
         'module_group_id',
-        'test_id'
     ];
 
     /**
@@ -43,14 +42,6 @@ class Module extends Model
     public function moduleGroup()
     {
         return $this->belongsTo(ModuleGroup::class);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function test()
-    {
-        return $this->belongsTo(Test::class);
     }
 
     /**

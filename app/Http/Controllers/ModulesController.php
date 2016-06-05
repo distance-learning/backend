@@ -26,7 +26,6 @@ class ModulesController extends Controller
      * @apiParam {String} content Module content
      * @apiParam {String} type Module type
      * @apiParam {Number} module_group_id Group id
-     * @apiParam {Number} test_id Test id
      *
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
@@ -38,7 +37,6 @@ class ModulesController extends Controller
             'content' => $request->get('content'),
             'type' => $request->get('type'),
             'module_group_id' => $request->get('module_group_id'),
-            'test_id' => $request->get('test_id'),
         ]);
 
         return response()->json($module, 201);
@@ -56,7 +54,6 @@ class ModulesController extends Controller
      * @apiParam {String} content Module content
      * @apiParam {String} type Module type
      * @apiParam {Number} module_group_id Group id
-     * @apiParam {Number} test_id Test id
      *
      * @param Request $request
      * @param Module $module
@@ -69,7 +66,6 @@ class ModulesController extends Controller
             'content' => $request->get('content'),
             'type' => $request->get('type'),
             'module_group_id' => $request->get('module_group_id'),
-            'test_id' => $request->get('test_id'),
         ]);
 
         return response()->json($module);

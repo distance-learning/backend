@@ -4289,13 +4289,6 @@ define({ "api": [
             "optional": false,
             "field": "module_group_id",
             "description": "<p>Group id</p> "
-          },
-          {
-            "group": "Parameter",
-            "type": "<p>Number</p> ",
-            "optional": false,
-            "field": "test_id",
-            "description": "<p>Test id</p> "
           }
         ]
       }
@@ -4401,13 +4394,6 @@ define({ "api": [
             "optional": false,
             "field": "module_group_id",
             "description": "<p>Group id</p> "
-          },
-          {
-            "group": "Parameter",
-            "type": "<p>Number</p> ",
-            "optional": false,
-            "field": "test_id",
-            "description": "<p>Test id</p> "
           }
         ]
       }
