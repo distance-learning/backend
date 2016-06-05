@@ -143,4 +143,25 @@ class SubjectsController extends Controller
 
         return response()->json(null, 204);
     }
+
+    /**
+     * @api {get} /api/admin/subjects/search Search subjects
+     * @apiSampleRequest /api/admin/subjects/search
+     * @apiDescription Search subjects
+     * @apiGroup Admin|Subjects
+     * @apiPermission administrator, university_administrator
+     *
+     * @apiHeader {String} authorization
+     *
+     * @apiParam {String} search Search params
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function searchSubjectAction(Request $request)
+    {
+        $subjects = Subject::where('name', 'LIKE', '%' . $request->get('search') . '%')->get();
+
+        return response()->json($subjects);
+    }
 }

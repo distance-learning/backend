@@ -82,6 +82,7 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
         Route::group(['prefix' => 'tests'], function () {
             Route::post('/', 'TestsController@postTestAction');
             Route::get('/', 'TestsController@getTestsAction');
+            Route::get('/search', 'TestsController@searchTestAction');
             Route::put('/{test}', 'TestsController@updateTestAction');
             Route::get('/{test}', 'TestsController@getTestAction');
             Route::delete('/{test}', 'TestsController@deleteTestAction');
@@ -106,6 +107,7 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
     Route::group(['prefix' => 'admin', 'middleware' => ['jwt.auth']], function () {
         Route::group(['prefix' => 'subjects'], function () {
             Route::get('/', 'Admin\SubjectsController@getPaginatedSubjectsAction');
+            Route::get('/search', 'Admin\SubjectsController@searchSubjectAction');
             Route::get('/{subject}', 'Admin\SubjectsController@getSubjectAction');
             Route::post('/', 'Admin\SubjectsController@createSubjectAction');
             Route::put('/{subject}', 'Admin\SubjectsController@updateSubjectAction');
@@ -128,6 +130,7 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
         Route::group(['prefix' => 'faculties'], function () {
             Route::get('/', 'Admin\FacultiesController@getFacultiesAction');
             Route::post('/', 'Admin\FacultiesController@postFacultyAction');
+            Route::get('/search', 'Admin\FacultiesController@searchFacultiesAction');
             Route::get('/{faculty}', 'Admin\FacultiesController@getFacultyAction');
             Route::put('/{faculty}', 'Admin\FacultiesController@putFacultyAction');
             Route::delete('/{faculty}', 'Admin\FacultiesController@deleteFacultyAction');

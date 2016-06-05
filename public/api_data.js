@@ -1055,6 +1055,48 @@ define({ "api": [
   },
   {
     "type": "get",
+    "url": "/api/admin/faculties/search",
+    "title": "Search faculties",
+    "sampleRequest": [
+      {
+        "url": "/api/admin/faculties/search"
+      }
+    ],
+    "description": "<p>Search faculties</p> ",
+    "group": "Admin_Faculties",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Auth token</p> "
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "search",
+            "description": "<p>Search params</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Admin/FacultiesController.php",
+    "groupTitle": "Admin_Faculties",
+    "name": "GetApiAdminFacultiesSearch"
+  },
+  {
+    "type": "get",
     "url": "/api/admin/faculties/:slug",
     "title": "Get faculty by slug",
     "sampleRequest": [
@@ -1254,6 +1296,35 @@ define({ "api": [
     "filename": "app/Http/Controllers/Admin/FacultiesController.php",
     "groupTitle": "Admin_Faculties",
     "name": "PostApiAdminFaculties"
+  },
+  {
+    "type": "post",
+    "url": "/api/admin/faculties/:slug/image",
+    "title": "Set image for faculty",
+    "sampleRequest": [
+      {
+        "url": "/api/admin/faculties/:slug/image"
+      }
+    ],
+    "description": "<p>Set image for faculty</p> ",
+    "group": "Admin_Faculties",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>Number</p> ",
+            "optional": false,
+            "field": "count",
+            "description": "<p>Count faculties by page</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Admin/FacultiesController.php",
+    "groupTitle": "Admin_Faculties",
+    "name": "PostApiAdminFacultiesSlugImage"
   },
   {
     "type": "put",
@@ -2276,6 +2347,53 @@ define({ "api": [
     "filename": "app/Http/Controllers/Admin/SubjectsController.php",
     "groupTitle": "Admin_Subjects",
     "name": "GetApiAdminSubjectsId"
+  },
+  {
+    "type": "get",
+    "url": "/api/admin/subjects/search",
+    "title": "Search subjects",
+    "sampleRequest": [
+      {
+        "url": "/api/admin/subjects/search"
+      }
+    ],
+    "description": "<p>Search subjects</p> ",
+    "group": "Admin_Subjects",
+    "permission": [
+      {
+        "name": "administrator, university_administrator"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "search",
+            "description": "<p>Search params</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Admin/SubjectsController.php",
+    "groupTitle": "Admin_Subjects",
+    "name": "GetApiAdminSubjectsSearch"
   },
   {
     "type": "post",
@@ -3956,35 +4074,6 @@ define({ "api": [
     "name": "GetApiFacultiesSlug"
   },
   {
-    "type": "post",
-    "url": "/api/admin/faculties/:slug/image",
-    "title": "Set image for faculty",
-    "sampleRequest": [
-      {
-        "url": "/api/admin/faculties/:slug/image"
-      }
-    ],
-    "description": "<p>Set image for faculty</p> ",
-    "group": "Faculties",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "<p>Number</p> ",
-            "optional": false,
-            "field": "count",
-            "description": "<p>Count faculties by page</p> "
-          }
-        ]
-      }
-    },
-    "version": "0.0.0",
-    "filename": "app/Http/Controllers/Admin/FacultiesController.php",
-    "groupTitle": "Faculties",
-    "name": "PostApiAdminFacultiesSlugImage"
-  },
-  {
     "type": "delete",
     "url": "/api/files/:id",
     "title": "Delete file by id",
@@ -5122,6 +5211,48 @@ define({ "api": [
     "filename": "app/Http/Controllers/QuestionsController.php",
     "groupTitle": "Tests",
     "name": "GetApiTestsCodeQuestionsCode"
+  },
+  {
+    "type": "get",
+    "url": "/api/tests/search",
+    "title": "Search tests",
+    "sampleRequest": [
+      {
+        "url": "/api/tests/search"
+      }
+    ],
+    "description": "<p>Search</p> ",
+    "group": "Tests",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": "<p>User token</p> "
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "search",
+            "description": "<p>Search param</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/TestsController.php",
+    "groupTitle": "Tests",
+    "name": "GetApiTestsSearch"
   },
   {
     "type": "post",

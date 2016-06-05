@@ -244,7 +244,7 @@ class FacultiesController extends Controller
      * @api {post} /api/admin/faculties/:slug/image Set image for faculty
      * @apiSampleRequest /api/admin/faculties/:slug/image
      * @apiDescription Set image for faculty
-     * @apiGroup Faculties
+     * @apiGroup Admin|Faculties
      *
      * @apiParam {Number} count Count faculties by page
      *
@@ -264,5 +264,25 @@ class FacultiesController extends Controller
         $faculty->save();
 
         return response()->json($faculty->load('avatar'));
+    }
+
+    /**
+     * @api {get} /api/admin/faculties/search Search faculties
+     * @apiSampleRequest /api/admin/faculties/search
+     * @apiDescription Search faculties
+     * @apiGroup Admin|Faculties
+     *
+     * @apiHeader {String} Authorization Auth token
+     *
+     * @apiParam {Number} search Search params
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function searchFacultiesAction(Request $request)
+    {
+        $faculties = Faculty::where('name', 'LIKE', '%' . $request->get('search') . '%')->get();
+
+        return response()->json($faculties);
     }
 };

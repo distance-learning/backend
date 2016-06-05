@@ -228,4 +228,24 @@ class TestsController extends Controller
             'test_id' => $test->id,
         ]);
     }
+
+    /**
+     * @api {get} /api/tests/search Search tests
+     * @apiSampleRequest /api/tests/search
+     * @apiDescription Search
+     * @apiGroup Tests
+     *
+     * @apiHeader {String} authorization User token
+     *
+     * @apiParam {String} search Search param
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function searchTestAction(Request $request)
+    {
+        $tests = Test::where('name', 'LIKE', '%' . $request->get('search') . '%')->get();
+
+        return response()->json($tests);
+    }
 }
