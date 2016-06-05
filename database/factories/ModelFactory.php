@@ -17,7 +17,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'email' => $faker->email,
         'password' => bcrypt(str_random(10)),
         'remember_token' => str_random(10),
-        'avatar' => '',
+        'avatar_id' => null,
         'birthday' => $faker->date(''),
         'phone' => $faker->phoneNumber,
     ];
@@ -28,7 +28,7 @@ $factory->defineAs(App\User::class, 'auth-user', function (Faker\Generator $fake
     return [
         'name' => $faker->firstName,
         'surname' => $faker->lastName,
-        'avatar' => '',
+        'avatar_id' => null,
         'birthday' => $faker->date('Y-m-d', '1990-09-01'),
         'phone' => $faker->phoneNumber,
         'role'  => 'teacher',
@@ -44,7 +44,7 @@ $factory->defineAs(App\User::class, 'teachers', function (Faker\Generator $faker
     return [
         'name' => $faker->firstName,
         'surname' => $faker->lastName,
-        'avatar' => '',
+        'avatar_id' => null,
         'birthday' => $faker->date('Y-m-d', '1990-09-01'),
         'phone' => $faker->phoneNumber,
         'role'  => 'teacher',
@@ -62,7 +62,7 @@ $factory->defineAs(App\User::class, 'teacher-active', function (Faker\Generator 
     return [
         'name' => 'Test',
         'surname' => 'User',
-        'avatar' => '',
+        'avatar_id' => null,
         'birthday' => $faker->date('Y-m-d', '1990-09-01'),
         'phone' => '0931212123',
         'role'  => 'teacher',
@@ -78,7 +78,8 @@ $factory->defineAs(App\User::class, 'teacher-not-active', function (Faker\Genera
     return [
         'name' => 'Test',
         'surname' => 'User2',
-        'avatar' => '',
+        'avatar_id' => null,
+        'avatar' => null,
         'birthday' => $faker->date('Y-m-d', '1990-09-01'),
         'phone' => '0931212124',
         'role'  => 'teacher',

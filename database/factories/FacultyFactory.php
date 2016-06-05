@@ -15,7 +15,7 @@ $factory->define(App\Faculty::class, function (Faker\Generator $faker) {
     return [
         'name'          => $faker->title,
         'description'   => $faker->text,
-        'avatar'        => '',
+        'avatar_id'        => null,
     ];
 });
 
@@ -23,7 +23,7 @@ $factory->defineAs(App\Faculty::class, 'fotius', function () {
     return [
         'name'          => 'ФОТИУС',
         'description'   => 'Опис факультету ФОТИУС',
-        'avatar'        => '',
+        'avatar_id'        => null,
         'slug'          => 'fotius',
         'examinations'  => [],
         'deleted_at'    => null,

@@ -91,7 +91,9 @@ class ModulesController extends Controller
      */
     public function createModuleGroupAction(Request $request)
     {
-        $moduleModule = $request->user()->moduleGroups()->create([
+        $user = $request->user();
+        
+        $moduleModule = $user->moduleGroups()->create([
             'name' => $request->get('name'),
         ]);
 

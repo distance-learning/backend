@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Model;
 class ModuleGroup extends Model
 {
     public $fillable = [
-        ''
+        'name',
     ];
 
     public $timestamps = false;

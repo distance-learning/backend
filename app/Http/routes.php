@@ -30,7 +30,7 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
         Route::get('/faculties', 'AuthController@getFacultiesAction');
     });
 
-    Route::group(['prefix' => 'modules'], function () {
+    Route::group(['prefix' => 'modules', 'middleware' => ['jwt.auth']], function () {
         Route::post('/', 'ModulesController@createModuleAction');
         Route::post('/groups', 'ModulesController@createModuleGroupAction');
         Route::put('/{module}', 'ModulesController@createModuleAction');
