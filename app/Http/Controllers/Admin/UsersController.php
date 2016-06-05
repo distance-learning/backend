@@ -196,4 +196,29 @@ class UsersController extends Controller
 
         return response()->json(null, 204);
     }
+
+    /**
+     * @api {get} /api/admin/users/search Search users by params
+     * @apiSampleRequest /api/admin/users/search
+     * @apiDescription Search users
+     * @apiGroup Admin|Users
+     * @apiPermission administrator, university_administrator
+     *
+     * @apiHeader {String} authorization
+     *
+     * @apiParam {String} search Search params
+     *
+     * @apiSuccess (204) success Returned if user successful searched
+     *
+     * @apiError (403) error Returned if user has not access for delete user
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function searchUsersAction(Request $request)
+    {
+        $users = User::where('surname', 'LIKE', '%' . $request->get('search') . '%')->orWhere('email', 'LIKE', '%' . $request->get('search') . '%')->get();
+
+        return response()->json($users);
+    }
 }

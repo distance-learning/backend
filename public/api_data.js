@@ -3021,6 +3021,77 @@ define({ "api": [
   },
   {
     "type": "get",
+    "url": "/api/admin/users/search",
+    "title": "Search users by params",
+    "sampleRequest": [
+      {
+        "url": "/api/admin/users/search"
+      }
+    ],
+    "description": "<p>Search users</p> ",
+    "group": "Admin_Users",
+    "permission": [
+      {
+        "name": "administrator, university_administrator"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "search",
+            "description": "<p>Search params</p> "
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "204": [
+          {
+            "group": "204",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Returned if user successful searched</p> "
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "403": [
+          {
+            "group": "403",
+            "optional": false,
+            "field": "error",
+            "description": "<p>Returned if user has not access for delete user</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Admin/UsersController.php",
+    "groupTitle": "Admin_Users",
+    "name": "GetApiAdminUsersSearch"
+  },
+  {
+    "type": "get",
     "url": "/api/admin/users/:slug",
     "title": "Get user by slug",
     "sampleRequest": [

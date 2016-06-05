@@ -154,6 +154,7 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
 
         Route::group(['prefix'  =>  'users'], function () {
             Route::get('/', 'Admin\UsersController@getUsersAction');
+            Route::get('/search', 'Admin\UsersController@searchUsersAction');
             Route::get('/{user}', 'Admin\UsersController@getUserAction');
             Route::post('/', 'Admin\UsersController@storeUserAction');
             Route::put('/{user}', 'Admin\UsersController@updateUserAction');
