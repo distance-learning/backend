@@ -19,6 +19,8 @@ class TasksController extends Controller
      * @apiDescription Create new task
      * @apiGroup Tasks
      *
+     * @apiHeader {String} Authorization User token
+     *
      * @param Request $request
      * @param Task $task
      * @return \Illuminate\Http\JsonResponse
@@ -33,6 +35,8 @@ class TasksController extends Controller
      * @apiSampleRequest /api/tasks
      * @apiDescription Create new task
      * @apiGroup Tasks
+     *
+     * @apiHeader {String} Authorization User token
      *
      * @apiSuccess (200) success Returned task
      *
@@ -71,6 +75,8 @@ class TasksController extends Controller
      * @apiSampleRequest /api/tasks/groups
      * @apiDescription Create new task for group
      * @apiGroup Tasks
+     *
+     * @apiHeader {String} Authorization User token
      *
      * @apiSuccess (200) success Returned task
      *
@@ -116,6 +122,8 @@ class TasksController extends Controller
      * @apiDescription Update task
      * @apiGroup Tasks
      *
+     * @apiHeader {String} Authorization User token
+     *
      * @apiSuccess (200) success Returned task
      *
      * @apiParam {Integer} student_id Student object id
@@ -145,6 +153,8 @@ class TasksController extends Controller
      * @apiSampleRequest /api/tasks/:task_id
      * @apiDescription Delete task
      * @apiGroup Tasks
+     *
+     * @apiHeader {String} Authorization User token
      *
      * @param Request $request
      * @param Task $task

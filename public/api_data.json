@@ -4688,6 +4688,19 @@
     ],
     "description": "<p>Delete task</p> ",
     "group": "Tasks",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>User token</p> "
+          }
+        ]
+      }
+    },
     "version": "0.0.0",
     "filename": "app/Http/Controllers/TasksController.php",
     "groupTitle": "Tasks",
@@ -4704,6 +4717,19 @@
     ],
     "description": "<p>Create new task</p> ",
     "group": "Tasks",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>User token</p> "
+          }
+        ]
+      }
+    },
     "version": "0.0.0",
     "filename": "app/Http/Controllers/TasksController.php",
     "groupTitle": "Tasks",
@@ -4720,6 +4746,19 @@
     ],
     "description": "<p>Create new task</p> ",
     "group": "Tasks",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>User token</p> "
+          }
+        ]
+      }
+    },
     "success": {
       "fields": {
         "200": [
@@ -4782,6 +4821,19 @@
     ],
     "description": "<p>Create new task for group</p> ",
     "group": "Tasks",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>User token</p> "
+          }
+        ]
+      }
+    },
     "success": {
       "fields": {
         "200": [
@@ -4844,6 +4896,19 @@
     ],
     "description": "<p>Update task</p> ",
     "group": "Tasks",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>User token</p> "
+          }
+        ]
+      }
+    },
     "success": {
       "fields": {
         "200": [
