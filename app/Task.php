@@ -72,6 +72,6 @@ class Task extends Model
      */
     public function events()
     {
-        return $this->morphMany(Event::class, 'attachments');
+        return $this->morphMany(Event::class, 'attachment');
     }
 }
