@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Group;
 use App\Task;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -24,7 +25,7 @@ class TasksController extends Controller
      */
     public function getTaskAction(Request $request, Task $task)
     {
-        return response()->json();
+        return response()->json($task);
     }
 
     /**
@@ -63,6 +64,50 @@ class TasksController extends Controller
         ]);
 
         return response()->json($task);
+    }
+
+    /**
+     * @api {post} /api/tasks/groups Create new task for group
+     * @apiSampleRequest /api/tasks/groups
+     * @apiDescription Create new task for group
+     * @apiGroup Tasks
+     *
+     * @apiSuccess (200) success Returned task
+     *
+     * @apiParam {Integer} attachment_id Attachment object id
+     * @apiParam {String} attachment_type Attachment object name
+     * @apiParam {String} group_slug Group slug
+     * @apiParam {Date} deadline Tasks deadline
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function createTaskForGroupAction(Request $request)
+    {
+        $user = $request->user();
+        $response = [];
+        $group = Group::findBySlug($request->get('group_slug'));
+
+        foreach ($group->students as $student) {
+            $task = Task::create([
+                'attachment_id' => $request->get('attachment_id'),
+                'attachment_type' => $request->get('attachment_type'),
+                'sender_id' => $user->id,
+                'recipient_id' => $student->id,
+                'deadline' => $request->get('deadline'),
+            ]);
+
+            //Create event on create task
+            $task->events()->create([
+                'sender_id' => $task->sender_id,
+                'recipient_id' => $task->recipient_id,
+                'deadline' => $task->deadline
+            ]);
+
+            $response[] = $task;
+        }
+
+        return response()->json($response);
     }
 
     /**
@@ -114,6 +159,6 @@ class TasksController extends Controller
 
         $task->delete();
 
-        return response()->json();
+        return response()->json(null, 204);
     }
 }

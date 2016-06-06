@@ -4772,6 +4772,68 @@ define({ "api": [
     "name": "PostApiTasks"
   },
   {
+    "type": "post",
+    "url": "/api/tasks/groups",
+    "title": "Create new task for group",
+    "sampleRequest": [
+      {
+        "url": "/api/tasks/groups"
+      }
+    ],
+    "description": "<p>Create new task for group</p> ",
+    "group": "Tasks",
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Returned task</p> "
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>Integer</p> ",
+            "optional": false,
+            "field": "attachment_id",
+            "description": "<p>Attachment object id</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "attachment_type",
+            "description": "<p>Attachment object name</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "group_slug",
+            "description": "<p>Group slug</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Date</p> ",
+            "optional": false,
+            "field": "deadline",
+            "description": "<p>Tasks deadline</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/TasksController.php",
+    "groupTitle": "Tasks",
+    "name": "PostApiTasksGroups"
+  },
+  {
     "type": "put",
     "url": "/api/tasks/:task_id",
     "title": "Update task",
