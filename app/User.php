@@ -223,6 +223,14 @@ class User extends Model implements AuthenticatableContract,
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function tasks()
+    {
+        return $this->hasMany(Task::class, 'recipient_id');
+    }
+
+    /**
      * @param $value
      */
     public function setPasswordAttribute($value)

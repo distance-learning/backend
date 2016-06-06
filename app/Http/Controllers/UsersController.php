@@ -95,4 +95,26 @@ class UsersController extends Controller
     {
         return response()->json($user);
     }
+
+    /**
+     * @api {get} /api/users/:slug/tasks Get user tasks by user slug
+     * @apiSampleRequest /api/users/:slug/tasks
+     * @apiDescription Get user tasks by user slug
+     * @apiGroup Users
+     *
+     * @apiHeader {String} Authorization User token
+     *
+     * @apiParam {String} slug Unique user slug
+     * @apiParam {String} from_date Data start
+     *
+     * @param Request $request
+     * @param User $user
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getUserTasksAction(Request $request, User $user)
+    {
+        $tasks = $user->tasks()->where('created_at', '>=', $request->get('from_date'))->load('attachment');
+
+        return response()->json($tasks);
+    }
 }

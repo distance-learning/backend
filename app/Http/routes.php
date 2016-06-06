@@ -70,6 +70,7 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
         Route::group(['prefix' => 'users'], function () {
             Route::get('/', 'UsersController@getUsersAction');
             Route::get('/{user}', 'UsersController@getUserAction');
+            Route::get('/{user}/tasks', 'UsersController@getUserTasksAction');
         });
 
         Route::group(['prefix' => 'courses'], function () {

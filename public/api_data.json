@@ -6292,6 +6292,55 @@
     "name": "GetApiUsersSlug"
   },
   {
+    "type": "get",
+    "url": "/api/users/:slug/tasks",
+    "title": "Get user tasks by user slug",
+    "sampleRequest": [
+      {
+        "url": "/api/users/:slug/tasks"
+      }
+    ],
+    "description": "<p>Get user tasks by user slug</p> ",
+    "group": "Users",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>User token</p> "
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "slug",
+            "description": "<p>Unique user slug</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "from_date",
+            "description": "<p>Data start</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/UsersController.php",
+    "groupTitle": "Users",
+    "name": "GetApiUsersSlugTasks"
+  },
+  {
     "type": "post",
     "url": "/api/auth/login",
     "title": "Authenticate user",
