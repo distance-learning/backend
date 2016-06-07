@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Auth;
 use App\Http\Requests;
@@ -97,20 +98,26 @@ class UsersController extends Controller
      */
     public function storeUserAction(Request $request)
     {
-        $student = User::create([
-            'name'  =>  $request->get('name'),
-            'surname'  =>  $request->get('surname'),
-            'birthday'  =>  $request->get('birthday'),
-            'phone'  =>  $request->get('phone'),
-            'role'  =>  $request->get('role'),
-            'email' =>  $request->get('email'),
-            'description' =>  $request->get('description'),
-            'password'  =>  $request->get('password'),
-            'group_id' => $request->get('group_id'),
-            'status'  =>  1,
-        ]);
+        try {
+            $student = User::create([
+                'name'  =>  $request->get('name'),
+                'surname'  =>  $request->get('surname'),
+                'birthday'  =>  $request->get('birthday'),
+                'phone'  =>  $request->get('phone'),
+                'role'  =>  $request->get('role'),
+                'email' =>  $request->get('email'),
+                'description' =>  $request->get('description'),
+                'password'  =>  $request->get('password'),
+                'group_id' => $request->get('group_id'),
+                'status'  =>  1,
+            ]);
 
-        return response()->json($student, 201);
+            return response()->json($student, 201);
+        } catch (QueryException $qe) {
+            if ($qe->errorInfo[1] == 1062) {
+                return response()->json('Email mush be unique', 422);
+            }
+        }
     }
 
     /**
@@ -142,31 +149,37 @@ class UsersController extends Controller
      */
     public function updateUserAction(Request $request, User $user)
     {
-        if ($request->has('password') && !empty($request->get('password'))) {
-            $user->update([
-                'name'  =>  $request->get('name'),
-                'surname'  =>  $request->get('surname'),
-                'birthday'  =>  $request->get('birthday'),
-                'phone'  =>  $request->get('phone'),
-                'role'  =>  $request->get('role'),
-                'email' =>  $request->get('email'),
-                'description' =>  $request->get('description'),
-                'password'  =>  trim($request->get('password')),
-                'group_id' => $request->get('group_id'),
-                'status'  =>  1
-            ]);
-        } else {
-            $user->update([
-                'name'  =>  $request->get('name'),
-                'surname'  =>  $request->get('surname'),
-                'birthday'  =>  $request->get('birthday'),
-                'phone'  =>  $request->get('phone'),
-                'role'  =>  $request->get('role'),
-                'email' =>  $request->get('email'),
-                'description' =>  $request->get('description'),
-                'group_id' => $request->get('group_id'),
-                'status'  =>  1
-            ]);
+        try {
+            if ($request->has('password') && !empty($request->get('password'))) {
+                $user->update([
+                    'name'  =>  $request->get('name'),
+                    'surname'  =>  $request->get('surname'),
+                    'birthday'  =>  $request->get('birthday'),
+                    'phone'  =>  $request->get('phone'),
+                    'role'  =>  $request->get('role'),
+                    'email' =>  $request->get('email'),
+                    'description' =>  $request->get('description'),
+                    'password'  =>  trim($request->get('password')),
+                    'group_id' => $request->get('group_id'),
+                    'status'  =>  1
+                ]);
+            } else {
+                $user->update([
+                    'name'  =>  $request->get('name'),
+                    'surname'  =>  $request->get('surname'),
+                    'birthday'  =>  $request->get('birthday'),
+                    'phone'  =>  $request->get('phone'),
+                    'role'  =>  $request->get('role'),
+                    'email' =>  $request->get('email'),
+                    'description' =>  $request->get('description'),
+                    'group_id' => $request->get('group_id'),
+                    'status'  =>  1
+                ]);
+            }
+        } catch (QueryException $qe) {
+            if ($qe->errorInfo[1] == 1062) {
+                return response()->json('Email mush be unique', 422);
+            }
         }
 
         return response()->json($user);

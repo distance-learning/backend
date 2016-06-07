@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Events\ResetPasswordEvent;
 use App\Faculty;
 use App\User;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
 use Tymon\JWTAuth\Exceptions\JWTException;
@@ -149,8 +150,10 @@ class AuthController extends Controller
             ];
 
             return response()->json($data);
-        } catch (Exception $e) {
-            return response()->json(null, 500);
+        }  catch (QueryException $qe) {
+            if ($qe->errorInfo[1] == 1062) {
+                return response()->json('Email mush be unique', 422);
+            }
         }
     }
 
