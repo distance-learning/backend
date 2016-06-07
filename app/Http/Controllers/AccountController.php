@@ -159,7 +159,7 @@ class AccountController extends Controller
      */
     public function getTasksAction(Request $request)
     {
-        $tasks = Task::where('receiver_id', $request->user()->id)->get();
+        $tasks = Task::where('recipient_id', $request->user()->id)->get()->load('attachment');
 
         return response()->json($tasks);
     }

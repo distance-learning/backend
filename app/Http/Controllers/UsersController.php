@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Events\ResetPasswordEvent;
 use App\Http\Requests\UpdateUserRequest;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
 use Tymon\JWTAuth\Exceptions\JWTException;
@@ -113,7 +114,8 @@ class UsersController extends Controller
      */
     public function getUserTasksAction(Request $request, User $user)
     {
-        $tasks = $user->tasks()->where('created_at', '>=', $request->get('from_date'))->load('attachment');
+        $date = Carbon::now();
+        $tasks = $user->tasks()->where('created_at', '>=', $date->subMonth($request->get('interval')))->get()->load('attachment');
 
         return response()->json($tasks);
     }
