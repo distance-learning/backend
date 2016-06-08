@@ -32,11 +32,19 @@ class EventsController extends Controller
         $to = $request->get('to');
         $user = $request->user();
 
-        $events = Event::where('receiver_id', $user->id)
-            ->where('deadline', '>=', $from)
-            ->where('deadline', '<=', $to)
-            ->with('attachment')
-            ->get();
+        if ($request->user()->isStudent()) {
+            $events = Event::where('recipient_id', $user->id)
+                ->where('deadline', '>=', $from)
+                ->where('deadline', '<=', $to)
+                ->with('attachment')
+                ->get();
+        } else {
+            $events = Event::where('sender_id', $user->id)
+                ->where('deadline', '>=', $from)
+                ->where('deadline', '<=', $to)
+                ->with('attachment')
+                ->get();
+        }
 
         return response()->json($events);
     }
