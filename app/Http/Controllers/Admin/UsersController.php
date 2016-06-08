@@ -104,7 +104,7 @@ class UsersController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json($validator);
+            return response()->json($validator->errors(), 422);
         }
 
         try {
