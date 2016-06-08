@@ -154,6 +154,10 @@ class Faculty extends Model implements SluggableInterface
         return $query->skip($skip)->take($count);
     }
 
+    /**
+     * @param $value
+     * @return array|mixed
+     */
     public function getExaminationsAttribute($value)
     {
         if (is_null($value)) {
@@ -161,5 +165,13 @@ class Faculty extends Model implements SluggableInterface
         }
 
         return json_decode($value);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function tests()
+    {
+        return $this->hasMany(Test::class, 'faculty_id');
     }
 }

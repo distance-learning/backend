@@ -6899,13 +6899,13 @@
   {
     "type": "get",
     "url": "/api/account/modules",
-    "title": "Get teacher modules",
+    "title": "Get teacher modules and tests",
     "sampleRequest": [
       {
         "url": "/api/account/modules"
       }
     ],
-    "description": "<p>Get teacher modules</p> ",
+    "description": "<p>Get teacher modules and tests</p> ",
     "group": "Users_Teacher",
     "header": {
       "fields": {

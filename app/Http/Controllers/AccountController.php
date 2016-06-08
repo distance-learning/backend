@@ -224,9 +224,9 @@ class AccountController extends Controller
     }
 
     /**
-     * @api {get} /api/account/modules Get teacher modules
+     * @api {get} /api/account/modules Get teacher modules and tests
      * @apiSampleRequest /api/account/modules
-     * @apiDescription Get teacher modules
+     * @apiDescription Get teacher modules and tests
      * @apiGroup Users|Teacher
      *
      * @apiHeader {String} authorization User token
@@ -237,8 +237,12 @@ class AccountController extends Controller
     public function getModulesAction(Request $request)
     {
         $moduleGroups = $request->user()->moduleGroups->load('modules')->sortBy('id');
+        $tests = $request->user()->structure->tests;
 
-        return response()->json($moduleGroups);
+        return response()->json([
+            "moduleGroups" => $moduleGroups,
+            "tests" => $tests,
+        ]);
     }
 
     /**
