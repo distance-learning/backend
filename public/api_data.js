@@ -6327,9 +6327,16 @@ define({ "api": [
           },
           {
             "group": "Parameter",
-            "type": "<p>String</p> ",
+            "type": "<p>Date</p> ",
             "optional": false,
-            "field": "interval",
+            "field": "from_date",
+            "description": "<p>Data start</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Date</p> ",
+            "optional": false,
+            "field": "to_date",
             "description": "<p>Data start</p> "
           }
         ]
