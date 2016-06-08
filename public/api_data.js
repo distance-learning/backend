@@ -6329,7 +6329,7 @@ define({ "api": [
             "group": "Parameter",
             "type": "<p>String</p> ",
             "optional": false,
-            "field": "from_date",
+            "field": "interval",
             "description": "<p>Data start</p> "
           }
         ]

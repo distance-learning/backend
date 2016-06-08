@@ -106,7 +106,7 @@ class UsersController extends Controller
      * @apiHeader {String} Authorization User token
      *
      * @apiParam {String} slug Unique user slug
-     * @apiParam {String} from_date Data start
+     * @apiParam {String} interval Data start
      *
      * @param Request $request
      * @param User $user
