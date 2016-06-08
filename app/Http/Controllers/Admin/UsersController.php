@@ -114,7 +114,7 @@ class UsersController extends Controller
 
             return response()->json($student, 201);
         } catch (QueryException $qe) {
-            if ($qe->errorInfo[1] == 1062) {
+            if (($qe->errorInfo[1] == 1062) || ($qe->errorInfo[1] == 23505)) {
                 return response()->json('Email must be unique', 422);
             }
 
