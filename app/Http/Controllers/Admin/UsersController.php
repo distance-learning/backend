@@ -108,15 +108,17 @@ class UsersController extends Controller
                 'email' =>  $request->get('email'),
                 'description' =>  $request->get('description'),
                 'password'  =>  $request->get('password'),
-                'group_id' => $request->get('group_id'),
+                'group_id' => $request->get('group_id', null),
                 'status'  =>  1,
             ]);
 
             return response()->json($student, 201);
         } catch (QueryException $qe) {
             if ($qe->errorInfo[1] == 1062) {
-                return response()->json('Email mush be unique', 422);
+                return response()->json('Email must be unique', 422);
             }
+
+            return response()->json($qe->getMessage(), 422);
         }
     }
 
