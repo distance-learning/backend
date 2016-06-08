@@ -8,6 +8,7 @@ use Auth;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\User;
+use Illuminate\Support\Facades\Validator;
 
 /**
  * Class UsersController
@@ -98,6 +99,14 @@ class UsersController extends Controller
      */
     public function storeUserAction(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|unique:users|max:255',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator);
+        }
+
         try {
             $student = User::create([
                 'name'  =>  $request->get('name'),
