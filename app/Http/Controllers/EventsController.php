@@ -18,6 +18,8 @@ class EventsController extends Controller
      * @apiDescription Get events by interval
      * @apiGroup Events
      *
+     * @apiHeader {String} Authorization User auth token
+     *
      * @apiParam {String} from From date
      * @apiParam {String} to From date
      *
