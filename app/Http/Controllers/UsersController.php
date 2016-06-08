@@ -114,8 +114,7 @@ class UsersController extends Controller
      */
     public function getUserTasksAction(Request $request, User $user)
     {
-        $date = Carbon::now();
-        $tasks = $user->tasks()->where('created_at', '>=', $date->subMonth($request->get('interval')))->get()->load('attachment');
+        $tasks = $user->tasks()->where('deadline', '>=', $request->get('from_date'))->where('deadline', '<=', $request->get('to_date'))->get()->load('attachment');
 
         return response()->json($tasks);
     }
