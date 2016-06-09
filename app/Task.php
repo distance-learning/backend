@@ -42,6 +42,11 @@ class Task extends Model
         'recipient_id',
         'deadline',
         'subject_id',
+        'files',
+    ];
+
+    public $casts = [
+        'files' => 'array',
     ];
 
     /**
@@ -82,13 +87,5 @@ class Task extends Model
     public function events()
     {
         return $this->morphMany(Event::class, 'attachment');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function answer()
-    {
-        return $this->belongsTo(File::class, 'answer_id');
     }
 }
