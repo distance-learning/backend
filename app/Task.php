@@ -41,6 +41,7 @@ class Task extends Model
         'sender_id',
         'recipient_id',
         'deadline',
+        'subject_id',
     ];
 
     /**
