@@ -61,6 +61,7 @@ class TasksController extends Controller
             'recipient_id' => $request->get('student_id'),
             'deadline' => $request->get('deadline'),
             'subject_id' => $request->get('subject_id'),
+            'files' => [],
         ]);
 
         //Create event on create task
@@ -106,6 +107,7 @@ class TasksController extends Controller
                 'recipient_id' => $student->id,
                 'deadline' => $request->get('deadline'),
                 'subject_id' => $request->get('subject_id'),
+                'files' => [],
             ]);
 
             //Create event on create task
