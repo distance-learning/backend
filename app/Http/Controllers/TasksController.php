@@ -44,6 +44,7 @@ class TasksController extends Controller
      * @apiParam {String} attachment_type Attachment object name
      * @apiParam {Integer} student_id Student object id
      * @apiParam {Date} deadline Tasks deadline
+     * @apiParam {Integer} subject_id Subject id
      *
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
@@ -58,6 +59,7 @@ class TasksController extends Controller
             'sender_id' => $user->id,
             'recipient_id' => $request->get('student_id'),
             'deadline' => $request->get('deadline'),
+            'subject_id' => $request->get('subject_id'),
         ]);
 
         //Create event on create task
@@ -84,6 +86,7 @@ class TasksController extends Controller
      * @apiParam {String} attachment_type Attachment object name
      * @apiParam {String} group_slug Group slug
      * @apiParam {Date} deadline Tasks deadline
+     * @apiParam {Integer} subject_id Subject id
      *
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
@@ -101,6 +104,7 @@ class TasksController extends Controller
                 'sender_id' => $user->id,
                 'recipient_id' => $student->id,
                 'deadline' => $request->get('deadline'),
+                'subject_id' => $request->get('subject_id'),
             ]);
 
             //Create event on create task
@@ -128,6 +132,7 @@ class TasksController extends Controller
      *
      * @apiParam {Integer} student_id Student object id
      * @apiParam {Date} deadline Tasks deadline
+     * @apiParam {Integer} subject_id Subject id
      *
      * @param Request $request
      * @param Task $task
@@ -138,6 +143,7 @@ class TasksController extends Controller
         $task->update([
             'recipient_id' => $request->get('student_id'),
             'deadline' => $request->get('deadline'),
+            'subject_id' => $request->get('subject_id'),
         ]);
 
         $task->events()->update([

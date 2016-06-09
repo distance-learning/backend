@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Subject;
 use App\Task;
 use App\Traits\FileUpload;
 use Illuminate\Http\Request;
@@ -162,6 +163,12 @@ class AccountController extends Controller
         $tasks = Task::where('recipient_id', $request->user()->id)->get()->load('attachment');
 
         return response()->json($tasks);
+    }
+
+
+    public function getSubjectTasks(Request $request, Subject $subject)
+    {
+//        $tasks =
     }
 
     /**
