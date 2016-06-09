@@ -52,9 +52,21 @@ class Event extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphTo
      */
-    public function objects()
+    public function attachment()
     {
-        return $this->morphTo('attachment');
+        return $this->morphTo();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function object()
+    {
+        if ($this->attachment) {
+            return $this->attachment->attachment;
+        }
+
+        return null;
     }
 
     /**

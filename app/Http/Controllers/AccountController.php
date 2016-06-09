@@ -171,6 +171,8 @@ class AccountController extends Controller
      * @apiDescription Get user tasks by subject
      * @apiGroup Users
      *
+     * @apiHeader {String} Authorization Auth user token
+     *
      * @param Request $request
      * @param Subject $subject
      * @return \Illuminate\Http\JsonResponse

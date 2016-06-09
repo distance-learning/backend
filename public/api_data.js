@@ -4814,6 +4814,13 @@ define({ "api": [
             "optional": false,
             "field": "deadline",
             "description": "<p>Tasks deadline</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Integer</p> ",
+            "optional": false,
+            "field": "subject_id",
+            "description": "<p>Subject id</p> "
           }
         ]
       }
@@ -4889,6 +4896,13 @@ define({ "api": [
             "optional": false,
             "field": "deadline",
             "description": "<p>Tasks deadline</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Integer</p> ",
+            "optional": false,
+            "field": "subject_id",
+            "description": "<p>Subject id</p> "
           }
         ]
       }
@@ -4950,6 +4964,13 @@ define({ "api": [
             "optional": false,
             "field": "deadline",
             "description": "<p>Tasks deadline</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>Integer</p> ",
+            "optional": false,
+            "field": "subject_id",
+            "description": "<p>Subject id</p> "
           }
         ]
       }
@@ -5929,6 +5950,35 @@ define({ "api": [
     "filename": "app/Http/Controllers/AccountController.php",
     "groupTitle": "Users",
     "name": "GetApiAccountLogout"
+  },
+  {
+    "type": "get",
+    "url": "/api/account/subjects/:subject_id/tasks",
+    "title": "Get user tasks by subject",
+    "sampleRequest": [
+      {
+        "url": "/api/account/subjects/:subject_id/tasks"
+      }
+    ],
+    "description": "<p>Get user tasks by subject</p> ",
+    "group": "Users",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Auth user token</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/AccountController.php",
+    "groupTitle": "Users",
+    "name": "GetApiAccountSubjectsSubject_idTasks"
   },
   {
     "type": "get",

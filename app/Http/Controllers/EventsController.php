@@ -29,23 +29,23 @@ class EventsController extends Controller
      */
     public function getEventsByInterval(Request $request)
     {
-        $year = $request->get('year');
-        $month = $request->get('month');
-        $from_date = Carbon::createFromDate($year, $month, 1);
-        $to_date = Carbon::createFromDate($year, $month, 31);
+        $year = intval($request->get('year'));
+        $month = intval($request->get('month'));
+        $from_date = Carbon::create($year, $month, 1);
+        $to_date = $from_date->lastOfMonth();
         $user = $request->user();
 
         if ($request->user()->isStudent()) {
             $events = Event::where('recipient_id', $user->id)
                 ->where('deadline', '>=', $from_date)
                 ->where('deadline', '<=', $to_date)
-                ->with('objects.attachment')
+                ->with('attachment', 'object')
                 ->get();
         } else {
             $events = Event::where('sender_id', $user->id)
-                ->where('deadline', '>=', $from_date)
+//                ->where('deadline', '>=', $from_date)
                 ->where('deadline', '<=', $to_date)
-                ->with('objects.attachment')
+                ->with('attachment', 'object')
                 ->get();
         }
 
