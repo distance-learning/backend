@@ -198,6 +198,7 @@ class TasksController extends Controller
      */
     public function sendAnswerToTaskAction(Request $request, Task $task, File $file)
     {
+        $task->files = (array) $task->files;
         $task->files[] = $file->path;
         $task->save();
 
