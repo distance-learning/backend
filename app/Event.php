@@ -54,7 +54,7 @@ class Event extends Model
      */
     public function objects()
     {
-        return $this->morphTo();
+        return $this->morphTo('attachment');
     }
 
     /**
