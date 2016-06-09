@@ -165,10 +165,22 @@ class AccountController extends Controller
         return response()->json($tasks);
     }
 
-
-    public function getSubjectTasks(Request $request, Subject $subject)
+    /**
+     * @api {get} /api/account/subjects/:subject_id/tasks Get user tasks by subject
+     * @apiSampleRequest /api/account/subjects/:subject_id/tasks
+     * @apiDescription Get user tasks by subject
+     * @apiGroup Users
+     *
+     * @param Request $request
+     * @param Subject $subject
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getSubjectTasksAction(Request $request, Subject $subject)
     {
-//        $tasks =
+        $user = $request->user();
+        $tasks = $subject->tasks->where('recipient_id', $user->id)->load('attachment');
+
+        return response()->json($tasks);
     }
 
     /**

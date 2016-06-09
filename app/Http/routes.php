@@ -44,6 +44,7 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
             Route::get('/courses', 'AccountController@getCoursesAction');
             Route::get('/subjects', 'AccountController@getSubjectsAction');
             Route::get('/modules', 'AccountController@getModulesAction');
+            Route::get('/subjects/{subject}/tasks', 'AccountController@getSubjectTasksAction');
         });
 
         Route::group(['prefix' => 'events'], function () {
