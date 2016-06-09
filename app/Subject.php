@@ -31,7 +31,7 @@ class Subject extends Model
     protected $fillable = [
         'name',
         'description',
-        'faculty_id'
+        'faculty_id',
     ];
 
     /**

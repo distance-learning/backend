@@ -27,7 +27,7 @@ class TasksController extends Controller
      */
     public function getTaskAction(Request $request, Task $task)
     {
-        return response()->json($task);
+        return response()->json($task->load('attachment'));
     }
 
     /**
