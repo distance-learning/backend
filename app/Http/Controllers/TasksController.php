@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\File;
 use App\Group;
 use App\Task;
 use Illuminate\Http\Request;
@@ -179,7 +180,7 @@ class TasksController extends Controller
     }
 
     /**
-     * @api {get} /api/tasks/:task_id/answers Set answer to task
+     * @api {put} /api/tasks/:task_id/files/:file_id Set answer to task
      * @apiSampleRequest /api/tasks/:task_id/answers
      * @apiDescription Set answer to task
      * @apiGroup Tasks
@@ -190,11 +191,12 @@ class TasksController extends Controller
      *
      * @param Request $request
      * @param Task $task
+     * @param File $file
      * @return \Illuminate\Http\JsonResponse
      */
-    public function sendAnswerToTaskAction(Request $request, Task $task)
+    public function sendAnswerToTaskAction(Request $request, Task $task, File $file)
     {
-        $task->answer_id = $request->get('answer_id');
+        $task->answer_id = $file->id;
         $task->save();
 
         return response()->json($task->load('answer'));

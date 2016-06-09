@@ -4749,48 +4749,6 @@
     "name": "GetApiTasksTask_id"
   },
   {
-    "type": "get",
-    "url": "/api/tasks/:task_id/answers",
-    "title": "Set answer to task",
-    "sampleRequest": [
-      {
-        "url": "/api/tasks/:task_id/answers"
-      }
-    ],
-    "description": "<p>Set answer to task</p> ",
-    "group": "Tasks",
-    "header": {
-      "fields": {
-        "Header": [
-          {
-            "group": "Header",
-            "type": "String",
-            "optional": false,
-            "field": "Authorization",
-            "description": "<p>User token</p> "
-          }
-        ]
-      }
-    },
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "<p>Integer</p> ",
-            "optional": false,
-            "field": "answer_id",
-            "description": "<p>Answer id</p> "
-          }
-        ]
-      }
-    },
-    "version": "0.0.0",
-    "filename": "app/Http/Controllers/TasksController.php",
-    "groupTitle": "Tasks",
-    "name": "GetApiTasksTask_idAnswers"
-  },
-  {
     "type": "post",
     "url": "/api/tasks",
     "title": "Create new task",
@@ -5021,6 +4979,48 @@
     "filename": "app/Http/Controllers/TasksController.php",
     "groupTitle": "Tasks",
     "name": "PutApiTasksTask_id"
+  },
+  {
+    "type": "put",
+    "url": "/api/tasks/:task_id/files/:file_id",
+    "title": "Set answer to task",
+    "sampleRequest": [
+      {
+        "url": "/api/tasks/:task_id/answers"
+      }
+    ],
+    "description": "<p>Set answer to task</p> ",
+    "group": "Tasks",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>User token</p> "
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>Integer</p> ",
+            "optional": false,
+            "field": "answer_id",
+            "description": "<p>Answer id</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/TasksController.php",
+    "groupTitle": "Tasks",
+    "name": "PutApiTasksTask_idFilesFile_id"
   },
   {
     "type": "get",
