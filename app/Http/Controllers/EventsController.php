@@ -39,13 +39,13 @@ class EventsController extends Controller
             $events = Event::where('recipient_id', $user->id)
                 ->where('deadline', '>=', $from_date)
                 ->where('deadline', '<=', $to_date)
-                ->with('attachment')
+                ->with('attachment.attachment', 'attachment.recipient')
                 ->get();
         } else {
             $events = Event::where('sender_id', $user->id)
                 ->where('deadline', '>=', $from_date)
                 ->where('deadline', '<=', $to_date)
-                ->with('attachment.attachment')
+                ->with('attachment.attachment', 'attachment.recipient')
                 ->get();
         }
 
