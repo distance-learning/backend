@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Event;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 
@@ -20,28 +21,30 @@ class EventsController extends Controller
      *
      * @apiHeader {String} Authorization User auth token
      *
-     * @apiParam {String} from From date
-     * @apiParam {String} to From date
+     * @apiParam {String} year Year
+     * @apiParam {String} month Month
      *
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function getEventsByInterval(Request $request)
     {
-        $from = $request->get('from');
-        $to = $request->get('to');
+        $year = $request->get('year');
+        $month = $request->get('month');
+        $from_date = Carbon::createFromDate($year, $month, 1);
+        $to_date = Carbon::createFromDate($year, $month, 31);
         $user = $request->user();
 
         if ($request->user()->isStudent()) {
             $events = Event::where('recipient_id', $user->id)
-                ->where('deadline', '>=', $from)
-                ->where('deadline', '<=', $to)
+                ->where('deadline', '>=', $from_date)
+                ->where('deadline', '<=', $to_date)
                 ->with('attachment')
                 ->get();
         } else {
             $events = Event::where('sender_id', $user->id)
-                ->where('deadline', '>=', $from)
-                ->where('deadline', '<=', $to)
+                ->where('deadline', '>=', $from_date)
+                ->where('deadline', '<=', $to_date)
                 ->with('attachment')
                 ->get();
         }

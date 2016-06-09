@@ -3951,15 +3951,15 @@ define({ "api": [
             "group": "Parameter",
             "type": "<p>String</p> ",
             "optional": false,
-            "field": "from",
-            "description": "<p>From date</p> "
+            "field": "year",
+            "description": "<p>Year</p> "
           },
           {
             "group": "Parameter",
             "type": "<p>String</p> ",
             "optional": false,
-            "field": "to",
-            "description": "<p>From date</p> "
+            "field": "month",
+            "description": "<p>Month</p> "
           }
         ]
       }
