@@ -177,4 +177,26 @@ class TasksController extends Controller
 
         return response()->json(null, 204);
     }
+
+    /**
+     * @api {get} /api/tasks/:task_id/answers Set answer to task
+     * @apiSampleRequest /api/tasks/:task_id/answers
+     * @apiDescription Set answer to task
+     * @apiGroup Tasks
+     *
+     * @apiHeader {String} Authorization User token
+     *
+     * @apiParam {Integer} answer_id Answer id
+     *
+     * @param Request $request
+     * @param Task $task
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function sendAnswerToTaskAction(Request $request, Task $task)
+    {
+        $task->answer_id = $request->get('answer_id');
+        $task->save();
+
+        return response()->json($task->load('answer'));
+    }
 }
