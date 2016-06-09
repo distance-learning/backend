@@ -180,7 +180,7 @@ class AccountController extends Controller
         $user = $request->user();
 
         if ($user->isStudent()) {
-            $courses = $user->group->courses()->active()->load('subject, teacher.avatar');
+            $courses = $user->group->courses->where('is_active', true)->load('subject', 'teacher.avatar');
 
             return response()->json($courses);
         }
