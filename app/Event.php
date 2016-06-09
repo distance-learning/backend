@@ -58,18 +58,6 @@ class Event extends Model
     }
 
     /**
-     * @return mixed
-     */
-    public function object()
-    {
-        if ($this->attachment) {
-            return $this->attachment->attachment;
-        }
-
-        return null;
-    }
-
-    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function recipient()

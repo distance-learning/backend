@@ -32,21 +32,25 @@ class EventsController extends Controller
         $year = intval($request->get('year'));
         $month = intval($request->get('month'));
         $from_date = Carbon::create($year, $month, 1);
-        $to_date = $from_date->lastOfMonth();
+        $to_date = Carbon::createFromDate($year, $month, $from_date->daysInMonth);
         $user = $request->user();
 
         if ($request->user()->isStudent()) {
             $events = Event::where('recipient_id', $user->id)
                 ->where('deadline', '>=', $from_date)
                 ->where('deadline', '<=', $to_date)
-                ->with('attachment', 'object')
+                ->with('attachment')
                 ->get();
         } else {
             $events = Event::where('sender_id', $user->id)
-//                ->where('deadline', '>=', $from_date)
+                ->where('deadline', '>=', $from_date)
                 ->where('deadline', '<=', $to_date)
-                ->with('attachment', 'object')
+                ->with('attachment.attachment')
                 ->get();
+        }
+
+        foreach ($events as $event) {
+            $event->attachment->attachment;
         }
 
         return response()->json($events);
