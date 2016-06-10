@@ -61,7 +61,7 @@ class TasksController extends Controller
             'recipient_id' => $request->get('student_id'),
             'deadline' => $request->get('deadline'),
             'subject_id' => $request->get('subject_id'),
-            'files' => [],
+            'files' => json_encode([]),
         ]);
 
         //Create event on create task
@@ -107,7 +107,7 @@ class TasksController extends Controller
                 'recipient_id' => $student->id,
                 'deadline' => $request->get('deadline'),
                 'subject_id' => $request->get('subject_id'),
-                'files' => [],
+                'files' => json_encode([]),
             ]);
 
             //Create event on create task
@@ -198,8 +198,8 @@ class TasksController extends Controller
      */
     public function sendAnswerToTaskAction(Request $request, Task $task, File $file)
     {
-        $task->files = (array) $task->files;
-        $task->files[] = $file->path;
+        $task->files = json_decode($task->files, 1);
+        $task->files = json_encode(array_merge($task->files, [$file->path]), 1);
         $task->save();
 
         return response()->json($task);

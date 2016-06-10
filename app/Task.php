@@ -45,10 +45,6 @@ class Task extends Model
         'files',
     ];
 
-    public $casts = [
-        'files' => 'array',
-    ];
-
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphTo
      */
