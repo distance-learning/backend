@@ -85,13 +85,11 @@ class Task extends Model
         return $this->morphMany(Event::class, 'attachment');
     }
 
-    public function getFilesAttribute($value)
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function files()
     {
-        return json_decode($value, 1);
-    }
-
-    public function setFilesAttribute($value)
-    {
-        $this->attributes['files'] = json_encode($value);
+        return $this->belongsToMany(File::class, 'task_file');
     }
 }

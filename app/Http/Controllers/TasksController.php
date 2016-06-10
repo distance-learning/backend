@@ -198,7 +198,7 @@ class TasksController extends Controller
      */
     public function sendAnswerToTaskAction(Request $request, Task $task, File $file)
     {
-        $task->files = array_merge($task->files, [$file->path]);
+        $task->files()->attach($file->id);
         $task->save();
 
         return response()->json($task);
@@ -214,6 +214,7 @@ class TasksController extends Controller
      *
      * @param Request $request
      * @param Task $task
+     * @return \Illuminate\Http\JsonResponse
      */
     public function getFilesByTaskAction(Request $request, Task $task)
     {
