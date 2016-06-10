@@ -203,4 +203,20 @@ class TasksController extends Controller
 
         return response()->json($task);
     }
+
+    /**
+     * @api {get} /api/tasks/:task_id/files Get task files
+     * @apiSampleRequest /api/tasks/:task_id/files
+     * @apiDescription Get task files
+     * @apiGroup Tasks
+     *
+     * @apiHeader {String} Authorization User token
+     *
+     * @param Request $request
+     * @param Task $task
+     */
+    public function getFilesByTaskAction(Request $request, Task $task)
+    {
+        return response()->json($task->files);
+    }
 }

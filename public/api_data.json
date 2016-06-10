@@ -4749,6 +4749,35 @@
     "name": "GetApiTasksTask_id"
   },
   {
+    "type": "get",
+    "url": "/api/tasks/:task_id/files",
+    "title": "Get task files",
+    "sampleRequest": [
+      {
+        "url": "/api/tasks/:task_id/files"
+      }
+    ],
+    "description": "<p>Get task files</p> ",
+    "group": "Tasks",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>User token</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/TasksController.php",
+    "groupTitle": "Tasks",
+    "name": "GetApiTasksTask_idFiles"
+  },
+  {
     "type": "post",
     "url": "/api/tasks",
     "title": "Create new task",

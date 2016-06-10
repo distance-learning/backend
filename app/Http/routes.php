@@ -65,6 +65,7 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
             Route::post('/groups', 'TasksController@createTaskForGroupAction');
             Route::get('/{task}', 'TasksController@getTaskAction');
             Route::put('/{task}', 'TasksController@updateTaskAction');
+            Route::get('/{task}/files', 'TasksController@getFilesByTaskAction');
             Route::put('/{task}/files/{file}', 'TasksController@sendAnswerToTaskAction');
             Route::delete('/{task}', 'TasksController@deleteTaskAction');
         });
