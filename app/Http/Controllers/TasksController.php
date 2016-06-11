@@ -54,6 +54,10 @@ class TasksController extends Controller
     {
         $user = $request->user();
 
+        if (!Task::filterAttachmentType($request->get('attachment_type'))) {
+            return response()->json('Attachment type not allowed', 422);
+        }
+
         $task = Task::create([
             'attachment_id' => $request->get('attachment_id'),
             'attachment_type' => $request->get('attachment_type'),

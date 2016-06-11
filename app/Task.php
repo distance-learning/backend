@@ -29,6 +29,10 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Task whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Task whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property integer $subject_id
+ * @property-read \App\Subject $subject
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\File[] $files
+ * @method static \Illuminate\Database\Query\Builder|\App\Task whereSubjectId($value)
  */
 class Task extends Model
 {
@@ -43,6 +47,11 @@ class Task extends Model
         'deadline',
         'subject_id',
         'files',
+    ];
+
+    public static $allowedAttachmentTypes = [
+        'module',
+        'test',
     ];
 
     /**
@@ -91,5 +100,14 @@ class Task extends Model
     public function files()
     {
         return $this->belongsToMany(File::class, 'task_file');
+    }
+
+    /**
+     * @param $attachmentType
+     * @return bool
+     */
+    public static function filterAttachmentType($attachmentType)
+    {
+        return in_array($attachmentType, Task::$allowedAttachmentTypes);
     }
 }

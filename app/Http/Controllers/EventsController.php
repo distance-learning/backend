@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Event;
+use App\Task;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -50,6 +51,10 @@ class EventsController extends Controller
         }
 
         foreach ($events as $event) {
+            if (!($event->attachment instanceof Task)) {
+                continue;
+            }
+
             $event->attachment->attachment;
         }
 
