@@ -44,7 +44,8 @@ class Test extends Model
         'time',
         'faculty_id',
         'code',
-        'allow_skip'
+        'allow_skip',
+        'allow_export',
     ];
 
     /**

@@ -121,7 +121,8 @@ class TestsController extends Controller
         $test->update([
             'name' => $request->get('name'),
             'time' => $request->get('time'),
-            'allow_skip' => $request->get('allow_skip')
+            'allow_skip' => $request->get('allow_skip'),
+            'allow_export' => $request->get('allow_export'),
         ]);
 
         return response()->json($test);
