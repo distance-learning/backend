@@ -175,15 +175,12 @@ class TestsController extends Controller
      */
     public function getTestsForPassingAction(Request $request, Test $test)
     {
-        $test = $test->load('questions.answers')->shuffle()->splice(0, $test->count_questions);
+        $questions = $test->questions->where('is_active', true)->load('answers')->shuffle()->splice(0, $test->count_questions);
 
-        $questions = $test->questions->filter(function ($item) {
-            return $item->is_active;
-        });
-
-        $test->questions = $questions;
-
-        return response()->json($test);
+        return response()->json([
+            "questions" => $questions,
+            "test" => $test
+        ]);
     }
 
     /**
