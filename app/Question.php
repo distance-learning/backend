@@ -84,7 +84,7 @@ class Question extends Model
      */
     public function setNameAttribute($value)
     {
-        $short_name = implode(' ', array_slice(explode(' ', strip_tags($value)), 4));
+        $short_name = implode(' ', array_slice(explode(' ', strip_tags($value)), 0, 4));
 
         $this->attributes['short_name'] = $short_name;
     }
