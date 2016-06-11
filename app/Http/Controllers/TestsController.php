@@ -211,7 +211,7 @@ class TestsController extends Controller
                 $correctQ = true;
 
                 foreach ($answers_in_question as $answer) {
-                    $result = $question->answers->where('id', $answer)->where('isCorrectly', true);
+                    $result = $question->answers->where('id', $answer)->where('is_correct', true);
 
                     if (!$result) {
                         $correctQ = false;
@@ -226,7 +226,7 @@ class TestsController extends Controller
                 continue;
             }
 
-            $result = $result = $question->answers->where('id', $answer)->where('isCorrectly', 1);
+            $result = $result = $question->answers->where('id', $answer)->where('is_correct', 1);
 
             if ($result) {
                 $score += $question->score;
@@ -278,10 +278,11 @@ class TestsController extends Controller
      * @apiDescription Get scores
      * @apiGroup Tests
      *
-     * @apiHeader {String} authorization User tokne
+     * @apiHeader {String} authorization User token
      *
-     * @apiParam {Integer} test_id
-     * @apiParam
+     * @apiParam {Integer} test_id Test id
+     * @apiParam {Date} from_date From date
+     * @apiParam {Date} to_date To date
      *
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
@@ -303,14 +304,54 @@ class TestsController extends Controller
         return response()->json($scores);
     }
 
+    /**
+     * @api {get} /api/tests/:code/export Export test data
+     * @apiSampleRequest /api/tests/:code/export
+     * @apiDescription Export test data
+     * @apiGroup Tests
+     *
+     * @apiHeader {String} authorization User token
+     *
+     * @param Request $request
+     * @param Test $test
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getTestAnswersAction(Request $request, Test $test)
     {
         $timestamp = Carbon::now()->getTimestamp();
 
-        $xls = \Excel::create('test_answers_' . $timestamp, function ($excel) {
-            $excel->sheet('Відповіді', function ($sheet) {
+        $xls = \Excel::create('test_answers_' . $timestamp, function ($excel) use ($test) {
+            $excel->sheet('Запитання до тесту ' . $test->name, function ($sheet) use ($test) {
+                $sheet->row(1, [
+                    'Запитання',
+                    'Кількість часу на запитання (в секундах)',
+                    'Кількість відповідей',
+                    'Відповіді:'
+                ]);
 
+                foreach ($test->questions as $key => $question) {
+                    $row = [
+                        $question->name,
+                        $question->time,
+                        ($question->type == 'single') ? 'Одна' : 'Багато',
+                    ];
+
+                    foreach ($question->answers as $answer) {
+                        $row[] = $answer->body;
+                    }
+
+                    $sheet->row($key + 2, $row);
+                }
             });
         })->store('xls', public_path('/uploads/xls'));
+
+        $file = \File::create([
+            'filename' => 'Запитання до тесту ' . $test->name,
+            'path' => null,
+            'author_id' => $request->user()->id,
+            'content_type' => 'xls',
+        ]);
+
+        return response()->json($file);
     }
 }

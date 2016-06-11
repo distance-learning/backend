@@ -97,7 +97,7 @@ class QuestionsController extends Controller
      * @apiParam {Number} is_active  Question is active
      * @apiParam {Array} answers  Question Answers
      * @apiParam {String} answers.name Answer name
-     * @apiParam {Boolean} answers.isCorrectly Answer correct
+     * @apiParam {Boolean} answers.is_correct Answer correct
      *
      * @apiError (401) error Returned if user not active
      * @apiError (400) error Returned if credentials not correct
@@ -125,7 +125,7 @@ class QuestionsController extends Controller
             foreach ($request->get('question')['answers'] as $answer) {
                 Answer::create([
                     'body' => $answer['body'],
-                    'iscorrectly' => $answer['iscorrectly'],
+                    'is_correct' => $answer['is_correct'],
                     'question_id' => $question->id,
                 ]);
             }

@@ -39,6 +39,7 @@ class Question extends Model
      */
     public $fillable = [
         'name',
+        'short_name',
         'image',
         'type',
         'test_id',
@@ -76,5 +77,15 @@ class Question extends Model
     public function answers()
     {
         return $this->hasMany(Answer::class);
+    }
+
+    /**
+     * @param $value
+     */
+    public function setNameAttribute($value)
+    {
+        $short_name = implode(' ', array_slice(explode(' ', strip_tags($value)), 4));
+
+        $this->attributes['short_name'] = $short_name;
     }
 }
