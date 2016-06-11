@@ -58,7 +58,7 @@ class UsersController extends Controller
      */
     public function getUsersAction(Request $request)
     {
-        $users = User::paginate($request->query->get('count'));
+        $users = User::orderBy('id')->paginate($request->query->get('count'));
 
         return response()->json($users);
     }

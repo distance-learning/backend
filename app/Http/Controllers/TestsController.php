@@ -33,7 +33,7 @@ class TestsController extends Controller
     public function getTestsAction(Request $request)
     {
         $user = $request->user();
-        $tests = Test::where('faculty_id', $user->structure->id)->paginate(10);
+        $tests = Test::where('faculty_id', $user->structure->id)->orderBy('id')->paginate(10);
 
         return response()->json($tests);
     }
@@ -175,9 +175,11 @@ class TestsController extends Controller
      */
     public function getTestsForPassingAction(Request $request, Test $test)
     {
-        $questions = $test->questions->where('is_active', true)->load('answers')->shuffle()->splice(0, 20);
+        $test = $test->whereHas('questions', function ($query) {
+            return $query->where('is_active', true);
+        })->load('questions.answers')->shuffle()->splice(0, $test->count_questions);
 
-        return response()->json($questions);
+        return response()->json($test);
     }
 
     /**

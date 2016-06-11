@@ -36,7 +36,7 @@ class UsersController extends Controller
      */
     public function getUsersAction(Request $request)
     {
-        $students = User::with('avatar')->paginate($request->get('count', 10));
+        $students = User::with('avatar')->orderBy('id')->paginate($request->get('count', 10));
 
         return response()->json($students);
     }

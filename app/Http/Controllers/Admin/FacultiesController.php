@@ -62,7 +62,7 @@ class FacultiesController extends Controller
      */
     public function getFacultiesAction(Request $request)
     {
-        $faculties = Faculty::with('directions', 'avatar')->paginate($request->get('count', 10));
+        $faculties = Faculty::with('directions', 'avatar')->orderBy('id')->paginate($request->get('count', 10));
 
         return response()->json($faculties);
     }
