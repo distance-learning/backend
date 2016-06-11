@@ -68,6 +68,9 @@ use Illuminate\Support\Facades\Hash;
  * @mixin \Eloquent
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\File[] $files
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\ModuleGroup[] $moduleGroups
+ * @property integer $avatar_id
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Task[] $tasks
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereAvatarId($value)
  */
 class User extends Model implements AuthenticatableContract,
                                     AuthorizableContract,

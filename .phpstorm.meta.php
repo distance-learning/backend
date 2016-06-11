@@ -3,7 +3,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2016-05-29.
+    * Generated on 2016-06-11.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -48,6 +48,14 @@ namespace PHPSTORM_META {
             'tymon.jwt.validators.payload' instanceof \Tymon\JWTAuth\Validators\PayloadValidator,
             'tymon.jwt.payload.factory' instanceof \Tymon\JWTAuth\PayloadFactory,
             'tymon.jwt.generate' instanceof \Tymon\JWTAuth\Commands\JWTGenerateCommand,
+            'excel.identifier' instanceof \Maatwebsite\Excel\Classes\FormatIdentifier,
+            'excel.parsers.css' instanceof \Maatwebsite\Excel\Parsers\CssParser,
+            'excel.reader' instanceof \Maatwebsite\Excel\Readers\LaravelExcelReader,
+            'excel.readers.html' instanceof \Maatwebsite\Excel\Readers\Html,
+            'excel.parsers.view' instanceof \Maatwebsite\Excel\Parsers\ViewParser,
+            'phpexcel' instanceof \Maatwebsite\Excel\Classes\PHPExcel,
+            'excel.writer' instanceof \Maatwebsite\Excel\Writers\LaravelExcelWriter,
+            'excel' instanceof \Maatwebsite\Excel\Excel,
             'sluggable.creator' instanceof \Cviebrock\EloquentSluggable\SluggableMigrationCreator,
             'sluggable.table' instanceof \Cviebrock\EloquentSluggable\SluggableTableCommand,
             'Asm89\Stack\CorsService' instanceof \Asm89\Stack\CorsService,
@@ -181,6 +189,14 @@ namespace PHPSTORM_META {
             'tymon.jwt.validators.payload' instanceof \Tymon\JWTAuth\Validators\PayloadValidator,
             'tymon.jwt.payload.factory' instanceof \Tymon\JWTAuth\PayloadFactory,
             'tymon.jwt.generate' instanceof \Tymon\JWTAuth\Commands\JWTGenerateCommand,
+            'excel.identifier' instanceof \Maatwebsite\Excel\Classes\FormatIdentifier,
+            'excel.parsers.css' instanceof \Maatwebsite\Excel\Parsers\CssParser,
+            'excel.reader' instanceof \Maatwebsite\Excel\Readers\LaravelExcelReader,
+            'excel.readers.html' instanceof \Maatwebsite\Excel\Readers\Html,
+            'excel.parsers.view' instanceof \Maatwebsite\Excel\Parsers\ViewParser,
+            'phpexcel' instanceof \Maatwebsite\Excel\Classes\PHPExcel,
+            'excel.writer' instanceof \Maatwebsite\Excel\Writers\LaravelExcelWriter,
+            'excel' instanceof \Maatwebsite\Excel\Excel,
             'sluggable.creator' instanceof \Cviebrock\EloquentSluggable\SluggableMigrationCreator,
             'sluggable.table' instanceof \Cviebrock\EloquentSluggable\SluggableTableCommand,
             'Asm89\Stack\CorsService' instanceof \Asm89\Stack\CorsService,
@@ -314,6 +330,14 @@ namespace PHPSTORM_META {
             'tymon.jwt.validators.payload' instanceof \Tymon\JWTAuth\Validators\PayloadValidator,
             'tymon.jwt.payload.factory' instanceof \Tymon\JWTAuth\PayloadFactory,
             'tymon.jwt.generate' instanceof \Tymon\JWTAuth\Commands\JWTGenerateCommand,
+            'excel.identifier' instanceof \Maatwebsite\Excel\Classes\FormatIdentifier,
+            'excel.parsers.css' instanceof \Maatwebsite\Excel\Parsers\CssParser,
+            'excel.reader' instanceof \Maatwebsite\Excel\Readers\LaravelExcelReader,
+            'excel.readers.html' instanceof \Maatwebsite\Excel\Readers\Html,
+            'excel.parsers.view' instanceof \Maatwebsite\Excel\Parsers\ViewParser,
+            'phpexcel' instanceof \Maatwebsite\Excel\Classes\PHPExcel,
+            'excel.writer' instanceof \Maatwebsite\Excel\Writers\LaravelExcelWriter,
+            'excel' instanceof \Maatwebsite\Excel\Excel,
             'sluggable.creator' instanceof \Cviebrock\EloquentSluggable\SluggableMigrationCreator,
             'sluggable.table' instanceof \Cviebrock\EloquentSluggable\SluggableTableCommand,
             'Asm89\Stack\CorsService' instanceof \Asm89\Stack\CorsService,
@@ -447,6 +471,14 @@ namespace PHPSTORM_META {
             'tymon.jwt.validators.payload' instanceof \Tymon\JWTAuth\Validators\PayloadValidator,
             'tymon.jwt.payload.factory' instanceof \Tymon\JWTAuth\PayloadFactory,
             'tymon.jwt.generate' instanceof \Tymon\JWTAuth\Commands\JWTGenerateCommand,
+            'excel.identifier' instanceof \Maatwebsite\Excel\Classes\FormatIdentifier,
+            'excel.parsers.css' instanceof \Maatwebsite\Excel\Parsers\CssParser,
+            'excel.reader' instanceof \Maatwebsite\Excel\Readers\LaravelExcelReader,
+            'excel.readers.html' instanceof \Maatwebsite\Excel\Readers\Html,
+            'excel.parsers.view' instanceof \Maatwebsite\Excel\Parsers\ViewParser,
+            'phpexcel' instanceof \Maatwebsite\Excel\Classes\PHPExcel,
+            'excel.writer' instanceof \Maatwebsite\Excel\Writers\LaravelExcelWriter,
+            'excel' instanceof \Maatwebsite\Excel\Excel,
             'sluggable.creator' instanceof \Cviebrock\EloquentSluggable\SluggableMigrationCreator,
             'sluggable.table' instanceof \Cviebrock\EloquentSluggable\SluggableTableCommand,
             'Asm89\Stack\CorsService' instanceof \Asm89\Stack\CorsService,

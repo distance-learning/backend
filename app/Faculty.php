@@ -34,6 +34,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\User[] $teachers
  * @method static \Illuminate\Database\Query\Builder|\App\Faculty whereExaminations($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Faculty whereAvatarId($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Test[] $tests
  */
 class Faculty extends Model implements SluggableInterface
 {

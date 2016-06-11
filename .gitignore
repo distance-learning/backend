@@ -6,3 +6,5 @@ Homestead.json
 .idea
 supervisord.log
 supervisord.pid
+/public/uploads/xls/*
+!/public/uploads/xls/.gitkeep

@@ -26,6 +26,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Module whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Module whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Task[] $tasks
  */
 class Module extends Model
 {

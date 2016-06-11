@@ -23,6 +23,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Score whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Score whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\UserAnswer[] $userAnswers
  */
 class Score extends Model
 {
@@ -49,5 +50,13 @@ class Score extends Model
     public function test()
     {
         return $this->belongsTo(Test::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function userAnswers()
+    {
+        return $this->hasMany(UserAnswer::class);
     }
 }

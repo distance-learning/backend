@@ -22,6 +22,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Subject whereDeletedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Subject whereFacultyId($value)
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Task[] $tasks
  */
 class Subject extends Model
 {

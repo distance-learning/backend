@@ -4,8 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Score;
 use App\Test;
+use App\UserAnswer;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TestsController extends Controller
 {
@@ -144,9 +148,13 @@ class TestsController extends Controller
      */
     public function deleteTestAction(Request $request, Test $test)
     {
-        $test->delete();
+        if ($request->user()->isAdmin()) {
+            $test->delete();
 
-        return response()->json(null, 204);
+            return response()->json(null, 204);
+        }
+
+        return response()->json(null, 403);
     }
 
     /**
@@ -180,6 +188,7 @@ class TestsController extends Controller
      *
      * @param Request $request
      * @param Test $test
+     * @return \Illuminate\Http\JsonResponse
      */
     public function checkCompletedTestsAction(Request $request, Test $test)
     {
@@ -187,9 +196,11 @@ class TestsController extends Controller
         $answers = $request->get('answers');
         $score = 0;
         $user = $request->user();
+        $userAnswers = new Collection();
 
         foreach ($answers as $key => $answer) {
             $question = $questions->where('id', $key);
+            $correctQ = false;
 
             if (!$question) {
                 continue;
@@ -200,7 +211,7 @@ class TestsController extends Controller
                 $correctQ = true;
 
                 foreach ($answers_in_question as $answer) {
-                    $result = $question->answers->where('id', $answer)->where('isCorrectly', 1);
+                    $result = $question->answers->where('id', $answer)->where('isCorrectly', true);
 
                     if (!$result) {
                         $correctQ = false;
@@ -219,14 +230,26 @@ class TestsController extends Controller
 
             if ($result) {
                 $score += $question->score;
+                $correctQ = true;
             }
+
+            $userAnswers->add(UserAnswer::create([
+                'question_id' => $question->id,
+                'is_correct' => $correctQ,
+            ]));
         }
 
-        Score::create([
+        $score = Score::create([
             'score' => $score,
             'student_id' => $user->id,
             'test_id' => $test->id,
         ]);
+
+        foreach ($userAnswers as $answer) {
+            $score->userAnswers()->attach($answer->id);
+        }
+
+        return response()->json($score->load('userAnswers'));
     }
 
     /**
@@ -247,5 +270,47 @@ class TestsController extends Controller
         $tests = Test::where('name', 'LIKE', '%' . $request->get('search') . '%')->get();
 
         return response()->json($tests);
+    }
+
+    /**
+     * @api {get} /api/tests/scores Get users scores by test_id and interval
+     * @apiSampleRequest /api/tests/scores
+     * @apiDescription Get scores
+     * @apiGroup Tests
+     *
+     * @apiHeader {String} authorization User tokne
+     *
+     * @apiParam {Integer} test_id
+     * @apiParam
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getScoresAction(Request $request)
+    {
+        $from_date = $request->get('from_date');
+        $to_date = $request->get('to_date');
+        $from_date = Carbon::createFromTimestamp($from_date);
+        $to_date = Carbon::createFromTimestamp($to_date);
+
+        $scores = Score::where('test_id', $request->get('test_id'))
+            ->where('created_at', '>=', $from_date)
+            ->where('created_at', '<=', $to_date)
+            ->with('student.group', 'userAnswers')
+            ->get();
+        ;
+
+        return response()->json($scores);
+    }
+
+    public function getTestAnswersAction(Request $request, Test $test)
+    {
+        $timestamp = Carbon::now()->getTimestamp();
+
+        $xls = \Excel::create('test_answers_' . $timestamp, function ($excel) {
+            $excel->sheet('Відповіді', function ($sheet) {
+
+            });
+        })->store('xls', public_path('/uploads/xls'));
     }
 }

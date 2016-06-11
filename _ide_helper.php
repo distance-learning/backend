@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.2.22 on 2016-05-03.
+ * Generated for Laravel 5.2.37 on 2016-06-11.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -107,6 +107,16 @@ namespace {
          */
         public static function basePath(){
             return \Illuminate\Foundation\Application::basePath();
+        }
+        
+        /**
+         * Get the path to the bootstrap directory.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function bootstrapPath(){
+            return \Illuminate\Foundation\Application::bootstrapPath();
         }
         
         /**
@@ -224,10 +234,20 @@ namespace {
         }
         
         /**
+         * Get the fully qualified path to the environment file.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function environmentFilePath(){
+            return \Illuminate\Foundation\Application::environmentFilePath();
+        }
+        
+        /**
          * Get or check the current application environment.
          *
          * @param mixed
-         * @return string 
+         * @return string|bool 
          * @static 
          */
         public static function environment(){
@@ -649,6 +669,17 @@ namespace {
          */
         public static function setLocale($locale){
             \Illuminate\Foundation\Application::setLocale($locale);
+        }
+        
+        /**
+         * Determine if application locale is the given locale.
+         *
+         * @param string $locale
+         * @return bool 
+         * @static 
+         */
+        public static function isLocale($locale){
+            return \Illuminate\Foundation\Application::isLocale($locale);
         }
         
         /**
@@ -1094,6 +1125,18 @@ namespace {
         }
         
         /**
+         * Register the given command with the console application.
+         *
+         * @param \Symfony\Component\Console\Command\Command $command
+         * @return void 
+         * @static 
+         */
+        public static function registerCommand($command){
+            //Method inherited from \Illuminate\Foundation\Console\Kernel            
+            \App\Console\Kernel::registerCommand($command);
+        }
+        
+        /**
          * Run an Artisan console command by name.
          *
          * @param string $command
@@ -1516,11 +1559,11 @@ namespace {
          * Set the current user.
          *
          * @param \Illuminate\Contracts\Auth\Authenticatable $user
-         * @return void 
+         * @return $this 
          * @static 
          */
         public static function setUser($user){
-            \Illuminate\Auth\SessionGuard::setUser($user);
+            return \Illuminate\Auth\SessionGuard::setUser($user);
         }
         
         /**
@@ -1602,6 +1645,17 @@ namespace {
          */
         public static function guest(){
             return \Illuminate\Auth\SessionGuard::guest();
+        }
+        
+        /**
+         * Determine if the current user is authenticated.
+         *
+         * @return \App\User 
+         * @throws \Illuminate\Auth\AuthenticationException
+         * @static 
+         */
+        public static function authenticate(){
+            return \Illuminate\Auth\SessionGuard::authenticate();
         }
         
     }
@@ -2784,6 +2838,20 @@ namespace {
         }
         
         /**
+         * Run a select statement against the database and returns a generator.
+         *
+         * @param string $query
+         * @param array $bindings
+         * @param bool $useReadPdo
+         * @return \Generator 
+         * @static 
+         */
+        public static function cursor($query, $bindings = array(), $useReadPdo = true){
+            //Method inherited from \Illuminate\Database\Connection            
+            return \Illuminate\Database\MySqlConnection::cursor($query, $bindings, $useReadPdo);
+        }
+        
+        /**
          * Run an insert statement against the database.
          *
          * @param string $query
@@ -2889,6 +2957,7 @@ namespace {
          * Start a new database transaction.
          *
          * @return void 
+         * @throws Exception
          * @static 
          */
         public static function beginTransaction(){
@@ -3409,11 +3478,21 @@ namespace {
         }
         
         /**
+         * Get an array of global scopes that were removed from the query.
+         *
+         * @return array 
+         * @static 
+         */
+        public static function removedScopes(){
+            return \Illuminate\Database\Eloquent\Builder::removedScopes();
+        }
+        
+        /**
          * Find a model by its primary key.
          *
          * @param mixed $id
          * @param array $columns
-         * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection|null 
+         * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection|static[]|static|null 
          * @static 
          */
         public static function find($id, $columns = array()){
@@ -3421,7 +3500,7 @@ namespace {
         }
         
         /**
-         * Find a model by its primary key.
+         * Find multiple models by their primary keys.
          *
          * @param array $ids
          * @param array $columns
@@ -3537,6 +3616,16 @@ namespace {
         }
         
         /**
+         * Get a generator for the given query.
+         *
+         * @return \Generator 
+         * @static 
+         */
+        public static function cursor(){
+            return \Illuminate\Database\Eloquent\Builder::cursor();
+        }
+        
+        /**
          * Chunk the results of the query.
          *
          * @param int $count
@@ -3546,6 +3635,19 @@ namespace {
          */
         public static function chunk($count, $callback){
             return \Illuminate\Database\Eloquent\Builder::chunk($count, $callback);
+        }
+        
+        /**
+         * Chunk the results of a query by comparing numeric IDs.
+         *
+         * @param int $count
+         * @param callable $callback
+         * @param string $column
+         * @return bool 
+         * @static 
+         */
+        public static function chunkById($count, $callback, $column = 'id'){
+            return \Illuminate\Database\Eloquent\Builder::chunkById($count, $callback, $column);
         }
         
         /**
@@ -3606,11 +3708,12 @@ namespace {
          * @param int $perPage
          * @param array $columns
          * @param string $pageName
+         * @param int|null $page
          * @return \Illuminate\Contracts\Pagination\Paginator 
          * @static 
          */
-        public static function simplePaginate($perPage = null, $columns = array(), $pageName = 'page'){
-            return \Illuminate\Database\Eloquent\Builder::simplePaginate($perPage, $columns, $pageName);
+        public static function simplePaginate($perPage = null, $columns = array(), $pageName = 'page', $page = null){
+            return \Illuminate\Database\Eloquent\Builder::simplePaginate($perPage, $columns, $pageName, $page);
         }
         
         /**
@@ -3644,6 +3747,29 @@ namespace {
          */
         public static function eagerLoadRelations($models){
             return \Illuminate\Database\Eloquent\Builder::eagerLoadRelations($models);
+        }
+        
+        /**
+         * Get the deeply nested relations for a given top-level relation.
+         *
+         * @param string $relation
+         * @return array 
+         * @static 
+         */
+        public static function nestedRelations($relation){
+            return \Illuminate\Database\Eloquent\Builder::nestedRelations($relation);
+        }
+        
+        /**
+         * Apply the callback's query changes if the given "value" is true.
+         *
+         * @param bool $value
+         * @param \Closure $callback
+         * @return $this 
+         * @static 
+         */
+        public static function when($value, $callback){
+            return \Illuminate\Database\Eloquent\Builder::when($value, $callback);
         }
         
         /**
@@ -3752,6 +3878,28 @@ namespace {
          */
         public static function orWhereHas($relation, $callback, $operator = '>=', $count = 1){
             return \Illuminate\Database\Eloquent\Builder::orWhereHas($relation, $callback, $operator, $count);
+        }
+        
+        /**
+         * Merge the constraints from a relation query to the current query.
+         *
+         * @param \Illuminate\Database\Eloquent\Builder $relation
+         * @return \Illuminate\Database\Eloquent\Builder|static 
+         * @static 
+         */
+        public static function mergeModelDefinedRelationConstraints($relation){
+            return \Illuminate\Database\Eloquent\Builder::mergeModelDefinedRelationConstraints($relation);
+        }
+        
+        /**
+         * Add subselect queries to count the relations.
+         *
+         * @param mixed $relations
+         * @return $this 
+         * @static 
+         */
+        public static function withCount($relations){
+            return \Illuminate\Database\Eloquent\Builder::withCount($relations);
         }
         
         /**
@@ -4013,6 +4161,47 @@ namespace {
          */
         public static function rightJoinWhere($table, $one, $operator, $two){
             return \Illuminate\Database\Query\Builder::rightJoinWhere($table, $one, $operator, $two);
+        }
+        
+        /**
+         * Add a "cross join" clause to the query.
+         *
+         * @param string $table
+         * @param string $first
+         * @param string $operator
+         * @param string $second
+         * @return \Illuminate\Database\Query\Builder|static 
+         * @static 
+         */
+        public static function crossJoin($table, $first = null, $operator = null, $second = null){
+            return \Illuminate\Database\Query\Builder::crossJoin($table, $first, $operator, $second);
+        }
+        
+        /**
+         * Add a "where" clause comparing two columns to the query.
+         *
+         * @param string|array $first
+         * @param string|null $operator
+         * @param string|null $second
+         * @param string|null $boolean
+         * @return \Illuminate\Database\Query\Builder|static 
+         * @static 
+         */
+        public static function whereColumn($first, $operator = null, $second = null, $boolean = 'and'){
+            return \Illuminate\Database\Query\Builder::whereColumn($first, $operator, $second, $boolean);
+        }
+        
+        /**
+         * Add an "or where" clause comparing two columns to the query.
+         *
+         * @param string|array $first
+         * @param string|null $operator
+         * @param string|null $second
+         * @return \Illuminate\Database\Query\Builder|static 
+         * @static 
+         */
+        public static function orWhereColumn($first, $operator = null, $second = null){
+            return \Illuminate\Database\Query\Builder::orWhereColumn($first, $operator, $second);
         }
         
         /**
@@ -4463,6 +4652,17 @@ namespace {
         }
         
         /**
+         * Put the query's results in random order.
+         *
+         * @param string $seed
+         * @return $this 
+         * @static 
+         */
+        public static function inRandomOrder($seed = ''){
+            return \Illuminate\Database\Query\Builder::inRandomOrder($seed);
+        }
+        
+        /**
          * Add a raw "order by" clause to the query.
          *
          * @param string $sql
@@ -4528,6 +4728,19 @@ namespace {
          */
         public static function forPage($page, $perPage = 15){
             return \Illuminate\Database\Query\Builder::forPage($page, $perPage);
+        }
+        
+        /**
+         * Constrain the query to the next "page" of results after a given ID.
+         *
+         * @param int $perPage
+         * @param int $lastId
+         * @param string $column
+         * @return \Illuminate\Database\Query\Builder|static 
+         * @static 
+         */
+        public static function forPageAfterId($perPage = 15, $lastId = 0, $column = 'id'){
+            return \Illuminate\Database\Query\Builder::forPageAfterId($perPage, $lastId, $column);
         }
         
         /**
@@ -4726,6 +4939,18 @@ namespace {
          */
         public static function insertGetId($values, $sequence = null){
             return \Illuminate\Database\Query\Builder::insertGetId($values, $sequence);
+        }
+        
+        /**
+         * Insert or update a record matching the attributes, and fill it with values.
+         *
+         * @param array $attributes
+         * @param array $values
+         * @return bool 
+         * @static 
+         */
+        public static function updateOrInsert($attributes, $values = array()){
+            return \Illuminate\Database\Query\Builder::updateOrInsert($attributes, $values);
         }
         
         /**
@@ -5055,12 +5280,24 @@ namespace {
          * Get the contents of a file.
          *
          * @param string $path
+         * @param bool $lock
          * @return string 
          * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
          * @static 
          */
-        public static function get($path){
-            return \Illuminate\Filesystem\Filesystem::get($path);
+        public static function get($path, $lock = false){
+            return \Illuminate\Filesystem\Filesystem::get($path, $lock);
+        }
+        
+        /**
+         * Get contents of a file with shared access.
+         *
+         * @param string $path
+         * @return string 
+         * @static 
+         */
+        public static function sharedGet($path){
+            return \Illuminate\Filesystem\Filesystem::sharedGet($path);
         }
         
         /**
@@ -5167,6 +5404,28 @@ namespace {
          */
         public static function name($path){
             return \Illuminate\Filesystem\Filesystem::name($path);
+        }
+        
+        /**
+         * Extract the trailing name component from a file path.
+         *
+         * @param string $path
+         * @return string 
+         * @static 
+         */
+        public static function basename($path){
+            return \Illuminate\Filesystem\Filesystem::basename($path);
+        }
+        
+        /**
+         * Extract the parent directory from a file path.
+         *
+         * @param string $path
+         * @return string 
+         * @static 
+         */
+        public static function dirname($path){
+            return \Illuminate\Filesystem\Filesystem::dirname($path);
         }
         
         /**
@@ -5284,11 +5543,12 @@ namespace {
          * Get all of the files from the given directory (recursive).
          *
          * @param string $directory
+         * @param bool $hidden
          * @return array 
          * @static 
          */
-        public static function allFiles($directory){
-            return \Illuminate\Filesystem\Filesystem::allFiles($directory);
+        public static function allFiles($directory, $hidden = false){
+            return \Illuminate\Filesystem\Filesystem::allFiles($directory, $hidden);
         }
         
         /**
@@ -5834,6 +6094,17 @@ namespace {
         }
         
         /**
+         * Intersect an array of items with the input data.
+         *
+         * @param array|mixed $keys
+         * @return array 
+         * @static 
+         */
+        public static function intersect($keys){
+            return \Illuminate\Http\Request::intersect($keys);
+        }
+        
+        /**
          * Retrieve a query string item from the request.
          *
          * @param string $key
@@ -5899,6 +6170,17 @@ namespace {
          */
         public static function hasFile($key){
             return \Illuminate\Http\Request::hasFile($key);
+        }
+        
+        /**
+         * Determine if a header is set on the request.
+         *
+         * @param string $key
+         * @return bool 
+         * @static 
+         */
+        public static function hasHeader($key){
+            return \Illuminate\Http\Request::hasHeader($key);
         }
         
         /**
@@ -6502,7 +6784,7 @@ namespace {
          * Note: Finding deep items is deprecated since version 2.8, to be removed in 3.0.
          *
          * @param string $key the key
-         * @param mixed $default the default value
+         * @param mixed $default the default value if the parameter key does not exist
          * @param bool $deep is parameter deep in multidimensional array
          * @return mixed 
          * @static 
@@ -7909,6 +8191,17 @@ namespace {
         }
         
         /**
+         * Register an event listener for the exception occurred job event.
+         *
+         * @param mixed $callback
+         * @return void 
+         * @static 
+         */
+        public static function exceptionOccurred($callback){
+            \Illuminate\Queue\QueueManager::exceptionOccurred($callback);
+        }
+        
+        /**
          * Register an event listener for the daemon queue loop.
          *
          * @param mixed $callback
@@ -8562,6 +8855,17 @@ namespace {
         }
         
         /**
+         * Intersect an array of items with the input data.
+         *
+         * @param array|mixed $keys
+         * @return array 
+         * @static 
+         */
+        public static function intersect($keys){
+            return \Illuminate\Http\Request::intersect($keys);
+        }
+        
+        /**
          * Retrieve a query string item from the request.
          *
          * @param string $key
@@ -8627,6 +8931,17 @@ namespace {
          */
         public static function hasFile($key){
             return \Illuminate\Http\Request::hasFile($key);
+        }
+        
+        /**
+         * Determine if a header is set on the request.
+         *
+         * @param string $key
+         * @return bool 
+         * @static 
+         */
+        public static function hasHeader($key){
+            return \Illuminate\Http\Request::hasHeader($key);
         }
         
         /**
@@ -9230,7 +9545,7 @@ namespace {
          * Note: Finding deep items is deprecated since version 2.8, to be removed in 3.0.
          *
          * @param string $key the key
-         * @param mixed $default the default value
+         * @param mixed $default the default value if the parameter key does not exist
          * @param bool $deep is parameter deep in multidimensional array
          * @return mixed 
          * @static 
@@ -10597,7 +10912,7 @@ namespace {
         }
         
         /**
-         * Alias for the "currentRouteNamed" method.
+         * Alias for the "currentRouteName" method.
          *
          * @param mixed  string
          * @return bool 
@@ -10841,6 +11156,28 @@ namespace {
         public static function rename($from, $to){
             //Method inherited from \Illuminate\Database\Schema\Builder            
             return \Illuminate\Database\Schema\MySqlBuilder::rename($from, $to);
+        }
+        
+        /**
+         * Enable foreign key constraints.
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function enableForeignKeyConstraints(){
+            //Method inherited from \Illuminate\Database\Schema\Builder            
+            return \Illuminate\Database\Schema\MySqlBuilder::enableForeignKeyConstraints();
+        }
+        
+        /**
+         * Disable foreign key constraints.
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function disableForeignKeyConstraints(){
+            //Method inherited from \Illuminate\Database\Schema\Builder            
+            return \Illuminate\Database\Schema\MySqlBuilder::disableForeignKeyConstraints();
         }
         
         /**
@@ -12125,6 +12462,41 @@ namespace {
         }
         
         /**
+         * Start injecting content into a push section.
+         *
+         * @param string $section
+         * @param string $content
+         * @return void 
+         * @static 
+         */
+        public static function startPush($section, $content = ''){
+            \Illuminate\View\Factory::startPush($section, $content);
+        }
+        
+        /**
+         * Stop injecting content into a push section.
+         *
+         * @return string 
+         * @throws \InvalidArgumentException
+         * @static 
+         */
+        public static function stopPush(){
+            return \Illuminate\View\Factory::stopPush();
+        }
+        
+        /**
+         * Get the string contents of a push section.
+         *
+         * @param string $section
+         * @param string $default
+         * @return string 
+         * @static 
+         */
+        public static function yieldPushContent($section, $default = ''){
+            return \Illuminate\View\Factory::yieldPushContent($section, $default);
+        }
+        
+        /**
          * Flush all of the section contents.
          *
          * @return void 
@@ -12634,6 +13006,131 @@ namespace {
          */
         public static function setRefreshFlow($refreshFlow = true){
             return \Tymon\JWTAuth\PayloadFactory::setRefreshFlow($refreshFlow);
+        }
+        
+    }
+
+
+    class Excel extends \Maatwebsite\Excel\Facades\Excel{
+        
+        /**
+         * Create a new file
+         *
+         * @param $filename
+         * @param callable|null $callback
+         * @return \Maatwebsite\Excel\LaravelExcelWriter 
+         * @static 
+         */
+        public static function create($filename, $callback = null){
+            return \Maatwebsite\Excel\Excel::create($filename, $callback);
+        }
+        
+        /**
+         * Load an existing file
+         *
+         * @param string $file The file we want to load
+         * @param callback|null $callback
+         * @param string|null $encoding
+         * @param bool $noBasePath
+         * @return \Maatwebsite\Excel\LaravelExcelReader 
+         * @static 
+         */
+        public static function load($file, $callback = null, $encoding = null, $noBasePath = false){
+            return \Maatwebsite\Excel\Excel::load($file, $callback, $encoding, $noBasePath);
+        }
+        
+        /**
+         * Set select sheets
+         *
+         * @param $sheets
+         * @return \Maatwebsite\Excel\LaravelExcelReader 
+         * @static 
+         */
+        public static function selectSheets($sheets = array()){
+            return \Maatwebsite\Excel\Excel::selectSheets($sheets);
+        }
+        
+        /**
+         * Select sheets by index
+         *
+         * @param array $sheets
+         * @return $this 
+         * @static 
+         */
+        public static function selectSheetsByIndex($sheets = array()){
+            return \Maatwebsite\Excel\Excel::selectSheetsByIndex($sheets);
+        }
+        
+        /**
+         * Batch import
+         *
+         * @param $files
+         * @param callback $callback
+         * @return \Maatwebsite\Excel\PHPExcel 
+         * @static 
+         */
+        public static function batch($files, $callback){
+            return \Maatwebsite\Excel\Excel::batch($files, $callback);
+        }
+        
+        /**
+         * Create a new file and share a view
+         *
+         * @param string $view
+         * @param array $data
+         * @param array $mergeData
+         * @return \Maatwebsite\Excel\LaravelExcelWriter 
+         * @static 
+         */
+        public static function shareView($view, $data = array(), $mergeData = array()){
+            return \Maatwebsite\Excel\Excel::shareView($view, $data, $mergeData);
+        }
+        
+        /**
+         * Create a new file and load a view
+         *
+         * @param string $view
+         * @param array $data
+         * @param array $mergeData
+         * @return \Maatwebsite\Excel\LaravelExcelWriter 
+         * @static 
+         */
+        public static function loadView($view, $data = array(), $mergeData = array()){
+            return \Maatwebsite\Excel\Excel::loadView($view, $data, $mergeData);
+        }
+        
+        /**
+         * Set filters
+         *
+         * @param array $filters
+         * @return \Maatwebsite\Excel\Excel 
+         * @static 
+         */
+        public static function registerFilters($filters = array()){
+            return \Maatwebsite\Excel\Excel::registerFilters($filters);
+        }
+        
+        /**
+         * Enable certain filters
+         *
+         * @param string|array $filter
+         * @param bool|false|string $class
+         * @return \Maatwebsite\Excel\Excel 
+         * @static 
+         */
+        public static function filter($filter, $class = false){
+            return \Maatwebsite\Excel\Excel::filter($filter, $class);
+        }
+        
+        /**
+         * Get register, enabled (or both) filters
+         *
+         * @param string|boolean $key [description]
+         * @return array 
+         * @static 
+         */
+        public static function getFilters($key = false){
+            return \Maatwebsite\Excel\Excel::getFilters($key);
         }
         
     }

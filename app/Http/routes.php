@@ -87,6 +87,7 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
         Route::group(['prefix' => 'tests'], function () {
             Route::post('/', 'TestsController@postTestAction');
             Route::get('/', 'TestsController@getTestsAction');
+            Route::get('/scores', 'TestsController@getScoresAction');
             Route::get('/search', 'TestsController@searchTestAction');
             Route::put('/{test}', 'TestsController@updateTestAction');
             Route::get('/{test}', 'TestsController@getTestAction');
