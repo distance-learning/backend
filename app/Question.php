@@ -86,6 +86,7 @@ class Question extends Model
     {
         $short_name = implode(' ', array_slice(explode(' ', strip_tags($value)), 0, 4));
 
+        $this->attributes['name'] = $value;
         $this->attributes['short_name'] = $short_name;
     }
 }
