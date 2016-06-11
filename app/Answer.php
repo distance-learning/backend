@@ -34,7 +34,7 @@ class Answer extends Model
      * @var array
      */
     public $hidden = [
-        'is_correct'
+        'is_correct',
     ];
 
     /**

@@ -33,6 +33,10 @@ class QuestionsController extends Controller
     {
         $questions = $question->load('answers');
 
+        foreach ($question->answers as &$answer) {
+            $answer = $answer->makeVisible('is_correct');
+        }
+
         return response()->json($questions);
     }
 
@@ -134,6 +138,10 @@ class QuestionsController extends Controller
         $question = Question::with('answers')
             ->find($question->id)
         ;
+
+        foreach ($question->answers as &$answer) {
+            $answer = $answer->makeVisible('is_correct');
+        }
 
         return response()->json($question);
     }
