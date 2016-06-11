@@ -32,7 +32,7 @@ class Test extends Model
      */
     public static $types = [
         'single',
-        'multiple',
+        'multiselect',
         'writable',
     ];
 
@@ -46,6 +46,7 @@ class Test extends Model
         'code',
         'allow_skip',
         'allow_export',
+        'count_questions'
     ];
 
     /**

@@ -123,6 +123,7 @@ class TestsController extends Controller
             'time' => $request->get('time'),
             'allow_skip' => $request->get('allow_skip'),
             'allow_export' => $request->get('allow_export'),
+            'count_questions' => $request->get('count_questions'),
         ]);
 
         return response()->json($test);
@@ -174,7 +175,7 @@ class TestsController extends Controller
      */
     public function getTestsForPassingAction(Request $request, Test $test)
     {
-        $questions = $test->questions->shuffle()->splice(0, 20);
+        $questions = $test->questions->where('is_active', true)->shuffle()->splice(0, 20);
 
         return response()->json($questions);
     }
