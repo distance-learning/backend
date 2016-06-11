@@ -175,7 +175,7 @@ class TestsController extends Controller
      */
     public function getTestsForPassingAction(Request $request, Test $test)
     {
-        $questions = $test->questions->where('is_active', true)->shuffle()->splice(0, 20);
+        $questions = $test->questions->where('is_active', true)->load('answers')->shuffle()->splice(0, 20);
 
         return response()->json($questions);
     }
