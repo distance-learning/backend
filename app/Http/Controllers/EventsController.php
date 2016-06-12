@@ -74,8 +74,8 @@ class EventsController extends Controller
      */
     public function getNotificationsAction(Request $request)
     {
-        $today = Carbon::now();
-        $plusThreeDays = $today->addDay(3);
+        $today = Carbon::now()->format('Y-m-d H:i:s');
+        $plusThreeDays = $today->addDay(3)->format('Y-m-d H:i:s');
         $user = $request->user();
 
         if ($user->isStudent()) {
