@@ -80,6 +80,7 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
 
         Route::group(['prefix' => 'courses'], function () {
             Route::get('/', 'Admin\CoursesController@getCoursesAction');
+            Route::get('/search', 'Admin\CoursesController@searchCoursesAction');
             Route::get('/{course}', 'Admin\CoursesController@getCourseAction');
             Route::post('/', 'Admin\CoursesController@postCourseAction');
             Route::put('/{course}', 'Admin\CoursesController@putCourseAction');

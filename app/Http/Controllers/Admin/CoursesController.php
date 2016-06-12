@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Course;
 use App\Traits\CoursesTrait;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -112,4 +113,37 @@ class CoursesController extends Controller
      * @param  Request $request
      * @return \Illuminate\Http\Response
      */
+
+    /**
+     * @api {get} /api/admin/courses/search Search courses
+     * @apiSampleRequest /api/admin/courses/search
+     * @apiDescription Search courses
+     * @apiGroup Admin|Courses
+     * @apiPermission administrator, university_administrator
+     *
+     * @apiHeader {String} authorization
+     *
+     * @apiParam {String} search Search param
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function searchCoursesAction(Request $request)
+    {
+        $search = $request->get('search');
+
+        $courses = Course::whereHas('subject', function ($query) use ($search) {
+                return $query->where('name', 'LIKE', '%' . $search . '%');
+            })
+            ->orWhereHas('group', function ($query) use ($search) {
+                return $query->where('name', 'LIKE', '%' . $search . '%');
+            })
+            ->orWhereHas('teacher', function ($query) use ($search) {
+                return $query->where('surname', 'LIKE', '%' . $search . '%')->orWhere('name', 'LIKE', '%' . $search . '%');
+            })
+            ->get();
+        ;
+
+        return response()->json($courses);
+    }
 }
