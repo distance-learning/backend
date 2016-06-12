@@ -33,7 +33,8 @@ class Score extends Model
     public $fillable = [
         'score',
         'student_id',
-        'test_id'
+        'test_id',
+        'score_total'
     ];
 
     /**

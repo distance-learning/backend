@@ -202,6 +202,7 @@ class TestsController extends Controller
         $questions = $test->questions;
         $questionsFromRequest = $request->get('questions');
         $score = 0;
+        $scoreTotal = 0;
         $user = $request->user();
         $userAnswers = new Collection();
 
@@ -246,6 +247,8 @@ class TestsController extends Controller
                 }
             }
 
+            $scoreTotal += $question->score;
+
             $userAnswers->add([
                 'question_id' => $question->id,
                 'is_correct' => $correctQ,
@@ -256,6 +259,7 @@ class TestsController extends Controller
             'score' => $score,
             'student_id' => $user->id,
             'test_id' => $test->id,
+            'score_total' => $scoreTotal
         ]);
 
         foreach ($userAnswers as $answer) {
