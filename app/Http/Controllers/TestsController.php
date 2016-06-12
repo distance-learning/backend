@@ -246,10 +246,10 @@ class TestsController extends Controller
                 }
             }
 
-            $userAnswers->add(UserAnswer::create([
+            $userAnswers->add([
                 'question_id' => $question->id,
                 'is_correct' => $correctQ,
-            ]));
+            ]);
         }
 
         $score = Score::create([
@@ -259,7 +259,7 @@ class TestsController extends Controller
         ]);
 
         foreach ($userAnswers as $answer) {
-            $score->userAnswers()->attach($answer->id);
+            $score->userAnswers()->create($answer);
         }
 
         return response()->json($score->load('userAnswers'));
