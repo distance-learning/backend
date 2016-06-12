@@ -220,7 +220,7 @@ class TestsController extends Controller
 
                 switch ($question->type) {
                     case 'single': {
-                        $result = $question->ansers->where('id', $answers[0])->where('is_correct', true)->first();
+                        $result = $question->answers->where('id', $answers[0])->where('is_correct', true)->first();
 
                         if (!$result) {
                             $correctQ = false;
