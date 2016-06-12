@@ -338,7 +338,7 @@ class TestsController extends Controller
         $timestamp = Carbon::now()->getTimestamp();
 
         $xls = \Excel::create('test_answers_' . $timestamp, function ($excel) use ($test) {
-            $excel->sheet('Запитання до тесту ' . $test->name, function ($sheet) use ($test) {
+            $excel->sheet(substr($test->name, 0, 31), function ($sheet) use ($test) {
                 $sheet->row(1, [
                     'Запитання',
                     'Кількість часу на запитання (в секундах)',
