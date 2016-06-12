@@ -343,6 +343,7 @@ class TestsController extends Controller
                     'Запитання',
                     'Кількість часу на запитання (в секундах)',
                     'Кількість відповідей',
+                    'Кількість балів за запитання',
                     'Відповіді:'
                 ]);
 
@@ -351,10 +352,11 @@ class TestsController extends Controller
                         strip_tags(trim($question->name)),
                         $question->time,
                         ($question->type == 'single') ? 'Одна' : 'Багато',
+                        $question->score,
                     ];
 
                     foreach ($question->answers as $answer) {
-                        $row[] = $answer->body;
+                        $row[] = strip_tags(trim($answer->body));
                     }
 
                     $sheet->row($key + 2, $row);
