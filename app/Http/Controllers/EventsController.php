@@ -69,9 +69,6 @@ class EventsController extends Controller
      *
      * @apiHeader {String} Authorization User auth token
      *
-     * @apiParam {String} year Year
-     * @apiParam {String} month Month
-     *
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
@@ -86,14 +83,12 @@ class EventsController extends Controller
                 ->where('deadline', '<=', $plusThreeDays)
                 ->where('recipient_id', $user->id)
                 ->get()
-                ->load('attachment')
             ;
         } else {
             $notifications = Event::where('deadline', '>=', $today)
                 ->where('deadline', '<=', $plusThreeDays)
                 ->where('sender_id', $user->id)
                 ->get()
-                ->load('attachment')
             ;
         }
 

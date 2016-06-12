@@ -3993,26 +3993,6 @@ define({ "api": [
         ]
       }
     },
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "<p>String</p> ",
-            "optional": false,
-            "field": "year",
-            "description": "<p>Year</p> "
-          },
-          {
-            "group": "Parameter",
-            "type": "<p>String</p> ",
-            "optional": false,
-            "field": "month",
-            "description": "<p>Month</p> "
-          }
-        ]
-      }
-    },
     "version": "0.0.0",
     "filename": "app/Http/Controllers/EventsController.php",
     "groupTitle": "Events",
