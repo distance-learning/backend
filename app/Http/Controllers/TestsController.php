@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\File;
 use App\Score;
 use App\Test;
 use App\UserAnswer;
@@ -349,11 +350,11 @@ class TestsController extends Controller
                     $sheet->row($key + 2, $row);
                 }
             });
-        })->store('xls', public_path('/uploads/xls'));
+        })->store('xls', public_path('uploads/xls'));
 
-        $file = \File::create([
+        $file = File::create([
             'filename' => 'Запитання до тесту ' . $test->name,
-            'path' => null,
+            'path' => "/uploads/xls/{$xls->filename}.{$xls->ext}",
             'author_id' => $request->user()->id,
             'content_type' => 'xls',
         ]);
