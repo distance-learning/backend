@@ -232,6 +232,53 @@
     "name": "GetApiAdminCoursesId"
   },
   {
+    "type": "get",
+    "url": "/api/admin/courses/search",
+    "title": "Search courses",
+    "sampleRequest": [
+      {
+        "url": "/api/admin/courses/search"
+      }
+    ],
+    "description": "<p>Search courses</p> ",
+    "group": "Admin_Courses",
+    "permission": [
+      {
+        "name": "administrator, university_administrator"
+      }
+    ],
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authorization",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "search",
+            "description": "<p>Search param</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/Admin/CoursesController.php",
+    "groupTitle": "Admin_Courses",
+    "name": "GetApiAdminCoursesSearch"
+  },
+  {
     "type": "post",
     "url": "/api/admin/courses",
     "title": "Create new course",
