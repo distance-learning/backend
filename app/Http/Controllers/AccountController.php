@@ -257,7 +257,9 @@ class AccountController extends Controller
      */
     public function getModulesAction(Request $request)
     {
-        $moduleGroups = $request->user()->moduleGroups->load('modules')->sortBy('id');
+        $moduleGroups = $request->user()->moduleGroups->load(['modules' => function ($query) {
+            return $query->orderBy('id');
+        }])->sortBy('id');
         $tests = $request->user()->tests;
 
         return response()->json([
