@@ -177,6 +177,12 @@ class TestsController extends Controller
     {
         $questions = $test->questions->where('is_active', true)->load('answers')->shuffle()->splice(0, $test->count_questions);
 
+        $test = Test::whereHas('questions', function ($query) {
+            $query->answers;
+            return $query->where('is_active', true);
+        })->find($test->id)->shuffle()->splice(0, $test->count_questions);
+        //TODO need remove
+
         return response()->json([
             "questions" => $questions,
             "test" => $test
