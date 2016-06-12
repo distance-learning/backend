@@ -200,44 +200,50 @@ class TestsController extends Controller
     public function checkCompletedTestsAction(Request $request, Test $test)
     {
         $questions = $test->questions;
-        $answers = $request->get('answers');
+        $questionsFromRequest = $request->get('questions');
         $score = 0;
         $user = $request->user();
         $userAnswers = new Collection();
 
-        foreach ($answers as $key => $answer) {
-            $question = $questions->where('id', $key);
+        foreach ($questionsFromRequest as $question) {
+            $question = $questions->where('id', $question['question_id']);
             $correctQ = false;
 
             if (!$question) {
                 continue;
             }
 
-            if (is_array($answer)) {
-                $answers_in_question = $answer;
+            $answers = $question['answers'];
+
+            if (count($answers) > 0) {
                 $correctQ = true;
 
-                foreach ($answers_in_question as $answer) {
-                    $result = $question->answers->where('id', $answer)->where('is_correct', true);
+                switch ($question->type) {
+                    case 'single': {
+                        $result = $question->ansers->where('id', $answers[0])->where('is_correct', true);
 
-                    if (!$result) {
-                        $correctQ = false;
-                        break;
+                        if (!$result) {
+                            $correctQ = false;
+                        }
                     }
+                        break;
+
+                    case 'multiselect': {
+                        foreach ($answers as $answer) {
+                            $result = $question->answers->where('id', $answer)->where('is_correct', true);
+
+                            if (!$result) {
+                                $correctQ = false;
+                                break;
+                            }
+                        }
+                    }
+                        break;
                 }
 
                 if ($correctQ) {
                     $score += $question->score;
                 }
-
-                continue;
-            }
-
-            $result = $result = $question->answers->where('id', $answer)->where('is_correct', 1);
-
-            if ($result) {
-                $score += $question->score;
-                $correctQ = true;
             }
 
             $userAnswers->add(UserAnswer::create([
