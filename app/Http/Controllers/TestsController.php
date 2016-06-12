@@ -205,15 +205,15 @@ class TestsController extends Controller
         $user = $request->user();
         $userAnswers = new Collection();
 
-        foreach ($questionsFromRequest as $question) {
-            $question = $questions->where('id', $question['question_id']);
+        foreach ($questionsFromRequest as $questionFromRequest) {
+            $question = $questions->where('id', $questionFromRequest['question_id']);
             $correctQ = false;
 
             if (!$question) {
                 continue;
             }
 
-            $answers = $question['answers'];
+            $answers = $questionFromRequest['answers'];
 
             if (count($answers) > 0) {
                 $correctQ = true;
