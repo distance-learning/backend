@@ -338,7 +338,7 @@ class TestsController extends Controller
 
                 foreach ($test->questions as $key => $question) {
                     $row = [
-                        $question->name,
+                        strip_tags(trim($question->name)),
                         $question->time,
                         ($question->type == 'single') ? 'Одна' : 'Багато',
                     ];
