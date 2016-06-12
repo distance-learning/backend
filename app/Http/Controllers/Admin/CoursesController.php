@@ -141,6 +141,7 @@ class CoursesController extends Controller
             ->orWhereHas('teacher', function ($query) use ($search) {
                 return $query->where('surname', 'LIKE', '%' . $search . '%')->orWhere('name', 'LIKE', '%' . $search . '%');
             })
+            ->with('subject', 'group', 'teacher')
             ->get();
         ;
 
