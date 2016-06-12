@@ -3971,6 +3971,55 @@ define({ "api": [
   },
   {
     "type": "get",
+    "url": "/api/events/notifications",
+    "title": "Get notifications",
+    "sampleRequest": [
+      {
+        "url": "/api/events/notifications"
+      }
+    ],
+    "description": "<p>Get notifications</p> ",
+    "group": "Events",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>User auth token</p> "
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "year",
+            "description": "<p>Year</p> "
+          },
+          {
+            "group": "Parameter",
+            "type": "<p>String</p> ",
+            "optional": false,
+            "field": "month",
+            "description": "<p>Month</p> "
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/EventsController.php",
+    "groupTitle": "Events",
+    "name": "GetApiEventsNotifications"
+  },
+  {
+    "type": "get",
     "url": "/api/faculties",
     "title": "Get paginated faculties",
     "sampleRequest": [
@@ -5954,7 +6003,7 @@ define({ "api": [
             "group": "Parameter",
             "type": "<p>Boolean</p> ",
             "optional": false,
-            "field": "answers.isCorrectly",
+            "field": "answers.is_correct",
             "description": "<p>Answer correct</p> "
           }
         ]

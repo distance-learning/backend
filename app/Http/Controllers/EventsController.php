@@ -60,4 +60,47 @@ class EventsController extends Controller
 
         return response()->json($events);
     }
+
+    /**
+     * @api {get} /api/events/notifications Get notifications
+     * @apiSampleRequest /api/events/notifications
+     * @apiDescription Get notifications
+     * @apiGroup Events
+     *
+     * @apiHeader {String} Authorization User auth token
+     *
+     * @apiParam {String} year Year
+     * @apiParam {String} month Month
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getNotificationsAction(Request $request)
+    {
+        $today = Carbon::now();
+        $plusThreeDays = $today->addDay(3);
+        $user = $request->user();
+
+        if ($user->isStudent()) {
+            $notifications = Event::where('deadline', '>=', $today)
+                ->where('deadline', '<=', $plusThreeDays)
+                ->where('recipient_id', $user->id)
+                ->get()
+                ->load('attachment')
+            ;
+        } else {
+            $notifications = Event::where('deadline', '>=', $today)
+                ->where('deadline', '<=', $plusThreeDays)
+                ->where('sender_id', $user->id)
+                ->get()
+                ->load('attachment')
+            ;
+        }
+
+        foreach ($notifications->attachment as $notification) {
+            $notification->attachment;
+        }
+
+        return response()->json($notifications);
+    }
 }

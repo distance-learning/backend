@@ -49,6 +49,7 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
 
         Route::group(['prefix' => 'events'], function () {
             Route::get('/', 'EventsController@getEventsByInterval');
+            Route::get('/notifications', 'EventsController@getNotificationsAction');
         });
 
         Route::group(['prefix' => 'files'], function () {
