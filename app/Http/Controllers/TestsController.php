@@ -206,7 +206,7 @@ class TestsController extends Controller
         $userAnswers = new Collection();
 
         foreach ($questionsFromRequest as $questionFromRequest) {
-            $question = $questions->where('id', $questionFromRequest['question_id']);
+            $question = $questions->where('id', $questionFromRequest['question_id'])->first();
             $correctQ = false;
 
             if (!$question) {
@@ -220,7 +220,7 @@ class TestsController extends Controller
 
                 switch ($question->type) {
                     case 'single': {
-                        $result = $question->ansers->where('id', $answers[0])->where('is_correct', true);
+                        $result = $question->ansers->where('id', $answers[0])->where('is_correct', true)->first();
 
                         if (!$result) {
                             $correctQ = false;
@@ -230,7 +230,7 @@ class TestsController extends Controller
 
                     case 'multiselect': {
                         foreach ($answers as $answer) {
-                            $result = $question->answers->where('id', $answer)->where('is_correct', true);
+                            $result = $question->answers->where('id', $answer)->where('is_correct', true)->first();
 
                             if (!$result) {
                                 $correctQ = false;
