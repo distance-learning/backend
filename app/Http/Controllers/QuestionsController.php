@@ -76,7 +76,7 @@ class QuestionsController extends Controller
             'score' => $request->get('score'),
             'time'  => $request->get('time'),
             'is_skip' => $request->get('is_skip'),
-            'is_active' => $request->get('is_active'),
+            'is_active' => $request->get('is_active', false),
         ]);
 
         return response()->json($question);
@@ -113,12 +113,12 @@ class QuestionsController extends Controller
     public function updateQuestionAction(Request $request, Test $test, Question $question)
     {
         $question->update([
-            'name' => $request->get('question')['name'],
-            'type' => $request->get('question')['type'],
-            'score' => $request->get('question')['score'],
-            'time' => $request->get('question')['time'],
-            'is_skip' => $request->get('question')['is_skip'],
-            'is_active' => $request->get('question')['is_active'],
+            'name' => $request->get('question.name'),
+            'type' => $request->get('question.type'),
+            'score' => $request->get('question.score'),
+            'time' => $request->get('question.time'),
+            'is_skip' => $request->get('question.is_skip'),
+            'is_active' => $request->get('question.is_active', false),
         ]);
 
 //        $question->answers()->delete();
