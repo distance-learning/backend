@@ -309,13 +309,11 @@ class TestsController extends Controller
     {
         $from_date = $request->get('from_date');
         $to_date = $request->get('to_date');
-//        $from_date = Carbon::createFromTimestamp($from_date);
-//        $to_date = Carbon::createFromTimestamp($to_date);
 
         $scores = Score::where('test_id', $request->get('test_id'))
             ->where('created_at', '>=', $from_date)
             ->where('created_at', '<=', $to_date)
-            ->with('student.group', 'userAnswers')
+            ->with('student.group', 'userAnswers.question')
             ->get();
         ;
 
