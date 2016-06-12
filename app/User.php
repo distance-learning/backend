@@ -105,6 +105,7 @@ class User extends Model implements AuthenticatableContract,
         'token',
         'new_password',
         'group_id',
+        'description',
     ];
 
     /**
