@@ -112,14 +112,13 @@ class QuestionsController extends Controller
      */
     public function updateQuestionAction(Request $request, Test $test, Question $question)
     {
-        $questionRequest = $request->get('question');
         $question->update([
-            'name' => $questionRequest->get('name'),
-            'type' => $questionRequest->get('type', 'single'),
-            'score' => $questionRequest->get('score', 0),
-            'time' => $questionRequest->get('time', 20),
-            'is_skip' => $questionRequest->get('is_skip', false),
-            'is_active' => $questionRequest->get('is_active', false),
+            'name' => $request->get('name'),
+            'type' => $request->get('type', 'single'),
+            'score' => $request->get('score', 0),
+            'time' => $request->get('time', 20),
+            'is_skip' => $request->get('is_skip', false),
+            'is_active' => $request->get('is_active', false),
         ]);
 
 //        $question->answers()->delete();
