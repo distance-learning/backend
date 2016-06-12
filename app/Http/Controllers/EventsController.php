@@ -92,8 +92,12 @@ class EventsController extends Controller
             ;
         }
 
-        foreach ($notifications->attachment as $notification) {
-            $notification->attachment;
+        foreach ($notifications as $notification) {
+            if (!($notification->attachment instanceof Task)) {
+                continue;
+            }
+
+            $notification->attachment->attachment;
         }
 
         return response()->json($notifications);
