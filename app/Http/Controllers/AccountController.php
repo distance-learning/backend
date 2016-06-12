@@ -258,7 +258,7 @@ class AccountController extends Controller
     public function getModulesAction(Request $request)
     {
         $moduleGroups = $request->user()->moduleGroups->load('modules')->sortBy('id');
-        $tests = $request->user()->structure->tests;
+        $tests = $request->user()->tests;
 
         return response()->json([
             "moduleGroups" => $moduleGroups,
@@ -288,5 +288,19 @@ class AccountController extends Controller
         $user->save();
 
         return response()->json($user->load('avatar'));
+    }
+
+    /**
+     * @api {get} /api/account/tests Get teacher tests
+     * @apiSampleRequest /api/account/tests
+     * @apiDescription Get teacher tests
+     * @apiGroup Account
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getTeacherTestsAction(Request $request)
+    {
+        return response()->json($request->user()->tests);
     }
 }

@@ -90,6 +90,7 @@ class TestsController extends Controller
             'time' => 0,
             'faculty_id' => $user->structure->id,
             'code' => md5(uniqid()) . rand(1, 100),
+            'created_by' => $user->id,
         ]);
 
         return response()->json($test);

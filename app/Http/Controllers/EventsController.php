@@ -79,15 +79,12 @@ class EventsController extends Controller
         $user = $request->user();
 
         if ($user->isStudent()) {
-            $notifications = Event::where('deadline', '>=', $today)
-                ->where('deadline', '<=', $plusThreeDays)
-                ->where('recipient_id', $user->id)
-                ->get()
-            ;
+            $notifications = Event::where('deadline', '>=', $today)->where('deadline', '<=', $plusThreeDays)->where('recipient_id', $user->id)->get();
         } else {
             $notifications = Event::where('deadline', '>=', $today)
                 ->where('deadline', '<=', $plusThreeDays)
                 ->where('sender_id', $user->id)
+                ->with('recipient.group')
                 ->get()
             ;
         }

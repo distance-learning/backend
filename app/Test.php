@@ -46,7 +46,8 @@ class Test extends Model
         'code',
         'allow_skip',
         'allow_export',
-        'count_questions'
+        'count_questions',
+        'created_by'
     ];
 
     /**
@@ -84,5 +85,13 @@ class Test extends Model
     public function scores()
     {
         return $this->hasMany(Score::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function author()
+    {
+        return $this->belongsTo(User::class, 'created_by');
     }
 }

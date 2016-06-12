@@ -1,5 +1,21 @@
 [
   {
+    "type": "get",
+    "url": "/api/account/tests",
+    "title": "Get teacher tests",
+    "sampleRequest": [
+      {
+        "url": "/api/account/tests"
+      }
+    ],
+    "description": "<p>Get teacher tests</p> ",
+    "group": "Account",
+    "version": "0.0.0",
+    "filename": "app/Http/Controllers/AccountController.php",
+    "groupTitle": "Account",
+    "name": "GetApiAccountTests"
+  },
+  {
     "type": "post",
     "url": "/api/account/image",
     "title": "Set avatar for current user",

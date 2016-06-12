@@ -266,4 +266,9 @@ class User extends Model implements AuthenticatableContract,
     {
         return ($this->role == "admin")?:false;
     }
+
+    public function tests()
+    {
+        return $this->hasMany(Test::class, 'created_by');
+    }
 }
