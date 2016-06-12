@@ -73,9 +73,9 @@ class QuestionsController extends Controller
             'test_id' => $test->id,
             'image' => '',
             'code' => md5(uniqid('questions_')) . rand(1, 1000),
-            'score' => $request->get('score'),
-            'time'  => $request->get('time'),
-            'is_skip' => $request->get('is_skip'),
+            'score' => $request->get('score', 0),
+            'time'  => $request->get('time', 0),
+            'is_skip' => $request->get('is_skip', false),
             'is_active' => $request->get('is_active', false),
         ]);
 
@@ -113,11 +113,11 @@ class QuestionsController extends Controller
     public function updateQuestionAction(Request $request, Test $test, Question $question)
     {
         $question->update([
-            'name' => $request->get('question.name'),
-            'type' => $request->get('question.type'),
-            'score' => $request->get('question.score'),
-            'time' => $request->get('question.time'),
-            'is_skip' => $request->get('question.is_skip'),
+            'name' => $request->get('question.name', 'First'),
+            'type' => $request->get('question.type', 'single'),
+            'score' => $request->get('question.score', 0),
+            'time' => $request->get('question.time', 20),
+            'is_skip' => $request->get('question.is_skip', false),
             'is_active' => $request->get('question.is_active', false),
         ]);
 
