@@ -61,6 +61,7 @@ class AdminUsersTest extends TestCase
             'status' => false,
             'description' => null,
             'deleted_at' => null,
+            'avatar' => null,
         ]);
 
         $statusCode = $request->response->getStatusCode();
@@ -105,10 +106,11 @@ class AdminUsersTest extends TestCase
         $user = json_decode($request->response->getContent(), 1);
 
         $content = array_merge($content, [
-            'avatar' => null,
+            'avatar_id' => null,
             'description' => null,
             'deleted_at' => null,
             'group' => null,
+            'avatar' => null,
         ]);
 
         $this->assertEquals(200, $statusCode);

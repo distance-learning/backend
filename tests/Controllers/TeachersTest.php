@@ -74,7 +74,8 @@ class TeachersTest extends TestCase
         $teacher = $teacher->toArray();
         $teacher = array_merge($teacher, [
             'deleted_at' => null,
-            'status'   => true
+            'status'   => true,
+            'avatar' => null,
         ]);
 
         $this->assertEquals(200, $statusCode);

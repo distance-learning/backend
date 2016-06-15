@@ -62,6 +62,11 @@ class AdminFacultiesTest extends TestCase
         $content = json_decode($request->response->getContent(), 1);
         $statusCode = $request->response->getStatusCode();
 
+        $content = array_merge($content, [
+            'directions' => [],
+            'avatar' => null,
+        ]);
+
         $faculty = $faculty->toArray();
 
         $this->assertEquals(200, $statusCode);
@@ -107,6 +112,8 @@ class AdminFacultiesTest extends TestCase
         $content = array_merge($content, [
             'deleted_at' => null,
             'avatar'     => null,
+            'avatar_id' => null,
+            'directions' => [],
         ]);
 
         $this->assertEquals(200, $statusCode);

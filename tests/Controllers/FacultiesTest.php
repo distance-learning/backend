@@ -73,6 +73,7 @@ class FacultiesTest extends TestCase
         $faculty = array_merge($faculty, [
             'deleted_at' => null,
             'directions' => [],
+            'avatar' => null,
         ]);
 
         $this->assertEquals(200, $statusCode);
