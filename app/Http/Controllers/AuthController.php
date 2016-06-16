@@ -132,7 +132,7 @@ class AuthController extends Controller
                 'birthday'  => $request->get('birthday'),
                 'active'  =>  1,
                 'role'   =>   'student',
-                'structure_id'  =>  $request->get('faculty_id'),
+                'structure_id'  =>  $request->get('faculty_id', null),
                 'structure_type' => 'App\\Faculty'
             ]);
 
