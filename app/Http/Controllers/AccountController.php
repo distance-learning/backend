@@ -201,6 +201,10 @@ class AccountController extends Controller
         $user = $request->user();
 
         if ($user->isStudent()) {
+            if (!$user->group) {
+                return response()->json([], 200);
+            }
+
             $courses = $user->group->courses->where('is_active', true)->load('subject', 'teacher.avatar');
 
             return response()->json($courses);
