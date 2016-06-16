@@ -34,7 +34,12 @@ class TestsController extends Controller
     public function getTestsAction(Request $request)
     {
         $user = $request->user();
-        $tests = Test::where('faculty_id', $user->structure->id)->orderBy('id')->paginate(10);
+
+        if ($user->isAdmin()) {
+            $tests = Test::orderBy('id')->paginate($request->get('count', 10));
+        } else {
+            $tests = Test::where('faculty_id', $user->structure->id)->orderBy('id')->paginate($request->get('count', 10));
+        }
 
         return response()->json($tests);
     }
