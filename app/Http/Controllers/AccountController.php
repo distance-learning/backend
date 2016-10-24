@@ -236,13 +236,13 @@ class AccountController extends Controller
                 $subjects[$course->subject->id]['groups'][] = $course->group->load('students');
             }
 
-            $subjectsCopy = [];
+//            $subjectsCopy = [];
+//
+//            foreach ($subjects as $subject) {
+//                $subjectsCopy[] = $subject;
+//            }
 
-            foreach ($subjects as $subject) {
-                $subjectsCopy[] = $subject;
-            }
-
-            return response()->json($subjectsCopy);
+            return response()->json($subjects);
         }
 
         return response()->json(null, 400);
