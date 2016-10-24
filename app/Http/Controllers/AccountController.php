@@ -233,8 +233,11 @@ class AccountController extends Controller
             $subjects = [];
 
             foreach ($user->courses as $course) {
-                $subjects[$course->subject->id] = $course->subject->toArray();
-                $subjects[$course->subject->id]['groups'][$course->group->id] = $course->group->load('students');
+                if (!array_key_exists($course->subject->id, $subjects)) {
+                    $subjects[$course->subject->id] = $course->subject->toArray();
+                }
+
+                $subjects[$course->subject->id]['groups'][] = $course->group->load('students');
             }
 
 //            $subjectsCopy = [];
