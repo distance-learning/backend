@@ -8,6 +8,7 @@ use App\Traits\FileUpload;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 /**
  * Class AccountController
@@ -234,7 +235,7 @@ class AccountController extends Controller
             foreach ($user->courses as $course) {
                 $subjects[$course->subject->id] = $course->subject->toArray();
                 $subjects[$course->subject->id]['groups'][] = $course->group->load('students');
-                var_dump($course->group);
+                Log::debug("subjects data: " . var_export($course->group->load('students')->toArray()));
             }
 
 //            $subjectsCopy = [];
