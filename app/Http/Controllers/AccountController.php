@@ -234,8 +234,7 @@ class AccountController extends Controller
 
             foreach ($user->courses as $course) {
                 $subjects[$course->subject->id] = $course->subject->toArray();
-                $subjects[$course->subject->id]['groups'][] = $course->group->load('students');
-                Log::debug("subjects data: " . var_export($course->group->load('students')->toArray()));
+                $subjects[$course->subject->id]['groups'][$course->group->id] = $course->group->load('students');
             }
 
 //            $subjectsCopy = [];
