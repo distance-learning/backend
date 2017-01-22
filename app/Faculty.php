@@ -2,8 +2,6 @@
 
 namespace App;
 
-use Cviebrock\EloquentSluggable\SluggableInterface;
-use Cviebrock\EloquentSluggable\SluggableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -36,9 +34,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\Faculty whereAvatarId($value)
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Test[] $tests
  */
-class Faculty extends Model implements SluggableInterface
+class Faculty extends Model
 {
-    use SluggableTrait, SoftDeletes;
+    use SoftDeletes;
 
     /**
      * @var bool
@@ -54,6 +52,17 @@ class Faculty extends Model implements SluggableInterface
         'avatar',
         'examinations'
     ];
+
+    /**
+     * @return array
+     */
+    public function sluggable() {
+        return [
+            'slug' => [
+                'source' => 'name',
+            ]
+        ];
+    }
 
     /**
      * @var array

@@ -2,8 +2,7 @@
 
 namespace App;
 
-use Cviebrock\EloquentSluggable\SluggableInterface;
-use Cviebrock\EloquentSluggable\SluggableTrait;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -28,9 +27,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Direction findBySlug($slug)
  * @mixin \Eloquent
  */
-class Direction extends Model implements SluggableInterface
+class Direction extends Model
 {
-    use SluggableTrait;
+    use Sluggable;
 
     /**
      * @var array
@@ -47,12 +46,16 @@ class Direction extends Model implements SluggableInterface
     public $timestamps = false;
 
     /**
-     * @var array
+     * @return array
      */
-    protected $sluggable = [
-        'build_from' => 'name',
-        'save_to'    => 'slug',
-    ];
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'name',
+            ],
+        ];
+    }
 
     /**
      * @return string

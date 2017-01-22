@@ -46,14 +46,12 @@ class AccountController extends Controller
         if ($user->isStudent()) {
             $user = $request
                 ->user()
-                ->load('group.courses')
-            ;
+                ->load('group.courses');
         } elseif ($user->isTeacher()) {
             $user = $request
                 ->user()
                 ->load('courses.group')
-                ->load('courses.subject')
-            ;
+                ->load('courses.subject');
         }
 
         return response()->json($user->load('avatar'));

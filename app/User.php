@@ -2,8 +2,7 @@
 
 namespace App;
 
-use Cviebrock\EloquentSluggable\SluggableInterface;
-use Cviebrock\EloquentSluggable\SluggableTrait;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -11,7 +10,6 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
-use Illuminate\Support\Facades\Hash;
 
 /**
  * Class User
@@ -74,10 +72,9 @@ use Illuminate\Support\Facades\Hash;
  */
 class User extends Model implements AuthenticatableContract,
                                     AuthorizableContract,
-                                    CanResetPasswordContract,
-                                    SluggableInterface
+                                    CanResetPasswordContract
 {
-    use Authenticatable, Authorizable, CanResetPassword, SluggableTrait;
+    use Authenticatable, Authorizable, CanResetPassword, Sluggable;
 
     /**
      * The database table used by the model.
@@ -123,17 +120,24 @@ class User extends Model implements AuthenticatableContract,
         'group_id'
     ];
 
+    /**
+     * @var array
+     */
     protected $casts = [
         'status' => 'boolean',
     ];
 
     /**
-     * @var array
+     * @return array
      */
-    protected $sluggable = [
-        'build_from' => 'fullname',
-        'save_to'    => 'slug',
-    ];
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'fullname'
+            ],
+        ];
+    }
 
     /**
      * @var array

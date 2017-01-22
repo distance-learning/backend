@@ -3,8 +3,7 @@
 namespace App;
 
 use Carbon\Carbon;
-use Cviebrock\EloquentSluggable\SluggableInterface;
-use Cviebrock\EloquentSluggable\SluggableTrait;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -28,9 +27,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Group whereDeletedAt($value)
  * @mixin \Eloquent
  */
-class Group extends Model implements SluggableInterface
+class Group extends Model
 {
-    use SluggableTrait;
+    use Sluggable;
 
     /**
      * @var array
@@ -39,6 +38,15 @@ class Group extends Model implements SluggableInterface
         'build_from' => 'name',
         'save_to'    => 'slug',
     ];
+
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'name',
+            ],
+        ];
+    }
 
     /**
      * @var array
