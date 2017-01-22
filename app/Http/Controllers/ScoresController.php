@@ -27,7 +27,7 @@ class ScoresController extends Controller
      */
     public function getScoresAction(Request $request, Test $test)
     {
-        $scores = $test->scores();
+        $scores = $test->scores->sortBy('id', 'DESC');
 
         return response()->json($scores);
     }

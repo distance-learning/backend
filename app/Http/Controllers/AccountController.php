@@ -8,6 +8,7 @@ use App\Traits\FileUpload;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 /**
  * Class AccountController
@@ -199,6 +200,10 @@ class AccountController extends Controller
         $user = $request->user();
 
         if ($user->isStudent()) {
+            if (!$user->group) {
+                return response()->json([], 200);
+            }
+
             $courses = $user->group->courses->where('is_active', true)->load('subject', 'teacher.avatar');
 
             return response()->json($courses);
@@ -226,17 +231,20 @@ class AccountController extends Controller
             $subjects = [];
 
             foreach ($user->courses as $course) {
-                $subjects[$course->subject->id] = $course->subject->toArray();
+                if (!array_key_exists($course->subject->id, $subjects)) {
+                    $subjects[$course->subject->id] = $course->subject->toArray();
+                }
+
                 $subjects[$course->subject->id]['groups'][] = $course->group->load('students');
             }
 
-            $subjectsCopy = [];
+//            $subjectsCopy = [];
+//
+//            foreach ($subjects as $subject) {
+//                $subjectsCopy[] = $subject;
+//            }
 
-            foreach ($subjects as $subject) {
-                $subjectsCopy[] = $subject;
-            }
-
-            return response()->json($subjectsCopy);
+            return response()->json($subjects);
         }
 
         return response()->json(null, 400);
