@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Auth\Authenticatable;

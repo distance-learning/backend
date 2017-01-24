@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
@@ -15,16 +15,16 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $description
  * @property integer $faculty_id
  * @property string $deleted_at
- * @property-read \App\User $faculty
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Subject[] $subjects
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Group[] $groups
- * @method static \Illuminate\Database\Query\Builder|\App\Direction whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Direction whereName($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Direction whereSlug($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Direction whereDescription($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Direction whereFacultyId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Direction whereDeletedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Direction findBySlug($slug)
+ * @property-read User $faculty
+ * @property-read Collection|Subject[] $subjects
+ * @property-read Collection|Group[] $groups
+ * @method static Builder|Direction whereId($value)
+ * @method static Builder|Direction whereName($value)
+ * @method static Builder|Direction whereSlug($value)
+ * @method static Builder|Direction whereDescription($value)
+ * @method static Builder|Direction whereFacultyId($value)
+ * @method static Builder|Direction whereDeletedAt($value)
+ * @method static Builder|Direction findBySlug($slug)
  * @mixin \Eloquent
  */
 class Direction extends Model

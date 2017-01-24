@@ -4,10 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
-use Auth;
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\User;
+use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 
 /**

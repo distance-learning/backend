@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Faculty;
+use App\Models\Faculty;
 use Illuminate\Http\Request;
-use App\Http\Requests;
 
 class FacultiesController extends Controller
 {

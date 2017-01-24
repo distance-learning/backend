@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\File;
+use App\Models\File;
 use App\Traits\FileUpload;
 use Illuminate\Http\Request;
-use App\Http\Requests;
 
 /**
  * Class FilesController

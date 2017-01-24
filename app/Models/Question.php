@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -34,6 +34,12 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Question extends Model
 {
+    const SINGLE_TYPE = 'single';
+    const MULTISELECT_TYPE = 'multiselect';
+    const WRITE_RESULT_TYPE = 'write-result';
+    const TO_MATCH = 'to-match';
+    const YES_OR_NO_TYPE = 'yes-or-no';
+
     /**
      * @var array
      */

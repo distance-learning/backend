@@ -2,7 +2,7 @@
 
 namespace App\Traits;
 
-use App\Course;
+use App\Models\Course;
 use Illuminate\Http\Request;
 
 /**

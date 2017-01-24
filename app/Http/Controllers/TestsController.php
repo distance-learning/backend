@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\File;
-use App\Score;
-use App\Test;
-use App\UserAnswer;
-use Carbon\Carbon;
+use App\Models\File;
+use App\Models\Score;
+use App\Service\TestAnswersExport;
+use App\Service\TestsResultService;
+use App\Models\Test;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
-use App\Http\Requests;
-use Maatwebsite\Excel\Facades\Excel;
 
 class TestsController extends Controller
 {
@@ -38,7 +36,11 @@ class TestsController extends Controller
         if ($user->isAdmin()) {
             $tests = Test::orderBy('id')->paginate($request->get('count', 10));
         } else {
-            $tests = Test::where('faculty_id', $user->structure->id)->orderBy('id')->paginate($request->get('count', 10));
+            $tests = Test::where('faculty_id', $user->structure->id)
+                ->orderBy('id')
+                ->paginate(
+                    $request->get('count', 10)
+                );
         }
 
         return response()->json($tests);
@@ -64,9 +66,9 @@ class TestsController extends Controller
      */
     public function getTestAction(Request $request, Test $test)
     {
-        $user = $request->user();
-
-        return response()->json($test->load('questions.answers'));
+        return response()->json(
+            $test->load('questions.answers')
+        );
     }
 
     /**
@@ -90,13 +92,13 @@ class TestsController extends Controller
     {
         $user = $request->user();
 
-        $test = Test::create([
-            'name' => '',
-            'time' => 0,
-            'faculty_id' => $user->structure->id,
-            'code' => md5(uniqid()) . rand(1, 100),
-            'created_by' => $user->id,
-        ]);
+        $test = new Test();
+        $test->name = '';
+        $test->time = 0;
+        $test->faculty_id = $user->structure->id;
+        $test->code = md5(uniqid()) . rand(1, 100);
+        $test->created_by = $user->id;
+        $test->save();
 
         return response()->json($test);
     }
@@ -121,17 +123,17 @@ class TestsController extends Controller
      * @apiError (500) error Returned if error on serve
      *
      * @param Request $request
+     * @param Test $test
      * @return \Illuminate\Http\JsonResponse
      */
     public function updateTestAction(Request $request, Test $test)
     {
-        $test->update([
-            'name' => $request->get('name'),
-            'time' => $request->get('time'),
-            'allow_skip' => $request->get('allow_skip'),
-            'allow_export' => $request->get('allow_export'),
-            'count_questions' => $request->get('count_questions'),
-        ]);
+        $test->name = $request->get('name');
+        $test->time = $request->get('time');
+        $test->allow_skip = $request->get('allow_skip');
+        $test->allow_export = $request->get('allow_export');
+        $test->count_questions = $request->get('count_questions');
+        $test->save();
 
         return response()->json($test);
     }
@@ -153,6 +155,7 @@ class TestsController extends Controller
      * @apiError (500) error Returned if error on serve
      *
      * @param Request $request
+     * @param Test $test
      * @return \Illuminate\Http\JsonResponse
      */
     public function deleteTestAction(Request $request, Test $test)
@@ -182,8 +185,10 @@ class TestsController extends Controller
      */
     public function getTestsForPassingAction(Request $request, Test $test)
     {
-        $questions = $test->questions->where('is_active', true)->load('answers')->shuffle()->splice(0, $test->count_questions);
-        $test = Test::find($test->id);
+        $questions = $test->questions->where('is_active', true)
+            ->load('answers')
+            ->shuffle()
+            ->splice(0, $test->count_questions);
 
         return response()->json([
             "questions" => $questions,
@@ -205,72 +210,21 @@ class TestsController extends Controller
      */
     public function checkCompletedTestsAction(Request $request, Test $test)
     {
+        /** @var Collection $questions */
         $questions = $test->questions;
+
+        /** @var array $questionsFromRequest */
         $questionsFromRequest = $request->get('questions');
-        $score = 0;
-        $scoreTotal = 0;
-        $user = $request->user();
-        $userAnswers = new Collection();
 
-        foreach ($questionsFromRequest as $questionFromRequest) {
-            $question = $questions->where('id', $questionFromRequest['question_id'])->first();
-            $correctQ = false;
+        /** @var TestsResultService $testsResultService */
+        $testsResultService = app(TestsResultService::class);
 
-            if (!$question) {
-                continue;
-            }
-
-            $answers = $questionFromRequest['answers'];
-
-            if (count($answers) > 0) {
-                $correctQ = true;
-
-                switch ($question->type) {
-                    case 'single': {
-                        $result = $question->answers->where('id', $answers[0])->where('is_correct', true)->first();
-
-                        if (!$result) {
-                            $correctQ = false;
-                        }
-                    }
-                        break;
-
-                    case 'multiselect': {
-                        foreach ($answers as $answer) {
-                            $result = $question->answers->where('id', $answer)->where('is_correct', true)->first();
-
-                            if (!$result) {
-                                $correctQ = false;
-                                break;
-                            }
-                        }
-                    }
-                        break;
-                }
-
-                if ($correctQ) {
-                    $score += $question->score;
-                }
-            }
-
-            $scoreTotal += $question->score;
-
-            $userAnswers->add([
-                'question_id' => $question->id,
-                'is_correct' => $correctQ,
-            ]);
-        }
-
-        $score = Score::create([
-            'score' => $score,
-            'student_id' => $user->id,
-            'test_id' => $test->id,
-            'score_total' => $scoreTotal
-        ]);
-
-        foreach ($userAnswers as $answer) {
-            $score->userAnswers()->create($answer);
-        }
+        /** @var Score $score */
+        $score = $testsResultService->processResult(
+            $questions,
+            $test,
+            $questionsFromRequest
+        );
 
         return response()->json($score->load('userAnswers'));
     }
@@ -339,41 +293,11 @@ class TestsController extends Controller
      */
     public function getTestAnswersAction(Request $request, Test $test)
     {
-        $timestamp = Carbon::now()->getTimestamp();
+        /** @var TestAnswersExport $testAnswersExport */
+        $testAnswersExport = app(TestAnswersExport::class);
 
-        $xls = \Excel::create('test_answers_' . $timestamp, function ($excel) use ($test) {
-            $excel->sheet(substr($test->name, 0, 31), function ($sheet) use ($test) {
-                $sheet->row(1, [
-                    'Запитання',
-                    'Кількість часу на запитання (в секундах)',
-                    'Кількість відповідей',
-                    'Кількість балів за запитання',
-                    'Відповіді:'
-                ]);
-
-                foreach ($test->questions as $key => $question) {
-                    $row = [
-                        strip_tags(trim($question->name)),
-                        $question->time,
-                        ($question->type == 'single') ? 'Одна' : 'Багато',
-                        $question->score,
-                    ];
-
-                    foreach ($question->answers as $answer) {
-                        $row[] = strip_tags(trim($answer->body));
-                    }
-
-                    $sheet->row($key + 2, $row);
-                }
-            });
-        })->store('xls', public_path('uploads/xls'));
-
-        $file = File::create([
-            'filename' => 'Запитання до тесту ' . $test->name,
-            'path' => "/uploads/xls/{$xls->filename}.{$xls->ext}",
-            'author_id' => $request->user()->id,
-            'content_type' => 'xls',
-        ]);
+        /** @var File $file */
+        $file = $testAnswersExport->generate($test);
 
         return response()->json($file);
     }

@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Score;
-use App\Test;
+use App\Models\Test;
 use Illuminate\Http\Request;
-use App\Http\Requests;
 
 /**
  * Class ScoresController

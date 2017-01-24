@@ -2,34 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Faculty;
+use App\Models\Faculty;
 use App\Traits\FileUpload;
 use Illuminate\Http\Request;
-
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
 
 class FacultiesController extends Controller
 {
     use FileUpload;
-
-//    /**
-//     *
-//     */
-//    public function __construct()
-//    {
-//        $this->middleware('jwt.auth',
-//            [
-//                'only' => [
-//                    'postFacultyAction',
-//                    'putFacultyAction',
-//                    'deleteFacultyAction'
-//                ]
-//            ]
-//        );
-//    }
 
     /**
      * Display a listing of the resource.

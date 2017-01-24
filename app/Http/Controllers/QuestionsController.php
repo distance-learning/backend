@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Answer;
-use App\Question;
-use App\Test;
+use App\Models\Answer;
+use App\Models\Question;
+use App\Models\Test;
 use Illuminate\Http\Request;
-use App\Http\Requests;
 
 class QuestionsController extends Controller
 {

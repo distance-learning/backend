@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Faculty;
+use App\Models\Faculty;
 use App\Http\Controllers\Controller;
-use App\Subject;
+use App\Models\Subject;
 use Illuminate\Http\Request;
 
 /**

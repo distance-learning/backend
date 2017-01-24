@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Traits\CoursesTrait;
 use Illuminate\Http\Request;
-use App\Http\Requests;
 
 /**
  * Class CoursesController

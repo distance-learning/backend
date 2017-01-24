@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Subject;
-use App\Task;
+use App\Models\Subject;
+use App\Models\Task;
 use App\Traits\FileUpload;
 use Illuminate\Http\Request;
-use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 
 /**
  * Class AccountController

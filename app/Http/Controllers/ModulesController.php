@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Group;
-use App\Module;
-use App\ModuleGroup;
+use App\Models\Module;
+use App\Models\ModuleGroup;
 use Illuminate\Http\Request;
-use App\Http\Requests;
 
 /**
  * Class ModulesController

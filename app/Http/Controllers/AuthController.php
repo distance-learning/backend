@@ -3,16 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Events\ResetPasswordEvent;
-use App\Faculty;
-use App\User;
+use App\Models\Faculty;
+use App\Models\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Psy\Exception\Exception;
 
 /**
  * Class AuthController
@@ -57,6 +55,7 @@ class AuthController extends Controller
     public function loginAction(Request $request)
     {
         $credentials = $request->only('email', 'password');
+
         try {
             $user = User::where('email', $credentials['email'])->first();
 
@@ -71,12 +70,10 @@ class AuthController extends Controller
             return response()->json(null, 500);
         }
 
-        $data = [
+        return response()->json([
             'user' => $user,
             'token' => $token
-        ];
-
-        return response()->json($data);
+        ]);
     }
 
     /**
@@ -151,8 +148,8 @@ class AuthController extends Controller
 
             return response()->json($data);
         }  catch (QueryException $qe) {
-            if ($qe->errorInfo[1] == 1062) {
-                return response()->json('Email mush be unique', 422);
+            if ($qe->errorInfo[1] === 1062) {
+                return response()->json('Email must be unique', 422);
             }
         }
     }

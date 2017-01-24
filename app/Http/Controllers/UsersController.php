@@ -2,14 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\ResetPasswordEvent;
-use App\Http\Requests\UpdateUserRequest;
-use App\User;
-use Carbon\Carbon;
+use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Event;
-use Tymon\JWTAuth\Exceptions\JWTException;
-use Tymon\JWTAuth\Facades\JWTAuth;
 
 class UsersController extends Controller
 {

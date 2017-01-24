@@ -2,7 +2,7 @@
 
 namespace App\Traits;
 
-use App\File;
+use App\Models\File;
 use Illuminate\Http\Request;
 
 trait FileUpload

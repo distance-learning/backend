@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Course;
-use App\Subject;
+use App\Models\Course;
 use Illuminate\Http\Request;
-use App\Http\Requests;
 
 /**
  * Class SubjectsController

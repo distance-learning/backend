@@ -2,10 +2,13 @@
 
 namespace App\Providers;
 
-use App\Course;
-use App\File;
-use App\Module;
-use App\Test;
+use App\Models\Course;
+use App\Models\File;
+use App\Http\Requests\Request;
+use App\Models\Module;
+use App\Service\TestAnswersExport;
+use App\Service\TestsResultService;
+use App\Models\Test;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
 
@@ -26,6 +29,28 @@ class AppServiceProvider extends ServiceProvider
 
         Course::created(function (Course $course) {
             $course->name = $course->group->name . ' ' . $course->subject->name . ' ' . $course->teacher->full_name;
+        });
+
+        $this->registerServices();
+    }
+
+    /**
+     *
+     */
+    private function registerServices()
+    {
+        $this->app->singleton(TestsResultService::class, function () {
+            /** @var Request $request */
+            $request = app(Request::class);
+
+            return new TestsResultService($request->getUser());
+        });
+
+        $this->app->singleton(TestAnswersExport::class, function () {
+            /** @var Request $request */
+            $request = app(Request::class);
+
+            return new TestAnswersExport($request->getUser());
         });
     }
 

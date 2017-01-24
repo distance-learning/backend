@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\File;
-use App\Group;
-use App\Task;
+use App\Models\File;
+use App\Models\Group;
+use App\Models\Task;
 use Illuminate\Http\Request;
-use App\Http\Requests;
 
 /**
  * Class TasksController

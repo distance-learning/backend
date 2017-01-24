@@ -2,7 +2,8 @@
 
 namespace App\Providers;
 
-use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
+use App\Events\ResetPasswordEvent;
+use App\Listeners\ResetPasswordEmail;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
@@ -13,8 +14,8 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'App\Events\ResetPasswordEvent' => [
-            'App\Listeners\ResetPasswordEmail',
+        ResetPasswordEvent::class => [
+            ResetPasswordEmail::class,
         ],
 
     ];

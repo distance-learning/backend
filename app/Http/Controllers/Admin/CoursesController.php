@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Course;
+use App\Models\Course;
 use App\Traits\CoursesTrait;
 use Illuminate\Http\Request;
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 /**
