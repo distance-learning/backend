@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
+namespace Tests\Http\Controllers;
+
+use App\Models\User;
+use Tests\TestCase;
 
 class TeachersTest extends TestCase
 {
@@ -21,7 +22,7 @@ class TeachersTest extends TestCase
         $this->assertEquals(200, $statusCode);
         $this->assertCount(0, $content);
 
-        factory(App\User::class, 'teachers', 10)->create();
+        factory(User::class, 'teachers', 10)->create();
 
         $request = $this->get('/api/teachers/random');
 
@@ -45,7 +46,7 @@ class TeachersTest extends TestCase
         $this->assertEquals(200, $statusCode);
         $this->assertCount(0, $content);
 
-        factory(App\User::class, 'teachers', 10)->create();
+        factory(User::class, 'teachers', 10)->create();
 
         $request = $this->get('/api/teachers');
 
@@ -64,7 +65,7 @@ class TeachersTest extends TestCase
 
         $this->assertEquals(404, $statusCode);
 
-        $teacher = factory(App\User::class, 'teacher-active')->create();
+        $teacher = factory(User::class, 'teacher-active')->create();
 
         $request = $this->get('/api/teachers/user-test');
 
@@ -81,7 +82,7 @@ class TeachersTest extends TestCase
         $this->assertEquals(200, $statusCode);
         $this->assertEquals($teacher, $content);
 
-        factory(App\User::class, 'teacher-not-active')->create();
+        factory(User::class, 'teacher-not-active')->create();
 
         $request = $this->get('/api/teachers/user2-test');
 

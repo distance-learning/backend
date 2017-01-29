@@ -1,5 +1,12 @@
 <?php
 
+namespace Tests\Http\Controllers;
+
+use App\Models\Direction;
+use App\Models\Faculty;
+use App\Models\Group;
+use Tests\TestCase;
+
 class AdminDirectionsTest extends TestCase
 {
     public function testGetDirections()
@@ -16,8 +23,8 @@ class AdminDirectionsTest extends TestCase
         $this->assertCount(0, $content['data']);
         $this->assertEquals(200, $statusCode);
 
-        factory(App\Faculty::class, 1)->create();
-        factory(App\Direction::class, 10)->create();
+        factory(Faculty::class, 1)->create();
+        factory(Direction::class, 10)->create();
 
         $request = $this->get('/api/admin/directions', [
             'Authorization' => 'Bearer ' . $this->getAuthUserToken(),
@@ -29,7 +36,7 @@ class AdminDirectionsTest extends TestCase
         $this->assertCount(10, $content['data']);
         $this->assertEquals(200, $statusCode);
 
-        factory(App\Direction::class, 5)->create();
+        factory(Direction::class, 5)->create();
 
         $request = $this->get('/api/admin/directions', [
             'Authorization' => 'Bearer ' . $this->getAuthUserToken(),
@@ -45,7 +52,7 @@ class AdminDirectionsTest extends TestCase
 
     public function testCreateDirection()
     {
-        factory(App\Faculty::class, 1)->create();
+        factory(Faculty::class, 1)->create();
 
         $this->checkAuthPermission('post', '/api/admin/directions', [
             'name' => 'First',
@@ -90,8 +97,8 @@ class AdminDirectionsTest extends TestCase
 
         $this->assertEquals(404, $statusCode);
 
-        factory(App\Faculty::class, 1)->create();
-        $direction = factory(App\Direction::class, 'active')->create();
+        factory(Faculty::class, 1)->create();
+        $direction = factory(Direction::class, 'active')->create();
         $direction = $direction->toArray();
 
         $this->checkAuthPermission('get', '/api/admin/directions/test');
@@ -109,8 +116,8 @@ class AdminDirectionsTest extends TestCase
 
     public function testEditDirection()
     {
-        factory(App\Faculty::class, 2)->create();
-        $direction = factory(App\Direction::class, 'active')->create();
+        factory(Faculty::class, 2)->create();
+        $direction = factory(Direction::class, 'active')->create();
         $direction = $direction->toArray();
 
         $direction['name'] = 'Second';
@@ -150,8 +157,8 @@ class AdminDirectionsTest extends TestCase
 
     public function testDeleteDirectionAction()
     {
-        factory(App\Faculty::class, 2)->create();
-        factory(App\Direction::class, 'active')->create();
+        factory(Faculty::class, 2)->create();
+        factory(Direction::class, 'active')->create();
 
         $this->checkAuthPermission('delete', '/api/admin/directions/test');
 
@@ -188,9 +195,9 @@ class AdminDirectionsTest extends TestCase
 
         $this->assertEquals(404, $statusCode);
 
-        factory(App\Faculty::class, 1)->create();
-        factory(App\Direction::class, 'active')->create();
-        factory(App\Group::class, 20)->create();
+        factory(Faculty::class, 1)->create();
+        factory(Direction::class, 'active')->create();
+        factory(Group::class, 20)->create();
 
         $this->checkAuthPermission('get', '/api/admin/directions/test/groups');
 

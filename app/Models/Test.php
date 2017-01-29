@@ -13,17 +13,17 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer $time
  * @property integer $faculty_id
  * @property string $code
- * @property-read \App\Faculty $faculty
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Question[] $questions
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Score[] $scores
- * @method static \Illuminate\Database\Query\Builder|\App\Test whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Test whereName($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Test whereTime($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Test whereFacultyId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Test whereCode($value)
+ * @property-read Faculty $faculty
+ * @property-read Collection|Question[] $questions
+ * @property-read Collection|Score[] $scores
+ * @method static Builder|Test whereId($value)
+ * @method static Builder|Test whereName($value)
+ * @method static Builder|Test whereTime($value)
+ * @method static Builder|Test whereFacultyId($value)
+ * @method static Builder|Test whereCode($value)
  * @mixin \Eloquent
  * @property boolean $allow_skip
- * @method static \Illuminate\Database\Query\Builder|\App\Test whereAllowSkip($value)
+ * @method static Builder|Test whereAllowSkip($value)
  */
 class Test extends Model
 {

@@ -2,10 +2,16 @@
 
 namespace App\Models;
 
+use App\Events\CreatingUserEvent;
+use Carbon;
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Auth\Authenticatable;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
@@ -32,49 +38,53 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
  * @property string $password
  * @property string $deleted_at
  * @property string $remember_token
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  * @property string $new_password
  * @property integer $group_id
- * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $structure
- * @property-read \App\Group $group
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Course[] $courses
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Subject[] $subjects
+ * @property-read Model|Eloquent $structure
+ * @property-read Group $group
+ * @property-read Collection|Course[] $courses
+ * @property-read Collection|Subject[] $subjects
  * @property-read mixed $fullname
- * @method static \Illuminate\Database\Query\Builder|\App\User whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User whereName($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User whereSurname($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User whereAvatar($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User whereBirthday($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User wherePhone($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User whereSlug($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User whereRole($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User whereStructureId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User whereStructureType($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User whereEmail($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User whereToken($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User whereStatus($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User whereDescription($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User wherePassword($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User whereDeletedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User whereRememberToken($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User whereCreatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User whereUpdatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User whereNewPassword($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User whereGroupId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User active()
- * @mixin \Eloquent
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\File[] $files
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\ModuleGroup[] $moduleGroups
+ * @method static Builder|User whereId($value)
+ * @method static Builder|User whereName($value)
+ * @method static Builder|User whereSurname($value)
+ * @method static Builder|User whereAvatar($value)
+ * @method static Builder|User whereBirthday($value)
+ * @method static Builder|User wherePhone($value)
+ * @method static Builder|User whereSlug($value)
+ * @method static Builder|User whereRole($value)
+ * @method static Builder|User whereStructureId($value)
+ * @method static Builder|User whereStructureType($value)
+ * @method static Builder|User whereEmail($value)
+ * @method static Builder|User whereToken($value)
+ * @method static Builder|User whereStatus($value)
+ * @method static Builder|User whereDescription($value)
+ * @method static Builder|User wherePassword($value)
+ * @method static Builder|User whereDeletedAt($value)
+ * @method static Builder|User whereRememberToken($value)
+ * @method static Builder|User whereCreatedAt($value)
+ * @method static Builder|User whereUpdatedAt($value)
+ * @method static Builder|User whereNewPassword($value)
+ * @method static Builder|User whereGroupId($value)
+ * @method static Builder|User active()
+ * @mixin Eloquent
+ * @property-read Collection|File[] $files
+ * @property-read Collection|ModuleGroup[] $moduleGroups
  * @property integer $avatar_id
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Task[] $tasks
- * @method static \Illuminate\Database\Query\Builder|\App\User whereAvatarId($value)
+ * @property-read Collection|Task[] $tasks
+ * @method static Builder|User whereAvatarId($value)
  */
 class User extends Model implements AuthenticatableContract,
                                     AuthorizableContract,
                                     CanResetPasswordContract
 {
     use Authenticatable, Authorizable, CanResetPassword, Sluggable;
+
+    const STUDENT_ROLE = 'student';
+    const TEACHER_ROLE = 'teacher';
+    const ADMIN_ROLE = 'admin';
 
     /**
      * The database table used by the model.
@@ -128,6 +138,48 @@ class User extends Model implements AuthenticatableContract,
     ];
 
     /**
+     * @var array
+     */
+    public static $rulesRegistration = [
+        'name'  =>  'required',
+        'surname'  =>  'required',
+        'email'   =>  'required|email|unique:users',
+        'password'    =>   'required|confirmed'
+    ];
+
+    /**
+     * @var array
+     */
+    public static $rulesAuthorization = [
+        'email' => 'required|email',
+        'password' => 'required',
+    ];
+
+    /**
+     * @var array
+     */
+    public static $rulesResetPassword = [
+        'email' => 'required',
+        'password' => 'required|confirmed',
+    ];
+
+    /**
+     * @var array
+     */
+    public static $rulesUpdatePassword = [
+        'password' => 'required|confirmed',
+    ];
+
+    /**
+     * List of model events
+     *
+     * @var array
+     */
+    protected $events = [
+        'creating' => CreatingUserEvent::class,
+    ];
+
+    /**
      * @return array
      */
     public function sluggable()
@@ -138,16 +190,6 @@ class User extends Model implements AuthenticatableContract,
             ],
         ];
     }
-
-    /**
-     * @var array
-     */
-    public static $rules = [
-        'name'  =>  'required',
-        'surname'  =>  'required',
-        'email'   =>  'required|unique:users',
-        'password'    =>   'required|confirmed'
-    ];
 
     /**
      * @return string
@@ -196,6 +238,14 @@ class User extends Model implements AuthenticatableContract,
     public function subjects()
     {
         return $this->belongsToMany(Subject::class, 'teacher_subject', 'user_id', 'subject_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function faculty()
+    {
+        return $this->belongsTo(Faculty::class);
     }
 
     /**
@@ -262,16 +312,25 @@ class User extends Model implements AuthenticatableContract,
         return ($this->role == "teacher")?:false;
     }
 
+    /**
+     * @return bool
+     */
     public function isActive()
     {
         return $this->status?:false;
     }
 
+    /**
+     * @return bool
+     */
     public function isAdmin()
     {
         return ($this->role == "admin")?:false;
     }
 
+    /**
+     * @return HasMany
+     */
     public function tests()
     {
         return $this->hasMany(Test::class, 'created_by');

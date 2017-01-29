@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Events\CreatingUserEvent;
 use App\Events\ResetPasswordEvent;
+use App\Listeners\ChangeUserProfileData;
 use App\Listeners\ResetPasswordEmail;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -17,7 +19,9 @@ class EventServiceProvider extends ServiceProvider
         ResetPasswordEvent::class => [
             ResetPasswordEmail::class,
         ],
-
+        CreatingUserEvent::class => [
+            ChangeUserProfileData::class,
+        ]
     ];
 
     /**

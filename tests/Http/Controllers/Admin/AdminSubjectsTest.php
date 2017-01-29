@@ -1,5 +1,11 @@
 <?php
 
+namespace Tests\Http\Controllers;
+
+use App\Models\Faculty;
+use App\Models\Subject;
+use Tests\TestCase;
+
 class AdminSubjectsTest extends TestCase
 {
     public function testGetPaginatedSubjectsAction()
@@ -16,8 +22,8 @@ class AdminSubjectsTest extends TestCase
         $this->assertEquals(200, $statusCode);
         $this->assertCount(0, $content['data']);
 
-        factory(App\Faculty::class, 1)->create();
-        factory(App\Subject::class, 15)->create();
+        factory(Faculty::class, 1)->create();
+        factory(Subject::class, 15)->create();
 
         $request = $this->get('/api/admin/subjects', [
             'Authorization' => $this->getToken()
@@ -52,8 +58,8 @@ class AdminSubjectsTest extends TestCase
 
         $this->assertEquals(404, $statusCode);
 
-        factory(\App\Faculty::class, 1)->create();
-        $subject = factory(App\Subject::class, 'OOP')->create();
+        factory(Faculty::class, 1)->create();
+        $subject = factory(Subject::class, 'OOP')->create();
         $subject = $subject->toArray();
 
         $this->checkAuthPermission('get', '/api/admin/subjects/1');
@@ -73,7 +79,7 @@ class AdminSubjectsTest extends TestCase
     {
         $this->checkAuthPermission('post', '/api/admin/subjects');
 
-        factory(App\Faculty::class, 1)->create();
+        factory(Faculty::class, 1)->create();
 
         $request = $this->post('/api/admin/subjects', [
             'name' => 'First',
@@ -105,8 +111,8 @@ class AdminSubjectsTest extends TestCase
 
     public function testUpdateFacultyAction()
     {
-        factory(App\Faculty::class, 2)->create();
-        $subject = factory(App\Subject::class, 'OOP')->create();
+        factory(Faculty::class, 2)->create();
+        $subject = factory(Subject::class, 'OOP')->create();
         $subject = $subject->toArray();
 
         $this->checkAuthPermission('put', '/api/admin/subjects/1');
@@ -142,8 +148,8 @@ class AdminSubjectsTest extends TestCase
 
     public function testDeleteSubjectAction()
     {
-        factory(App\Faculty::class, 1)->create();
-        factory(App\Subject::class, 'OOP')->create();
+        factory(Faculty::class, 1)->create();
+        factory(Subject::class, 'OOP')->create();
 
         $this->checkAuthPermission('delete', '/api/admin/subjects/1');
 

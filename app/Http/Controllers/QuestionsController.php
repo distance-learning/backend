@@ -111,6 +111,7 @@ class QuestionsController extends Controller
      */
     public function updateQuestionAction(Request $request, Test $test, Question $question)
     {
+        //TODO need refactoring
         $question->update([
             'name' => $request->get('name'),
             'type' => $request->get('type', 'single'),
@@ -153,6 +154,7 @@ class QuestionsController extends Controller
      */
     public function updateImageToQuestionByCodeAction(Request $request, Test $test, Question $question)
     {
+        //TODO need refactoring
         if ($request->hasFile('file')) {
 
             //TODO fix remove image

@@ -1,5 +1,10 @@
 <?php
 
+namespace Tests\Http\Controllers;
+
+use App\Models\Faculty;
+use Tests\TestCase;
+
 class AdminFacultiesTest extends TestCase
 {
     public function testGetFaculties()
@@ -16,7 +21,7 @@ class AdminFacultiesTest extends TestCase
         $this->assertEquals(200, $statusCode);
         $this->assertCount(0, $content['data']);
 
-        factory(\App\Faculty::class, 20)->create();
+        factory(Faculty::class, 20)->create();
 
         $request = $this->get('/api/admin/faculties', [
             'Authorization' => $this->getToken(),
@@ -51,7 +56,7 @@ class AdminFacultiesTest extends TestCase
 
         $this->assertEquals(404, $statusCode);
 
-        $faculty = factory(App\Faculty::class, 'fotius')->create();
+        $faculty = factory(Faculty::class, 'fotius')->create();
 
         $this->checkAuthPermission('get', '/api/admin/faculties/fotius');
 
@@ -122,7 +127,7 @@ class AdminFacultiesTest extends TestCase
 
     public function testPutFacultyAction()
     {
-        $faculty = factory(App\Faculty::class, 'fotius')->create();
+        $faculty = factory(Faculty::class, 'fotius')->create();
         $faculty = $faculty->toArray();
 
         $faculty['name'] = 'Faculty name 2';
@@ -157,7 +162,7 @@ class AdminFacultiesTest extends TestCase
 
     public function testDeleteFacultyAction()
     {
-        factory(App\Faculty::class, 'fotius')->create();
+        factory(Faculty::class, 'fotius')->create();
 
         $this->checkAuthPermission('delete', '/api/admin/faculties/fotius');
 

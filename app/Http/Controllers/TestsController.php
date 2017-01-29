@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\File;
 use App\Models\Score;
-use App\Service\TestAnswersExport;
-use App\Service\TestsResultService;
+use App\Services\TestAnswersExport;
+use App\Services\TestAnswersExportService;
+use App\Services\TestsResultService;
 use App\Models\Test;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
@@ -217,7 +218,7 @@ class TestsController extends Controller
         $questionsFromRequest = $request->get('questions');
 
         /** @var TestsResultService $testsResultService */
-        $testsResultService = app(TestsResultService::class);
+        $testsResultService = app()->make(TestsResultService::class);
 
         /** @var Score $score */
         $score = $testsResultService->processResult(
@@ -294,7 +295,7 @@ class TestsController extends Controller
     public function getTestAnswersAction(Request $request, Test $test)
     {
         /** @var TestAnswersExport $testAnswersExport */
-        $testAnswersExport = app(TestAnswersExport::class);
+        $testAnswersExport = app()->make(TestAnswersExportService::class);
 
         /** @var File $file */
         $file = $testAnswersExport->generate($test);

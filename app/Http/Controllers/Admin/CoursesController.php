@@ -13,8 +13,6 @@ use App\Http\Controllers\Controller;
  */
 class CoursesController extends Controller
 {
-    use CoursesTrait;
-
     /**
      * @api {get} /api/admin/courses Get courses by page
      * @apiSampleRequest /api/admin/courses
@@ -32,6 +30,12 @@ class CoursesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function getCoursesAction()
+    {
+        $courses = Course::with('group', 'subject', 'teacher')->paginate(15);
+
+        return response()->json($courses);
+    }
 
     /**
      * @api {get} /api/admin/courses/:id Get course by id
@@ -51,6 +55,10 @@ class CoursesController extends Controller
      * @param  Request $request
      * @return \Illuminate\Http\Response
      */
+    public function getCourseAction(Course $course)
+    {
+        return response()->json($course->load('group', 'subject', 'teacher'));
+    }
 
     /**
      * @api {post} /api/admin/courses Create new course
@@ -73,6 +81,17 @@ class CoursesController extends Controller
      * @param  Request $request
      * @return \Illuminate\Http\Response
      */
+    public function postCourseAction(Request $request)
+    {
+        $course = Course::create([
+            'subject_id' => $request->get('subject_id'),
+            'teacher_id' => $request->get('teacher_id'),
+            'group_id' => $request->get('group_id'),
+            'is_active' => $request->get('is_active', 1),
+        ]);
+
+        return response()->json($course);
+    }
 
     /**
      * @api {put} /api/admin/courses/:id Update course by id
@@ -95,6 +114,17 @@ class CoursesController extends Controller
      * @param  Request $request
      * @return \Illuminate\Http\Response
      */
+    public function putCourseAction(Request $request, Course $course)
+    {
+        $course->update([
+            'subject_id' => $request->get('subject_id'),
+            'teacher_id' => $request->get('teacher_id'),
+            'group_id' => $request->get('group_id'),
+            'is_active' => $request->get('is_active', 1),
+        ]);
+
+        return response()->json($course);
+    }
 
     /**
      * @api {delete} /api/admin/courses/:id Delete course by id
@@ -112,6 +142,12 @@ class CoursesController extends Controller
      * @param  Request $request
      * @return \Illuminate\Http\Response
      */
+    public function deleteCourseAction(Course $course)
+    {
+        $course->delete();
+
+        return response()->json(null, 204);
+    }
 
     /**
      * @api {get} /api/admin/courses/search Search courses
@@ -131,6 +167,7 @@ class CoursesController extends Controller
     {
         $search = $request->get('search');
 
+        //TODO Need move into repository
         $courses = Course::whereHas('subject', function ($query) use ($search) {
                 return $query->where('name', 'LIKE', '%' . $search . '%');
             })

@@ -1,8 +1,11 @@
 <?php
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
+namespace Tests\Http\Controllers;
+
+use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Http\Request;
+use Tests\TestCase;
 
 class AuthTest extends TestCase
 {
@@ -47,6 +50,7 @@ class AuthTest extends TestCase
 
     public function testLoginAction()
     {
+        /** @var Request $request */
         $request = $this->post('/api/auth/login', [
             'email' => 'user@test.com',
             'password' => '112233'
@@ -56,7 +60,7 @@ class AuthTest extends TestCase
 
         $this->assertEquals(401, $statusCode);
 
-        factory(App\User::class, 'auth-user')->create();
+        factory(User::class, 'auth-user')->create();
 
         $request = $this->post('/api/auth/login', [
             'email' => 'auth@mail.ru',

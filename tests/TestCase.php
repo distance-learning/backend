@@ -1,9 +1,18 @@
 <?php
 
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+namespace Tests;
 
-class TestCase extends Illuminate\Foundation\Testing\TestCase
+use Illuminate\Foundation\Application;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
+use JWTAuth;
+use App\Models\User;
+use Illuminate\Contracts\Http\Kernel;
+use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+
+class TestCase extends BaseTestCase
 {
+    use DatabaseMigrations;
+
     /**
      * The base URL to use while testing the application.
      *
@@ -24,13 +33,13 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
     /**
      * Creates the application.
      *
-     * @return \Illuminate\Foundation\Application
+     * @return Application
      */
     public function createApplication()
     {
         $app = require __DIR__.'/../bootstrap/app.php';
 
-        $app->make(Illuminate\Contracts\Console\Kernel::class)->bootstrap();
+        $app->make(Kernel::class)->bootstrap();
 
         return $app;
     }
@@ -42,7 +51,7 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
 
     public function getAuthUser()
     {
-        if (! $this->authUser) {
+        if (!$this->authUser) {
             $this->setAuthUserToken();
         }
 
@@ -51,7 +60,7 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
 
     public function getAuthUserToken()
     {
-        if (! $this->authUserToken) {
+        if (!$this->authUserToken) {
             $this->setAuthUserToken();
         }
 
@@ -60,7 +69,7 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
 
     private function setAuthUserToken()
     {
-        $authUser = factory(App\User::class)->create();
+        $authUser = factory(User::class)->create();
 
         $this->authUser = $authUser;
         $this->authUserToken = JWTAuth::fromUser($authUser);
@@ -70,25 +79,21 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
     {
         parent::setUp();
 
-        DB::statement("SET foreign_key_checks=0");
-        $tableNames = Schema::getConnection()->getDoctrineSchemaManager()->listTableNames();
-
-        foreach ($tableNames as $name) {
-            //if you don't want to truncate migrations
-            if ($name == 'migrations') {
-                continue;
-            }
-            DB::table($name)->truncate();
-        }
-        DB::statement("SET foreign_key_checks=1");
-
-//        shell_exec('mysql -u root -Nse \'show tables\' distance_learning_test | while read table; do mysql -u root -e "truncate table $table" distance_learning_test; done');
-//        $this->artisan('migrate');
+//        DB::statement("SET foreign_key_checks=0");
+//        $tableNames = Schema::getConnection()->getDoctrineSchemaManager()->listTableNames();
+//
+//        foreach ($tableNames as $name) {
+//            //if you don't want to truncate migrations
+//            if ($name == 'migrations') {
+//                continue;
+//            }
+//            DB::table($name)->truncate();
+//        }
+//        DB::statement("SET foreign_key_checks=1");
     }
 
     public function tearDown()
     {
-//        $this->artisan('migrate:reset');
         parent::tearDown();
     }
 

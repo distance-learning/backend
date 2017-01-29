@@ -3,14 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Events\ResetPasswordEvent;
+use App\Exceptions\UserInvalidCredentials;
 use App\Models\Faculty;
 use App\Models\User;
-use Illuminate\Database\QueryException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Validation\ValidationException;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
-use Illuminate\Support\Facades\Validator;
 
 /**
  * Class AuthController
@@ -50,22 +52,29 @@ class AuthController extends Controller
      * @apiError (500) error Returned if error on serve
      *
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function loginAction(Request $request)
     {
-        $credentials = $request->only('email', 'password');
+        $credentials = $request->only(
+            'user.email',
+            'user.password'
+        );
 
         try {
-            $user = User::where('email', $credentials['email'])->first();
+            $this->validate($request, User::$rulesAuthorization);
 
-            if (!$user) {
-                return response()->json(null, 401);
-            }
+            $user = User::where('email', $credentials['email'])->firstOrFail();
 
             if (!$token = JWTAuth::attempt($credentials)) {
-                return response()->json(null, 400);
+                throw new UserInvalidCredentials();
             }
+        } catch (ValidationException $e) {
+            return $e->getResponse();
+        } catch (UserInvalidCredentials $e) {
+            return response()->json(null, 400);
+        } catch (ModelNotFoundException $e) {
+            return response()->json(null, 401);
         } catch (JWTException $e) {
             return response()->json(null, 500);
         }
@@ -113,45 +122,42 @@ class AuthController extends Controller
      */
     public function registrationAction(Request $request)
     {
-        $validation = Validator::make($request->all(), User::$rules);
-
-        if ($validation->fails()) {
-            return response()->json($validation->errors(), 400);
-        }
-
         try {
-            $user = User::create([
-                'name'  => $request->get('name'),
-                'surname' => $request->get('surname'),
-                'phone' => $request->get('phone'),
-                'email' => $request->get('email'),
-                'password'  => $request->get('password'),
-                'birthday'  => $request->get('birthday'),
-                'active'  =>  1,
-                'role'   =>   'student',
-                'structure_id'  =>  $request->get('faculty_id', null),
-                'structure_type' => 'App\\Faculty'
-            ]);
+            $this->validate($request, User::$rulesRegistration);
+            $attributesForRegistration = $request->only(
+                'user.name',
+                'user.surname',
+                'user.phone',
+                'user.email',
+                'user.password',
+                'user.birthday'
+            );
 
-            try {
-                if (! $token = JWTAuth::attempt(['email' => $request->get('email'), 'password' => $request->get('password')])) {
-                    return response()->json(null, 400);
-                }
-            } catch (JWTException $e) {
-                return response()->json(null, 500);
+            $attributesForAuthorization = $request->only(
+                'user.email',
+                'user.password'
+            );
+
+            /** @var User $user */
+            $user = User::create($attributesForRegistration);
+            $user->faculty()->associate($request->get('user.faculty_id'));
+            $user->saveOrFail();
+
+            if (!$token = JWTAuth::attempt($attributesForAuthorization)) {
+                throw new UserInvalidCredentials();
             }
-
-            $data = [
-                'user' => $user,
-                'token' => $token
-            ];
-
-            return response()->json($data);
-        }  catch (QueryException $qe) {
-            if ($qe->errorInfo[1] === 1062) {
-                return response()->json('Email must be unique', 422);
-            }
+        } catch (UserInvalidCredentials $e) {
+            return response()->json(null, 400);
+        } catch (JWTException $e) {
+            return response()->json(null, 500);
+        } catch (ValidationException $e) {
+            return $e->getResponse();
         }
+
+        return response()->json([
+            'user' => $user,
+            'token' => $token
+        ]);
     }
 
     /**
@@ -166,7 +172,9 @@ class AuthController extends Controller
     {
         $faculties = Faculty::with('directions')->get(['name', 'id', 'slug']);
 
-        return response()->json($faculties);
+        return response()->json([
+            'faculties' => $faculties,
+        ]);
     }
 
     /**
@@ -186,25 +194,24 @@ class AuthController extends Controller
      */
     public function postResetPassword(Request $request)
     {
-        $user = User::where('email', $request->get('email'))->first();
+        try {
+            $this->validate($request, User::$rulesResetPassword);
 
-        if (!$user) {
-            return response()->json('user not found', 404);
+            $user = User::where('email', $request->get('email'))->firstOrFail();
+            $password = $request->get('password');
+            $token = md5(uniqid('dl_'));
+
+            $user->update([
+                'token' => $token,
+                'new_password' => bcrypt($password),
+            ]);
+
+            Event::fire(new ResetPasswordEvent($user));
+        } catch (ValidationException $e) {
+            return $e->getResponse();
+        } catch (ModelNotFoundException $e) {
+            return response()->json(null, 404);
         }
-
-        $password = $request->get('password');
-
-        if ($password != $request->get('password_confirmation')) {
-            return response()->json('Passwords not equals', 400);
-        }
-
-        $token = md5(uniqid('dl_'));
-        $user->update([
-            'token' => $token,
-            'new_password' => bcrypt($password),
-        ]);
-
-        Event::fire(new ResetPasswordEvent($user));
 
         return response()->json(null, 200);
     }
@@ -224,17 +231,17 @@ class AuthController extends Controller
      */
     public function postResetPasswordCheck(Request $request, $token)
     {
-        $user = User::where('token', $token)->first();
+        try {
+            $user = User::where('token', $token)->firstOrFail();
 
-        if (!$user) {
-            return response()->json('User not found', 404);
+            $user->update([
+                'password' => $user->new_password,
+                'new_password' => null,
+                'token' => null,
+            ]);
+        } catch (ModelNotFoundException $e) {
+            return response()->json(null, 404);
         }
-
-        $user->update([
-            'password' => $user->new_password,
-            'new_password' => '',
-            'token' => '',
-        ]);
 
         return response()->json(null, 200);
     }

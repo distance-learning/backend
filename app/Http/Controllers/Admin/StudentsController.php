@@ -65,6 +65,7 @@ class StudentsController extends Controller
     {
         $param = $request->get('param');
 
+        //TODO need move in repository
         $students = User::where('role', 'student')
             ->where(function ($query) use ($param) {
                 $query

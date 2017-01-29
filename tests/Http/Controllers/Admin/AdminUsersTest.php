@@ -1,5 +1,10 @@
 <?php
 
+namespace Tests\Http\Controllers;
+
+use App\Models\User;
+use Tests\TestCase;
+
 class AdminUsersTest extends TestCase
 {
     public function testGetUsersAction()
@@ -16,7 +21,7 @@ class AdminUsersTest extends TestCase
         $this->assertEquals(200, $statusCode);
         $this->assertCount(1, $content['data']);
 
-        factory(App\User::class, 19)->create();
+        factory(User::class, 19)->create();
 
         $request = $this->get('/api/admin/users', [
             'Authorization' => $this->getToken(),

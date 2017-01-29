@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
+namespace Tests\Http\Controllers;
+
+use App\Models\Faculty;
+use Tests\TestCase;
 
 class FacultiesTest extends TestCase
 {
@@ -20,7 +21,7 @@ class FacultiesTest extends TestCase
         $this->assertEquals(200, $statusCode);
         $this->assertEquals(0, count($content['data']));
 
-        $faculties = factory(App\Faculty::class, 10)->create();
+        $faculties = factory(Faculty::class, 10)->create();
 
         //Assert for default count attribute
         $request = $this->get('/api/faculties');
@@ -62,7 +63,7 @@ class FacultiesTest extends TestCase
 
         $this->assertEquals(404, $statusCode);
 
-        $faculty = factory(App\Faculty::class, 'fotius')->create();
+        $faculty = factory(Faculty::class, 'fotius')->create();
 
         $request = $this->get('/api/faculties/fotius');
 
@@ -93,7 +94,7 @@ class FacultiesTest extends TestCase
         $this->assertEquals(200, $statusCode);
         $this->assertCount(0, $content);
 
-        factory(App\Faculty::class, 10)->create();
+        factory(Faculty::class, 10)->create();
 
         $request = $this->get('/api/faculties/random');
 

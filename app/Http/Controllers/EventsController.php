@@ -14,6 +14,8 @@ use Illuminate\Http\Request;
 class EventsController extends Controller
 {
     /**
+     * Get events by interval
+     *
      * @api {get} /api/events Get events by interval
      * @apiSampleRequest /api/events
      * @apiDescription Get events by interval
@@ -29,6 +31,7 @@ class EventsController extends Controller
      */
     public function getEventsByInterval(Request $request)
     {
+        //TODO need refactoring
         $year = intval($request->get('year'));
         $month = intval($request->get('month'));
         $from_date = Carbon::create($year, $month, 1);
@@ -61,6 +64,8 @@ class EventsController extends Controller
     }
 
     /**
+     * Get notifications
+     *
      * @api {get} /api/events/notifications Get notifications
      * @apiSampleRequest /api/events/notifications
      * @apiDescription Get notifications
@@ -73,6 +78,7 @@ class EventsController extends Controller
      */
     public function getNotificationsAction(Request $request)
     {
+        //TODO need refactoring
         $today = Carbon::now()->format('Y-m-d H:i:s');
         $plusThreeDays = Carbon::now()->addDay(3)->format('Y-m-d H:i:s');
         $user = $request->user();

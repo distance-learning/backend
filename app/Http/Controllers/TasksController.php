@@ -97,6 +97,7 @@ class TasksController extends Controller
      */
     public function createTaskForGroupAction(Request $request)
     {
+        //TODO need some refactoring
         $user = $request->user();
         $response = [];
         $group = Group::findBySlug($request->get('group_slug'));

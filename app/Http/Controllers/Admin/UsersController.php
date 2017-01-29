@@ -97,6 +97,7 @@ class UsersController extends Controller
      */
     public function storeUserAction(Request $request)
     {
+        //TODO need refactoring
         $validator = Validator::make($request->all(), [
             'email' => 'required|unique:users|max:255',
         ]);
@@ -158,6 +159,7 @@ class UsersController extends Controller
      */
     public function updateUserAction(Request $request, User $user)
     {
+        //TODO need refactoring
         try {
             if ($request->has('password') && !empty($request->get('password'))) {
                 $user->update([

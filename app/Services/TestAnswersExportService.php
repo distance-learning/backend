@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Service;
+namespace App\Services;
 
 use App\Models\File;
 use App\Models\Question;
@@ -13,7 +13,7 @@ use Maatwebsite\Excel\Writers\LaravelExcelWriter;
  * Class TestAnswersExport
  * @package App\Service
  */
-class TestAnswersExport
+class TestAnswersExportService
 {
     /**
      * @var User

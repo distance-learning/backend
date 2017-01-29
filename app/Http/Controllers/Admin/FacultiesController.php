@@ -43,7 +43,9 @@ class FacultiesController extends Controller
      */
     public function getFacultiesAction(Request $request)
     {
-        $faculties = Faculty::with('directions', 'avatar')->orderBy('id')->paginate($request->get('count', 10));
+        $faculties = Faculty::with('directions', 'avatar')->orderBy('id')->paginate(
+            $request->get('count', 10)
+        );
 
         return response()->json($faculties);
     }
@@ -206,7 +208,7 @@ class FacultiesController extends Controller
      * @apiError (403) error Returned if user has not access for delete faculty
      * @apiError (404) error Returned if faculty by slug not found
      *
-     * @param  string  $slug
+     * @param  Faculty $faculty
      * @return \Illuminate\Http\Response
      */
     public function deleteFacultyAction(Faculty $faculty)

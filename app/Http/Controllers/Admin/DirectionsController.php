@@ -55,10 +55,10 @@ class DirectionsController extends Controller
      * @apiError (403) error Returned if user has not access for get directions
      * @apiError (404) error Returned if direction not isset
      *
-     * @param  string  $slug
+     * @param Direction $direction
      * @return \Illuminate\Http\Response
      */
-    public function itemAction(Request $request, Direction $direction)
+    public function itemAction(Direction $direction)
     {
         return response()->json($direction);
     }
@@ -141,11 +141,10 @@ class DirectionsController extends Controller
      *
      * @apiError (403) error Returned if user has not access for delete direction
      *
-     * @param  Request $request
      * @param  Direction $direction
      * @return \Illuminate\Http\Response
      */
-    public function deleteAction(Request $request, Direction $direction)
+    public function deleteAction(Direction $direction)
     {
         $direction->delete();
 

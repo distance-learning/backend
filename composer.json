@@ -7,19 +7,21 @@
     "version": "1.0.0.",
     "require": {
         "php": ">=5.6.4",
-        "laravel/framework": "5.3.*",
-        "tymon/jwt-auth": "^0.5.5",
-        "cviebrock/eloquent-sluggable": "4.1.x",
+        "laravel/framework": "5.4.*",
+        "tymon/jwt-auth": "1.0.x-dev",
+        "cviebrock/eloquent-sluggable": "4.2.x",
         "barryvdh/laravel-cors": "0.8.x",
         "doctrine/dbal": "^2.5",
         "barryvdh/laravel-ide-helper": "2.2.x",
-        "maatwebsite/excel": "2.1.x"
+        "maatwebsite/excel": "2.1.x",
+        "laravel/tinker": "^1.0",
+        "laravel/browser-kit-testing": "^1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",
-        "phpunit/phpunit": "~4.0",
-        "phpspec/phpspec": "~2.1"
+        "phpunit/phpunit": "5.7.x",
+        "phpspec/phpspec": "3.2.x"
     },
     "autoload": {
         "classmap": [
@@ -30,32 +32,32 @@
         }
     },
     "autoload-dev": {
-        "classmap": [
-            "tests/TestCase.php"
-        ]
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
     },
     "scripts": {
         "post-install-cmd": [
+            "Illuminate\\Foundation\\ComposerScripts::postInstall",
             "php artisan clear-compiled",
             "php artisan optimize",
             "cp .env.example_dev .env",
             "php artisan key:generate"
         ],
-        "pre-update-cmd": [
-            "php artisan clear-compiled"
-        ],
         "post-update-cmd": [
+            "Illuminate\\Foundation\\ComposerScripts::postUpdate",
             "php artisan ide-helper:generate",
             "php artisan optimize"
         ],
         "post-root-package-install": [
-            "php -r \"copy('.env.example', '.env');\""
+            "php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-create-project-cmd": [
             "php artisan key:generate"
         ]
     },
     "config": {
-        "preferred-install": "dist"
+        "preferred-install": "dist",
+        "sort-packages": true
     }
 }

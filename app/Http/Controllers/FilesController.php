@@ -37,7 +37,9 @@ class FilesController extends Controller
     {
         $file = $this->uploadFile($request);
 
-        return response()->json($file);
+        return response()->json([
+            'file' => $file,
+        ]);
     }
 
     /**
