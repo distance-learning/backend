@@ -43,6 +43,7 @@ class RemoveStructrureFieldsAndAddFacultyId extends Migration
                 ->nullable();
 
             $table->dropForeign('users_faculty_id_foreign');
+            $table->dropColumn('faculty_id');
         });
     }
 }

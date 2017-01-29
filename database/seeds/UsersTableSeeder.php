@@ -144,7 +144,7 @@ class UsersTableSeeder extends Seeder
         ];
 
         foreach ($users as $user) {
-            $userObject = \App\User::create([
+            $userObject = \App\Models\User::create([
                 'name' => $user['name'],
                 'surname' => $user['surname'],
                 'birthday' => $user['birthday'],

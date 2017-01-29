@@ -24,6 +24,8 @@ class AddCountQuestionsToTestsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('tests', function (Blueprint $table) {
+            $table->dropColumn('count_questions');
+        });
     }
 }

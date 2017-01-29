@@ -24,6 +24,8 @@ class RenameIscorrectlyColumnInAnswersTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('answers', function (Blueprint $table) {
+            $table->renameColumn('is_correct', 'isCorrectly');
+        });
     }
 }

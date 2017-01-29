@@ -26,6 +26,10 @@ class RemoveTypeFromModules extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('modules', function (Blueprint $table) {
+            $table
+                ->string('type')
+            ;
+        });
     }
 }

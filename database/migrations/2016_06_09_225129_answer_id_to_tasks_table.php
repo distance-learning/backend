@@ -26,6 +26,9 @@ class AnswerIdToTasksTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('tasks', function (Blueprint $table) {
+            $table->dropForeign('tasks_answer_id_foreign');
+            $table->dropColumn('answer_id');
+        });
     }
 }

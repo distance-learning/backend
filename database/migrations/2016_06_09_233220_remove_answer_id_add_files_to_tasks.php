@@ -26,6 +26,18 @@ class RemoveAnswerIdAddFilesToTasks extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('tasks', function (Blueprint $table) {
+            $table
+                ->integer('answer_id')
+                ->unsigned()
+                ->nullable();
+
+            $table
+                ->foreign('answer_id')
+                ->reference('id')
+                ->on('answers');
+
+            $table->dropColumn('files');
+        });
     }
 }

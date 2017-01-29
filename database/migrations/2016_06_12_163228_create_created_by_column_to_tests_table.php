@@ -26,6 +26,9 @@ class CreateCreatedByColumnToTestsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('tests', function (Blueprint $table) {
+            $table->dropForeign('tests_created_by_foreign');
+            $table->dropColumn('created_by');
+        });
     }
 }

@@ -32,6 +32,16 @@ class CreateTaskFileTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::create('task_file', function (Blueprint $table) {
+            $table->dropForeign('task_file_file_id_foreign');
+            $table->dropForeign('task_file_task_id_foreign');
+
+            $table->dropColumn('file_id');
+            $table->dropColumn('task_id');
+        });
+
+        Schema::table('tasks', function (Blueprint $table) {
+            $table->text('files');
+        });
     }
 }

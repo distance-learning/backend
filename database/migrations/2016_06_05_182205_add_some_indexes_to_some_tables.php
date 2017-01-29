@@ -44,6 +44,16 @@ class AddSomeIndexesToSomeTables extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('faculties', function (Blueprint $table) {
+            $table->dropIndex('faculties_name_index');
+        });
+
+        Schema::table('subjects', function (Blueprint $table) {
+            $table->dropIndex('subjects_name_index');
+        });
+
+        Schema::table('tests', function (Blueprint $table) {
+            $table->dropIndex('tests_name_index');
+        });
     }
 }

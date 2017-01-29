@@ -28,7 +28,7 @@ class AddIndexesToUsersTable extends Migration
      */
     public function down()
     {
-        Blueprint::table('users', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             $table
                 ->dropIndex([
                     'users_surname_index',

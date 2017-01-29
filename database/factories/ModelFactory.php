@@ -11,7 +11,7 @@
 |
 */
 
-$factory->define(App\User::class, function (Faker\Generator $faker) {
+$factory->define(App\Models\User::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->email,
@@ -24,7 +24,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 });
 
 
-$factory->defineAs(App\User::class, 'auth-user', function (Faker\Generator $faker) {
+$factory->defineAs(App\Models\User::class, 'auth-user', function (Faker\Generator $faker) {
     return [
         'name' => $faker->firstName,
         'surname' => $faker->lastName,
@@ -40,7 +40,7 @@ $factory->defineAs(App\User::class, 'auth-user', function (Faker\Generator $fake
     ];
 });
 
-$factory->defineAs(App\User::class, 'teachers', function (Faker\Generator $faker) {
+$factory->defineAs(App\Models\User::class, 'teachers', function (Faker\Generator $faker) {
     return [
         'name' => $faker->firstName,
         'surname' => $faker->lastName,
@@ -58,7 +58,7 @@ $factory->defineAs(App\User::class, 'teachers', function (Faker\Generator $faker
 
 
 
-$factory->defineAs(App\User::class, 'teacher-active', function (Faker\Generator $faker) {
+$factory->defineAs(App\Models\User::class, 'teacher-active', function (Faker\Generator $faker) {
     return [
         'name' => 'Test',
         'surname' => 'User',
@@ -74,7 +74,7 @@ $factory->defineAs(App\User::class, 'teacher-active', function (Faker\Generator 
     ];
 });
 
-$factory->defineAs(App\User::class, 'teacher-not-active', function (Faker\Generator $faker) {
+$factory->defineAs(App\Models\User::class, 'teacher-not-active', function (Faker\Generator $faker) {
     return [
         'name' => 'Test',
         'surname' => 'User2',

@@ -25,6 +25,8 @@ class AddShortNameColumnToQuestionsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('questions', function (Blueprint $table) {
+            $table->dropColumn('short_name');
+        });
     }
 }

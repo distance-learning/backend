@@ -24,6 +24,8 @@ class AddAllowExportColumnToTestsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('tests', function (Blueprint $table) {
+            $table->dropColumn('allow_export');
+        });
     }
 }

@@ -48,6 +48,6 @@ class CreateDirectionsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('directions');
+        Schema::dropIfExists('directions');
     }
 }

@@ -30,6 +30,16 @@ class RemoveTestIdFromModules extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('modules', function (Blueprint $table) {
+            $table
+                ->index('test_id')
+                ->unsigned()
+                ->nullable();
+
+            $table
+                ->foreign('test_id')
+                ->reference('id')
+                ->on('tests');
+        });
     }
 }
