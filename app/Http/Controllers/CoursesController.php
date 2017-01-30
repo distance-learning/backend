@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 class CoursesController extends Controller
 {
     /**
+     * Get list of available courses
+     *
      * @api {get} /api/courses Get courses by page
      * @apiSampleRequest /api/admin/courses
      * @apiDescription Get courses by page

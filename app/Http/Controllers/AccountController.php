@@ -6,6 +6,7 @@ use App\Exceptions\UserInvalidCredentials;
 use App\Models\Subject;
 use App\Models\Task;
 use App\Models\User;
+use App\Services\FileUploaderService;
 use App\Traits\FileUpload;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -46,12 +47,11 @@ class AccountController extends Controller
         $user = $request->user();
 
         if ($user->isStudent()) {
-            $user = $user
-                ->load('group.courses');
-        } elseif ($user->isTeacher()) {
-            $user = $user
-                ->load('courses.group')
-                ->load('courses.subject');
+            $user->load('group.courses');
+        }
+
+        if ($user->isTeacher()) {
+            $user->load('courses.group', 'courses.subject');
         }
 
         return response()->json([
@@ -303,15 +303,19 @@ class AccountController extends Controller
     public function getModulesAction(Request $request)
     {
         //TODO maybe need move in repository
-        $moduleGroups = $request->user()->moduleGroups->load(['modules' => function ($query) {
-            return $query->orderBy('id');
-        }])->sortBy('id');
+        $user = $request->user();
+        $moduleGroups = $user->moduleGroups
+            ->load([
+                'modules' => function ($query) {
+                    return $query->orderBy('id');
+                }]
+            )->sortBy('id');
 
-        $tests = $request->user()->tests;
+        $tests = $user->tests;
 
         return response()->json([
-            "moduleGroups" => $moduleGroups,
-            "tests" => $tests,
+            'moduleGroups' => $moduleGroups,
+            'tests' => $tests,
         ]);
     }
 
@@ -328,15 +332,19 @@ class AccountController extends Controller
      */
     public function setAvatarAction(Request $request)
     {
+        /** @var User $user */
         $user = $request->user();
-        $file = $this->uploadFile($request);
 
-        //TODO need remove in service
-        if ($file && $user->avatar && file_exists(public_path($user->avatar->path))) {
-            unlink(public_path($user->avatar->path));
+        /** @var FileUploaderService $fileUploaderService */
+        $fileUploaderService = app(FileUploaderService::class);
+
+        $file = $fileUploaderService->upload();
+
+        if ($file && $user->avatar) {
+            $fileUploaderService->removeFile($user->avatar->path);
         }
 
-        $user->avatar_id = $file->id;
+        $user->avatar()->associate($file);
         $user->save();
 
         return response()->json([

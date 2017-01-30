@@ -50,4 +50,13 @@ class FileUploaderService
 
         return $file;
     }
+
+    /**
+     * @param $filePath
+     */
+    public function removeFile($filePath)
+    {
+        file_exists(public_path($filePath));
+        unlink(public_path($filePath));
+    }
 }
