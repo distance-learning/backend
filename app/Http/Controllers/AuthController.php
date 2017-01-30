@@ -60,6 +60,7 @@ class AuthController extends Controller
             'user.email',
             'user.password'
         );
+        $credentials = process_array_keys($credentials);
 
         try {
             $this->validate($request, User::$rulesAuthorization);
@@ -132,11 +133,13 @@ class AuthController extends Controller
                 'user.password',
                 'user.birthday'
             );
+            $attributesForRegistration = process_array_keys($attributesForRegistration);
 
             $attributesForAuthorization = $request->only(
                 'user.email',
                 'user.password'
             );
+            $attributesForAuthorization = process_array_keys($attributesForAuthorization);
 
             /** @var User $user */
             $user = User::create($attributesForRegistration);

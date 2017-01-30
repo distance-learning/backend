@@ -36,7 +36,9 @@ class DirectionsController extends Controller
             $request->query->get('count', 10)
         );
 
-        return response()->json($directions);
+        return response()->json([
+            "directions" => $directions,
+        ]);
     }
 
     /**
@@ -60,7 +62,9 @@ class DirectionsController extends Controller
      */
     public function itemAction(Direction $direction)
     {
-        return response()->json($direction);
+        return response()->json([
+            "direction" => $direction,
+        ]);
     }
 
     /**
@@ -93,7 +97,9 @@ class DirectionsController extends Controller
 
         $direction->save();
 
-        return response()->json($direction, 201);
+        return response()->json([
+            "direction" => $direction,
+        ], 201);
     }
 
     /**
@@ -125,7 +131,9 @@ class DirectionsController extends Controller
             'faculty_id' => $request->get('faculty_id'),
         ]);
 
-        return response()->json($direction);
+        return response()->json([
+            "direction" => $direction,
+        ]);
     }
 
     /**
@@ -174,6 +182,8 @@ class DirectionsController extends Controller
     {
         $groups = $direction->groups()->paginate($request->get('count', 10));
 
-        return response()->json($groups);
+        return response()->json([
+            "directions" => $groups,
+        ]);
     }
 }

@@ -12,13 +12,13 @@ class AuthTest extends TestCase
     public function testRegistrationAction()
     {
         $data = [
-            'name'  =>  'Test',
-            'surname'  =>   'User',
-            'email'   =>  'user1@test.com',
-            'phone'  =>   '',
-            'birthday'   =>   '14.02.1994',
-            'password'  =>    '112233',
-            'password_confirmation'   =>    '112233'
+            'name' => 'Test',
+            'surname' => 'User',
+            'email' => 'user1@test.com',
+            'phone' => '',
+            'birthday' => '14.02.1994',
+            'password' => '112233',
+            'password_confirmation' => '112233'
        ];
 
         $request = $this->post('/api/auth/registration', $data);

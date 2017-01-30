@@ -34,7 +34,9 @@ class CoursesController extends Controller
     {
         $courses = Course::with('group', 'subject', 'teacher')->paginate(15);
 
-        return response()->json($courses);
+        return response()->json([
+            "courses" => $courses,
+        ]);
     }
 
     /**
@@ -52,12 +54,14 @@ class CoursesController extends Controller
      *
      * @apiError (403) error Returned if user has not access for get course
      *
-     * @param  Request $request
+     * @param  Course $course
      * @return \Illuminate\Http\Response
      */
     public function getCourseAction(Course $course)
     {
-        return response()->json($course->load('group', 'subject', 'teacher'));
+        return response()->json([
+            "course" => $course->load('group', 'subject', 'teacher'),
+        ]);
     }
 
     /**
@@ -90,7 +94,9 @@ class CoursesController extends Controller
             'is_active' => $request->get('is_active', 1),
         ]);
 
-        return response()->json($course);
+        return response()->json([
+            "course" => $course,
+        ]);
     }
 
     /**
@@ -123,7 +129,9 @@ class CoursesController extends Controller
             'is_active' => $request->get('is_active', 1),
         ]);
 
-        return response()->json($course);
+        return response()->json([
+            "course" => $course,
+        ]);
     }
 
     /**
@@ -139,7 +147,7 @@ class CoursesController extends Controller
      *
      * @apiError (403) error Returned if user has not access for delete course
      *
-     * @param  Request $request
+     * @param  Course $course
      * @return \Illuminate\Http\Response
      */
     public function deleteCourseAction(Course $course)
@@ -181,6 +189,8 @@ class CoursesController extends Controller
             ->get();
         ;
 
-        return response()->json($courses);
+        return response()->json([
+            "courses" => $courses,
+        ]);
     }
 }

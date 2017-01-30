@@ -47,7 +47,9 @@ class FacultiesController extends Controller
             $request->get('count', 10)
         );
 
-        return response()->json($faculties);
+        return response()->json([
+            "faculties" => $faculties,
+        ]);
     }
 
     /**
@@ -98,7 +100,9 @@ class FacultiesController extends Controller
             'examinations' => $request->get('examinations'),
         ]);
 
-        return response()->json($faculty, 201);
+        return response()->json([
+            "faculty" => $faculty,
+        ], 201);
     }
 
     /**
@@ -136,7 +140,9 @@ class FacultiesController extends Controller
 //            ->all()
 //        ;
 
-        return response()->json($faculty->load('directions', 'avatar'), 200);
+        return response()->json([
+            "faculty" => $faculty->load('directions', 'avatar'),
+        ], 200);
     }
 
     /**
@@ -187,7 +193,9 @@ class FacultiesController extends Controller
             'examinations' => $request->get('examinations'),
         ]);
 
-        return response()->json($faculty, 200);
+        return response()->json([
+            "faculty" => $faculty,
+        ], 200);
     }
 
     /**
@@ -246,7 +254,9 @@ class FacultiesController extends Controller
         $faculty->avatar_id = $file->id;
         $faculty->save();
 
-        return response()->json($faculty->load('avatar'));
+        return response()->json([
+            "faculty" => $faculty->load('avatar'),
+        ]);
     }
 
     /**
@@ -266,6 +276,8 @@ class FacultiesController extends Controller
     {
         $faculties = Faculty::where('name', 'LIKE', '%' . $request->get('search') . '%')->get();
 
-        return response()->json($faculties);
+        return response()->json([
+            "faculties" => $faculties,
+        ]);
     }
 };

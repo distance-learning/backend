@@ -114,6 +114,7 @@ class AccountController extends Controller
             'user.email',
             'user.phone'
         );
+        $attributes = process_array_keys($attributes);
 
         $user->update($attributes);
 
@@ -144,6 +145,7 @@ class AccountController extends Controller
     {
         $user = $request->user();
         $attributes = $request->only('user.old_password', 'user.password');
+        $attributes = process_array_keys($attributes);
 
         try {
             $this->validate($request, User::$rulesUpdatePassword);
@@ -151,6 +153,7 @@ class AccountController extends Controller
             if (!Auth::check($attributes['user.old_password'], $user->password)) {
                 throw new UserInvalidCredentials();
             }
+
 
             $user->update([
                 'password' => $attributes['user.password'],
@@ -274,6 +277,7 @@ class AccountController extends Controller
             return response()->json(null, 400);
         }
 
+        //TODO need move in service
         foreach ($user->courses as $course) {
             if (!array_key_exists($course->subject->id, $subjects)) {
                 $subjects[$course->subject->id] = $course->subject->toArray();
@@ -308,8 +312,8 @@ class AccountController extends Controller
             ->load([
                 'modules' => function ($query) {
                     return $query->orderBy('id');
-                }]
-            )->sortBy('id');
+                }
+            ])->sortBy('id');
 
         $tests = $user->tests;
 
