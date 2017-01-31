@@ -14,19 +14,7 @@ use App\Http\Controllers\Controller;
 class CoursesController extends Controller
 {
     /**
-     * @api {get} /api/admin/courses Get courses by page
-     * @apiSampleRequest /api/admin/courses
-     * @apiDescription Get courses by page
-     * @apiGroup Admin|Courses
-     * @apiPermission administrator, university_administrator
-     *
-     * @apiHeader {String} authorization
-     *
-     * @apiParam {String} page  Page
-     *
-     * @apiSuccess (200) success Returned if courses issets
-     *
-     * @apiError (403) error Returned if user has not access for get courses
+     * Get
      *
      * @return \Illuminate\Http\Response
      */

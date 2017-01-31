@@ -38,7 +38,9 @@ class StudentsController extends Controller
             ->paginate($request->get('count', 10))
         ;
 
-        return response()->json($students);
+        return response()->json([
+            'students' => $students,
+        ]);
     }
 
     /**
@@ -76,6 +78,8 @@ class StudentsController extends Controller
             ->get()
         ;
 
-        return response()->json($students);
+        return response()->json([
+            'students' => $students,
+        ]);
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\Admin\CreateUserRequest;
+use App\Http\Requests\Admin\UpdateUserRequest;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -36,7 +38,9 @@ class UsersController extends Controller
     {
         $students = User::with('avatar')->orderBy('id')->paginate($request->get('count', 10));
 
-        return response()->json($students);
+        return response()->json([
+            'students' => $students,
+        ]);
     }
 
     /**
@@ -65,7 +69,9 @@ class UsersController extends Controller
             $user->load('group');
         }
 
-        return response()->json($user->load('avatar'));
+        return response()->json([
+            'user' => $user->load('avatar'),
+        ]);
     }
 
     /**
@@ -79,55 +85,40 @@ class UsersController extends Controller
      *
      * @apiHeader {String} authorization
      *
-     * @apiParam {String} name User name
-     * @apiParam {String} surname User surname
-     * @apiParam {String} birthday User birthday
-     * @apiParam {String} phone User phone number
-     * @apiParam {String} email User email
-     * @apiParam {String} role User role
-     * @apiParam {String} description User description
+     * @apiParam {String} user.name User name
+     * @apiParam {String} user.surname User surname
+     * @apiParam {String} user.birthday User birthday
+     * @apiParam {String} user.phone User phone number
+     * @apiParam {String} user.email User email
+     * @apiParam {String} user.role User role
+     * @apiParam {String} user.description User description
      *
      * @apiSuccess (200) success Returned if user successful created
      *
      * @apiError (403) error Returned if user has not access for create another user
      * @apiError (500) error Returned if throw server error
      *
-     * @param  Request $request
+     * @param  CreateUserRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function storeUserAction(Request $request)
+    public function storeUserAction(CreateUserRequest $request)
     {
-        //TODO need refactoring
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|unique:users|max:255',
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
-        }
+        $parameters = $request->only(
+            'user.name',
+            'user.surname',
+            'user.phone',
+            'user.email',
+            'user.password',
+            'user.group_id'
+        );
 
         try {
-            $student = User::create([
-                'name'  =>  $request->get('name'),
-                'surname'  =>  $request->get('surname'),
-                'birthday'  =>  $request->get('birthday'),
-                'phone'  =>  $request->get('phone'),
-                'role'  =>  $request->get('role'),
-                'email' =>  $request->get('email'),
-                'description' =>  $request->get('description'),
-                'password'  =>  $request->get('password'),
-                'group_id' => $request->get('group_id', null),
-                'status'  =>  1,
-            ]);
-
-            return response()->json($student, 201);
+            $student = User::create($parameters['user']);
         } catch (QueryException $qe) {
-            if (($qe->errorInfo[1] == 1062) || ($qe->errorInfo[1] == 23505)) {
-                return response()->json('Email must be unique', 422);
-            }
-
             return response()->json($qe->getMessage(), 422);
         }
+
+        return response()->json($student, 201);
     }
 
     /**
@@ -153,13 +144,16 @@ class UsersController extends Controller
      * @apiError (403) error Returned if user has not access for update another user
      * @apiError (500) error Returned if throw server error
      *
-     * @param  Request $request
+     * @param  UpdateUserRequest $request
      * @param  User $user
      * @return \Illuminate\Http\Response
      */
-    public function updateUserAction(Request $request, User $user)
+    public function updateUserAction(UpdateUserRequest $request, User $user)
     {
         //TODO need refactoring
+
+        $parameters = [];
+
         try {
             if ($request->has('password') && !empty($request->get('password'))) {
                 $user->update([

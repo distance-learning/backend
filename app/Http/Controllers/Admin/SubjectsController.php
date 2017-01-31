@@ -33,7 +33,9 @@ class SubjectsController extends Controller
     {
         $subjects = Subject::with('faculty')->orderBy('id')->paginate($request->get('count', 10));
 
-        return response()->json($subjects);
+        return response()->json([
+            'subjects' => $subjects,
+        ]);
     }
 
     /**
@@ -64,7 +66,9 @@ class SubjectsController extends Controller
             'description' => $request->get('description'),
         ]);
 
-        return response()->json($subject, 201);
+        return response()->json([
+            'subject' => $subject,
+        ], 201);
     }
 
     /**
@@ -96,7 +100,9 @@ class SubjectsController extends Controller
             'faculty_id' => $request->get('faculty_id'),
         ]);
 
-        return response()->json($subject);
+        return response()->json([
+            'subject' => $subject,
+        ]);
     }
 
     /**
@@ -117,7 +123,9 @@ class SubjectsController extends Controller
      */
     public function getSubjectAction(Subject $subject)
     {
-        return response()->json($subject);
+        return response()->json([
+            'subject' => $subject,
+        ]);
     }
 
     /**
@@ -162,6 +170,8 @@ class SubjectsController extends Controller
     {
         $subjects = Subject::where('name', 'LIKE', '%' . $request->get('search') . '%')->get();
 
-        return response()->json($subjects);
+        return response()->json([
+            'subjects' => $subjects,
+        ]);
     }
 }

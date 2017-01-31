@@ -34,7 +34,9 @@ class GroupsController extends Controller
      */
     public function getGroupAction(Group $group)
     {
-        return response()->json($group->load('students'));
+        return response()->json([
+            'group' => $group->load('students'),
+        ]);
     }
 
     /**
@@ -58,7 +60,9 @@ class GroupsController extends Controller
     {
         $groups = Group::paginate($request->get('count'));
 
-        return response()->json($groups);
+        return response()->json([
+            'groups' => $groups,
+        ]);
     }
 
     /**
@@ -92,7 +96,9 @@ class GroupsController extends Controller
 
         $group->students()->saveMany($students);
 
-        return response()->json($group);
+        return response()->json([
+            'group' => $group,
+        ]);
     }
 
     /**
@@ -129,7 +135,9 @@ class GroupsController extends Controller
 
         $group->students()->saveMany($students);
 
-        return response()->json($group);
+        return response()->json([
+            'group' => $group,
+        ]);
     }
 
     /**

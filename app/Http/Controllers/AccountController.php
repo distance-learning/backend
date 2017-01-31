@@ -114,9 +114,8 @@ class AccountController extends Controller
             'user.email',
             'user.phone'
         );
-        $attributes = process_array_keys($attributes);
 
-        $user->update($attributes);
+        $user->update($attributes['user']);
 
         return response()->json([
             'user' => $user
@@ -145,18 +144,17 @@ class AccountController extends Controller
     {
         $user = $request->user();
         $attributes = $request->only('user.old_password', 'user.password');
-        $attributes = process_array_keys($attributes);
 
         try {
             $this->validate($request, User::$rulesUpdatePassword);
 
-            if (!Auth::check($attributes['user.old_password'], $user->password)) {
+            if (!Auth::check($attributes['user']['old_password'], $user->password)) {
                 throw new UserInvalidCredentials();
             }
 
 
             $user->update([
-                'password' => $attributes['user.password'],
+                'password' => $attributes['user']['password'],
             ]);
         } catch (ValidationException $e) {
             return $e->getResponse();

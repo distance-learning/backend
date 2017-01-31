@@ -7,15 +7,16 @@
     "version": "1.0.0.",
     "require": {
         "php": ">=5.6.4",
-        "laravel/framework": "5.4.*",
-        "tymon/jwt-auth": "1.0.x-dev",
-        "cviebrock/eloquent-sluggable": "4.2.x",
         "barryvdh/laravel-cors": "0.8.x",
-        "doctrine/dbal": "^2.5",
         "barryvdh/laravel-ide-helper": "2.2.x",
-        "maatwebsite/excel": "2.1.x",
+        "cviebrock/eloquent-sluggable": "4.2.x",
+        "doctrine/dbal": "^2.5",
+        "laravel/browser-kit-testing": "^1.0",
+        "laravel/framework": "5.4.*",
         "laravel/tinker": "^1.0",
-        "laravel/browser-kit-testing": "^1.0"
+        "maatwebsite/excel": "2.1.x",
+        "mpociot/laravel-apidoc-generator": "^2.0",
+        "tymon/jwt-auth": "1.0.x-dev"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

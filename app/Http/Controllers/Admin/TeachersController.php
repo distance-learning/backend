@@ -30,7 +30,9 @@ class TeachersController extends Controller
     {
         $teachers = User::where('role', 'teacher')->paginate($request->query->get('count'));
 
-        return response()->json($teachers);
+        return response()->json([
+            'teachers' => $teachers,
+        ]);
     }
 
     /**
@@ -55,7 +57,9 @@ class TeachersController extends Controller
      */
     public function itemAction(Request $request, User $teacher)
     {
-        return response()->json($teacher);
+        return response()->json([
+            'teacher' => $teacher,
+        ]);
     }
 
     /**
@@ -97,7 +101,9 @@ class TeachersController extends Controller
             'status'  =>  1
         ]);
 
-        return response()->json($teacher);
+        return response()->json([
+            'teacher' => $teacher,
+        ]);
     }
 
     /**
@@ -140,7 +146,9 @@ class TeachersController extends Controller
             'status'  =>  1
         ]);
 
-        return response()->json($teacher);
+        return response()->json([
+            'teacher' => $teacher,
+        ]);
     }
 
     /**

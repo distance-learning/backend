@@ -41,7 +41,8 @@ $api->group(['prefix' => 'api', 'middleware' => 'cors'], function (Router $api) 
         $api->delete('/{module}', 'ModulesController@deleteModuleAction');
     });
 
-    $api->group(['middleware' => ['jwt.auth']], function (Router $api) {
+    //'jwt.auth'
+    $api->group(['middleware' => []], function (Router $api) {
         $api->group(['prefix' => 'account'], function (Router $api) {
             $api->get('/tasks', 'AccountController@getTasksAction');
             $api->get('/courses', 'AccountController@getCoursesAction');
@@ -51,19 +52,19 @@ $api->group(['prefix' => 'api', 'middleware' => 'cors'], function (Router $api) 
             $api->get('/subjects/{subject}/tasks', 'AccountController@getSubjectTasksAction');
         });
 
-        $api->group(['prefix' => 'events'], function (Router $api) {
-            $api->get('/', 'EventsController@getEventsByInterval');
-            $api->get('/notifications', 'EventsController@getNotificationsAction');
-        });
+//        $api->group(['prefix' => 'events'], function (Router $api) {
+//            $api->get('/', 'EventsController@getEventsByInterval');
+//            $api->get('/notifications', 'EventsController@getNotificationsAction');
+//        });
 
-        $api->group(['prefix' => 'files'], function (Router $api) {
-            $api->post('/', 'FilesController@uploadFileAction');
-            $api->get('/', 'FilesController@getFilesAction');
-            $api->get('/documents', 'FilesController@getDocumentsAction');
-            $api->get('/images', 'FilesController@getImagesAction');
-            $api->get('/{file}', 'FilesController@getFileAction');
-            $api->delete('/{file}', 'FilesController@deleteFileAction');
-        });
+//        $api->group(['prefix' => 'files'], function (Router $api) {
+//            $api->post('/', 'FilesController@uploadFileAction');
+//            $api->get('/', 'FilesController@getFilesAction');
+//            $api->get('/documents', 'FilesController@getDocumentsAction');
+//            $api->get('/images', 'FilesController@getImagesAction');
+//            $api->get('/{file}', 'FilesController@getFileAction');
+//            $api->delete('/{file}', 'FilesController@deleteFileAction');
+//        });
 
         $api->group(['prefix' => 'tasks'], function (Router $api) {
             $api->post('/', 'TasksController@createTaskAction');
@@ -89,34 +90,35 @@ $api->group(['prefix' => 'api', 'middleware' => 'cors'], function (Router $api) 
             $api->delete('/{course}', 'Admin\CoursesController@deleteCourseAction');
         });
 
-        $api->group(['prefix' => 'tests'], function (Router $api) {
-            $api->post('/', 'TestsController@postTestAction');
-            $api->get('/', 'TestsController@getTestsAction');
-            $api->get('/scores', 'TestsController@getScoresAction');
-            $api->get('/search', 'TestsController@searchTestAction');
-            $api->put('/{test}', 'TestsController@updateTestAction');
-            $api->get('/{test}', 'TestsController@getTestAction');
-            $api->delete('/{test}', 'TestsController@deleteTestAction');
-            $api->get('/{test}/export', 'TestsController@getTestAnswersAction');
-            $api->get('/{test}/passing', 'TestsController@getTestsForPassingAction');
-            $api->post('/{test}/check', 'TestsController@checkCompletedTestsAction');
-
-            $api->get('/{test}/scores', 'ScoresController@getScoresAction');
-
-            $api->group(['prefix' => '/{test}/questions'], function (Router $api) {
-                $api->post('/', 'QuestionsController@createQuestionAction');
-                $api->get('/{question}', 'QuestionsController@getQuestionByCodeAction');
-                $api->put('/{question}', 'QuestionsController@updateQuestionAction');
-                $api->post('/{question}/upload', 'QuestionsController@updateImageToQuestionByCodeAction');
-            });
-        });
+//        $api->group(['prefix' => 'tests'], function (Router $api) {
+//            $api->post('/', 'TestsController@postTestAction');
+//            $api->get('/', 'TestsController@getTestsAction');
+//            $api->get('/scores', 'TestsController@getScoresAction');
+//            $api->get('/search', 'TestsController@searchTestAction');
+//            $api->put('/{test}', 'TestsController@updateTestAction');
+//            $api->get('/{test}', 'TestsController@getTestAction');
+//            $api->delete('/{test}', 'TestsController@deleteTestAction');
+//            $api->get('/{test}/export', 'TestsController@getTestAnswersAction');
+//            $api->get('/{test}/passing', 'TestsController@getTestsForPassingAction');
+//            $api->post('/{test}/check', 'TestsController@checkCompletedTestsAction');
+//
+//            $api->get('/{test}/scores', 'ScoresController@getScoresAction');
+//
+//            $api->group(['prefix' => '/{test}/questions'], function (Router $api) {
+//                $api->post('/', 'QuestionsController@createQuestionAction');
+//                $api->get('/{question}', 'QuestionsController@getQuestionByCodeAction');
+//                $api->put('/{question}', 'QuestionsController@updateQuestionAction');
+//                $api->post('/{question}/upload', 'QuestionsController@updateImageToQuestionByCodeAction');
+//            });
+//        });
 
         $api->group(['prefix' => 'subjects'], function (Router $api) {
             $api->get('/{subject_id}/courses', 'SubjectsController@getCoursesBySubjectAndTeacherAction');
         });
     });
 
-    $api->group(['prefix' => 'admin', 'middleware' => ['jwt.auth']], function (Router $api) {
+    //'jwt.auth'
+    $api->group(['prefix' => 'admin', 'middleware' => []], function (Router $api) {
         $api->group(['prefix' => 'subjects'], function (Router $api) {
             $api->get('/', 'Admin\SubjectsController@getPaginatedSubjectsAction');
             $api->get('/search', 'Admin\SubjectsController@searchSubjectAction');
@@ -162,7 +164,7 @@ $api->group(['prefix' => 'api', 'middleware' => 'cors'], function (Router $api) 
         $api->group(['prefix'  =>  'teachers'], function (Router $api) {
             $api->get('/', 'Admin\TeachersController@indexAction');
             $api->get('/{user}', 'Admin\TeachersController@itemAction');
-            $api->post('/', 'Admin\TeachersController@createAction');
+            $api->post('/', 'Admin\TeachersController@storeAction');
             $api->put('/{user}', 'Admin\TeachersController@putAction');
             $api->delete('/{user}', 'Admin\TeachersController@deleteAction');
         });

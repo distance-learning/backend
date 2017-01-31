@@ -30,7 +30,7 @@ return [
     |
     */
 
-    'url' => 'http://localhost',
+    'url' => 'http://distance-learning.local/',
 
     /*
     |--------------------------------------------------------------------------
@@ -156,6 +156,7 @@ return [
         Barryvdh\Cors\ServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Laravel\Tinker\TinkerServiceProvider::class,
+        Mpociot\ApiDoc\ApiDocGeneratorServiceProvider::class,
     ],
 
     /*

@@ -60,14 +60,13 @@ class AuthController extends Controller
             'user.email',
             'user.password'
         );
-        $credentials = process_array_keys($credentials);
 
         try {
             $this->validate($request, User::$rulesAuthorization);
 
-            $user = User::where('email', $credentials['email'])->firstOrFail();
+            $user = User::where('email', $credentials['user']['email'])->firstOrFail();
 
-            if (!$token = JWTAuth::attempt($credentials)) {
+            if (!$token = JWTAuth::attempt($credentials['user'])) {
                 throw new UserInvalidCredentials();
             }
         } catch (ValidationException $e) {
@@ -133,20 +132,18 @@ class AuthController extends Controller
                 'user.password',
                 'user.birthday'
             );
-            $attributesForRegistration = process_array_keys($attributesForRegistration);
 
             $attributesForAuthorization = $request->only(
                 'user.email',
                 'user.password'
             );
-            $attributesForAuthorization = process_array_keys($attributesForAuthorization);
 
             /** @var User $user */
-            $user = User::create($attributesForRegistration);
+            $user = User::create($attributesForRegistration['user']);
             $user->faculty()->associate($request->get('user.faculty_id'));
             $user->saveOrFail();
 
-            if (!$token = JWTAuth::attempt($attributesForAuthorization)) {
+            if (!$token = JWTAuth::attempt($attributesForAuthorization['user'])) {
                 throw new UserInvalidCredentials();
             }
         } catch (UserInvalidCredentials $e) {
